@@ -1,0 +1,805 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Deep Learning &mdash; Pyspark_Documentation 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Pyspark_Documentation 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Time Series in Python" href="Time_Series_inPython_Documentation.html"/>
+        <link rel="prev" title="Text Mining in Python" href="Text_Mining_Documentation.html"/>
+    <link href="_static/style.css" rel="stylesheet" type="text/css">
+
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pyspark_Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sklearn_Documentation.html">Scikit-learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html">Pyspark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Text_Mining_Documentation.html">Text Mining in Python</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deep Learning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#good-general-introduction-links">Good general introduction links:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#activation-functions">Activation functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#back-propagation">Back Propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loss-cost-functions">Loss / Cost functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#convolutional-neural-networks-cnn">Convolutional Neural Networks (CNN)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#convolution">Convolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pooling">Pooling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#batch-normalization">Batch Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dropout">Dropout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zero-padding">Zero-Padding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fully-connected-networks-or-multiperceptron">Fully Connected Networks, or MultiPerceptron</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#keras">Keras</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#loss-functions">Loss functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimizers">Optimizers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conversion-the-label-to-categorical-one-hot-encoding">Conversion the label to categorical: One-Hot-Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rnn-recurrent-neural-networks">RNN: Recurrent Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lstm-long-short-term-memory">LSTM: Long Short-Term Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gan-genetic-algorithm-networks">GAN: Genetic Algorithm Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-examples">Simple examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tensorflow">Tensorflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#main-tensorflow-outline">Main Tensorflow outline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#graph-session">Graph, Session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-types">Data types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#regression">Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#classification">Classification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Time_Series_inPython_Documentation.html">Time Series in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Algorithms_Documentation.html">Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SQL_Documentation.html">SQL Server documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html">Useful Bash commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html#useful-git-commands">Useful GIT commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html#useful-vim-commands">Useful VIM commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sphinx_stuff.html">Sphinx</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Pyspark_Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Deep Learning</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/DeepLearning_Documentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="deep-learning">
+<h1>Deep Learning<a class="headerlink" href="#deep-learning" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The different “beasts” in deep learning:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Networks.png"><img alt="map to buried treasure" src="_images/Networks.png" style="width: 2000.0px; height: 3000.0px;" /></a>
+</div>
+<div class="section" id="good-general-introduction-links">
+<h3>Good general introduction links:<a class="headerlink" href="#good-general-introduction-links" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://towardsdatascience.com/a-weird-introduction-to-deep-learning-7828803693b0">https://towardsdatascience.com/a-weird-introduction-to-deep-learning-7828803693b0</a></p>
+<p><a class="reference external" href="http://neuralnetworksanddeeplearning.com/chap1.html">http://neuralnetworksanddeeplearning.com/chap1.html</a> (Free online book)</p>
+<p><a class="reference external" href="https://medium.com/&#64;dataturks/deep-learning-and-computer-vision-from-basic-implementation-to-efficient-methods-3ca994d50e90">https://medium.com/&#64;dataturks/deep-learning-and-computer-vision-from-basic-implementation-to-efficient-methods-3ca994d50e90</a></p>
+<p>General intro: <a class="reference external" href="https://towardsdatascience.com/deep-learning-with-python-703e26853820">https://towardsdatascience.com/deep-learning-with-python-703e26853820</a></p>
+<p>Vanishing gradient: <a class="reference external" href="https://www.quora.com/What-is-the-vanishing-gradient-problem">https://www.quora.com/What-is-the-vanishing-gradient-problem</a>
+Vanishing gradient example: <a class="reference external" href="https://cs224d.stanford.edu/notebooks/vanishing_grad_example.html">https://cs224d.stanford.edu/notebooks/vanishing_grad_example.html</a> (exercise of clusturing)</p>
+</div>
+<div class="section" id="activation-functions">
+<h3>Activation functions<a class="headerlink" href="#activation-functions" title="Permalink to this headline">¶</a></h3>
+<p>An activation function is a mapping of summed weighted input to the output of the neuron. It is called an activation/ transfer function because it governs the inception at which the neuron is activated and the strength of the output signal.
+Mathematically,</p>
+<p>Y = SUM (weight * input) + bias</p>
+<p>We have many activation functions, out of which most used are relu, tanh, solfPlus.</p>
+<p>Here is a list of most useful activation functions:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/ActivationFunction.png"><img alt="ActivationFunction" src="_images/ActivationFunction.png" style="width: 1005.0px; height: 783.0px;" /></a>
+</div>
+<p>Softmax: The softmax function ensures that the output (most of time the last output, so the prediction) sums to one so that it can be interpreted as a probability.</p>
+<p>ReLu</p>
+<p>Leaky ReLu: almost same as ReLu, but in the negative side the values are not zero but decreasing slightly when going to the negative side. This gives better results than ReLu (Andrew Ng).</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/ActivationFunction2.png"><img alt="ActivationFunction2" src="_images/ActivationFunction2.png" style="width: 1246.0px; height: 632.0px;" /></a>
+</div>
+<p>Why do we need non-linear activation functions? Why not to take the identity function? Simply because that would leave the model to be a simple linear operation, such as there are no hidden layers. And adding a sigmoid function at the end would make it equal as a simple logistic regression.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="Images/WhyNonLinearActivationFunctionsNeeded.png"><img alt="WhyNonLinearActivationFunctionsNeeded" src="Images/WhyNonLinearActivationFunctionsNeeded.png" /></a>
+</div>
+</div>
+<div class="section" id="back-propagation">
+<h3>Back Propagation<a class="headerlink" href="#back-propagation" title="Permalink to this headline">¶</a></h3>
+<p>The predicted value of the network is compared to the expected output, and an error is calculated using a function. This error is then propagated back within the whole network, one layer at a time, and the weights are updated according to the value that they contributed to the error. This clever bit of math is called the Back-Propagation algorithm. The process is repeated for all of the examples in your training data. One round of updating the network for the entire training dataset is called an epoch. A network may be trained for tens, hundreds or many thousands of epochs.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="Images/BackPropagation.png"><img alt="Back-Propagation" src="Images/BackPropagation.png" /></a>
+</div>
+</div>
+<div class="section" id="loss-cost-functions">
+<h3>Loss / Cost functions<a class="headerlink" href="#loss-cost-functions" title="Permalink to this headline">¶</a></h3>
+<p>A loss (or cost) function, also known as an objective function, will specify the objective of minimizing loss/error, which our model will leverage to get the best performance over multiple epochsiterations. It again can be a string identifier to some pre-implemented loss functions like cross-entropy loss (classification) or mean squared error (regression) or it can be a custom loss function that we can develop.
+The loss/cost function is the measure of “how good” a neural network did for it’s given training input and the expected output. It also may depend on attributes such as weights and biases.
+A cost function is single-valued, not a vector because it rates how well the neural network performed as a whole. Using the Gradient Descent optimization algorithm, the weights are updated incrementally after each epoch.</p>
+<ul class="simple">
+<li>Regression: mean_squared_error</li>
+<li>Classification: categorical_crossentropy (lower score is better)</li>
+</ul>
+<p>The full list for Keras is here: <a class="reference external" href="https://keras.io/losses/">https://keras.io/losses/</a></p>
+</div>
+<div class="section" id="convolutional-neural-networks-cnn">
+<h3>Convolutional Neural Networks (CNN)<a class="headerlink" href="#convolutional-neural-networks-cnn" title="Permalink to this headline">¶</a></h3>
+<p>The first few conv layers extract features like edges. The deeper conv layers extract complicated features like face, digits etc, that is the object of interest. This statement is an overgeneralization, but on a broader level this is true.</p>
+<p>Here is a list of image classification datasets: <a class="reference external" href="https://dataturks.com/projects/Trending?type=IMAGE_CLASSIFICATION">https://dataturks.com/projects/Trending?type=IMAGE_CLASSIFICATION</a></p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/CNN.png"><img alt="CNN" src="_images/CNN.png" style="width: 1000.0px; height: 341.0px;" /></a>
+</div>
+<p>Here is from scratch CNN (only Numpy needed): <a class="reference external" href="https://www.kdnuggets.com/2018/04/building-convolutional-neural-network-numpy-scratch.html">https://www.kdnuggets.com/2018/04/building-convolutional-neural-network-numpy-scratch.html</a></p>
+</div>
+<div class="section" id="convolution">
+<h3>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">¶</a></h3>
+<p>On the other hand, Deep Learning simplifies the process of feature extraction through the process of convolution. Convolution is a mathematical operation, which maps out an energy function, which is a measure of similarity between two signals, or in our case images. So, when we use a blue filter and convolve it with white light, the resultant energy spectrum is that of blue light. Hence, the convolution of white light with a blue filter results in blue light. Hence term Convolutional Neural Networks, where feature extraction is done via the process of convolution.</p>
+</div>
+<div class="section" id="pooling">
+<h3>Pooling<a class="headerlink" href="#pooling" title="Permalink to this headline">¶</a></h3>
+<p>Pooling is a sub-sampling technique. The use of pooling is to reduce the dimension of the input image after getting convolved. There are two types, max pooling, and average pooling.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="Images/MaxPooling.png"><img alt="MaxPooling" src="Images/MaxPooling.png" /></a>
+</div>
+</div>
+<div class="section" id="batch-normalization">
+<h3>Batch Normalization<a class="headerlink" href="#batch-normalization" title="Permalink to this headline">¶</a></h3>
+<p>We add this layer initially, to normalize all the features. Technically, batch normalization normalizes the output of a previous activation layer(initially, input layer) by subtracting the batch mean and dividing by the batch standard deviation. This makes the model more robust and learns effectively. Intuitively, we are preventing overfitting!</p>
+</div>
+<div class="section" id="dropout">
+<h3>Dropout<a class="headerlink" href="#dropout" title="Permalink to this headline">¶</a></h3>
+<p>This is another regularization technique that was used before Batch Norm. The way this works is, the weights are randomly juggled around by very small amounts… the model ends up learning variations and again prevents overfitting. Individual nodes are either dropped out of the net with probability 1-p or kept with probability p so that a reduced network is left; incoming and outgoing edges to a dropped-out node are also removed.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="Images/Dropout.png"><img alt="Dropout" src="Images/Dropout.png" /></a>
+</div>
+</div>
+<div class="section" id="zero-padding">
+<h3>Zero-Padding<a class="headerlink" href="#zero-padding" title="Permalink to this headline">¶</a></h3>
+<p>This helps prevent dimensionality loss, during convolution. Thus, for very deep networks, we usually prefer this. The zeros don’t add to the energy quotient during the convolution and help maintain dimensionality at a required level.</p>
+</div>
+<div class="section" id="fully-connected-networks-or-multiperceptron">
+<h3>Fully Connected Networks, or MultiPerceptron<a class="headerlink" href="#fully-connected-networks-or-multiperceptron" title="Permalink to this headline">¶</a></h3>
+<p>The output from the convolutional layers represents high-level features in the data. While that output could be flattened and connected to the output layer, adding a fully-connected layer is a way of learning non-linear combinations of these features. Essentially the convolutional layers are providing a meaningful, low-dimensional, and somewhat invariant feature space and the fully-connected layer is learning a nonlinear function induced by the activation functions, in that space. Similar to an artificial neural network architecture.</p>
+<p>Somewhat confusingly, and for historical reasons, such multiple layer networks are sometimes called multilayer perceptrons or MLPs, despite being made up of sigmoid neurons, not perceptrons.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/MLP.png"><img alt="MLP" src="_images/MLP.png" style="width: 619.0px; height: 355.0px;" /></a>
+</div>
+<p>See <a class="reference external" href="http://neuralnetworksanddeeplearning.com/chap1.html">http://neuralnetworksanddeeplearning.com/chap1.html</a></p>
+</div>
+</div>
+<div class="section" id="keras">
+<h2>Keras<a class="headerlink" href="#keras" title="Permalink to this headline">¶</a></h2>
+<p>Keras is a high-level Deep Learning framework for Python, which is capable of running on top of both Theano and Tensorflow. Keras allows us to use the constructs offered by Tensorflow and Theano in a much more intuitive and easy-to-use way without writing excess boilerplate code for building neural network based models.</p>
+<div class="figure" id="id1">
+<a class="reference internal image-reference" href="Cheatsheets/Keras_Cheat_Sheet_Python.png"><img alt="map to buried treasure" src="Cheatsheets/Keras_Cheat_Sheet_Python.png" /></a>
+<p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span></p>
+</div>
+<div class="section" id="loss-functions">
+<h3>Loss functions<a class="headerlink" href="#loss-functions" title="Permalink to this headline">¶</a></h3>
+<p>A loss function, also known as an objective function, will specify the objective of minimizing loss/error, which our model will leverage to get the best performance over multiple epochsiterations. It again can be a string identifier to some pre-implemented loss functions like cross-entropy loss (classification) or mean squared error (regression) or it can be a custom loss function that we can develop.</p>
+<ul class="simple">
+<li>Regression: mean_squared_error</li>
+<li>Classification: categorical_crossentropy (lower score is better)</li>
+</ul>
+<p>The full list for Keras is here: <a class="reference external" href="https://keras.io/losses/">https://keras.io/losses/</a></p>
+</div>
+<div class="section" id="optimizers">
+<h3>Optimizers<a class="headerlink" href="#optimizers" title="Permalink to this headline">¶</a></h3>
+<p>The role of the optimizer is to find the weights parameters that minimize the loss function.</p>
+<p>One could use a simple Gradient Descent algorithm, but experience shows that it can be very long before reaching the Global/Local minimum. The Stochastic Gradient Descent (SGD) was introduced to reduce the time of convergence, still keeping an acceptable accuracy. Stochastic gradient descent maintains a single learning rate (termed alpha) for all weight updates and the learning rate does not change during training.</p>
+<p>Three main variants of the SGD are available:</p>
+<ul class="simple">
+<li>Adaptive Gradient Algorithm (AdaGrad) that maintains a per-parameter learning rate that improves performance on problems with sparse gradients (e.g. natural language and computer vision problems).</li>
+<li>Root Mean Square Propagation (RMSProp) that also maintains per-parameter learning rates that are adapted based on the average of recent magnitudes of the gradients for the weight (e.g. how quickly it is changing). This means the algorithm does well on online and non-stationary problems (e.g. noisy).</li>
+<li>Adam (the prefered one as to 2018, see here for a discussion: see <a class="reference external" href="https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/">https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/</a>. ):</li>
+</ul>
+<p>Why Adam?</p>
+<ul class="simple">
+<li>Adam combines the best properties of the AdaGrad and RMSProp algorithms to provide an optimization algorithm that can handle sparse gradients on noisy problems.</li>
+<li>Adam is relatively easy to configure where the default configuration parameters do well on most problems.</li>
+</ul>
+<p>Instead of adapting the parameter learning rates based on the average first moment (the mean) as in RMSProp, Adam also makes use of the average of the second moments of the gradients (the uncentered variance).</p>
+<ul class="simple">
+<li>Intro to Adam: <a class="reference external" href="https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/">https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/</a></li>
+<li>For a thorough review, see <a class="reference external" href="http://ruder.io/optimizing-gradient-descent/">http://ruder.io/optimizing-gradient-descent/</a></li>
+<li>Nice post: <a class="reference external" href="https://medium.com/&#64;nishantnikhil/adam-optimizer-notes-ddac4fd7218">https://medium.com/&#64;nishantnikhil/adam-optimizer-notes-ddac4fd7218</a></li>
+<li>The initial paper: <a class="reference external" href="https://arxiv.org/pdf/1412.6980.pdf">https://arxiv.org/pdf/1412.6980.pdf</a></li>
+<li>For an intro to SGD: <a class="reference external" href="http://neuralnetworksanddeeplearning.com/chap1.html">http://neuralnetworksanddeeplearning.com/chap1.html</a> and associated code: <a class="reference external" href="https://github.com/mnielsen/neural-networks-and-deep-learning/blob/master/src/network.py">https://github.com/mnielsen/neural-networks-and-deep-learning/blob/master/src/network.py</a></li>
+</ul>
+</div>
+<div class="section" id="conversion-the-label-to-categorical-one-hot-encoding">
+<h3>Conversion the label to categorical: One-Hot-Encoding<a class="headerlink" href="#conversion-the-label-to-categorical-one-hot-encoding" title="Permalink to this headline">¶</a></h3>
+<p>The OHE is used to convert the labels to categorical columns, one column per category, as seen here:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/OneHotEncoding.png"><img alt="Converting labels to categorical OHE labels" src="_images/OneHotEncoding.png" style="width: 408.0px; height: 232.0px;" /></a>
+</div>
+</div>
+<div class="section" id="rnn-recurrent-neural-networks">
+<h3>RNN: Recurrent Neural Networks<a class="headerlink" href="#rnn-recurrent-neural-networks" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="lstm-long-short-term-memory">
+<h3>LSTM: Long Short-Term Memory<a class="headerlink" href="#lstm-long-short-term-memory" title="Permalink to this headline">¶</a></h3>
+<p>Good post: <a class="reference external" href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">http://colah.github.io/posts/2015-08-Understanding-LSTMs/</a>
+Post with Keras example: <a class="reference external" href="https://www.analyticsvidhya.com/blog/2017/12/fundamentals-of-deep-learning-introduction-to-lstm/">https://www.analyticsvidhya.com/blog/2017/12/fundamentals-of-deep-learning-introduction-to-lstm/</a></p>
+<p>GRU (Gated Recurrent Unit): variant of LSTM</p>
+</div>
+<div class="section" id="gan-genetic-algorithm-networks">
+<h3>GAN: Genetic Algorithm Networks<a class="headerlink" href="#gan-genetic-algorithm-networks" title="Permalink to this headline">¶</a></h3>
+<p>Problem: the discovery of the best hyperparameters of a neural network is very time consuming, especially when it is done brute force.
+Here, we try to improve upon the brute force method by applying a genetic algorithm to evolve a network with the goal of achieving optimal hyperparameters in a fraction the time of a brute force search.</p>
+<p>It is said that a 80% time saving can be obtained: <a class="reference external" href="https://blog.coast.ai/lets-evolve-a-neural-network-with-a-genetic-algorithm-code-included-8809bece164">https://blog.coast.ai/lets-evolve-a-neural-network-with-a-genetic-algorithm-code-included-8809bece164</a>
+(assuming best parameters are found…)</p>
+<p>What’s a genetic algorithm? Genetic algorithms are commonly used to generate high-quality solutions to optimization and search problems by relying on bio-inspired operators such as mutation, crossover and selection. — Wikipedia
+(See here: <a class="reference external" href="https://lethain.com/genetic-algorithms-cool-name-damn-simple/">https://lethain.com/genetic-algorithms-cool-name-damn-simple/</a>)</p>
+<p>See even simpler example here, based on Numpy only: <a class="reference external" href="https://www.kdnuggets.com/2018/07/genetic-algorithm-implementation-python.html">https://www.kdnuggets.com/2018/07/genetic-algorithm-implementation-python.html</a></p>
+<p>First: how do genetic algorithms work? At its core, a genetic algorithm…</p>
+<ol class="arabic simple">
+<li>Creates a population of (randomly generated) members</li>
+<li>Scores each member of the population based on some goal. This score is called a fitness function.</li>
+<li>Selects and breeds the best members of the population to produce more like them</li>
+<li>Mutates some members randomly to attempt to find even better candidates</li>
+<li>Kills off the rest (survival of the fittest and all), and</li>
+<li>Repeats from step 2. Each iteration through these steps is called a generation.</li>
+</ol>
+<p>Repeat this process enough times and you should be left with the very best possible members of a population.</p>
+<p>See <a class="reference external" href="https://github.com/harvitronix/neural-network-genetic-algorithm">https://github.com/harvitronix/neural-network-genetic-algorithm</a> for a code intro.</p>
+</div>
+<div class="section" id="simple-examples">
+<h3>Simple examples<a class="headerlink" href="#simple-examples" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><strong>CLASSIFICATION</strong>: Example making new class predictions for a classification problem</li>
+</ol>
+<p>#Taken from <a class="reference external" href="https://machinelearningmastery.com/how-to-make-classification-and-regression-predictions-for-deep-learning-models-in-keras/">https://machinelearningmastery.com/how-to-make-classification-and-regression-predictions-for-deep-learning-models-in-keras/</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets.samples_generator</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="c1"># generate 2d classification dataset</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">scalar</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">scalar</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">scalar</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># define and fit the final model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># new instances where we do not know the answer</span>
+<span class="n">Xnew</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Xnew</span> <span class="o">=</span> <span class="n">scalar</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)</span>
+<span class="c1"># make a prediction</span>
+<span class="n">ynew</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_classes</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)</span>
+<span class="c1"># show the inputs and predicted outputs</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;X=</span><span class="si">%s</span><span class="s2">, Predicted=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">Xnew</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ynew</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+<span class="c1">#Here just for visual check</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xnew</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">Xnew</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#output:</span>
+<span class="n">X</span><span class="o">=</span><span class="p">[</span><span class="mf">0.89337759</span> <span class="mf">0.65864154</span><span class="p">],</span> <span class="n">Predicted</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">X</span><span class="o">=</span><span class="p">[</span><span class="mf">0.29097707</span> <span class="mf">0.12978982</span><span class="p">],</span> <span class="n">Predicted</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">X</span><span class="o">=</span><span class="p">[</span><span class="mf">0.78082614</span> <span class="mf">0.75391697</span><span class="p">],</span> <span class="n">Predicted</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Classification_keras.png"><img alt="Check of the classification of the new entries" src="_images/Classification_keras.png" style="width: 300.0px; height: 201.60000000000002px;" /></a>
+</div>
+<p>Note: Another type of prediction you may wish to make is the probability of the data instance belonging to each class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Same</span><span class="p">,</span> <span class="n">use</span> <span class="n">ynew</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)</span> <span class="ow">in</span> <span class="n">place</span> <span class="n">of</span> <span class="n">ynew</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_classes</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><strong>REGRESSION</strong>: Example of making predictions for a regression problem</li>
+</ol>
+<p>#Taken from <a class="reference external" href="https://machinelearningmastery.com/how-to-make-classification-and-regression-predictions-for-deep-learning-models-in-keras/">https://machinelearningmastery.com/how-to-make-classification-and-regression-predictions-for-deep-learning-models-in-keras/</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="c1"># generate regression dataset</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">scalarX</span><span class="p">,</span> <span class="n">scalarY</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(),</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">scalarX</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">scalarY</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">scalarX</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">scalarY</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># define and fit the final model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># new instances where we do not know the answer</span>
+<span class="n">Xnew</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Xnew</span> <span class="o">=</span> <span class="n">scalarX</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)</span>
+
+<span class="c1"># make a prediction</span>
+<span class="n">ynew</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)</span>
+<span class="c1"># show the inputs and predicted outputs</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;X=</span><span class="si">%s</span><span class="s2">, Predicted=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">Xnew</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ynew</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+<span class="c1">#Here just for visual check</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xnew</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">ynew</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X[:,0]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xnew</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">ynew</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X[:,1]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#output:</span>
+<span class="n">X</span><span class="o">=</span><span class="p">[</span><span class="mf">0.29466096</span> <span class="mf">0.30317302</span><span class="p">],</span> <span class="n">Predicted</span><span class="o">=</span><span class="p">[</span><span class="mf">0.17338811</span><span class="p">]</span>
+<span class="n">X</span><span class="o">=</span><span class="p">[</span><span class="mf">0.39445118</span> <span class="mf">0.79390858</span><span class="p">],</span> <span class="n">Predicted</span><span class="o">=</span><span class="p">[</span><span class="mf">0.7450506</span><span class="p">]</span>
+<span class="n">X</span><span class="o">=</span><span class="p">[</span><span class="mf">0.02884127</span> <span class="mf">0.6208843</span> <span class="p">],</span> <span class="n">Predicted</span><span class="o">=</span><span class="p">[</span><span class="mf">0.4035678</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Regression_keras.png"><img alt="Check of the regression of the new entries" src="_images/Regression_keras.png" style="width: 312.0px; height: 212.8px;" /></a>
+</div>
+<ol class="arabic simple" start="3">
+<li>LSTM example</li>
+</ol>
+<p>Taken from: <a class="reference external" href="https://machinelearningmastery.com/make-predictions-long-short-term-memory-models-keras/">https://machinelearningmastery.com/make-predictions-long-short-term-memory-models-keras/</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">LSTM</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">load_model</span>
+
+<span class="c1"># return training data</span>
+<span class="k">def</span> <span class="nf">get_train</span><span class="p">():</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]]</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">seq</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="c1"># define model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">LSTM</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">))</span>
+<span class="c1"># compile model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">)</span>
+<span class="c1"># fit model</span>
+<span class="n">X</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">get_train</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># save model to single file</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;lstm_model.h5&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Then the model can be loaded again (from a different script in a different Python session) using the load_model() function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">load_model</span>
+<span class="c1"># load model from single file</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;lstm_model.h5&#39;</span><span class="p">)</span>
+<span class="c1"># make predictions</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">yhat</span><span class="p">)</span>
+
+<span class="c1">#output</span>
+<span class="p">[[</span><span class="mf">0.23529154</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.27136612</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.3086475</span> <span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.34707576</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.38658726</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Again we can distinguish between predict(), predict_proba() and predict_classes():</p>
+</div>
+</div>
+<div class="section" id="tensorflow">
+<h2>Tensorflow<a class="headerlink" href="#tensorflow" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<p>Here is a cheatsheet taken from Tensorflow.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/TS_Linux.png"><img alt="Installation in Linux/Mac" src="_images/TS_Linux.png" style="width: 391.5px; height: 162.0px;" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/TS_Windows.png"><img alt="Installation in Windows" src="_images/TS_Windows.png" style="width: 393.0px; height: 164.5px;" /></a>
+</div>
+<p>Here is a cheatsheet taken from Tensorflow.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/TensorFlow_cheatsheet.png"><img alt="map to buried treasure" src="_images/TensorFlow_cheatsheet.png" style="width: 2000.0px; height: 2812.0px;" /></a>
+</div>
+</div>
+<div class="section" id="main-tensorflow-outline">
+<h3>Main Tensorflow outline<a class="headerlink" href="#main-tensorflow-outline" title="Permalink to this headline">¶</a></h3>
+<p>Here we will introduce the general flow of TensorFlow algorithms. Most recipes will follow this outline:</p>
+<ol class="arabic simple">
+<li><strong>Import or generate datasets</strong></li>
+<li><strong>Transform and normalize data</strong>: We will have to transform our data before we can use it, put in TensorFlow format. Most algorithms also expect normalized data. TensorFlow has built-in functions that can normalize the data for you as follows:</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">batch_norm_with_global_normalization</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><strong>Partition datasets into train, test, and validation sets</strong></li>
+<li><strong>Set algorithm parameters (hyperparameters)</strong>: Our algorithms usually have a set of parameters that we hold constant throughout the procedure. For example, this can be the number of iterations, the learning rate, or other fixed parameters of our choosing. It is considered good form to initialize these together so the user can easily find them, as follows:</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">iterations</span> <span class="o">=</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+<p>5. <strong>Initialize variables and placeholders</strong>: TensorFlow depends on knowing what it can and cannot modify. TensorFlow will modify/adjust the variables and weight/bias during optimization to minimize a
+loss function. To accomplish this, we feed in data through placeholders. We need to initialize both of these variables and placeholders with size and type, so that TensorFlow knows what to expect. See the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a_var</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">x_input</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="n">input_size</span><span class="p">])</span>
+<span class="n">y_input</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">])</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><strong>Define the model structure</strong>: This is done by building a computational graph. TensorFlow chooses what operations and values must be the variables and placeholders to arrive at our model outcomes. For example, for a linear model:</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">x_input</span><span class="p">,</span> <span class="n">weight_matrix</span><span class="p">),</span> <span class="n">b_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><strong>Declare the loss functions</strong>: After defining the model, we must be able to evaluate the output. This is where we declare the loss function. The loss function is very important as it tells us how far off our predictions are from the actual values. Here is an example of loss function:</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>loss = tf.reduce_mean(tf.square(y_actual – y_pred))
+</pre></div>
+</div>
+<ol class="arabic simple" start="8">
+<li><strong>Initialize and train the model</strong>: Now that we have everything in place, we need to create an instance of our graph, feed in the data through the placeholders, and let TensorFlow change the variables to better predict our training data. Here is one way to initialize the computational graph:</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="n">graph</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+  <span class="o">...</span>
+  <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+  <span class="o">...</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="9">
+<li><strong>Evaluate the model</strong>: Once we have built and trained the model, we should evaluate the model by looking at how well it does with new data through some specified criteria. We evaluate on the train and test set and these evaluations will allow us to see if the model is underfit or overfit.</li>
+<li><strong>Tune hyperparameters</strong>: Most of the time, we will want to go back and change some of the hyperparamters, based on the model performance. We then repeat the previous steps with different hyperparameters and evaluate the model on the validation set.</li>
+<li><strong>Deploy/predict new outcomes</strong>: It is also important to know how to make predictions on new, unseen, data. We can do this with all of our models, once we have them trained.</li>
+</ol>
+</div>
+<div class="section" id="graph-session">
+<h3>Graph, Session<a class="headerlink" href="#graph-session" title="Permalink to this headline">¶</a></h3>
+<p>The structure of TensorFlow programs is made of Graph and Session:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Graph.png"><img alt="Session is Graph with Data" src="_images/Graph.png" style="width: 446.5px; height: 235.5px;" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Graph2.png"><img alt="Session is Graph with Data" src="_images/Graph2.png" style="width: 463.5px; height: 216.5px;" /></a>
+</div>
+<p>A graph is made of:</p>
+<ul class="simple">
+<li>Placeholders: gates where we introduce example</li>
+<li>Model: makes predictions. Set of variables and operations</li>
+<li>Cost function: function that computes the model error</li>
+<li>Optimizer: algorithm that optimizes the variables so the cost would be zero</li>
+</ul>
+<p>Then the session is the Graph with the Data entered:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Session.png"><img alt="Session is Graph with Data" src="_images/Session.png" style="width: 431.0px; height: 213.0px;" /></a>
+</div>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##### GRAPH #####</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="n">sum_graph</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="c1">##### DATA #####</span>
+<span class="n">num1</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="c1">##### SESSION #####</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+  <span class="n">sum_outcome</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sum_graph</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span>
+  <span class="n">a</span><span class="p">:</span> <span class="n">num1</span><span class="p">,</span>
+  <span class="n">b</span><span class="p">:</span> <span class="n">num2</span>
+  <span class="p">})</span>
+  <span class="k">print</span><span class="p">(</span><span class="s2">&quot;The sum of {} and {} is {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span><span class="n">num2</span><span class="p">,</span><span class="n">sum_outcome</span><span class="p">))</span>
+
+<span class="n">The</span> <span class="nb">sum</span> <span class="n">of</span> <span class="mi">3</span> <span class="ow">and</span> <span class="mi">8</span> <span class="ow">is</span> <span class="mi">11</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-types">
+<h3>Data types<a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h3>
+<p><strong>Matrices</strong>: here we create 5 matrices (2D arrays):</p>
+<ul class="simple">
+<li>identity matrix</li>
+<li>truncated normal distribution</li>
+<li>an array with one fixed value</li>
+<li>a uniform distribution array</li>
+<li>an array conversion from Numpy</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">identity_matrix</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span> <span class="c1">#or A = tf.truncated_normal([row_dim, col_dim],mean=0.0, stddev=1.0)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">fill</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="mf">5.0</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_uniform</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],[</span><span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.</span><span class="p">,</span><span class="o">-</span><span class="mf">1.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">]]))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">identity_matrix</span><span class="p">))</span>
+<span class="p">[[</span> <span class="mf">1.</span>  <span class="mf">0.</span>  <span class="mf">0.</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.</span>  <span class="mf">1.</span>  <span class="mf">0.</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.</span>  <span class="mf">0.</span>  <span class="mf">1.</span><span class="p">]]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="p">[[</span> <span class="mf">0.96751703</span>  <span class="mf">0.11397751</span> <span class="o">-</span><span class="mf">0.3438891</span> <span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.10132604</span> <span class="o">-</span><span class="mf">0.8432678</span>   <span class="mf">0.29810596</span><span class="p">]]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">B</span><span class="p">))</span>
+<span class="p">[[</span> <span class="mf">5.</span>  <span class="mf">5.</span>  <span class="mf">5.</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">5.</span>  <span class="mf">5.</span>  <span class="mf">5.</span><span class="p">]]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">C</span><span class="p">))</span>
+<span class="p">[[</span> <span class="mf">0.33184157</span>  <span class="mf">0.08907614</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.53189191</span>  <span class="mf">0.67605299</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.95889051</span>  <span class="mf">0.67061249</span><span class="p">]]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">D</span><span class="p">))</span>
+<span class="p">[[</span> <span class="mf">1.</span>  <span class="mf">2.</span>  <span class="mf">3.</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">3.</span> <span class="o">-</span><span class="mf">7.</span> <span class="o">-</span><span class="mf">1.</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.</span>  <span class="mf">5.</span> <span class="o">-</span><span class="mf">2.</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>And for +,-,*, transposition, Determinant, Inverse operations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">A</span><span class="o">+</span><span class="n">B</span><span class="p">))</span>
+<span class="p">[[</span> <span class="mf">4.61596632</span>  <span class="mf">5.39771316</span>  <span class="mf">4.4325695</span> <span class="p">]</span>
+ <span class="p">[</span> <span class="mf">3.26702736</span>  <span class="mf">5.14477345</span>  <span class="mf">4.98265553</span><span class="p">]]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">B</span><span class="o">-</span><span class="n">B</span><span class="p">))</span>
+<span class="p">[[</span> <span class="mf">0.</span>  <span class="mf">0.</span>  <span class="mf">0.</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.</span>  <span class="mf">0.</span>  <span class="mf">0.</span><span class="p">]]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">identity_matrix</span><span class="p">)))</span>
+<span class="p">[[</span> <span class="mf">5.</span>  <span class="mf">5.</span>  <span class="mf">5.</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">5.</span>  <span class="mf">5.</span>  <span class="mf">5.</span><span class="p">]]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">C</span><span class="p">)))</span>
+<span class="p">[[</span> <span class="mf">0.67124544</span>  <span class="mf">0.26766731</span>  <span class="mf">0.99068872</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.25006068</span>  <span class="mf">0.86560275</span>  <span class="mf">0.58411312</span><span class="p">]]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matrix_determinant</span><span class="p">(</span><span class="n">D</span><span class="p">)))</span>
+<span class="o">-</span><span class="mf">38.0</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matrix_inverse</span><span class="p">(</span><span class="n">D</span><span class="p">)))</span>
+<span class="p">[[</span><span class="o">-</span><span class="mf">0.5</span>        <span class="o">-</span><span class="mf">0.5</span>        <span class="o">-</span><span class="mf">0.5</span>       <span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.15789474</span>  <span class="mf">0.05263158</span>  <span class="mf">0.21052632</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.39473684</span>  <span class="mf">0.13157895</span>  <span class="mf">0.02631579</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Eigenvalues and Eigenvectors:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">self_adjoint_eig</span><span class="p">(</span><span class="n">D</span><span class="p">))</span>
+<span class="p">[[</span><span class="o">-</span><span class="mf">10.65907521</span>  <span class="o">-</span><span class="mf">0.22750691</span>   <span class="mf">2.88658212</span><span class="p">]</span>
+ <span class="p">[</span>  <span class="mf">0.21749542</span>   <span class="mf">0.63250104</span>  <span class="o">-</span><span class="mf">0.74339638</span><span class="p">]</span>
+ <span class="p">[</span>  <span class="mf">0.84526515</span>   <span class="mf">0.2587998</span>    <span class="mf">0.46749277</span><span class="p">]</span>
+ <span class="p">[</span> <span class="o">-</span><span class="mf">0.4880805</span>    <span class="mf">0.73004459</span>   <span class="mf">0.47834331</span><span class="p">]]</span>
+<span class="p">(</span><span class="n">The</span> <span class="n">function</span> <span class="n">self_adjoint_eig</span><span class="p">()</span> <span class="n">outputs</span> <span class="n">the</span> <span class="n">eigenvalues</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="n">row</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">subsequent</span> <span class="n">vectors</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">remaining</span> <span class="n">vectors</span><span class="o">.</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="regression">
+<h3>Regression<a class="headerlink" href="#regression" title="Permalink to this headline">¶</a></h3>
+<p>Here is a simple example of a regression exercise: let’s “learn” to a machine how to sum numbers! We give inputs and outputs, and it has to infer how to sum.</p>
+<p>#Example taken from <a class="reference external" href="https://github.com/alesolano/mastering_tensorflow">https://github.com/alesolano/mastering_tensorflow</a></p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Regression_exo1.png"><img alt="Regression exercise" src="_images/Regression_exo1.png" style="width: 355.5px; height: 198.5px;" /></a>
+</div>
+<p>We will use a linear model, with a weight matrix and a bias vector.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Regression_exo2.png"><img alt="Regression exercise" src="_images/Regression_exo2.png" style="width: 390.0px; height: 194.0px;" /></a>
+</div>
+<p>We could use different layers. The first ones are hidden, the last one is the output.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Regression_exo3.png"><img alt="Regression exercise" src="_images/Regression_exo3.png" style="width: 293.0px; height: 200.0px;" /></a>
+</div>
+<p>We could even put non-linear functions in the hidden layers:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Regression_exo4.png"><img alt="Regression exercise" src="_images/Regression_exo4.png" style="width: 343.5px; height: 193.5px;" /></a>
+</div>
+<p>Here is the full code for this exercise: <code class="xref download docutils literal notranslate"><span class="pre">this</span> <span class="pre">example</span> <span class="pre">script</span></code>.</p>
+</div>
+<div class="section" id="classification">
+<h3>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h3>
+<p>Exercise: let’s try to classify sums of 2 numbers, above 10 or not.</p>
+<p>#Example taken from <a class="reference external" href="https://github.com/alesolano/mastering_tensorflow">https://github.com/alesolano/mastering_tensorflow</a></p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Classification_exo1.png"><img alt="Classification exercise" src="_images/Classification_exo1.png" style="width: 414.0px; height: 98.5px;" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Classification_exo2.png"><img alt="Classification exercise" src="_images/Classification_exo2.png" style="width: 433.0px; height: 191.5px;" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Classification_exo3.png"><img alt="Classification exercise" src="_images/Classification_exo3.png" style="width: 420.5px; height: 183.5px;" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Classification_exo4.png"><img alt="Classification exercise" src="_images/Classification_exo4.png" style="width: 277.0px; height: 121.0px;" /></a>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Time_Series_inPython_Documentation.html" class="btn btn-neutral float-right" title="Time Series in Python" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Text_Mining_Documentation.html" class="btn btn-neutral" title="Text Mining in Python" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, pmeu.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

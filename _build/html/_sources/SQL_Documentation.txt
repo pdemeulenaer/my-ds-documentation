@@ -1,0 +1,32 @@
+
+===============
+ SQL Server documentation
+===============
+
+Basic SQL documentation
+===============
+
+.. topic:: Your Topic Title
+
+    The objective here is to have everything useful for the projects, not to make a complete documentation of the whole SQL. 
+    Let us have here the basics, as well as the useful (small) pieces of codes that are often used in our team.
+	
+Basic query
+----------------
+
+.. code-block:: sql
+   :linenos:
+
+   SELECT * FROM mytable   
+   
+Joining tables
+----------------
+
+Here is a graphical visualization of the different JOIN operations:
+
+.. figure:: Images/Visual_SQL_JOINS.jpg
+   :scale: 100 %
+   :alt: map to buried treasure
+
+   Taken from https://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins
+

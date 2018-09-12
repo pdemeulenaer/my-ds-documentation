@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Text Mining in Python &mdash; Pyspark_Documentation 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Pyspark_Documentation 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Deep Learning" href="DeepLearning_Documentation.html"/>
+        <link rel="prev" title="Pyspark" href="Pyspark_Documentation.html"/>
+    <link href="_static/style.css" rel="stylesheet" type="text/css">
+
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pyspark_Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sklearn_Documentation.html">Scikit-learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html">Pyspark</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Text Mining in Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#libraries-and-useful-links">Libraries and useful links</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-functions">Basic functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#intro-to-regular-expressions-regex">Intro to regular expressions (REGEX)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#word2vec">Word2Vec</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DeepLearning_Documentation.html">Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Time_Series_inPython_Documentation.html">Time Series in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Algorithms_Documentation.html">Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SQL_Documentation.html">SQL Server documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html">Useful Bash commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html#useful-git-commands">Useful GIT commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html#useful-vim-commands">Useful VIM commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sphinx_stuff.html">Sphinx</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Pyspark_Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Text Mining in Python</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/Text_Mining_Documentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="text-mining-in-python">
+<h1>Text Mining in Python<a class="headerlink" href="#text-mining-in-python" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="libraries-and-useful-links">
+<h2>Libraries and useful links<a class="headerlink" href="#libraries-and-useful-links" title="Permalink to this headline">¶</a></h2>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/NLP_libraries.png"><img alt="NLP libraries" src="_images/NLP_libraries.png" style="width: 1200.0px; height: 1745.0px;" /></a>
+</div>
+<p><a class="reference external" href="https://www.kdnuggets.com/2018/07/comparison-top-6-python-nlp-libraries.html">https://www.kdnuggets.com/2018/07/comparison-top-6-python-nlp-libraries.html</a></p>
+<div class="section" id="basic-functions">
+<h3>Basic functions<a class="headerlink" href="#basic-functions" title="Permalink to this headline">¶</a></h3>
+<p>Here are useful functions for cutting a sentence into words, getting the singular form, getting the root of each word:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">RegexpTokenizer</span>
+
+<span class="k">def</span> <span class="nf">splitToWords</span><span class="p">(</span><span class="n">stringOfWords</span><span class="p">):</span>
+  <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RegexpTokenizer</span><span class="p">(</span><span class="s2">&quot;[\w&#39;]+&quot;</span><span class="p">)</span>
+  <span class="n">words</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">stringOfWords</span><span class="p">)</span>
+  <span class="n">words</span> <span class="o">=</span> <span class="n">lower_function</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">words</span>
+
+
+<span class="k">def</span> <span class="nf">lower_function</span><span class="p">(</span><span class="n">list_input</span><span class="p">):</span>
+  <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">list_input</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">lemmatize_function</span><span class="p">(</span><span class="n">list_input</span><span class="p">):</span>
+  <span class="n">wordnet_lemmatizer</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
+  <span class="k">return</span> <span class="p">[</span><span class="n">wordnet_lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_input</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">stem_function</span><span class="p">(</span><span class="n">list_input</span><span class="p">):</span>
+  <span class="n">snowball_stemmer</span> <span class="o">=</span> <span class="n">SnowballStemmer</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">)</span>
+  <span class="c1">#lancaster_stemmer = LancasterStemmer()</span>
+  <span class="k">return</span> <span class="p">[</span><span class="n">snowball_stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_input</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">remove_stopWords_function</span><span class="p">(</span><span class="n">list_input</span><span class="p">):</span>
+  <span class="n">punctuation</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
+  <span class="n">stop</span> <span class="o">=</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">punctuation</span>
+  <span class="k">return</span> <span class="p">[</span><span class="n">term</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">list_input</span> <span class="k">if</span> <span class="n">term</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop</span><span class="p">]</span>
+
+<span class="c1">#INPUT</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Nonsense?  kiss off, geek. what I said is true.  I&#39;ll have your account terminated.&quot;</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="n">splitToWords</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>                 <span class="c1">#tokenizes (=splits in words)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">remove_stopWords_function</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>    <span class="c1">#Removes stopwords (&quot;the&quot;,...)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">lemmatize_function</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>           <span class="c1">#Lemmatiz = gets singular form of words when applicable</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">stem_function</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>                <span class="c1">#Stemming = keeps root of words only</span>
+<span class="k">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output: [‘nonsens’, ‘kiss’, ‘geek’, ‘said’, ‘true’, “i’ll”, ‘account’, ‘termin’]</p>
+<p>Another useful text cleaning function can be found here:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">standardize_text</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">text_field</span><span class="p">):</span>
+  <span class="n">df</span><span class="p">[</span><span class="n">text_field</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">text_field</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;http\S+&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+  <span class="n">df</span><span class="p">[</span><span class="n">text_field</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">text_field</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;http&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+  <span class="n">df</span><span class="p">[</span><span class="n">text_field</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">text_field</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;@\S+&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+  <span class="n">df</span><span class="p">[</span><span class="n">text_field</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">text_field</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[^A-Za-z0-9(),!?@\&#39;\`</span><span class="se">\&quot;</span><span class="s2">\_\n]&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+  <span class="n">df</span><span class="p">[</span><span class="n">text_field</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">text_field</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;@&quot;</span><span class="p">,</span> <span class="s2">&quot;at&quot;</span><span class="p">)</span>
+  <span class="n">df</span><span class="p">[</span><span class="n">text_field</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">text_field</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+  <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+<p>questions = standardize_text(df, “text”)</p>
+<p>taken from the excellent tutorial on topic classification: <a class="reference external" href="https://github.com/hundredblocks/concrete_NLP_tutorial/blob/master/NLP_notebook.ipynb">https://github.com/hundredblocks/concrete_NLP_tutorial/blob/master/NLP_notebook.ipynb</a>
+Here for the blog: <a class="reference external" href="https://blog.insightdatascience.com/how-to-solve-90-of-nlp-problems-a-step-by-step-guide-fda605278e4e?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3BqGDpQk2XQQ2DhR08PHkmqg%3D%3D">https://blog.insightdatascience.com/how-to-solve-90-of-nlp-problems-a-step-by-step-guide-fda605278e4e?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3BqGDpQk2XQQ2DhR08PHkmqg%3D%3D</a></p>
+<p>Other tokenizing, from DataCamp:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary modules</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">sent_tokenize</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+
+<span class="c1"># Split scene_one into sentences: sentences</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">scene_one</span><span class="p">)</span>
+
+<span class="c1"># Use word_tokenize to tokenize the fourth sentence: tokenized_sent</span>
+<span class="n">tokenized_sent</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentences</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="c1"># Make a set of unique tokens in the entire scene: unique_tokens</span>
+<span class="n">unique_tokens</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">scene_one</span><span class="p">))</span>
+
+<span class="c1"># Print the unique tokens result</span>
+<span class="k">print</span><span class="p">(</span><span class="n">unique_tokens</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="intro-to-regular-expressions-regex">
+<h2>Intro to regular expressions (REGEX)<a class="headerlink" href="#intro-to-regular-expressions-regex" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id1">
+<a class="reference internal image-reference" href="Images/Regex_table.png"><img alt="map to buried treasure" src="Images/Regex_table.png" /></a>
+<p class="caption"><span class="caption-text">Taken from DataCamp.</span></p>
+</div>
+<p>Examples of regex patterns:</p>
+<p>pattern1 = r”#w+”
+This says that we want to catch terms like ‘#thing’</p>
+<p>pattern2 = r”([#|&#64;]w+)”
+This says that we want to catch terms like ‘#thing’ or <a class="reference external" href="mailto:'&#37;&#52;&#48;thing">‘<span>&#64;</span>thing</a>’</p>
+<p>Let’s say we have some german text like this:</p>
+<p>german_text = ‘Wann gehen wir zum Pizza? 🍕 Und fährst du mit Über? 🚕’</p>
+<p>1. We want to tokenize all words:
+all_words = word_tokenize(german_text)
+print(all_words)
+Output: [‘Wann’, ‘gehen’, ‘wir’, ‘zum’, ‘Pizza’, ‘?’, ‘🍕’, ‘Und’, ‘fährst’, ‘du’, ‘mit’, ‘Über’, ‘?’, ‘🚕’]</p>
+<p>2. We want all words starting by a capital letter (including Ü!!!)
+capital_words = r”[A-ZÜ]w+”
+print(regexp_tokenize(german_text,capital_words))
+Output: [‘Wann’, ‘Pizza’, ‘Und’, ‘Über’]</p>
+<p>3. We want all symbols! For that we can use the list of them in the pattern:
+# Tokenize and print only emoji
+emoji = “[‘U0001F300-U0001F5FF’|’U0001F600-U0001F64F’|’U0001F680-U0001F6FF’|’u2600-u26FFu2700-u27BF’]”
+print(regexp_tokenize(german_text,emoji))
+Output: [‘🍕’, ‘🚕’]</p>
+<p>So in theory we can capture anything.</p>
+</div>
+<div class="section" id="word2vec">
+<h2>Word2Vec<a class="headerlink" href="#word2vec" title="Permalink to this headline">¶</a></h2>
+<p>Word2Vec is a technique to find continuous embeddings for words. It learns from reading massive amounts of text and memorizing which words tend to appear in similar contexts. After being trained on enough data, it generates a 300-dimension vector for each word in a vocabulary, with words of similar meaning being closer to each other.</p>
+<p>Word2vec is a model that was pre-trained on a very large corpus, and provides embeddings that map words that are similar close to each other. A quick way to get a sentence embedding for our classifier, is to average word2vec scores of all words in our sentence.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="DeepLearning_Documentation.html" class="btn btn-neutral float-right" title="Deep Learning" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Pyspark_Documentation.html" class="btn btn-neutral" title="Pyspark" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, pmeu.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,360 @@
+===============
+ Python, Jupyter and Pandas
+===============
+
+Basic Jupyter infos
+===============
+
+Here are useful shortcuts for the Jupyter Notebooks:
+
+.. figure:: Cheatsheets/Jupyter_Notebook_Keyboard_Shorcuts.png
+   :scale: 100 %
+   :alt: map to buried treasure
+
+   This Cheatsheet is taken from cheatography.com/weidadeyue/ 
+
+When you launch a Jupyter notebook, you can adjust its width size using the following command at the beginning:
+   
+.. sourcecode:: python
+
+   from IPython.core.display import display, HTML
+   display(HTML("<style>.container { width:100% !important; }</style>"))
+   
+Loading package from a given (maybe different) directory:
+
+.. sourcecode:: python
+
+   import sys
+   sys.path.append('/home/BB2907/GIT/affordabillity/pyspark') 
+
+
+Numpy basic documentation
+===========================
+
+.. figure:: Cheatsheets/Numpy_Python_Cheat_Sheet.png
+   :scale: 100 %
+   :alt: map to buried treasure
+
+   This Cheatsheet is taken from DataCamp. 
+
+
+Basic Pandas documentation
+===============
+
+.. topic:: Introduction
+
+    The objective here is to have everything useful for the projects, not to make a complete documentation of the whole package. Here I will try to document both version 1.6 and >2.0. A special enphase will be done on machine learning module ml (mllib is outdated).
+ 
+   
+Loading Pandas dataframe from file
+------------------------------------------
+
+.. sourcecode:: python
+
+  #Loading a Pandas dataframe:
+  df_pd = pd.read_csv("/home/BC4350/Desktop/Iris.csv")
+   
+   
+Creation of some data in a Pandas dataframe
+-----------------------------------------------
+
+.. sourcecode:: python
+
+  # A set of baby names and birth rates:
+  names = ['Bob','Jessica','Mary','John','Mel']
+  births = [968, 155, 77, 578, 973]
+
+  #We merge the 2 lists using the zip function:
+  BabyDataSet = list(zip(names,births))
+
+  #We create the DataFrame:
+  df = pd.DataFrame(data = BabyDataSet, columns=['Names', 'Births'])
+
+   	Names 	Births
+  0 	Bob 	968
+  1 	Jessica 155
+  2 	Mary 	77
+  3 	John 	578
+  4 	Mel 	973
+  
+Deleting a column, or list of columns:  
+---------------------------------------------------
+
+.. sourcecode:: python
+
+  df.drop(['column'], axis=1, inplace=True)
+  df.drop(['column1','column2'], axis=1, inplace=True)
+
+  
+Displaying dataframes to screen
+-----------------------------------------
+
+.. sourcecode:: python
+
+  #This allows you to display as many rows as you wish when you display the dataframe (works also for max_rows):
+  pd.options.display.max_columns = 50   #By default 20 only  
+  
+  #This display the 5 first rows:
+  df.head(5)
+  
+  #This display the 5 last rows:
+  df.tail(5)  
+  
+  
+Retrieval of data from SQL data warehouse
+-----------------------------------------------------
+
+.. sourcecode:: python
+
+  # Some super SQL query
+  sql = """SELECT top 100
+  _ts_from as RUN_TS
+  ,b.[AC_KEY]
+  ,[PROBABILITY_TRUE]
+  FROM [MCS_BATCH].[test].[B_DCS_DK_ROL] b
+  JOIN mcs_batch.ctrl.run_info r ON r.RUN_ID=b.RUN_ID
+  """
+  conn = odbc.connect(r'Driver={SQL Server};Server=CF4S01\INST001;Database=MCS_BATCH;Trusted_Connection=yes;')
+  crsr = conn.cursor()
+  crsr.execute(sql)
+  params=crsr.fetchall()
+  crsr.close()
+  conn.close()
+
+  
+Group by operations in Pandas
+------------------------------------------------
+
+For a dataframe df with column ID, we can create a group by ID and count like this:
+
+.. sourcecode:: python
+
+  df.groupby(['ID']).size().reset_index(name='count')
+  
+  #Or equivalently:
+  
+  df.groupby(['ID']).size().rename('count').reset_index()
+  
+Where the rename just gives a name to the new column created (the count) and the reset_index gives a dataframe shape to the grouped object.
+  
+
+Merging and Concatenation operations
+---------------------------------------------------
+In Pandas, all types of merging operations (the "join" in SQL) are done using the  :py:func:`merge` command (see http://pandas.pydata.org/pandas-docs/stable/merging.html ):
+
+.. sourcecode:: python
+
+   pd.merge(left, right, how='inner', on=None, left_on=None, right_on=None,
+         left_index=False, right_index=False, sort=True,
+         suffixes=('_x', '_y'), copy=True, indicator=False)
+		 
+Note: if you need to merge 2 dataframes using several columns at the same time, it is possible:
+
+.. sourcecode:: python
+
+   new_df = pd.merge(A_df, B_df,  how='inner', left_on=['A_c1','c2'], right_on = ['B_c1','c2'])
+		
+
+Here is an excellent comparison between SQL and Pandas: http://pandas.pydata.org/pandas-docs/stable/comparison_with_sql.html#compare-with-sql-join
+
+
+Pandas Cheatsheet
+------------------
+  
+.. figure:: Cheatsheets/Python_Pandas_Cheat_Sheet_2.png
+   :scale: 100 %
+   :alt: map to buried treasure
+
+   This Cheatsheet is taken from DataCamp.
+   
+Also have a look at the cookbook: http://pandas.pydata.org/pandas-docs/stable/cookbook.html
+
+
+Assigining values to dataframe
+---------------------------------------------
+
+We have a dataframe df with column A and B, and want to assign values to a new column ln_A
+
+.. sourcecode:: python
+
+  df = pd.DataFrame({'A': range(1, 6), 'B': np.random.randn(5)})
+  df
+  
+     A B
+
+  0 1 0.846677 
+
+  1 2 0.749287 
+
+  2 3 -0.236784 
+
+  3 4 0.004051 
+
+  4 5 0.360944 
+
+  df = df.assign(ln_A = lambda x: np.log(x.A))
+  df
+
+     A B             ln_A
+
+  0 1 0.846677   0.00
+
+  1 2 0.749287   0.693
+
+  2 3 -0.236784  1.098
+
+  3 4 0.004051   1.386
+
+  4 5 0.360944   1.609
+  
+  #We can also do like this to assign to  a whole column:
+
+  newcol = np.log(df['B'])
+  df = df.assign(ln_B=newcol)
+  df  
+  
+     A B             ln_A       ln_B
+
+  0 1 0.846677   0.00       -0.166
+
+  1 2 0.749287   0.693     -0.288
+
+  2 3 -0.236784  1.098     NaN
+
+  3 4 0.004051   1.386     -5.508
+
+  4 5 0.360944   1.609     -1.019
+  
+  #Of course the assignement to a whole column is better done using the simpler command: df['ln_B2'] = np.log(df['B'])
+  #But the assign command is powerful because it allows the use of lambda functions.
+  #Also, user-defined functions can be applied, using assign:
+  
+  def function_me(row):
+      if row['A'] != 2:
+          rest = 5
+          return rest
+      else:
+          rest = 2
+          return rest
+
+  df = df.assign(bidon=df.apply(function_me, axis=1))
+  df  
+  
+     A B             ln_A       ln_B      bidon
+
+  0 1 0.846677   0.00       -0.166   5
+
+  1 2 0.749287   0.693     -0.288   2
+
+  2 3 -0.236784  1.098     NaN      5
+
+  3 4 0.004051   1.386     -5.508   5
+
+  4 5 0.360944   1.609     -1.019   5
+  
+   
+Percentiles - quantiles in Pandas
+--------------------------------------------
+For example, to get the 5% percentile and the 95% percentile of a dataframe (for all columns, here columns are "2015" and "2016"), we can do:
+
+.. sourcecode:: python
+
+  df.quantile([0.05,0.95])  
+   
+Saving of Pandas dataframe to LIBSVM file format and inverse
+------------------
+
+The ``LIBSVM`` file format is often used in Spark (especially <=1.6).
+
+.. sourcecode:: python
+
+  import pandas as pd 
+  import numpy as np 
+  from sklearn.datasets import dump_svmlight_file 
+ 
+  df = pd.DataFrame() 
+  df['Id'] = np.arange(10) 
+  df['F1'] = np.random.rand(10,) 
+  df['F2'] = np.random.rand(10,) 
+  df['Target'] = np.random.randint(2,size=10) #map(lambda x: -1 if x < 0.5 else 1, np.random.rand(10,)) 
+  X = df[np.setdiff1d(df.columns,['Id','Target'])] 
+  y = df.Target
+  dump_svmlight_file(X,y,'smvlight.dat',zero_based=True,multilabel=False) 
+
+
+#Now reading a SVMLigt file into (almost) a pandas object:
+from sklearn.datasets import load_svmlight_file
+data = load_svmlight_file('smvlight.dat')
+XX,yy = data[0],data[1]
+
+
+Note: we may also load two (or more) datasets at once: load_svmlight_fileS! 
+X_train, y_train, X_test, y_test = load_svmlight_files( ("/path/to/train_dataset.txt", "/path/to/test_dataset.txt") )
+
+Pandas and memory
+---------------------------------
+
+.. sourcecode:: python
+
+  #lists all dataframes in memory
+  alldfs = [var for var in dir() if isinstance(eval(var), pd.core.frame.DataFrame)]
+  print(alldfs) # df1, df2
+
+Useful plots
+===========
+
+The Swarbee plot of seaborn
+--------------------------------------
+
+.. sourcecode:: python
+
+  import matplotlib.pyplot as plt
+  import seaborn as sns
+  from sklearn.datasets import load_iris
+  import pandas as pd
+  import numpy as np
+
+  iris = load_iris()
+
+  df = pd.DataFrame(data= np.c_[iris['data'], iris['target']],
+                     columns= iris['feature_names'] + ['species'])
+
+  # Create bee swarm plot with Seaborn's default settings
+  sns.swarmplot(x='species',y='petal length (cm)',data=df)
+  plt.xlabel('species')
+  plt.ylabel('length')
+  plt.show()
+  
+  
+.. figure:: Images/Swarbee_plot.png
+   :scale: 100 %
+   :alt: map to buried treasure
+
+   This plot is taken from DataCamp.
+   
+   
+Computation of PDF AND CDF plots (having only PDF)
+--------------------------------------------------------------------   
+
+Here I don't have the data behind, but it is roughly a dataframe with a PDF called df['fraction']. We want a multiplot with both PDF and CDF.
+
+.. sourcecode:: python
+
+  # This formats the plots such that they appear on separate rows
+  fig, axes = plt.subplots(nrows=2, ncols=1)
+
+  # Plot the PDF
+  df.fraction.plot(ax=axes[0], kind='hist', bins=30, normed=True, range=(0,.3))
+  plt.show()
+
+  # Plot the CDF
+  df.fraction.plot(ax=axes[1], kind='hist', bins=30, normed=True, cumulative=True, range=(0,.3))
+  plt.show()
+  
+And the output is:  
+
+.. figure:: Images/PDF_CDF.png
+   :scale: 100 %
+   :alt: map to buried treasure
+
+   This plot is taken from DataCamp.  

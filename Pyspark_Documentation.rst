@@ -1,0 +1,966 @@
+===============
+ Pyspark
+===============
+
+Basic Pyspark documentation
+============================
+
+.. topic:: Introduction
+
+    The objective here is to have everything useful for the projects, not to make a complete documentation of the whole package. Here I will try to document both version 1.6 and >2.0. A special enphase will be done on machine learning module ml (mllib is outdated).
+    We will not review the full Pyspark documentation. For that, look at http://spark.apache.org/docs/1.6.0/programming-guide.html for version 1.6, http://spark.apache.org/docs/2.1.0/programming-guide.html for version 2.1.
+ 
+To create
+	
+Importing Pyspark modules
+--------------------------------
+
+There are many different ones. among the most commonly used:
+
+.. sourcecode:: python
+
+   from pyspark.sql.functions import *
+	
+Creation of Pyspark objects
+--------------------------------
+
+First we need to create a Spark context (version 1.6):
+
+.. sourcecode:: python
+
+  from pyspark import SparkContext, SparkConf
+  appName = "Your App Name"
+  master = "local"
+  conf = SparkConf().setAppName(appName).setMaster(master)  
+  sc = SparkContext(conf=conf)
+  
+  #or if you just don't care (by default, the master will be local)
+  sc = SparkContext()
+  
+  #For closing it (don't forget, if you want to create a new one later)
+  sc.close()
+  
+Using version 2.X, we can use SparkSession:
+
+.. sourcecode:: python
+ 
+  from pyspark import SparkSession
+  spark = SparkSession \
+    .builder \
+    .appName("Protob Conversion to Parquet") \
+    .config("spark.some.config.option", "some-value") \
+    .getOrCreate()
+    
+    
+To change the spark configuration (for example to tune the numbers of workers available), we can define it 
+
+.. sourcecode:: python
+
+  #from pyspark import SparkSession,SQLContext #if not present in the notebook (in the "pyspark3Jupyter" command)
+  spark.stop() #If some default spark running
+  spark = SparkSession \
+    .builder \
+    .appName("3839_spark") \
+    .config("spark.executor.cores", "3") \
+    .config("spark.executor.memory","15g") \
+    .config("spark.dynamicAllocation.maxExecutors","20") \
+    .config("spark.dynamicAllocation.cachedExecutorIdleTimeout","30m") \
+    .config("spark.sql.parquet.writeLegacyFormat","true") \
+    .enableHiveSupport() \
+    .getOrCreate()  
+  sqlCtx = SQLContext(sc)
+
+   
+    
+  
+If the Spark context is created to read SQL data (i.e. if we have sqlCtx), then we can simply use:
+
+.. sourcecode:: python
+
+   sql = """
+   select * from risk_work.PBAFF_TestTrans
+   """
+   # Create a cashed version of data
+   Data = sqlCtx.sql(sql)
+   Data = Data.cache() #this is to cache the object, makes it faster to reload/reuse it later
+
+Here a comparison of 2 ways of opening a table:
+   
+.. sourcecode:: python
+   
+  spark = SparkSession(sc)
+  sqlCtx = SQLContext(sc)
+  table1 = spark.sql('''select * from 3839_project_pbaff.trx_201805_mcc_pcat_gir_tra''')
+  table2 = spark.table('3839_project_pbaff.trx_201805_mcc_pcat_gir_tra')   
+  
+RDDs
+----------------
+
+RDDs are the main data structure type in Pyspark until version 2.X. When possible, let's work with the Dataframe approach rather than RDDs (they will become more and more deprecated, and are planed to disappear in 3.X) 
+
+sc.parallelize allows to convert python list to RDDs
+
+.. sourcecode:: python
+
+  rdd = sc.parallelize(range(1,10))
+  
+Here is the DataCamp Cheatsheet for RDDs:
+  
+.. figure:: Cheatsheets/PySpark_Cheat_Sheet_Python.png
+   :scale: 100 %
+   :alt: map to buried treasure
+
+   This Cheatsheet is taken from DataCamp.
+
+
+Dataframes
+----------------
+
+Starting from Pyspark 1.5, Dataframes are built ontop of RDDs and allow to deal easier with data, in a more Pandas-like way. Since version 2.0, they become the main data type.
+
+Here is the DataCamp Cheatsheet for RDDs:
+  
+.. figure:: Cheatsheets/PySpark_SQL_Cheat_Sheet_Python.png
+   :scale: 100 %
+   :alt: map to buried treasure
+
+   This Cheatsheet is taken from DataCamp.
+
+From Pandas to Pyspark dataframe:
+
+.. sourcecode:: python
+
+  #Loading a Pandas dataframe:
+  df_pd = pd.read_csv("/home/BC4350/Desktop/Iris.csv")
+  #Conversion to a Pyspark dataframe:
+  df_sp = sqlContext.createDataFrame(df_pd) #or sc.createDataFrame(df_pd)
+  #If needs to go back to Pandas:
+  df_pd = df_sp.toPandas()
+  
+From RDD to dataframe:
+
+.. sourcecode:: python
+  
+  df = rdd.toDF()
+  
+  
+Creating a df from scatch: sometimes you have to specify the datatype:
+
+.. sourcecode:: python
+
+  from pyspark.sql.types import FloatType
+
+  df = spark.createDataFrame([1.0, 2.0, 3.0], FloatType())
+
+  df.show()
+
+  +-----+
+  |value|
+  +-----+
+  |  1.0|
+  |  2.0|
+  |  3.0|
+  +-----+  
+   
+Basic commands
+----------------
+
+.. sourcecode:: python
+  
+  #Counting how many rows in dataframe:
+  df.count() 
+  
+  #Displaying first 20 rows:
+  df.show(20) 
+  
+  #Count how many distinct values for a column:
+  df.select("column").distinct().count()
+  
+  #Count how many Null in a column:
+  df.filter(df.columName.isNull()).count()
+  
+  #Convert the type of a column to float. In fact you can add a new column, columnFloat:
+  df = df.withColumn("columnFloat", df["column"].cast("float"))
+  #Or simply replace the old column by the new one:
+  df = df.withColumn("column", df["column"].cast("float"))
+  
+  #Sorting:
+  df.sort("KNID","sum(BLPS)",ascending=False).show(100)
+  
+  #Moving to a Pandas dataframe:
+  df_pd = df.toPandas()
+  
+  #Add a new column (dayofmonth) to a dataframe:
+  df = df.withColumn('dayofmonth',df.bgdt[7:2].cast(DoubleType())/31.)
+  
+  #Add a new column with a constant value:
+  from pyspark.sql.functions import lit
+  df = df.withColumn('NewColumn', lit(constant))
+  
+  #Changing the type of a column:
+  df = df.withColumn("pjkd", df["pjkd"].cast("int"))
+  
+  #Renaming a column:
+  df = df.withColumnRenamed('value', 'value2')
+  
+  #Trimming of whitespace in strings
+  df = df.withColumn('columnName', trim(df.columnName))
+  
+  #Filtering (with where clause):
+  df_filtered = df.select('init','initFeatures').where(df['init']=='0006')
+  
+  #Modify only SOME values of a column: we can use a when clause for that:
+  df = df.withColumn('column', when(df['otherColumn']==something, constant).otherwise(df['column']))
+  
+  #Vertical concatenation of 2 dataframes
+  df_result = df_1.unionAll(df_2)  
+  
+
+Aggregating in Pyspark
+------------------------------------
+
+.. sourcecode:: python
+
+  #Grouping and aggregating:
+  df.groupBy("KNID","IDKT","counter_account").agg({"BLPS": "sum", "KNID": "count"})
+  #Other example with aggregation on distinct knid:
+  df.groupBy('txft').agg(func.countDistinct('knid')).orderBy('count(knid)',ascending=0).show(100,False)
+  
+  #Example: we have a given dataframe like
+  df = sqlContext.createDataFrame([(1, 4), (2, 5), (2, 8), (3, 6), (3, 2)], ["A", "B"])
+  df.show()
+  
+  +---+---+
+  |  A|  B|
+  +---+---+
+  |  1|  4|
+  |  2|  5|
+  |  2|  8|
+  |  3|  6|
+  |  3|  2|
+  +---+---+
+  
+  #Then we can build the aggregates for each values of A using:
+  from pyspark.sql import functions as F
+  df.groupBy("A").agg(F.avg("B"), F.min("B"), F.max("B")).show()
+  
+  +---+------+------+------+
+  |  A|avg(B)|min(B)|max(B)|
+  +---+------+------+------+
+  |  1|   4.0|     4|     4|
+  |  3|   4.0|     2|     6|
+  |  2|   6.5|     5|     8|
+  +---+------+------+------+
+  
+  #We can also build aggregates using aliases:
+  
+  df.groupBy("A").agg(
+    F.first("B").alias("my first"),
+    F.last("B").alias("my last"),
+    F.sum("B").alias("my everything")
+  ).show()
+
+  +---+--------+-------+-------------+
+  |  A|my first|my last|my everything|
+  +---+--------+-------+-------------+
+  |  1|       4|      4|            4|
+  |  3|       6|      2|            8|
+  |  2|       8|      5|           13|
+  +---+--------+-------+-------------+
+
+Joins
+---------------------------
+
+https://docs.databricks.com/spark/latest/faq/join-two-dataframes-duplicated-column.html 
+
+Here is a simple example of inner join where we keep all left columns and SOME of the right columns:
+
+.. sourcecode:: python
+
+  from pyspark.sql.functions import *
+
+  df1 = df.alias('df1')
+  df2 = df.alias('df2')
+
+  df1.join(df2, df1.id == df2.id).select('df1.*') 
+  
+  
+Window functions
+---------------------------
+
+.. sourcecode:: python
+
+  #Let's say we have the same dataframe as in the aggregation section:
+  df = sqlContext.createDataFrame([(1, 4), (2, 5), (2, 8), (3, 6), (3, 2)], ["A", "B"])
+
+  #We can build a window function that computes a diff line by line – ordered or not – given a specific key
+  
+  from pyspark.sql.window import Window
+  window_over_A = Window.partitionBy("A").orderBy("B")
+  df.withColumn("diff", F.lead("B").over(window_over_A) - df.B).show()
+
+  +---+---+----+
+  |  A|  B|diff|
+  +---+---+----+
+  |  1|  4|null|
+  |  3|  2|   4|
+  |  3|  6|null|
+  |  2|  5|   3|
+  |  2|  8|null|
+  +---+---+----+
+  
+Example: a ranking on a window, and selection of first rank:
+
+.. sourcecode:: python
+
+  window = Window.partitionBy('mtts','pcatkey1','pcatkey2').orderBy(F.desc('pcat_opts'))
+  trx_2018=trx_2018.withColumn("rank_pcatids", F.rank().over(window))
+  trx_2018=trx_2018.filter("rank_pcatids==1")  
+
+  
+Converting dates in Pyspark
+---------------------------------
+
+.. sourcecode:: python
+
+  #Converting date from yyyy mm dd to year, month, day
+  from pyspark.sql.functions import year, month, dayofmonth
+  d = [{'date': '20170412'}]
+  dp_data = pd.DataFrame(d)
+
+  df_date = sqlContext.createDataFrame(dp_data)
+  df_date.show()
+  
+  +--------+
+  |    date|
+  +--------+
+  |20170412|
+  +--------+  
+
+  df_date = df_date.select(from_unixtime(unix_timestamp('date', 'yyyyMMdd')).alias('date')) #date should first be converted to unixtime
+  df_date.select("date",year("date").alias('year'), month("date").alias('month'), dayofmonth("date").alias('day')).show()
+
+  +-------------------+----+-----+---+
+  |               date|year|month|day|
+  +-------------------+----+-----+---+
+  |2017-04-12 00:00:00|2017|    4| 12|
+  +-------------------+----+-----+---+  
+  
+NaN/Null/None handling
+----------------------------
+
+.. sourcecode:: python
+
+  #dropping NaN in whole dataframe:
+  df.na.drop()
+  
+  #dropping NaN in one column (it will remove all rows of the df where that column contains a NaN):
+  #df.select("column").na.drop()  this does not work!
+  df = df.where(df["column"].isNull()) #or df = df.where(df.column.isNull())
+  
+  #Filling with NaN or with whatever value, let's say 50:
+  df.na.fill(50)
+  
+  #Count how many NaN/Null/None in a column:
+  df.filter(df.columnName.isNull()).count()  
+  
+Saving a table in Hadoop
+-----------------------------
+
+.. sourcecode:: python
+
+  #mode: one of append, overwrite, error, ignore (default: error)
+  #partitionBy: names of partitioning columns
+  p2.saveAsTable('risk_work.TULE_savetest',partitionBy='KNID',mode='overwrite')
+
+
+PySpark does not save the table in an ORC format - therefore, we cannot query the saved tables via Ambari or SQL Developer. So if you want to be able to use these programs to investigate your created tables, you should save the tables like this: 
+
+.. sourcecode:: python
+  
+  #Classical saving
+  df.saveAsTable('risk_temp.table_name, mode='overwrite')
+  #Specifying the format
+  df.write.format("ORC").saveAsTable('risk_temp.table_name, mode='overwrite')
+  
+   
+Filtering data in Pyspark
+-----------------------------
+
+.. sourcecode:: python
+
+  #example 1:
+  p2 = p1.filter(p1.BLPS >0)
+  
+  #example 2:
+  p3 = p2.filter(trim(p2.KNID) == '0011106277').cache()
+  
+Here is a comparison of the filtering of a dataframe done in Pandas and the same operation done in Pyspark (taken from https://lab.getbase.com/pandarize-spark-dataframes/):
+
+.. sourcecode:: python
+
+  #Pandas:
+  sliced = data[data.workclass.isin([' Local-gov', ' State-gov']) \
+                 & (data.education_num > 1)][['age', 'workclass']]
+
+  sliced.head(1)
+
+     age   workclass
+  0   39   State-gov
+  
+  #Pyspark:
+  slicedSpark = dataSpark[dataSpark.workclass.inSet([' Local-gov', ' State-gov']) 
+                           & (dataSpark.education_num > 1)][['age', 'workclass']]
+
+  slicedSpark.take(1)
+
+  [Row(age=48.0, workclass=u' State-gov')]
+
+There is one important difference. In Pandas, boolean slicing expects just a boolean series, which means you can apply filter from another DataFrame if they match in length. In Pyspark you can only filter data based on columns from DataFrame you want to filter.
+  
+ 
+
+Opening tables from Data Warehouse and MCS
+-------------------------------------------------------
+
+.. sourcecode:: python
+
+  import sys
+  TOOLS_PATH = '/home/BC3589/Git/tools'
+  if TOOLS_PATH not in sys.path:
+    sys.path.append(TOOLS_PATH)
+	
+  from connection.SQLConnector import SQLConnector
+
+  # testing connection to Exploration Warehouse
+  etpew_connector = SQLConnector('ETPEW')
+  sql = "select top 1 * from [ETZ3EW].[dbo].[ZW_KUNDE_MST_HV];"
+  df = etpew_connector.query_to_pandas(sql)
+  print('Loaded from [ETZ3EW].[dbo].[ZW_KUNDE_MST_HV]')
+  print(df.iloc[0])
+        
+  # testing connection to MCS
+  mcs_connector = SQLConnector('MCS')
+  sql = "SELECT top 1 * FROM sys.databases"
+  df = mcs_connector.query_to_pandas(sql)
+  print('Loaded from sys.databases')
+  print(df.iloc[0])
+ 
+.. _udf_subsection:
+User-defined functions (UDF)
+----------------------------------
+
+Here is an example of removal of whitespaces in a string column of a dataframe:
+
+.. sourcecode:: python
+
+  from pyspark.sql.types import StringType
+  
+  spaceDeleteUDF = udf(lambda s: s.replace(" ", ""), StringType())
+  
+  df = sqlContext.createDataFrame([("aaa 111",), ("bbb 222",), ("ccc 333",)], ["names"])
+
+  df.withColumn("names", spaceDeleteUDF("names")).show()
+ 
+  +------+
+  | names|
+  +------+
+  |aaa111|
+  |bbb222|
+  |ccc333|
+  +------+
+ 
+
+Machine Learning using the MLlib package
+========================================
+
+There are 2 main packages for Machine Learning in Pyspark. MLlib, which is based on RDDs, and ML, which is based on Dataframes. The distinction is very important! After version 2.0, RDDs are deprecated (removed in Spark 3.0) in profit of Pyspark dataframes, which are much more Pandas-friendly. 
+
+The Random Forest
+-----------------
+
+The MLlib's version of Random Forest is described in details here: https://spark.apache.org/docs/1.6.1/mllib-ensembles.html .
+Here is a very simple working code:
+
+.. sourcecode:: python
+
+  from pyspark.mllib.regression import LabeledPoint
+  from pyspark.mllib.tree import RandomForest
+  from pyspark.sql.functions import *
+
+  # Building of some data for supervised ML: first column is label, second is feature
+  data = [
+    LabeledPoint(0.0, [0.0, 0.0]),
+    LabeledPoint(0.0, [1.0, 1.0]),
+    LabeledPoint(1.0, [2.0, 2.0]),
+    LabeledPoint(1.0, [3.0, 2.0])]
+
+  # Creating RDD from data
+  trainingData=sc.parallelize(data)
+  trainingData.collect()
+  print trainingData.toDF().show()
+
+  +---------+-----+
+  | features|label|
+  +---------+-----+
+  |[0.0,0.0]|  0.0|
+  |[1.0,1.0]|  0.0|
+  |[2.0,2.0]|  1.0|
+  |[3.0,2.0]|  1.0|
+  +---------+-----+
+
+  # Model creation
+  model = RandomForest.trainClassifier(trainingData, 2, {}, 3, seed=42)
+  print model.numTrees()
+  print model.totalNumNodes()
+  print(model.toDebugString())
+
+  # Predicting a new sample
+  rdd = sc.parallelize([[3.0,2.0]])
+  model.predict(rdd).collect()
+
+Here is another working example, on the IRIS dataset:
+
+.. sourcecode:: python
+
+  from pyspark.mllib.regression import LabeledPoint
+  from pyspark.mllib.tree import RandomForest
+  from sklearn.datasets import load_iris
+  from sklearn.metrics import accuracy_score
+  from sklearn import metrics
+  import numpy as np
+
+  def Convert_to_LabelPoint_format(X,y):
+    '''
+    This function is intended for the preparation of Supervised ML input data, using the MLlib package of Pyspark.
+    Input:
+    - X: a numpy array containing the features (as many columns as features)
+    - y: a numpy array containing the labels (1 column)
+    Output:
+    - data: a python list containing the data in LabeledPoint format
+    '''
+    data = []
+    for i in range(0,len(y)):
+        X_list =  list(X[i,:])
+        data.append(LabeledPoint(y[i],X_list))
+    return data
+
+  #USING IRIS DATASET:
+  iris = load_iris()
+  idx = list(range(len(iris.target)))
+  np.random.shuffle(idx)              #We shuffle it (important if we want to split in train and test sets)
+  X = iris.data[idx]
+  y = iris.target[idx]
+
+  data = Convert_to_LabelPoint_format(X,y)
+
+  # Creating RDD from data
+  data_rdd=sc.parallelize(data)
+  data_rdd.collect()
+  print data_rdd.toDF().show(5)
+  
+  +-----------------+-----+
+  |         features|label|
+  +-----------------+-----+
+  |[5.1,3.4,1.5,0.2]|  0.0|
+  |[6.7,3.0,5.2,2.3]|  2.0|
+  |[5.0,3.6,1.4,0.2]|  0.0|
+  |[6.8,3.2,5.9,2.3]|  2.0|
+  |[6.1,2.9,4.7,1.4]|  1.0|
+  +-----------------+-----+  
+
+  #Splitting the data in training and testing set
+  (trainingData, testData) = data_rdd.randomSplit([0.7, 0.3])
+
+  # Model creation
+  model = RandomForest.trainClassifier(trainingData, numClasses=3, categoricalFeaturesInfo={},
+                                     numTrees=10, featureSubsetStrategy="auto",
+                                     impurity='gini', maxDepth=4, maxBins=32)
+  print model.numTrees()
+  print model.totalNumNodes()
+  print(model.toDebugString())
+  print
+
+  # Predicting for test data
+  y_pred = model.predict(testData.map(lambda x: x.features)).collect()
+
+  #ACCURACY
+  testData_pd = testData.toDF().toPandas()
+  y_test = testData_pd['label']
+  accuracy    = accuracy_score(y_test,y_pred)
+  print("Accuracy = ", accuracy) 
+  
+('Accuracy = ', 0.9772)
+
+
+Kernel Density Estimation (here 1-D only)
+-------------------------------------------------
+ 
+Here we still use the old mllib package. Look for the same using the ml one.
+
+.. sourcecode:: python
+
+  from pyspark.mllib.stat import KernelDensity
+  from pyspark.mllib.random import RandomRDDs
+  %matplotlib inline
+
+  # Create the estimator
+  kd = KernelDensity()
+  # Choose the range to evaluate density on
+  ran=np.arange(-100,100,0.1);
+  # Set kernel bandwidth
+  kd.setBandwidth(3.0)
+ 
+  #Here with a random normal sample
+  u = RandomRDDs.normalRDD(sc, 10000, 10)
+  kd.setSample(u)
+  #plot of the histogram
+  num_bins = 50
+  n, bins, patches = plt.hist(u.collect(), num_bins, normed=1)
+  #plot of the kde
+  densities = kd.estimate(ran)
+  plt.plot(ran,densities)
+  
+  #Here with a true variable: the age (takes some time to compile)
+  sql = """
+  select * from risk_temp.TULE_TP5
+  """
+  p1 = sqlContext.sql(sql)
+  p2 = p1.filter(p1.statusondate == '2014-01-01').cache()
+  p_age = p2.map(lambda y: y['ac_age_cust_01'])
+  kd.setSample(p_age)
+  # Choose the range to evaluate density on
+  ran=np.arange(0,100,0.1);  #We evaluate the KDE in the age range [0,100]
+  densities = kd.estimate(ran)
+  plt.plot(ran,densities);
+ 
+ 
+
+
+
+
+  
+Machine Learning using the ML package
+========================================
+
+For the machine-learning package, look at:
+
+* Version 1.6: https://spark.apache.org/docs/1.6.0/ml-guide.html  
+* Version 2.1: https://spark.apache.org/docs/2.1.0/ml-guide.html 
+
+Convert a string column to indexed labels
+-------------------------------------------------
+
+.. sourcecode:: python
+
+  from pyspark.ml.feature import StringIndexer
+
+  df = sqlContext.createDataFrame(
+    [(0, "a"), (1, "b"), (2, "c"), (3, "a"), (4, "a"), (5, "c")],
+    ["id", "category"])
+  df.show()
+  
+  +---+--------+
+  | id|category|
+  +---+--------+
+  |  0|       a|
+  |  1|       b|
+  |  2|       c|
+  |  3|       a|
+  |  4|       a|
+  |  5|       c| 
+  +---+--------+  
+  
+  indexer = StringIndexer(inputCol="category", outputCol="categoryIndex")
+  indexed = indexer.fit(df).transform(df) 
+  indexed.show()
+  
+  +---+--------+-------------+
+  | id|category|categoryIndex|
+  +---+--------+-------------+
+  |  0|       a|          0.0|
+  |  1|       b|          2.0|
+  |  2|       c|          1.0|
+  |  3|       a|          0.0|
+  |  4|       a|          0.0|
+  |  5|       c|          1.0|
+  +---+--------+-------------+  
+  
+Assembling multiple columns in one "features" columns using VectorAssembler
+---------------------------------------------------------------------------------------------
+
+VectorAssembler is a transformer that combines a given list of columns into a single vector column. It is useful for supervised ML tools like Random Forest. 
+
+.. sourcecode:: python
+
+  from pyspark.ml.linalg import Vectors
+  from pyspark.ml.feature import VectorAssembler
+
+  dataset = sqlContext.createDataFrame(
+    [(0, 18, 1.0, Vectors.dense([0.0, 10.0, 0.5]), 1.0)],
+    ["id", "hour", "mobile", "userFeatures", "clicked"])
+  dataset.show()
+  
+  +---+----+------+--------------+-------+
+  | id|hour|mobile|  userFeatures|clicked|
+  +---+----+------+--------------+-------+
+  |  0|  18|   1.0|[0.0,10.0,0.5]|    1.0|
+  +---+----+------+--------------+-------+
+
+  assembler = VectorAssembler(
+    inputCols=["hour", "mobile", "userFeatures"],
+    outputCol="features")
+  output = assembler.transform(dataset)
+  output.show()
+  
+  +---+----+------+--------------+-------+-----------------------+
+  | id|hour|mobile|  userFeatures|clicked|               features|
+  +---+----+------+--------------+-------+-----------------------+
+  |  0|  18|   1.0|[0.0,10.0,0.5]|    1.0|[18.0,1.0,0.0,10.0,0.5]|
+  +---+----+------+--------------+-------+-----------------------+
+  
+  
+One-Hot encoding
+-----------------------------
+
+One-hot encoding (https://en.wikipedia.org/wiki/One-hot) maps a column of label indices to a column of binary vectors, with at most a single one-value. See also https://spark.apache.org/docs/2.1.0/ml-features.html#onehotencoder
+In this example, we have a dataframe with 5 different values (a-f) and we one-hot encode that column. It is a two-steps task: first need to string-index it, then encode it. 
+
+.. sourcecode:: python
+
+  from pyspark.ml.feature import OneHotEncoder, StringIndexer
+
+  df = spark.createDataFrame([
+    (0, "a"),
+    (1, "b"),
+    (2, "c"),
+    (3, "a"),
+    (4, "a"),
+    (5, "c"),
+    (6, "b"),        
+    (7, "d"),         
+    (8, "d"),  
+    (9, "e"),          
+    (10, "e"),           
+    (11, "f"),            
+  ], ["id", "category"])
+
+  stringIndexer = StringIndexer(inputCol="category", outputCol="categoryIndex")
+  model = stringIndexer.fit(df)
+  indexed = model.transform(df)
+
+  encoder = OneHotEncoder(inputCol="categoryIndex", outputCol="categoryVec")
+  encoded = encoder.transform(indexed)
+  encoded.show()
+  
+  +---+--------+-------------+-------------+
+  | id|category|categoryIndex|  categoryVec|
+  +---+--------+-------------+-------------+
+  |  0|       a|          0.0|(5,[0],[1.0])|
+  |  1|       b|          2.0|(5,[2],[1.0])|
+  |  2|       c|          3.0|(5,[3],[1.0])|
+  |  3|       a|          0.0|(5,[0],[1.0])|
+  |  4|       a|          0.0|(5,[0],[1.0])|
+  |  5|       c|          3.0|(5,[3],[1.0])|
+  |  6|       b|          2.0|(5,[2],[1.0])|
+  |  7|       d|          4.0|(5,[4],[1.0])|
+  |  8|       d|          4.0|(5,[4],[1.0])|
+  |  9|       e|          1.0|(5,[1],[1.0])|
+  | 10|       e|          1.0|(5,[1],[1.0])|
+  | 11|       f|          5.0|    (5,[],[])|
+  +---+--------+-------------+-------------+
+  
+Grouping data using Bucketizer
+-------------------------------------
+
+Bucketizer is a transformer that groups a given column using splits defined by the user. In this example, we group a few days of the month in 3 groups: [1-10], [11-20], [21-31]
+
+.. sourcecode:: python
+  
+  from pyspark.ml.feature import Bucketizer
+
+  #Let's create a sample with some days of the month
+  data = [(1,), (7,), (11,), (20,), (27,), (31,)]
+  dataFrame = sqlContext.createDataFrame(data, ["day"])
+  dataFrame = dataFrame.withColumn("day", dataFrame["day"].cast("double")) #we need to transform them in double
+
+  #We want to groupe these days in 3 groups [1-10], [11-20], [21-31]
+  splits = [1, 11, 21, 31]
+  bucketizer = Bucketizer(splits=splits, inputCol="day", outputCol="dayGrouped")
+
+  # Transform original data into its bucket index.
+  bucketedData = bucketizer.transform(dataFrame)
+  print("Bucketizer output with %d buckets" % (len(bucketizer.getSplits())-1))
+  bucketedData.show()  
+
+  #Bucketizer output with 3 buckets
+  +----+----------+
+  | day|dayGrouped|
+  +----+----------+
+  | 1.0|       0.0|
+  | 7.0|       0.0|
+  |11.0|       1.0|
+  |20.0|       1.0|
+  |27.0|       2.0|
+  |31.0|       2.0|
+  +----+----------+
+  
+  
+The Random Forest
+-----------------------
+
+Here is a working example of the Random Forest using the ML package, applied on the IRIS dataset (so, Multi-class target!):
+
+.. sourcecode:: python
+
+  from pyspark.ml import Pipeline
+  from pyspark.ml.classification import RandomForestClassifier
+  from pyspark.ml.feature import VectorAssembler, StringIndexer, VectorIndexer
+  from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+  from sklearn.datasets import load_iris
+  import pandas as pd  
+  import numpy as np
+
+  #USING IRIS DATASET:
+  iris = load_iris()                       #The Iris dataset is available through the scikit-learn API
+  idx = list(range(len(iris.target)))
+  np.random.shuffle(idx)              #We shuffle it (important if we want to split in train and test sets)
+  X = iris.data[idx]
+  y = iris.target[idx]
+
+  # Load data in Pandas dataFrame and then in a Pyspark dataframe
+  data_pd = pd.DataFrame(data=np.column_stack((X,y)), columns=['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'label'])
+  data_df = sqlContext.createDataFrame(data_pd)
+  
+  # This transforms the labels into indexes. See https://spark.apache.org/docs/latest/ml-features.html#stringindexer
+  labelIndexer = StringIndexer(inputCol="label", outputCol="indexedLabel")
+
+  # This groups all the features in one pack "features", needed for the VectorIndexer
+  vectorizer = VectorAssembler(inputCols = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width'],outputCol = "features")    
+  
+  # This identifies categorical features, and indexes them. Set maxCategories so features with > 4 distinct values are treated as continuous. #https://spark.apache.org/docs/latest/ml-features.html#stringindexer
+  featureIndexer = VectorIndexer(inputCol="features", outputCol="indexedFeatures", maxCategories=4)
+
+  # Split the data into training and test sets (30% held out for testing)
+  (trainingData, testData) = data_df.randomSplit([0.7, 0.3])
+
+  # Train a RandomForest model.
+  rf = RandomForestClassifier(labelCol="indexedLabel", featuresCol="indexedFeatures", numTrees=12,  maxDepth=10)
+
+  # Chain indexers and forest in a Pipeline
+  pipeline = Pipeline(stages=[labelIndexer, vectorizer, featureIndexer, rf])
+
+  # Train model.  This also runs the indexers.
+  model = pipeline.fit(trainingData)
+
+  # Make predictions.
+  predictions = model.transform(testData)
+
+  # Select example rows to display.
+  predictions.select("prediction", "indexedLabel", "features").show(5)
+
+  # Select (prediction, true label) and compute test error
+  evaluator = MulticlassClassificationEvaluator(labelCol="indexedLabel", predictionCol="prediction", metricName="accuracy")
+  accuracy = evaluator.evaluate(predictions)
+  print("Accuracy = %g" % (accuracy))
+
+Accuracy = 0.973684. 
+
+
+Evaluation of accuracy
+--------------------------
+
+For binary (2-classes) target, we can use the area under the ROC curve (AUC):
+
+.. sourcecode:: python
+
+  from pyspark.ml.linalg import Vectors
+  from pyspark.ml.evaluation import BinaryClassificationEvaluator
+  scoreAndLabels = map(lambda x: (Vectors.dense([1.0 - x[0], x[0]]), x[1]), [(0.1, 0.0), (0.1, 1.0), (0.4, 0.0), (0.6, 0.0), (0.6, 1.0), (0.6, 1.0), (0.8, 1.0)])
+  dataset = sqlContext.createDataFrame(scoreAndLabels, ["raw", "trueLabel"])
+  dataset.show()
+  
+  +---------+---------+
+  |      raw|trueLabel|   #left column contains probabilities, right contains the true label (not the derived ones)
+  +---------+---------+
+  |[0.9,0.1]|      0.0|
+  |[0.9,0.1]|      1.0|
+  |[0.6,0.4]|      0.0|
+  +---------+---------+  
+
+  evaluator = BinaryClassificationEvaluator(rawPredictionCol="raw", labelCol="trueLabel", metricName="areaUnderROC")
+  print evaluator.evaluate(dataset)
+
+  0.708
+
+
+
+Text analysis in Pyspark
+========================
+
+Dealing with text: Tokenizer, Hashing, IDF
+--------------------------------------------------
+
+Here from Tue code 1 model in a day, in short
+
+.. sourcecode:: python
+ 
+  # Split text field in words
+  tokenizer        = Tokenizer(inputCol="txft_70", outputCol="words")
+  wordsData      = tokenizer.transform(Data)
+
+  # Create Hash table data
+  NHash          = 256 # number of hashing values used to describe the text
+  hashing        = HashingTF(inputCol="words", outputCol="rawTextFeatures", numFeatures=NHash)
+  featurizedData = hashing.transform(wordsData)
+
+  # Calculate inverse document frequency
+  idf            = IDF(inputCol="rawTextFeatures", outputCol="textFeatures")
+  idfModel       = idf.fit(featurizedData)
+  DataText       = idfModel.transform(featurizedData).cache()  
+
+Here a more elaborated example:
+  
+.. sourcecode:: python
+
+  from pyspark.ml.feature import HashingTF, IDF, Tokenizer
+
+  sentenceData = sqlContext.createDataFrame([
+    (0, "Hi I heard about Spark"),
+    (0, "I wish Java could use case classes"),
+    (1, "Logistic regression models are neat")], ["label", "sentence"])
+
+  tokenizer = Tokenizer(inputCol="sentence", outputCol="words") #https://spark.apache.org/docs/2.1.0/ml-features.html#tokenizer
+  wordsData = tokenizer.transform(sentenceData)
+  hashingTF = HashingTF(inputCol="words", outputCol="rawFeatures", numFeatures=5) #https://spark.apache.org/docs/2.1.0/ml-features.html#tf-idf
+  featurizedData = hashingTF.transform(wordsData)
+  featurizedData.show()
+
+  +-----+--------------------+--------------------+--------------------+
+  |label|            sentence|               words|         rawFeatures|
+  +-----+--------------------+--------------------+--------------------+
+  |    0|Hi I heard about ...|[hi, i, heard, ab...|(5,[0,2,4],[2.0,2...|
+  |    0|I wish Java could...|[i, wish, java, c...|(5,[0,2,3,4],[1.0...|
+  |    1|Logistic regressi...|[logistic, regres...|(5,[0,1,3,4],[1.0...|
+  +-----+--------------------+--------------------+--------------------+  
+  
+  idf = IDF(inputCol="rawFeatures", outputCol="features")
+  idfModel = idf.fit(featurizedData)
+  rescaledData = idfModel.transform(featurizedData)
+  for features_label in rescaledData.select("features", "label").take(3):
+    print(features_label)
+
+  #Row(features=SparseVector(5, {0: 0.0, 2: 0.5754, 4: 0.0}), label=0)
+  #Row(features=SparseVector(5, {0: 0.0, 2: 0.5754, 3: 0.2877, 4: 0.0}), label=0)
+  #Row(features=SparseVector(5, {0: 0.0, 1: 0.6931, 3: 0.5754, 4: 0.0}), label=1)
+
+  rescaledData.show()
+
+  +-----+--------------------+--------------------+--------------------+--------------------+
+  |label|            sentence|               words|         rawFeatures|            features|
+  +-----+--------------------+--------------------+--------------------+--------------------+
+  |    0|Hi I heard about ...|[hi, i, heard, ab...|(5,[0,2,4],[2.0,2...|(5,[0,2,4],[0.0,0...|
+  |    0|I wish Java could...|[i, wish, java, c...|(5,[0,2,3,4],[1.0...|(5,[0,2,3,4],[0.0...|
+  |    1|Logistic regressi...|[logistic, regres...|(5,[0,1,3,4],[1.0...|(5,[0,1,3,4],[0.0...|
+  +-----+--------------------+--------------------+--------------------+--------------------+    
+ 

@@ -1,0 +1,288 @@
+===============
+ Scikit-learn
+===============
+
+Basic Scikit-learn documentation
+===============
+
+.. topic:: Introduction
+
+    The objective here is to have everything useful for the projects, not to make a complete documentation of the whole package. Here I will try to document both version 1.6 and >2.0. A special enphase will be done on machine learning module ml (mllib is outdated).
+
+Scikit-learn (http://scikit-learn.org/stable/) is the Machine Learning well-known library in python. Here is a very short summary from DataCamp:
+
+.. figure:: Cheatsheets/Sklearn_Cheat_Sheet.png
+   :scale: 100 %
+   :alt: map to buried treasure
+
+   This Cheatsheet is taken from DataCamp.
+   
+
+Data Preparation
+==============
+
+Many algorithms need to have the data normalized or scaled first.
+
+Scaling Data
+--------------
+
+.. sourcecode:: python
+
+  from sklearn.preprocessing import StandardScaler
+
+  scaler = StandardScaler()
+
+  # Fit only to the training data
+  scaler.fit(X_train)
+
+  # Now apply the transformations to the data:
+  X_train = scaler.transform(X_train)
+  X_test = scaler.transform(X_test)
+
+
+Stratified sampling
+----------------------
+
+.. sourcecode:: python
+
+  from sklearn.datasets import make_classification
+  from sklearn.cross_validation import StratifiedShuffleSplit
+  from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report, confusion_matrix
+
+  # We use a utility to generate artificial classification data.
+  X, y = make_classification(n_samples=100, n_informative=10, n_classes=3)
+  sss = StratifiedShuffleSplit(y, n_iter=1, test_size=0.5, random_state=0)
+  for train_idx, test_idx in sss:
+      X_train, X_test, y_train, y_test = X[train_idx], X[test_idx], y[train_idx], y[test_idx]
+      svc.fit(X_train, y_train)
+      y_pred = svc.predict(X_test)
+	  #macro, micro are defined here http://stackoverflow.com/questions/31421413/how-to-compute-precision-recall-accuracy-and-f1-score-for-the-multiclass-case
+	  #Macro: Take the average of the f1-score for each class macro
+	  #Micro: Compute the f1-score using the global count of true positives / false negatives, etc. (you sum the number of true positives / false negatives for each class) . accuracy_score gives the same!
+      print(f1_score(y_test, y_pred, average="macro"))              
+      print(precision_score(y_test, y_pred, average="macro"))
+      print(recall_score(y_test, y_pred, average="macro"))  
+
+
+
+.. _RF_sklearn-label:
+Random Forest
+=============
+
+The RF algo applied on the iris dataset. For the algorithm description see :ref:`Random Forest <RF_algo-label>` 
+
+.. sourcecode:: python
+
+  import numpy as np
+  import pandas as pd
+  from IPython.core.pylabtools import figsize
+  from matplotlib import pyplot as plt
+  import pylab
+  from pylab import *
+  import matplotlib.cm as cm
+  import matplotlib.mlab as mlab
+  import seaborn as sns
+
+  #Import of SKLEARN packages
+  from sklearn.metrics import accuracy_score, roc_curve, auc, confusion_matrix
+  from sklearn.model_selection import train_test_split
+  from sklearn.ensemble import RandomForestClassifier
+  from sklearn.datasets import load_iris
+
+  #LOADING IRIS DATASET:
+  iris = load_iris()                            #The Iris dataset is available through the scikit-learn API
+  idx = list(range(len(iris.target)))
+  np.random.shuffle(idx)                   #We shuffle it (important if we want to split in train and test sets)
+  X = iris.data[idx]
+  y = iris.target[idx]
+
+  # Load data in Pandas dataFrame and then in a Pyspark dataframe
+  data_pd = pd.DataFrame(data=np.column_stack((X,y)), columns=['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'label'])
+  data_pd.loc[data_pd['label']==0,'species'] = 'setosa'
+  data_pd.loc[data_pd['label']==1,'species'] = 'versicolor'
+  data_pd.loc[data_pd['label']==2,'species'] = 'virginica'
+  data_pd.head()
+  
+.. figure:: Images/Iris_Dataset.png
+   :scale: 100 %
+   :alt: Iris dataset
+  
+.. sourcecode:: python
+  
+  # A VERY SMALL EDA
+
+  g = sns.PairGrid(data_pd, vars=['sepal_length', 'sepal_width', 'petal_length', 'petal_width'], hue="label")
+  g.map_diag(sns.kdeplot)
+  g.map_lower(sns.kdeplot)
+  g.map_upper(plt.scatter)  
+
+.. figure:: Images/Iris_Seaborn.png
+   :scale: 100 %
+   :alt: Iris with seaborn
+   
+.. sourcecode:: python  
+ 
+  sns.boxplot(x='species',y='petal_length',data=data_pd)   
+
+.. figure:: Images/Iris_boxplot.png
+   :scale: 100 %
+   :alt: Iris with seaborn's boxplot
+
+.. sourcecode:: python
+   
+  #FEATURES SELECTION
+  feature_cols = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
+  target       = 'label'
+  
+  def train(clf_name, clf, df_used, feature_cols, target): 
+        
+        X = df_used[feature_cols].values
+        y = df_used[target].values
+        
+        # CREATION OF TRAIN-TEST SETS		
+        x_train, x_test, y_train, y_test = train_test_split(X,y,train_size=0.7, stratify=y) #stratify=y ensures that the same proportion of labels are in both train and test sets!
+
+        # THE FIT ON THE TRAINING SET
+        clf.fit(x_train, y_train)  
+
+        # THE CLASSIFICATION
+        y_pred = clf.predict(x_test)
+
+        # EVALUATION OF THE ACCURACY
+        accuracy = accuracy_score(y_test, y_pred, normalize=True, sample_weight=None)
+        print('Results with the classifier: ', clf_name.upper())
+        print('Accuracy derived (1=100%): ', accuracy)
+
+        return y_test, y_pred
+  
+  clf_name = 'Random Forest'
+  clf = RandomForestClassifier(#max_depth=50, 
+                             n_estimators=100, 
+                             max_features='auto',
+                             criterion='gini',#'entropy',
+                             class_weight='balanced',
+                             bootstrap=True,
+                             random_state=21,
+                             n_jobs=-1) #n_jobs=-1 uses all available cores!!!
+
+  y_test, y_pred = train(clf_name, clf, data_pd, feature_cols, target)
+
+  #RANKING OF VARIABLES (available only for Random Forest)
+  print("Ranking of variables from Random Forest:")
+  feature_importance_index_sorted = np.argsort(clf.feature_importances_)[::-1]
+  for jj in feature_importance_index_sorted:
+    print(feature_cols[jj],np.around(clf.feature_importances_[jj],decimals=3)*100,'%')
+
+  # Accuracy and Confusion Matrix 
+  accuracy = accuracy_score(y_test, y_pred)
+  print('Accuracy = ',accuracy)
+  #print 'ROC_AUC  = ', roc_auc
+  print('Confusion matrix:')
+  C = confusion_matrix(y_test, y_pred)
+  C_normalized = C / C.astype(np.float).sum()
+  #print C_normalized
+
+  Classes           = ['setosa','versicolor','virginica']
+  C_normalized_pd = pd.DataFrame(C_normalized,columns=Classes,index=Classes)
+  C_normalized_pd
+  
+.. figure:: Images/Accuracy_and_ConfMat.png
+   :scale: 100 %
+   :alt: Accuracy and Confusion matrix  
+
+.. sourcecode:: python
+
+  # SENSITIVITY COMPUTATION (taken from https://stackoverflow.com/questions/31324218/scikit-learn-how-to-obtain-true-positive-true-negative-false-positive-and-fal)
+  FP = C_normalized_pd.sum(axis=0) - np.diag(C_normalized_pd)  
+  FN = C_normalized_pd.sum(axis=1) - np.diag(C_normalized_pd)
+  TP = np.diag(C_normalized_pd)
+  TN = C_normalized_pd.values.sum() - (FP + FN + TP)
+
+  # Sensitivity, hit rate, recall, or true positive rate
+  TPR = TP/(TP+FN)
+  # Specificity or true negative rate
+  TNR = TN/(TN+FP) 
+  # Precision or positive predictive value
+  PPV = TP/(TP+FP)
+  # Negative predictive value
+  NPV = TN/(TN+FN)
+  # Fall out or false positive rate
+  FPR = FP/(FP+TN)
+  # False negative rate
+  FNR = FN/(TP+FN)
+  # False discovery rate
+  FDR = FP/(TP+FP)
+
+  # Overall accuracy
+  ACC = (TP+TN)/(TP+FP+FN+TN)
+
+  print('SENSITIVITY:')
+  Sensitivity_pd = pd.DataFrame(list(zip(Classes,TPR)),columns=['species','Sensitivity'])
+  Sensitivity_pd
+
+.. figure:: Images/Sensitivity.png
+   :scale: 100 %
+   :alt: Sensitivity 
+
+   
+Neural Networks
+===============
+
+Introduction to Keras package
+-----------------------------------------
+
+Keras (https://keras.io/) is a python library that works ontop of the Neural Network Theano and TensorFlow libraries. Here is a very short summary from DataCamp:
+
+.. figure:: Cheatsheets/Keras_Cheat_Sheet_Python.png
+   :scale: 100 %
+   :alt: map to buried treasure
+
+   This Cheatsheet is taken from DataCamp.
+
+ 
+Parameters Tuning
+==================
+
+GridSearchCV (http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV) is a method to perform a grid search fro parameter tuning. It does a cross-validation by cutting in different pieces the train and test sets.
+
+Here is an example on artificial data, taken from https://stackoverflow.com/questions/30102973/how-to-get-best-estimator-on-gridsearchcv-random-forest-classifier-scikit :
+
+.. sourcecode:: python
+
+  from sklearn.grid_search import GridSearchCV
+  from sklearn.datasets import make_classification
+  from sklearn.ensemble import RandomForestClassifier
+  
+  # Build a classification task using 3 informative features
+  X, y = make_classification(n_samples=1000,
+                           n_features=10,
+                           n_informative=3,
+                           n_redundant=0,
+                           n_repeated=0,
+                           n_classes=2,
+                           random_state=0,
+                           shuffle=False)
+
+  rfc = RandomForestClassifier(n_jobs=-1,max_features= 'sqrt' ,n_estimators=50, oob_score = True) 
+
+  param_grid = { 
+    'n_estimators': [200, 700],
+    'max_features': ['auto', 'sqrt', 'log2']
+  }
+
+  CV_rfc = GridSearchCV(estimator=rfc, param_grid=param_grid, cv=5)
+  CV_rfc.fit(X, y)
+  print(CV_rfc.best_params_)
+  print(CV_rfc.best_score_)
+  print(CV_rfc.best_estimator_)
+  
+Output: 
+
+{'n_estimators': 200, 'max_features': 'log2'}
+0.86
+RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='sqrt', max_leaf_nodes=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, n_estimators=700, n_jobs=-1,
+            oob_score=True, random_state=None, verbose=0, warm_start=False)
+   
