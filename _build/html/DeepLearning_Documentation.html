@@ -13,45 +13,43 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Pyspark_Documentation 0.1 documentation" href="index.html"/>
-        <link rel="next" title="Time Series in Python" href="Time_Series_inPython_Documentation.html"/>
-        <link rel="prev" title="Text Mining in Python" href="Text_Mining_Documentation.html"/>
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Reinforcement Learning" href="ReinforcementLearning_Documentation.html" />
+    <link rel="prev" title="Text Mining in Python" href="Text_Mining_Documentation.html" />
     <link href="_static/style.css" rel="stylesheet" type="text/css">
-
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -86,7 +84,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Sklearn_Documentation.html">Scikit-learn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html">Pyspark</a></li>
@@ -94,6 +95,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Deep Learning</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#good-general-introduction-links">Good general introduction links:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#terminology">Terminology</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#activation-functions">Activation functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#back-propagation">Back Propagation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#loss-cost-functions">Loss / Cost functions</a></li>
@@ -112,8 +114,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#conversion-the-label-to-categorical-one-hot-encoding">Conversion the label to categorical: One-Hot-Encoding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rnn-recurrent-neural-networks">RNN: Recurrent Neural Networks</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#lstm-long-short-term-memory">LSTM: Long Short-Term Memory</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gan-genetic-algorithm-networks">GAN: Genetic Algorithm Networks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#simple-examples">Simple examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autoencoders">Autoencoders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variational-autoencoders">Variational autoencoders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#genetic-algorithm-hyperparameters-tuning">Genetic Algorithm hyperparameters tuning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gan-generative-adversarial-networks">GAN: Generative Adversarial Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-nn-examples">Simple NN examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#tensorflow">Tensorflow</a><ul>
@@ -127,12 +132,17 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="ReinforcementLearning_Documentation.html">Reinforcement Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Time_Series_inPython_Documentation.html">Time Series in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Algorithms_Documentation.html">Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Statistics_probabilities_Documentation.html">Statistics and Probabilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Plot_libraries_Documentation.html">Great plot libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SQL_Documentation.html">SQL Server documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html">Useful Bash commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html">Useful Bash commands (or batch)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html#useful-git-commands">Useful GIT commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html#useful-vim-commands">Useful VIM commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html#data-types">Data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Business_models_Documentation.html">Interesting business models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Sphinx_stuff.html">Sphinx</a></li>
 </ul>
 
@@ -145,34 +155,54 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">Pyspark_Documentation</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pyspark_Documentation</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Deep Learning</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Deep Learning</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/DeepLearning_Documentation.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -184,16 +214,26 @@
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>The different “beasts” in deep learning:</p>
 <div class="figure">
-<a class="reference internal image-reference" href="_images/Networks.png"><img alt="map to buried treasure" src="_images/Networks.png" style="width: 2000.0px; height: 3000.0px;" /></a>
+<a class="reference internal image-reference" href="_images/Networks.png"><img alt="map to buried treasure" src="_images/Networks.png" style="width: 600.0px; height: 900.0px;" /></a>
 </div>
+<p>Deep learning is performing a universal function approximation. Provided that we have enough data, we can approximate any function.</p>
 <div class="section" id="good-general-introduction-links">
 <h3>Good general introduction links:<a class="headerlink" href="#good-general-introduction-links" title="Permalink to this headline">¶</a></h3>
+<p>Intro to DL by playing, for both classification and regression: <a class="reference external" href="http://playground.tensorflow.org/">http://playground.tensorflow.org/</a></p>
 <p><a class="reference external" href="https://towardsdatascience.com/a-weird-introduction-to-deep-learning-7828803693b0">https://towardsdatascience.com/a-weird-introduction-to-deep-learning-7828803693b0</a></p>
 <p><a class="reference external" href="http://neuralnetworksanddeeplearning.com/chap1.html">http://neuralnetworksanddeeplearning.com/chap1.html</a> (Free online book)</p>
 <p><a class="reference external" href="https://medium.com/&#64;dataturks/deep-learning-and-computer-vision-from-basic-implementation-to-efficient-methods-3ca994d50e90">https://medium.com/&#64;dataturks/deep-learning-and-computer-vision-from-basic-implementation-to-efficient-methods-3ca994d50e90</a></p>
 <p>General intro: <a class="reference external" href="https://towardsdatascience.com/deep-learning-with-python-703e26853820">https://towardsdatascience.com/deep-learning-with-python-703e26853820</a></p>
 <p>Vanishing gradient: <a class="reference external" href="https://www.quora.com/What-is-the-vanishing-gradient-problem">https://www.quora.com/What-is-the-vanishing-gradient-problem</a>
-Vanishing gradient example: <a class="reference external" href="https://cs224d.stanford.edu/notebooks/vanishing_grad_example.html">https://cs224d.stanford.edu/notebooks/vanishing_grad_example.html</a> (exercise of clusturing)</p>
+Vanishing gradient example: <a class="reference external" href="https://cs224d.stanford.edu/notebooks/vanishing_grad_example.html">https://cs224d.stanford.edu/notebooks/vanishing_grad_example.html</a> (exercise of clustering)</p>
+<p>terminology: <a class="reference external" href="https://towardsdatascience.com/epoch-vs-iterations-vs-batch-size-4dfb9c7ce9c9">https://towardsdatascience.com/epoch-vs-iterations-vs-batch-size-4dfb9c7ce9c9</a></p>
+</div>
+<div class="section" id="terminology">
+<h3>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h3>
+<p>epoch: One Epoch is when an ENTIRE dataset is passed forward and backward through the neural network only ONCE. We need indeed more than one epoch in order the optimizer (SGD or else) to update the weights of the net. One such iteration is not enough.</p>
+<p>batch: the batch is a subset of the total dataset. The bacth size is the number of training examples present in a single batch. The total dataset is often divided into batches because it can sometimes be impossible to load the entire dataset in the neural net at once.</p>
+<p>iterations: the iterations is the number of batches needed to complete one epoch. Note: The number of batches is equal to number of iterations for one epoch.</p>
+<p>Let’s say we have dataset = 2000 training examples that we are going to use . We can divide the dataset of 2000 examples into batches of 500 then it will take 4 iterations to complete 1 epoch.</p>
 </div>
 <div class="section" id="activation-functions">
 <h3>Activation functions<a class="headerlink" href="#activation-functions" title="Permalink to this headline">¶</a></h3>
@@ -264,6 +304,11 @@ A cost function is single-valued, not a vector because it rates how well the neu
 <div class="figure">
 <a class="reference internal image-reference" href="Images/Dropout.png"><img alt="Dropout" src="Images/Dropout.png" /></a>
 </div>
+<p>Note on dropout:</p>
+<ul class="simple">
+<li>In general: <a class="reference external" href="https://machinelearningmastery.com/dropout-regularization-deep-learning-models-keras/">https://machinelearningmastery.com/dropout-regularization-deep-learning-models-keras/</a></li>
+<li>For LSTM: <a class="reference external" href="https://machinelearningmastery.com/use-dropout-lstm-networks-time-series-forecasting/">https://machinelearningmastery.com/use-dropout-lstm-networks-time-series-forecasting/</a></li>
+</ul>
 </div>
 <div class="section" id="zero-padding">
 <h3>Zero-Padding<a class="headerlink" href="#zero-padding" title="Permalink to this headline">¶</a></h3>
@@ -286,6 +331,7 @@ A cost function is single-valued, not a vector because it rates how well the neu
 <a class="reference internal image-reference" href="Cheatsheets/Keras_Cheat_Sheet_Python.png"><img alt="map to buried treasure" src="Cheatsheets/Keras_Cheat_Sheet_Python.png" /></a>
 <p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span></p>
 </div>
+<p>Install: on top of tensorflow: <a class="reference external" href="http://inmachineswetrust.com/posts/deep-learning-setup/">http://inmachineswetrust.com/posts/deep-learning-setup/</a></p>
 <div class="section" id="loss-functions">
 <h3>Loss functions<a class="headerlink" href="#loss-functions" title="Permalink to this headline">¶</a></h3>
 <p>A loss function, also known as an objective function, will specify the objective of minimizing loss/error, which our model will leverage to get the best performance over multiple epochsiterations. It again can be a string identifier to some pre-implemented loss functions like cross-entropy loss (classification) or mean squared error (regression) or it can be a custom loss function that we can develop.</p>
@@ -317,6 +363,7 @@ A cost function is single-valued, not a vector because it rates how well the neu
 <li>Nice post: <a class="reference external" href="https://medium.com/&#64;nishantnikhil/adam-optimizer-notes-ddac4fd7218">https://medium.com/&#64;nishantnikhil/adam-optimizer-notes-ddac4fd7218</a></li>
 <li>The initial paper: <a class="reference external" href="https://arxiv.org/pdf/1412.6980.pdf">https://arxiv.org/pdf/1412.6980.pdf</a></li>
 <li>For an intro to SGD: <a class="reference external" href="http://neuralnetworksanddeeplearning.com/chap1.html">http://neuralnetworksanddeeplearning.com/chap1.html</a> and associated code: <a class="reference external" href="https://github.com/mnielsen/neural-networks-and-deep-learning/blob/master/src/network.py">https://github.com/mnielsen/neural-networks-and-deep-learning/blob/master/src/network.py</a></li>
+<li>comparison of optimizers: <a class="reference external" href="https://shaoanlu.wordpress.com/2017/05/29/sgd-all-which-one-is-the-best-optimizer-dogs-vs-cats-toy-experiment/">https://shaoanlu.wordpress.com/2017/05/29/sgd-all-which-one-is-the-best-optimizer-dogs-vs-cats-toy-experiment/</a></li>
 </ul>
 </div>
 <div class="section" id="conversion-the-label-to-categorical-one-hot-encoding">
@@ -328,15 +375,101 @@ A cost function is single-valued, not a vector because it rates how well the neu
 </div>
 <div class="section" id="rnn-recurrent-neural-networks">
 <h3>RNN: Recurrent Neural Networks<a class="headerlink" href="#rnn-recurrent-neural-networks" title="Permalink to this headline">¶</a></h3>
+<p>In RNNs, connections form a cycle: they are able to retain state from one iteration to the next by using their own input for the next step.</p>
+<p>Here are the different types of RNNs:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/one_multiple.PNG"><img alt="autoencoders" src="_images/one_multiple.PNG" style="width: 650.4000000000001px; height: 346.40000000000003px;" /></a>
+</div>
+<p>Here is the vanilla RNN:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/RNN_vanilla_1.png"><img alt="autoencoders" src="_images/RNN_vanilla_1.png" style="width: 583.2px; height: 332.0px;" /></a>
+</div>
+<p>w, u weights do not depend on t: same weights at all times.</p>
+<p>Deep networks can be built by stacking recurrent units onto one another:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/RNN_vanilla_2.png"><img alt="autoencoders" src="_images/RNN_vanilla_2.png" style="width: 566.4px; height: 337.6px;" /></a>
+</div>
+<p>RNN scheme is short term; it does not have a “memory” for far-past events.</p>
+<p>Also, RNN suffers from vanishing gradients problem.</p>
+<p>Good links: <a class="reference external" href="https://www.deeplearningbook.org/contents/rnn.html">https://www.deeplearningbook.org/contents/rnn.html</a></p>
+<p>An RNN from scratch in Numpy ONLY (great): <a class="reference external" href="https://www.analyticsvidhya.com/blog/2019/01/fundamentals-deep-learning-recurrent-neural-networks-scratch-python/?utm_source=linkedin.com&amp;utm_medium=social">https://www.analyticsvidhya.com/blog/2019/01/fundamentals-deep-learning-recurrent-neural-networks-scratch-python/?utm_source=linkedin.com&amp;utm_medium=social</a></p>
 </div>
 <div class="section" id="lstm-long-short-term-memory">
 <h3>LSTM: Long Short-Term Memory<a class="headerlink" href="#lstm-long-short-term-memory" title="Permalink to this headline">¶</a></h3>
-<p>Good post: <a class="reference external" href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">http://colah.github.io/posts/2015-08-Understanding-LSTMs/</a>
-Post with Keras example: <a class="reference external" href="https://www.analyticsvidhya.com/blog/2017/12/fundamentals-of-deep-learning-introduction-to-lstm/">https://www.analyticsvidhya.com/blog/2017/12/fundamentals-of-deep-learning-introduction-to-lstm/</a></p>
+<p>Here is the comparison of RNN vs LSTM</p>
+<div class="figure">
+<a class="reference internal image-reference" href="Images/RNN_vs_LSTM.png"><img alt="RNN_vs_LSTM" src="Images/RNN_vs_LSTM.png" /></a>
+</div>
+<p>Here are details of the LSTM scheme:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="Images/LSTM_details.png"><img alt="LSTM_details" src="Images/LSTM_details.png" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="Images/LSTM_scheme.png"><img alt="LSTM scheme" src="Images/LSTM_scheme.png" /></a>
+</div>
+<p>Good links:</p>
+<p><a class="reference external" href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">http://colah.github.io/posts/2015-08-Understanding-LSTMs/</a></p>
+<p><a class="reference external" href="http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/">http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/</a></p>
+<p>Post with Keras example: <a class="reference external" href="https://www.analyticsvidhya.com/blog/2017/12/fundamentals-of-deep-learning-introduction-to-lstm/">https://www.analyticsvidhya.com/blog/2017/12/fundamentals-of-deep-learning-introduction-to-lstm/</a></p>
 <p>GRU (Gated Recurrent Unit): variant of LSTM</p>
 </div>
-<div class="section" id="gan-genetic-algorithm-networks">
-<h3>GAN: Genetic Algorithm Networks<a class="headerlink" href="#gan-genetic-algorithm-networks" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="autoencoders">
+<h3>Autoencoders<a class="headerlink" href="#autoencoders" title="Permalink to this headline">¶</a></h3>
+<p>Principle:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Encoder_Decoder_idea.PNG"><img alt="autoencoders" src="_images/Encoder_Decoder_idea.PNG" style="width: 452.8px; height: 206.4px;" /></a>
+</div>
+<p>Links:</p>
+<p><a class="reference external" href="https://machinelearningmastery.com/encoder-decoder-long-short-term-memory-networks/">https://machinelearningmastery.com/encoder-decoder-long-short-term-memory-networks/</a></p>
+<p><a class="reference external" href="https://machinelearningmastery.com/develop-encoder-decoder-model-sequence-sequence-prediction-keras/">https://machinelearningmastery.com/develop-encoder-decoder-model-sequence-sequence-prediction-keras/</a></p>
+<p><a class="reference external" href="https://machinelearningmastery.com/define-encoder-decoder-sequence-sequence-model-neural-machine-translation-keras/">https://machinelearningmastery.com/define-encoder-decoder-sequence-sequence-model-neural-machine-translation-keras/</a> (more sequence to sequence)</p>
+<p><a class="reference external" href="http://rickyhan.com/jekyll/update/2017/09/14/autoencoders.html">http://rickyhan.com/jekyll/update/2017/09/14/autoencoders.html</a></p>
+<p><a class="reference external" href="https://machinelearningmastery.com/timedistributed-layer-for-long-short-term-memory-networks-in-python/">https://machinelearningmastery.com/timedistributed-layer-for-long-short-term-memory-networks-in-python/</a></p>
+<p><a class="reference external" href="https://github.com/keras-team/keras/issues/1029">https://github.com/keras-team/keras/issues/1029</a></p>
+<p><a class="reference external" href="https://github.com/keras-team/keras/issues/5203">https://github.com/keras-team/keras/issues/5203</a> #!!!</p>
+<p><a class="reference external" href="https://keras.io/layers/wrappers/">https://keras.io/layers/wrappers/</a></p>
+<p><a class="reference external" href="https://keras.io/layers/core/">https://keras.io/layers/core/</a></p>
+<p><a class="reference external" href="https://blog.keras.io/building-autoencoders-in-keras.html">https://blog.keras.io/building-autoencoders-in-keras.html</a></p>
+<p><a class="reference external" href="https://machinelearningmastery.com/lstm-autoencoders/">https://machinelearningmastery.com/lstm-autoencoders/</a></p>
+<p>Autoencoder with CNN: <a class="reference external" href="https://machinelearningmastery.com/how-to-develop-convolutional-neural-network-models-for-time-series-forecasting/">https://machinelearningmastery.com/how-to-develop-convolutional-neural-network-models-for-time-series-forecasting/</a></p>
+<p>TimeDistributed layer: allows to apply a layer to every temporal slice of an input.</p>
+<p>There are two key points to remember when using the TimeDistributed wrapper layer:</p>
+<ul class="simple">
+<li>The input must be (at least) 3D. This often means that you will need to configure your last LSTM layer prior to your TimeDistributed wrapped Dense layer to return sequences (e.g. set the “return_sequences” argument to “True”).</li>
+<li>The output will be 3D. This means that if your TimeDistributed wrapped Dense layer is your output layer and you are predicting a sequence, you will need to resize your y array into a 3D vector.</li>
+</ul>
+<p>TimeDistributedDense applies a same Dense (fully-connected) operation to every timestep of a 3D tensor.</p>
+<p>Here taken from <a class="reference external" href="https://github.com/keras-team/keras/issues/1029">https://github.com/keras-team/keras/issues/1029</a>:
+But I think you still don’t catch the point. The most common scenario for using TimeDistributedDense is using a recurrent NN for tagging task.e.g. POS labeling or slot filling task.</p>
+<p>In this kind of task:
+For each sample, the input is a sequence (a1,a2,a3,a4…aN) and the output is a sequence (b1,b2,b3,b4…bN) with the same length. bi could be viewed as the label of ai.
+Push a1 into a recurrent nn to get output b1. Than push a2 and the hidden output of a1 to get b2…</p>
+<p>If you want to model this by Keras, you just need to used a TimeDistributedDense after a RNN or LSTM layer(with return_sequence=True) to make the cost function is calculated on all time-step output. If you don’t use TimeDistributedDense ans set the return_sequence of RNN=False, then the cost is calculated on the last time-step output and you could only get the last bN.</p>
+<p>I am also new to Keras, but I am trying to use it to do sequence labeling and I find this could only be done by using TimeDistributedDense. If I make something wrong, please correct me.</p>
+<p>Link: <a class="reference external" href="https://machinelearningmastery.com/timedistributed-layer-for-long-short-term-memory-networks-in-python/">https://machinelearningmastery.com/timedistributed-layer-for-long-short-term-memory-networks-in-python/</a></p>
+</div>
+<div class="section" id="variational-autoencoders">
+<h3>Variational autoencoders<a class="headerlink" href="#variational-autoencoders" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf">https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf</a></p>
+<p><a class="reference external" href="https://medium.com/datadriveninvestor/variational-autoencoder-vae-d1cf436e1e8f">https://medium.com/datadriveninvestor/variational-autoencoder-vae-d1cf436e1e8f</a></p>
+<p>Variational Autoencoders (VAEs) have one fundamentally unique property that separates them from vanilla autoencoders, and it is this property that makes them so useful for generative modeling: their latent spaces are, by design, continuous, allowing easy random sampling and interpolation.</p>
+<p>It achieves this by doing something that seems rather surprising at first: making its encoder not output an encoding vector of size n, rather, outputting two vectors of size n: a vector of means, μ, and another vector of standard deviations, σ.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/VAE1.PNG"><img alt="VAE encoder" src="_images/VAE1.PNG" style="width: 456.4px; height: 510.29999999999995px;" /></a>
+</div>
+<p>They form the parameters of a vector of random variables of length n, with the i th element of μ and σ being the mean and standard deviation of the i th random variable, X i, from which we sample, to obtain the sampled encoding which we pass onward to the decoder:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/VAE2.PNG"><img alt="VAE encoder" src="_images/VAE2.PNG" style="width: 480.9px; height: 282.09999999999997px;" /></a>
+</div>
+<p>This stochastic generation means, that even for the same input, while the mean and standard deviations remain the same, the actual encoding will somewhat vary on every single pass simply due to sampling.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Autoencoder_vs_VAE.PNG"><img alt="Autoencoder_vs_VAE" src="_images/Autoencoder_vs_VAE.PNG" style="width: 464.79999999999995px; height: 266.7px;" /></a>
+</div>
+<p>Intuitively, the mean vector controls where the encoding of an input should be centered around, while the standard deviation controls the “area”, how much from the mean the encoding can vary. As encodings are generated at random from anywhere inside the “circle” (the distribution), the decoder learns that not only is a single point in latent space referring to a sample of that class, but all nearby points refer to the same as well. This allows the decoder to not just decode single, specific encodings in the latent space (leaving the decodable latent space discontinuous), but ones that slightly vary too, as the decoder is exposed to a range of variations of the encoding of the same input during training</p>
+<p>See also p 298 of “Deep learning in Python” from Chollet.</p>
+</div>
+<div class="section" id="genetic-algorithm-hyperparameters-tuning">
+<h3>Genetic Algorithm hyperparameters tuning<a class="headerlink" href="#genetic-algorithm-hyperparameters-tuning" title="Permalink to this headline">¶</a></h3>
 <p>Problem: the discovery of the best hyperparameters of a neural network is very time consuming, especially when it is done brute force.
 Here, we try to improve upon the brute force method by applying a genetic algorithm to evolve a network with the goal of achieving optimal hyperparameters in a fraction the time of a brute force search.</p>
 <p>It is said that a 80% time saving can be obtained: <a class="reference external" href="https://blog.coast.ai/lets-evolve-a-neural-network-with-a-genetic-algorithm-code-included-8809bece164">https://blog.coast.ai/lets-evolve-a-neural-network-with-a-genetic-algorithm-code-included-8809bece164</a>
@@ -356,8 +489,35 @@ Here, we try to improve upon the brute force method by applying a genetic algori
 <p>Repeat this process enough times and you should be left with the very best possible members of a population.</p>
 <p>See <a class="reference external" href="https://github.com/harvitronix/neural-network-genetic-algorithm">https://github.com/harvitronix/neural-network-genetic-algorithm</a> for a code intro.</p>
 </div>
-<div class="section" id="simple-examples">
-<h3>Simple examples<a class="headerlink" href="#simple-examples" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="gan-generative-adversarial-networks">
+<h3>GAN: Generative Adversarial Networks<a class="headerlink" href="#gan-generative-adversarial-networks" title="Permalink to this headline">¶</a></h3>
+<p>Intro: <a class="reference external" href="https://medium.com/&#64;devnag/generative-adversarial-networks-gans-in-50-lines-of-code-pytorch-e81b79659e3f">https://medium.com/&#64;devnag/generative-adversarial-networks-gans-in-50-lines-of-code-pytorch-e81b79659e3f</a></p>
+<p><a class="reference external" href="https://www.dlology.com/blog/how-to-do-novelty-detection-in-keras-with-generative-adversarial-network/">https://www.dlology.com/blog/how-to-do-novelty-detection-in-keras-with-generative-adversarial-network/</a></p>
+<p>GAN is a family of Neural Network (NN) models that have two or more NN components (Generator/Discriminator) competing adversarially with each other that result in component NNs get better over time.</p>
+<p>The models play two distinct (literally, adversarial) roles. Given some real data set R, G is the generator, trying to create fake data that looks just like the genuine data, while D is the discriminator, getting data from either the real set or G and labeling the difference. Goodfellow’s metaphor (and a fine one it is) was that G was like a team of forgers trying to match real paintings with their output, while D was the team of detectives trying to tell the difference. (Except that in this case, the forgers G never get to see the original data — only the judgments of D. They’re like blind forgers.)</p>
+<p>Here is the metaphor of Ian Goodfellow:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/GAN_metaphor.PNG"><img alt="Here is the metaphor of Ian Goodfellow" src="_images/GAN_metaphor.PNG" style="width: 421.5px; height: 193.0px;" /></a>
+</div>
+<p>R: The original, genuine data set</p>
+<p>I: The random noise that goes into the generator as a source of entropy</p>
+<p>G: The generator which tries to copy/mimic the original data set</p>
+<p>D: The discriminator which tries to tell apart G’s output from R</p>
+<p>The actual ‘training’ loop where we teach G to trick D and D to beware G.</p>
+<p>The GAN can be seen as a minmax game:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/GAN_minmax_game_1.PNG"><img alt="GAN_minmax_game_1.PNG" src="_images/GAN_minmax_game_1.PNG" style="width: 734.5px; height: 288.5px;" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/GAN_minmax_game_2.PNG"><img alt="GAN_minmax_game_2.PNG" src="_images/GAN_minmax_game_2.PNG" style="width: 510.5px; height: 226.0px;" /></a>
+</div>
+<p>GANs can be used for anomaly detection:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/Gan_anomaly_detection.PNG"><img alt="Gan_anomaly_detection.PNG" src="_images/Gan_anomaly_detection.PNG" style="width: 692.5px; height: 334.5px;" /></a>
+</div>
+</div>
+<div class="section" id="simple-nn-examples">
+<h3>Simple NN examples<a class="headerlink" href="#simple-nn-examples" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><strong>CLASSIFICATION</strong>: Example making new class predictions for a classification problem</li>
 </ol>
@@ -522,6 +682,7 @@ Here, we try to improve upon the brute force method by applying a genetic algori
 <div class="section" id="installation">
 <h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
 <p>Here is a cheatsheet taken from Tensorflow.</p>
+<p>better: <a class="reference external" href="http://inmachineswetrust.com/posts/deep-learning-setup/">http://inmachineswetrust.com/posts/deep-learning-setup/</a></p>
 <div class="figure">
 <a class="reference internal image-reference" href="_images/TS_Linux.png"><img alt="Installation in Linux/Mac" src="_images/TS_Linux.png" style="width: 391.5px; height: 162.0px;" /></a>
 </div>
@@ -735,15 +896,16 @@ loss function. To accomplish this, we feed in data through placeholders. We need
 
 
            </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Time_Series_inPython_Documentation.html" class="btn btn-neutral float-right" title="Time Series in Python" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ReinforcementLearning_Documentation.html" class="btn btn-neutral float-right" title="Reinforcement Learning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="Text_Mining_Documentation.html" class="btn btn-neutral" title="Text Mining in Python" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Text_Mining_Documentation.html" class="btn btn-neutral float-left" title="Text Mining in Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -752,11 +914,11 @@ loss function. To accomplish this, we feed in data through placeholders. We need
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017, pmeu.
+        &copy; Copyright 2017, pmeu
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -769,36 +931,15 @@ loss function. To accomplish this, we feed in data through placeholders. We need
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.1',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

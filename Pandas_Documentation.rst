@@ -31,6 +31,10 @@ Loading package from a given (maybe different) directory:
    import sys
    sys.path.append('/home/BB2907/GIT/affordabillity/pyspark') 
    
+Useful internal address: https://sb-hdp-e4.fspa.myntet.se:8400/    
+
+Useful Jupyter notebook tricks: https://www.dataquest.io/blog/advanced-jupyter-notebooks-tutorial/
+   
 Getting Notebooks work on server and access them using ssh
 =================================================================
 
@@ -40,8 +44,237 @@ type: nohup pyspar3Jupyter > save.txt &  (by this the save.txt contains the addr
 type: jobs -l get pid number, this will be useful when you want to kill your pyspark session.
 ps -aux | grep bc4350 (this gets the pid if the ssh has already been shut down
 kill 5442 (if pid=5442)
-   
 
+
+Python basic info
+===========================
+
+Formats for printing
+---------------------------------------
+
+See https://www.geeksforgeeks.org/python-output-formatting/
+
+The general syntax for a format placeholder is:  %[flags][width][.precision]type 
+
+.. sourcecode:: python
+
+  # print integer and float value 
+  print("Geeks : % 2d, Portal : % 5.2f" %(1, 05.333))  
+  
+  # print exponential value 
+  print("% 10.3E"% (356.08977)) 
+  
+Using format():
+
+.. sourcecode:: python
+
+  # using format() method and refering a position of the object 
+  print('{0} and {1}'.format('Geeks', 'Portal'))   
+  
+  # combining positional and keyword arguments 
+  print('Number one portal is {0}, {1}, and {other}.'
+       .format('Geeks', 'For', other ='Geeks'))   
+       
+  # using format() method with number  
+  print("Geeks :{0:2d}, Portal :{1:8.2f}". 
+        format(12, 00.546))        
+
+How many cores in the edge node?
+-----------------------------------------------
+
+.. sourcecode:: python
+
+  import multiprocessing
+  print(multiprocessing.cpu_count())
+  
+56  
+  
+Similar to linux command nproc --all (or grep -c ^processor /proc/cpuinfo)
+
+The command grep ^cpu\\scores /proc/cpuinfo | uniq |  awk '{print $4}' 
+gives 14. Means these are true cores, 56 are the number of threads.
+
+Basic dates in Python
+-----------------------------------------------
+
+How to add/substract some time to dates in python?
+
+.. sourcecode:: python
+
+  import datetime
+  from dateutil.relativedelta import relativedelta
+ 
+  sub_days = datetime.datetime.today() + relativedelta(days=-6)
+  sub_months = datetime.datetime.today() + relativedelta(months=-6)
+  sub_years = datetime.datetime.today() + relativedelta(years=-6)
+ 
+  sub_hours = datetime.datetime.today() + relativedelta(hours=-6)
+  sub_mins = datetime.datetime.today() + relativedelta(minutes=-6)
+  sub_seconds = datetime.datetime.today() + relativedelta(seconds=-6)
+ 
+  print("Current Date Time:", datetime.datetime.today())
+  print("Subtract 6 days:", sub_days)
+  print("Subtract 6 months:", sub_months)
+  print("Subtract 6 years:", sub_years)
+  print("Subtract 6 hours:", sub_hours)
+  print("Subtract 6 mins:", sub_mins)
+  print("Subtract 6 seconds:", sub_seconds)
+  
+How to convert dates from datetime to string:
+
+.. sourcecode:: python
+
+  from datetime import datetime
+  datetime.today().strftime("%Y-%m-%d")  
+  
+How to get first day of month:
+
+.. sourcecode:: python
+
+  from datetime import datetime
+  datetime.today().replace(day=1)  
+  
+  
+Docstrings in functions and classes:
+-----------------------------------------------
+
+Docstring is a great tool for code understanding, especially when it is not written by you...or when you wrote it long time ago! The idea is just to supply each function and class with a consistent explanation of its aim (why is it needed for, what it does), the description of the different input and output objects. It is a good habit to use them.
+
+There is a PEP on docstrings (PEP257): https://www.python.org/dev/peps/pep-0257/
+
+Here some few examples, taken/adapted from https://www.geeksforgeeks.org/python-docstrings/:  
+
+One line docstrings (for very obvious functions):
+	
+.. sourcecode:: python 
+    
+  def power(a, b):
+      """Returns arg1 raised to power arg2."""
+    
+      return a**b
+   
+  # To access the function description, for example from your notebook, you can use:
+  print(power.__doc__)
+ 
+  # Or similarly:
+  help(power)
+  
+Multi line docstrings:
+	
+.. sourcecode:: python 
+    
+  def my_function(arg1,arg2):
+      """
+      Summary line.
+   
+      Extended description of function.
+   
+      Parameters:
+      arg1 (int): Description of arg1
+      arg2 (int): Description of arg2
+   
+      Returns:
+      result (int): Description of return value  
+      """
+     
+      result = arg1+arg2 
+ 
+      return result
+   
+  print(my_function.__doc__)
+  
+Class docstrings:
+	
+.. sourcecode:: python 
+    
+  class ComplexNumber:
+    """
+    This is a class for mathematical operations on complex numbers.
+       
+    Attributes:
+        real (int): The real part of complex number.
+        imag (int): The imaginary part of complex number.
+    """
+   
+    def __init__(self, real, imag):
+        """
+        The constructor for ComplexNumber class.
+   
+        Parameters:
+           real (int): The real part of complex number.
+           imag (int): The imaginary part of complex number.   
+        """
+   
+    def add(self, num):
+        """
+        The function to add two Complex Numbers.
+   
+        Parameters:
+            num (ComplexNumber): The complex number to be added.
+           
+        Returns:
+            ComplexNumber: A complex number which contains the sum.
+        """
+   
+        re = self.real + num.real
+        im = self.imag + num.imag
+   
+        return ComplexNumber(re, im)
+   
+  help(ComplexNumber)  # to access Class docstring
+  help(ComplexNumber.add)  # to access method's docstring  
+  
+PEP - Code Refactoring - Autopep8
+-----------------------------------------------
+
+See  https://pypi.org/project/autopep8/
+
+.. sourcecode:: python 
+
+  autopep8 --in-place --aggressive --aggressive code.py
+
+If done with Visual Studio Code, the settings should be adapted. Type 'Ctrl + ,' and this will open the options pallet. Here type in proxy and this will show all the proxy settings. Click on the settings.json file and update the contents so they look like the following:
+
+.. sourcecode:: python 
+
+  {
+    "http.proxy": "http://{your_pid_here}:{your_pid_here}@proxyvip-se.sbcore.net:8080",
+    "http.proxyStrictSSL": false,
+    "python.linting.enabled": true,
+    "python.linting.pep8Args": [
+        "--ignore=E501,E265"
+    ],
+    "python.linting.pep8Enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.pythonPath": "C:\\Anaconda3\\python.exe",
+    "window.zoomLevel": 0,
+    "python.dataScience.jupyterServerURI": "http://sb-hdpdev-e3.fspa.myntet.se:4191/?token=test"
+  }
+
+
+Installing through proxy using pip
+-----------------------------------------------
+
+.. sourcecode:: python
+
+  pip install --proxy=https://p998phd:p998phd@proxyvip-se.sbcore.net:8080 --trusted-host pypi.python.org -U PACKAGE_NAME
+   
+Anaconda environments
+-----------------------------------------------
+
+check the environments:
+
+conda info --envs
+
+There should be a base, and others, if they were created.
+
+Then, to activate a different environment:
+
+source activate env_name  (source in Unix, without on Windows)
+
+To create a new environment with some packages: 
+
+conda create -n env_name --yes --quiet python=3.5 numpy scipy scikit-learn statsmodels
 
 Numpy basic documentation
 ===========================
@@ -54,11 +287,12 @@ Numpy basic documentation
 
 
 Basic Pandas documentation
-===============
+============================================================
 
 .. topic:: Introduction
 
     The objective here is to have everything useful for the projects, not to make a complete documentation of the whole package. Here I will try to document both version 1.6 and >2.0. A special enphase will be done on machine learning module ml (mllib is outdated).
+ 
  
  
 Good Pandas links:
@@ -67,7 +301,7 @@ Good Pandas links:
 A good link on data manipulations: https://www.analyticsvidhya.com/blog/2016/01/12-pandas-techniques-python-data-manipulation/
    
 Loading Pandas dataframe from file
-------------------------------------------
+------------------------------------------------------------
 
 .. sourcecode:: python
 
@@ -76,7 +310,7 @@ Loading Pandas dataframe from file
    
    
 Creation of some data in a Pandas dataframe
------------------------------------------------
+------------------------------------------------------------
 
 .. sourcecode:: python
 
@@ -97,11 +331,84 @@ Creation of some data in a Pandas dataframe
   3 	John 	578
   4 	Mel 	973
   
+Creating dataframe with several objects per cell
+------------------------------------------------------------
+  
+.. sourcecode:: python
+
+  a = ['a1','a2','a3']
+  b = ['b1','b2','b3']
+  uu = [[a,b] for a,b in list(zip(a,b))]
+  vv = [{'a':a,'b':b} for a,b in list(zip(a,b))]
+  df = pd.DataFrame()
+  df['version_list'] = uu
+  df['version_dico'] = vv
+  df  
+  
+    version_list version_dico
+  0 [a1, b1]     {'a': 'a1', 'b': 'b1'} 
+  1 [a2, b2]     {'a': 'a2', 'b': 'b2'} 
+  2 [a3, b3]     {'a': 'a3', 'b': 'b3'} 
+  
+  
+Stacking of dataframes in Pandas
+------------------------------------------------------------
+
+This will create a new df that contains the columns of both dataframes:
+
+.. sourcecode:: python
+
+  df1 = pd.DataFrame([1,2,3],columns=['A'])
+  df2 = pd.DataFrame([4,5,6],columns=['B'])
+  df3 = pd.concat([df1,df2],axis=1)
+
+ 
+How to shuffle the columns of a dataframe?
+------------------------------------------------------------
+
+Simply by using the "sample" method, which allows to shuffle rows (only). For that we first transpose the df first:
+
+.. sourcecode:: python
+
+  # Shuffling the columns
+  df_T = df.T
+  df_T = df_T.sample(frac=1) 
+  df   = df_T.T
+
+  
+Pandas and memory
+------------------------------------------------------------
+
+How to estimate the size a dataframe takes in memory?
+
+.. sourcecode:: python
+
+  df = pd.DataFrame(np.random.random((100,100)))
+  df.values.nbytes  
+  
+  80000 #number of bytes
+  
+  #Here it gives the number of bytes for EACH column:
+  df.memory_usage()
+  
+  #info()
+  df.info() gives the types of the columns and the total memory used
+  
   
 Re-setting of index in Pandas dataframes
 ---------------------------------------------------
 
 http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.set_index.html  
+
+https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.reset_index.html
+
+.. sourcecode:: python
+
+  # Use a column of df for index:
+  ts_all.set_index('transactiondate',inplace=True)
+
+  # Reset index to 0,1,2,3... (note that the old index will be as the first column of the df)
+  ts_all.reset_index(inplace=True)
 
 Iterating over Pandas dataframe rows:
 ---------------------------------------------------
@@ -139,7 +446,7 @@ Identify which columns are categorical and which are not (important for some ML 
   non_categorical_columns = df.columns[~categorical_feature_mask].tolist()  
   
 Deleting a column, or list of columns:  
----------------------------------------------------
+-----------------------------------------------------
 
 .. sourcecode:: python
 
@@ -148,7 +455,7 @@ Deleting a column, or list of columns:
 
   
 Displaying dataframes to screen
------------------------------------------
+-----------------------------------------------------
 
 .. sourcecode:: python
 
@@ -160,6 +467,34 @@ Displaying dataframes to screen
   
   #This display the 5 last rows:
   df.tail(5)  
+  
+  Display several dataframes in the same HTML format in one cell:
+  from IPython.core import display as ICD
+  ICD.display(df1.head())
+  ICD.display(df2.head())  
+  
+Reading very big files using chunk
+-----------------------------------------------------
+  
+For csv that can be bigger than the RAM, we can load chunks of them, and perform (for example, can be different action) a filtering on the chunks like this:
+  
+.. sourcecode:: python
+  
+  def filter_is_long_trip(data):
+    "Returns DataFrame filtering trips longer than 20 minutes"
+    is_long_trip = (data.trip_time_in_secs > 1200)
+    return data.loc[is_long_trip]
+
+  chunks = []
+
+  for chunk in pd.read_csv(filename, chunksize=1000):
+    chunks.append(filter_is_long_trip(chunk))
+
+  #or in a simpler way:  
+  chunks = [filter_is_long_trip(chunk) for chunk in pd.read_csv(filename,chunksize=1000) ]  
+  
+  #Then we can use these filtered chunks and stack them into a single dataframe:
+  df = pd.concat(chunks)
   
   
 Reading JSON blobs (from command line)  
@@ -286,6 +621,71 @@ Let's say we have some dataframe, here FinalListModel1:
   cursor.close()
   conn.close()  
 
+
+Transform format of dataframe: collapse multiple columns into one
+------------------------------------------------------------------------------------------------
+
+https://stackoverflow.com/questions/28520036/how-to-collapse-columns-into-row-elements-in-pandas
+
+Here the task is to collapse multiple columns into one, keeping the same index (called "level_1" in the result)
+
+.. sourcecode:: python
+
+    df = pd.DataFrame(np.random.rand(4,5), columns = list('abcde'))
+    df.head()
+       
+             a        b        c        d        e
+    0 0.682871 0.287474 0.896795 0.043722 0.629443  
+    1 0.456231 0.158333 0.796718 0.967837 0.611682  
+    2 0.499535 0.545836 0.403043 0.465932 0.733136 
+    3 0.553565 0.688499 0.813727 0.183788 0.631529   
+  
+    df.unstack().reset_index()   
+    
+      level_0  level_1         0
+     0      a        0  0.682871 
+     1      a        1  0.456231 
+     2      a        2  0.499535 
+     3      a        3  0.553565 
+     4      b        0  0.287474 
+     5      b        1  0.158333 
+     6      b        2  0.545836 
+     7      b        3  0.688499 
+     8      c        0  0.896795 
+     9      c        1  0.796718 
+    10      c        2  0.403043 
+    11      c        3  0.813727 
+    12      d        0  0.043722 
+    ....
+    19      e        3  0.631529 
+    
+    # A more convenient form could be:
+
+    df2 = df.unstack().reset_index().loc[:,['level_1',0]]
+    df2.columns = ['index','value']
+    df2.set_index('index',inplace=True)
+    df2 
+
+             value
+    index
+        0 0.682871 
+        1 0.456231 
+        2 0.499535 
+        3 0.553565 
+        0 0.287474 
+        1 0.158333 
+        2 0.545836 
+        3 0.688499 
+        0 0.896795 
+        1 0.796718 
+        2 0.403043 
+        3 0.813727 
+        0 0.043722 
+    ...
+        3 0.631529 
+    
+  
+
   
 Apply function to all rows (axis=1) or to all columns (axis=0):
 --------------------------------------------------------------------------------
@@ -320,6 +720,102 @@ Here other example:
 See also http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.apply.html#pandas.Series.apply
   
 
+Dataframe containing column of lists
+------------------------------------------------
+
+1. From 1 column of lists to several columns (explode operation)
+
+Based on https://stackoverflow.com/questions/35491274/pandas-split-column-of-lists-into-multiple-columns
+
+Containing lists in a column is handy for example when dealing with time series, or in general to contain different data format in the same dataframe.
+
+How to explode the lists to several columns?
+
+Let's say we have a df like this:
+
+.. sourcecode:: python
+
+  d1 = {'teams': [['SF', 'NYG'],['SF', 'NYG'],['SF', 'NYG'],
+                  ['SF', 'NYG'],['SF', 'NYG'],['SF', 'NYG'],['SF', 'NYG']]}
+  df2 = pd.DataFrame(d1)
+  
+  print (df2)
+         teams
+  0  [SF, NYG]
+  1  [SF, NYG]
+  2  [SF, NYG]
+  3  [SF, NYG]
+  4  [SF, NYG]
+  5  [SF, NYG]
+  6  [SF, NYG]
+
+We can explode the column of lists in 2 columns in the same dataframe like this:
+
+.. sourcecode:: python
+
+  df2[['team1','team2']] = pd.DataFrame(df2.teams.values.tolist(), index= df2.index)
+
+  print (df2)
+         teams team1 team2
+  0  [SF, NYG]    SF   NYG
+  1  [SF, NYG]    SF   NYG
+  2  [SF, NYG]    SF   NYG
+  3  [SF, NYG]    SF   NYG
+  4  [SF, NYG]    SF   NYG
+  5  [SF, NYG]    SF   NYG
+  6  [SF, NYG]    SF   NYG
+  
+We can also do the same and create a new dataframe:
+
+.. sourcecode:: python
+
+  df3 = pd.DataFrame(df2['teams'].values.tolist(), columns=['team1','team2'])
+
+  print (df3)
+  
+    team1 team2
+  0    SF   NYG
+  1    SF   NYG
+  2    SF   NYG
+  3    SF   NYG
+  4    SF   NYG
+  5    SF   NYG
+  6    SF   NYG
+
+The same operation using apply function is a bad idea as very slow (loop).
+
+For the same kind of operation in Spark there is the command "explode". See section "Revert from time series (list) format to traditional (exploded) format".
+
+2. From several columns to 1 column of lists
+
+How to do the inverse operation in Pandas? Making a column of lists from several columns? In Spark I know (See subsection "Create time series format from row time series")
+
+In pandas a simple apply function can do it (although might be slow):
+
+.. sourcecode:: python
+
+  df = pd.DataFrame({'a': [1, 2, 3], 
+                     'b': [4, 5, 6]}) 
+  df.head() 
+
+    a b
+  0 1 4 
+  1 2 5 
+  2 3 6 
+  
+  df['ab'] = df[['a', 'b']].apply(lambda x: list(x), axis = 1) 
+  df.head() 
+  
+    a b     ab
+  0 1 4 [1, 4]
+  1 2 5 [2, 5] 
+  2 3 6 [3, 6]   
+  
+  Note that there is a MUCH faster way (try %timeit), since apply is a slow function:
+  
+  df['ab'] = [[a,b] for a,b in zip(df['a'], df['b'])] 
+  
+  The problem is that the syntax is not as flexible (does not allow long list of columns...)
   
 Group by operations in Pandas
 ------------------------------------------------
@@ -468,6 +964,71 @@ Pandas: (here on ONE COLUMN! the "state_population")
 .. sourcecode:: python
 
   df.assign(regional_population=df.groupby('region')['state_population'].transform('sum')).sort_values('state_name')
+  
+  
+Example of computing the cumulative sum of a quantity over 2 groups:
+
+.. sourcecode:: python
+
+  df = pd.DataFrame({'col1' : ['a','a','b','b','a'],
+               'col2' : ['2013/01/03 00:00:00', '2013/03/05 09:43:31', '2013/03/07 00:00:00',\
+                         '2013/03/07 00:00:00', '2013/03/07 00:00:00'],
+               'col3' : [1,3,1,2,0]})
+  df = df.sort_values(['col1','col2'])  
+  
+    col1 col2                col3
+  0 a    2013/01/03 00:00:00 1 
+  1 a    2013/03/05 09:43:31 3 
+  4 a    2013/03/07 00:00:00 0 
+  2 b    2013/03/07 00:00:00 1 
+  3 b    2013/03/07 00:00:00 2 
+  
+  df = df.assign(cumsum_col3=df.groupby('col1')['col3'].transform('cumsum')).sort_values('col1')
+
+    col1 col2                col3 cumsum_col3
+  0 a    2013/01/03 00:00:00 1    1
+  1 a    2013/03/05 09:43:31 3    4
+  4 a    2013/03/07 00:00:00 0    4
+  2 b    2013/03/07 00:00:00 1    1
+  3 b    2013/03/07 00:00:00 2    3
+  
+In spark it would have been:
+
+.. sourcecode:: python
+
+  df = pd.DataFrame({'col1' : ['a','a','b','b','a'],
+               'col2' : ['2013/01/03 00:00:00', '2013/03/05 09:43:31', '2013/03/07 00:00:00',\
+                         '2013/03/07 00:00:00', '2013/03/07 00:00:00'],
+               'col3' : [1,3,1,2,0]})
+  df = df.sort_values(['col1','col2']) 
+  dff = sqlContext.createDataFrame( df )  
+  dff.show()
+  
+  +----+-------------------+----+
+  |col1|               col2|col3|
+  +----+-------------------+----+
+  |   a|2013/01/03 00:00:00|   1|
+  |   a|2013/03/05 09:43:31|   3|
+  |   b|2013/03/07 00:00:00|   1|
+  |   b|2013/03/07 00:00:00|   2|
+  |   a|2013/03/07 00:00:00|   0|
+  +----+-------------------+----+  
+  
+  window = Window.partitionBy('col1').orderBy(asc('col1'),asc('col2'))
+  dff=dff.withColumn('cumsum_col3', sum('col3').over(window))
+  dff.orderBy(asc('col1'),asc('col2')).show()  
+  
+  +----+-------------------+----+-----------+
+  |col1|               col2|col3|cumsum_col3|
+  +----+-------------------+----+-----------+
+  |   a|2013/01/03 00:00:00|   1|          1|
+  |   a|2013/03/05 09:43:31|   3|          4|
+  |   a|2013/03/07 00:00:00|   0|          4|
+  |   b|2013/03/07 00:00:00|   1|          3|
+  |   b|2013/03/07 00:00:00|   2|          3|
+  +----+-------------------+----+-----------+  
+  
+  
 
   
 In general, comparison between simple SQL and Pandas operations: http://pandas.pydata.org/pandas-docs/stable/comparison_with_sql.html  
@@ -510,6 +1071,34 @@ Note: if you need to merge 2 dataframes using several columns at the same time, 
 Here is an excellent comparison between SQL and Pandas: http://pandas.pydata.org/pandas-docs/stable/comparison_with_sql.html#compare-with-sql-join
 
 
+Pivot operations
+---------------------------------
+
+The pivot allows to change the order of columns as such. Let's say we have some data as a time series, for different customers A,B,C...:
+
+.. sourcecode:: python
+
+  import pandas.util.testing as tm; tm.N = 3
+  def unpivot(frame):
+    N, K = frame.shape
+    data = {'balance' : frame.values.ravel('F'),
+            'customer' : np.asarray(frame.columns).repeat(N),
+            'date' : np.tile(np.asarray(frame.index), K)}
+    return pd.DataFrame(data, columns=['date', 'customer', 'balance'])
+  df = unpivot(tm.makeTimeDataFrame())
+  
+.. figure:: Images/pivot_table1.png
+   :scale: 100 %
+   :alt: output  
+   
+.. sourcecode:: python   
+
+  df_pivot = df.pivot(index='date', columns='customer', values='balance')
+
+.. figure:: Images/pivot_table2.png
+   :scale: 100 %
+   :alt: output  
+  
 Melting operation
 ---------------------------------
 
@@ -696,8 +1285,31 @@ XX,yy = data[0],data[1]
 Note: we may also load two (or more) datasets at once: load_svmlight_fileS! 
 X_train, y_train, X_test, y_test = load_svmlight_files( ("/path/to/train_dataset.txt", "/path/to/test_dataset.txt") )
 
+Check that 2 dataframes are equal
+---------------------------------------------
+
+...and if not what differs between them:
+
+.. sourcecode:: python
+
+  def dataframes_comparison_tool(d1,d2):
+
+    df1 = d1.copy()
+    df2 = d2.copy()
+    df1 = df1.fillna(0)
+    df2 = df2.fillna(0)
+
+    ne_stacked = (df1 != df2).stack()
+    changed = ne_stacked[ne_stacked]
+    difference_locations = np.where(df1 != df2)
+    changed_from = df1.values[difference_locations]
+    changed_to = df2.values[difference_locations]
+    return pd.DataFrame({'from': changed_from, 'to': changed_to}, index=changed.index)
+
+dataframes_comparison_tool(result,dask_result)
+
 Pandas and memory
----------------------------------
+--------------------------------------
 
 .. sourcecode:: python
 
@@ -845,4 +1457,31 @@ And we can use them like this:
 
   print( myObject )
   print( myNewObject )
-   
+
+  
+Dask, or parallel Pandas
+=====================================
+
+Links:
+
+- Cheatsheet: http://docs.dask.org/en/latest/_downloads/daskcheatsheet.pdf
+
+- Dask general documentation: http://docs.dask.org/en/latest/dataframe.html
+
+- Intro: https://towardsdatascience.com/how-i-learned-to-love-parallelized-applies-with-python-pandas-dask-and-numba-f06b0b367138
+
+- Intro: https://sigdelta.com/blog/dask-introduction/
+
+- On a cluster of several machines: http://matthewrocklin.com/blog/work/2017/01/12/dask-dataframes  
+
+- Dask overview video (16 minutes): https://www.youtube.com/watch?v=ods97a5Pzw0
+
+- Detailed Dask overview video (40 minutes): https://www.youtube.com/watch?v=mjQ7tCQxYFQ
+
+- Parallelizing sklearn: https://github.com/dask/dask-examples/blob/master/machine-learning.ipynb
+
+Other package: swifter:
+
+- https://github.com/jmcarpenter2/swifter
+
+- https://medium.com/@jmcarpenter2/swiftapply-automatically-efficient-pandas-apply-operations-50e1058909f9 

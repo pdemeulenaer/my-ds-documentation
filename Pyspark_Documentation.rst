@@ -11,7 +11,33 @@ Basic Pyspark documentation
     We will not review the full Pyspark documentation. For that, look at http://spark.apache.org/docs/1.6.0/programming-guide.html for version 1.6, http://spark.apache.org/docs/2.1.0/programming-guide.html for version 2.1.
  
 To create
-	
+
+Spark-submit tasks
+-------------------------------
+
+How to navigate between versions using spark-submit:
+
+To check the spark version that currently uses spark-submit:
+
+spark-submit --version
+
+In bash, if we need spark-submit for spark 2.X, we can use:
+
+export SPARK_MAJOR_VERSION=2 
+
+export SPARK_MAJOR_VERSION=2
+export PYSPARK_PYTHON=/var/opt/teradata/anaconda2/bin/python 
+
+# Launch:
+spark-submit --name CashflowModel --executor-memory 60G --master yarn --driver-memory 2G --executor-cores 30 Pipeline_cashflow_standalone.py &>> run_log.txt
+
+See here for configuration parameters: https://spark.apache.org/docs/2.2.0/configuration.html 
+
+Killing YARN applications:
+---------------------------------------
+
+yarn application -kill application_NNN
+
 Importing Pyspark modules
 --------------------------------
 
@@ -70,8 +96,23 @@ To change the spark configuration (for example to tune the numbers of workers av
     .getOrCreate()  
   sqlCtx = SQLContext(sc)
 
+It can also be used that way:
+
+.. sourcecode:: python
+
+  from pyspark.conf import SparkContext, SparkConf
+  from pyspark.sql import SparkSession
+  conf = spark.sparkContext._conf.setAll([('spark.executor.memory', '4g'), ('spark.app.name', 'Spark Updated Conf'), ('spark.executor.cores', '4'), ('spark.cores.max', '4'), ('spark.driver.memory','4g')])
+  spark = SparkSession.builder.config(conf=conf).getOrCreate()
+
    
-    
+In order to check which are the configuration parameters of the notebook:
+
+.. sourcecode:: python
+
+  spark.sparkContext.getConf().getAll()
+  #or, when using sc:
+  sc._conf.getAll()
   
 If the Spark context is created to read SQL data (i.e. if we have sqlCtx), then we can simply use:
 
@@ -161,6 +202,160 @@ Creating a df from scatch: sometimes you have to specify the datatype:
   |  2.0|
   |  3.0|
   +-----+  
+  
+Partitions in pyspark
+--------------------------------------
+
+How many partitions should we have? Rule of thumb is to have 128Mb per partition.
+
+The default number of partitions in Spark is 200. For big dataframes, this low number of partitions leads to high shuffle block size (i.e. when shuffling, high block size to be shuffled). 2 Things to keep in mind against this: 
+
+- increase the number of partitions (therefore reducing the number of partion size)
+
+- Get rid of skew in the data
+
+It is important not to have too big partitions, since the job might fail due to the 2Gb limit (no Spark shuffle block can be greater than 2Gb)
+
+Rule of thumb: if number of partitions lower than 2000 but close to it, better to bump it above 2000, safer. 
+
+You can check the number of partitions:
+
+.. sourcecode:: python
+
+  df.rdd.partitions.size
+  #or 
+  df.rdd.getNumPartitions()
+
+  #To change the number of partitions:
+  df2 = df.repartition(15)
+
+  #re-check the number of partitions:
+  df2.rdd.partitions.size
+  #or 
+  df2.rdd.getNumPartitions()
+  
+Beware of data shuffle when repartitioning as this is expensive. Take a look at coalesce if needed. "coalesce" just decreases the size of partitions (while "partition" allows to increase), but "coalesce" does not shuffle the data.  
+
+Note: it is possible to change the default number of partitions: https://stackoverflow.com/questions/46510881/how-to-set-spark-sql-shuffle-partitions-when-using-the-lastest-spark-version : spark.conf.set("spark.sql.shuffle.partitions", 1000)
+   
+It is also possible to partition dataframe when loading them: https://deepsense.ai/optimize-spark-with-distribute-by-and-cluster-by/
+
+A nice function to read the number of partitions as well as the size of each partitions:
+
+.. sourcecode:: python
+
+  def check_partition(df):
+
+    print("Num partition: {0}".format(df.rdd.getNumPartitions()))
+     
+    def count_partition(index, iterator):
+        yield (index, len(list(iterator)))
+         
+    data = (df.rdd.mapPartitionsWithIndex(count_partition, True).collect())
+     
+    for index, count in data:
+        print("partition {0:2d}: {1} bytes".format(index, count))
+        
+  df = spark.table('database.table')        
+  check_partition(df) 
+  
+Example of output:
+
+.. sourcecode:: python
+
+  Num partition: 29
+  partition  0: 93780 bytes
+  partition  1: 93363 bytes
+  partition  2: 93153 bytes
+  
+  
+Concerning partition skewness problem
+------------------------------------------------------------------------  
+
+Great link on avoiding data skewness: https://medium.com/simpl-under-the-hood/spark-protip-joining-on-skewed-dataframes-7bfa610be704
+  
+Ideally we would like to have partitions like this:  
+  
+.. figure:: Images/Distribution_system_good.png
+   :scale: 60 %
+   :alt: Memory management in yarn and spark
+   
+But sometimes things like this can happen:   
+   
+.. figure:: Images/Distribution_system_bad.png
+   :scale: 60 %
+   :alt: Memory management in yarn and spark 
+
+   
+
+Spark executor/cores and memory management: Resources allocation in Spark
+---------------------------------------------------------------------------------------------
+
+https://spoddutur.github.io/spark-notes/distribution_of_executors_cores_and_memory_for_spark_application.html  
+
+Here a good intro:
+
+https://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/
+
+The two main resources that Spark (and YARN) think about are CPU and memory. Disk and network I/O, of course, play a part in Spark performance as well, but neither Spark nor YARN currently do anything to actively manage them.
+
+Every Spark executor in an application has the same fixed number of cores and same fixed heap size. The number of cores can be specified with the --executor-cores flag when invoking spark-submit, spark-shell, and pyspark from the command line, or by setting the spark.executor.cores property in the spark-defaults.conf file or on a SparkConf object. Similarly, the heap size can be controlled with the --executor-memory flag or the spark.executor.memory property. The cores property controls the number of concurrent tasks an executor can run. --executor-cores 5 means that each executor can run a maximum of five tasks at the same time. The memory property impacts the amount of data Spark can cache, as well as the maximum sizes of the shuffle data structures used for grouping, aggregations, and joins.
+
+The --num-executors command-line flag or spark.executor.instances configuration property control the number of executors requested. Starting in CDH 5.4/Spark 1.3, you will be able to avoid setting this property by turning on dynamic allocation with the spark.dynamicAllocation.enabled property. Dynamic allocation enables a Spark application to request executors when there is a backlog of pending tasks and free up executors when idle.
+
+It’s also important to think about how the resources requested by Spark will fit into what YARN has available. The relevant YARN properties are:
+
+- yarn.nodemanager.resource.memory-mb controls the maximum sum of memory used by the containers on each node.
+
+- yarn.nodemanager.resource.cpu-vcores controls the maximum sum of cores used by the containers on each node.
+
+Asking for five executor cores will result in a request to YARN for five virtual cores. The memory requested from YARN is a little more complex for a couple reasons:
+
+- --executor-memory/spark.executor.memory controls the executor heap size, but JVMs can also use some memory off heap, for example for interned Strings and direct byte buffers. The value of the spark.yarn.executor.memoryOverhead property is added to the executor memory to determine the full memory request to YARN for each executor. It defaults to max(384, .07 * spark.executor.memory).
+
+- YARN may round the requested memory up a little. YARN’s yarn.scheduler.minimum-allocation-mb and yarn.scheduler.increment-allocation-mb properties control the minimum and increment request values respectively.
+
+The following (not to scale with defaults) shows the hierarchy of memory properties in Spark and YARN:
+
+.. figure:: Images/Memory_spark_yarn.png
+   :scale: 100 %
+   :alt: Memory management in yarn and spark
+   
+And if that weren’t enough to think about, a few final concerns when sizing Spark executors:
+
+- The application master (AM), which is a non-executor container with the special capability of requesting containers from YARN, takes up resources of its own that must be budgeted in. In yarn-client mode, it defaults to a 1024MB and one vcore. In yarn-cluster mode, the application master runs the driver, so it’s often useful to bolster its resources with the --driver-memory and --driver-cores properties.
+
+- Running executors with too much memory often results in excessive garbage collection delays. 64GB is a rough guess at a good upper limit for a single executor.
+
+- the HDFS client has trouble with tons of concurrent threads. A rough guess is that at most five tasks per executor can achieve full write throughput, so it’s good to keep the number of cores per executor below that number.
+
+- Running tiny executors (with a single core and just enough memory needed to run a single task, for example) throws away the benefits that come from running multiple tasks in a single JVM. For example, broadcast variables need to be replicated once on each executor, so many small executors will result in many more copies of the data.
+   
+EXAMPLE: Let's say we have a cluster with the following physical specifications:
+
+- 6 physical nodes
+
+- each node has 16 cores
+
+- each node has 64Gb of memory
+
+What are the spark parameters, to use as much resources as possible from the cluster?
+
+Note that each of the node runs NodeManagers. The NodeManager capacities, yarn.nodemanager.resource.memory-mb and yarn.nodemanager.resource.cpu-vcores, should probably be set to 63 * 1024 = 64512 (megabytes) and 15 cores respectively. We avoid allocating 100% of the resources to YARN containers because the node needs some resources to run the OS and Hadoop daemons.
+
+The likely first impulse would be to use --num-executors 6 --executor-cores 15 --executor-memory 63G. However, this is the wrong approach because:
+
+- 63GB + the executor memory overhead won’t fit within the 63GB capacity of the NodeManagers.
+
+- The application master will take up a core on one of the nodes, meaning that there won’t be room for a 15-core executor on that node.
+
+- 15 cores per executor can lead to bad HDFS I/O throughput.
+
+A better option would be to use --num-executors 17 --executor-cores 5 --executor-memory 19G. Why?
+
+- This config results in three executors on all nodes except for the one with the AM, which will have two executors.
+
+- --executor-memory was derived as (63/3 executors per node) = 21. The memory overhead should take 7% (or in more recent cases 10%) of the allocated memory: 21 * 0.07 = 1.47 Gb. So the total memory allocated should be no large than 21 – 1.47 ~ 19.
    
 Basic commands
 ----------------
@@ -215,16 +410,91 @@ Basic commands
   #Vertical concatenation of 2 dataframes
   df_result = df_1.unionAll(df_2)  
   
+  #Find common columns in 2 different dataframes:
+  list(set(df1.columns).intersection(set(df2.columns)))
+  
+  #Add a column of monotonically increasing ID:
+  df = df.withColumn("id", monotonically_increasing_id())
+  
+  #Add a column made of a uniform random number
+  df = df.withColumn('random_number', rand() )
+  
+Type definition for several variables at once ("recasting"):
+
+.. sourcecode:: python
+
+  # recast variable
+  df.select(df[c],df[c].cast('int'))
+  dtype_dict = {'Player' : StringType, 'Pos' : StringType, 'Tm' : StringType, 'Age' : IntegerType, 'G' : IntegerType, 'GS' : IntegerType, 'yr' : IntegerType}
+
+  df2 = df.fillna('0')
+
+  for c in df2.schema.names[6:]:
+    dtype = DoubleType if c not in dtype_dict.keys() else dtype_dict[c]
+  df2 = df2.withColumn(c,df2[c].cast(dtype()))
+  
+Dropping duplicate rows:
+
+.. sourcecode:: python
+
+  df = sqlContext.createDataFrame([(1, 4, 3), (2, 8, 1), (2, 8, 1), (2, 8, 3), (3, 2, 1)], ["A", "B", "C"])  
+  
+  df.dropDuplicates() # drops all rows which have all same columns
+  
+  df.DropColumns(['A','B']) # drops all rows which have all same elements in A and B
+  
+
+  
+Random sampling
+------------------------------------
+
+The trick is to sort using a random number and the take the N first rows. 
+
+.. sourcecode:: python
+ 
+  df_sampled = df.orderBy(rand()).limit(5000)  
+  
+In Hive the equivalent is 
+
+select * from my_table order by rand() limit 10000;  
+  
+BUT! If your input table has an distribution key, the order by rand might not work as expected, in that case you need to use something like this:
+
+select * from my_table distribute by rand() sort by rand() limit 10000;
+
+To do this in Spark, we could use a temp table, like this. Let's say we have a dataframe containing many time series, one for each customer (millions of customers). And we want a sample of 100K customers and their time series.
+
+.. sourcecode:: python
+
+  customer_list = time_series.select('primaryaccountholder').distinct()
+
+  customer_list.createOrReplaceTempView('customer_list_temp')
+
+  customer_list_sample = spark.sql('select * from customer_list_temp distribute by rand() sort by rand() limit 100000')
+
+  customer_list_sample.count()
+
+By this we extracted the list of 100K customers. Then we can extract the associated data (time series) selecting for only these customers (using a join).
+  
 
 Aggregating in Pyspark
 ------------------------------------
+
+The main aggregation functions:
+
+.. sourcecode:: python
+
+  approxCountDistinct, avg, count, countDistinct, first, last, max, mean, min, sum, sumDistinct
 
 .. sourcecode:: python
 
   #Grouping and aggregating:
   df.groupBy("KNID","IDKT","counter_account").agg({"BLPS": "sum", "KNID": "count"})
   #Other example with aggregation on distinct knid:
-  df.groupBy('txft').agg(func.countDistinct('knid')).orderBy('count(knid)',ascending=0).show(100,False)
+  df.groupBy('txft').agg(countDistinct('knid')).orderBy('count(knid)',ascending=0).show(100,False)
+  
+  #Here for one column only:
+  part_party.groupBy('bankid').count().orderBy('count',ascending=0).show(100,False)
   
   #Example: we have a given dataframe like
   df = sqlContext.createDataFrame([(1, 4), (2, 5), (2, 8), (3, 6), (3, 2)], ["A", "B"])
@@ -267,6 +537,32 @@ Aggregating in Pyspark
   |  3|       6|      2|            8|
   |  2|       8|      5|           13|
   +---+--------+-------+-------------+
+  
+  
+Group data and give how many counts per group (similar to .value_counts() in pandas):
+
+.. sourcecode:: python
+
+  df.groupBy('colum').count().orderBy('count',ascending=0).show() # will show biggest groups first
+  
+  +---+------+
+  |  A| count|
+  +---+------+
+  | AB|   250|
+  | CD|    32|
+  |EFG|     8|
+  +---+------+  
+  
+  
+Group by data and count (distinct) number of elements for one column:
+
+.. sourcecode:: python
+
+  # simple count
+  df.groupBy('columnToGroupOn').agg(count('columnToCount').alias('count')).orderBy('count',ascending=0).show() 
+
+  # distinct count
+  df.groupBy('columnToGroupOn').agg(countDistinct('columnToCount').alias('count')).orderBy('count',ascending=0).show()  
 
 Joins
 ---------------------------
@@ -281,12 +577,33 @@ Here is a simple example of inner join where we keep all left columns and SOME o
 
   df1 = df.alias('df1')
   df2 = df.alias('df2')
-
   df1.join(df2, df1.id == df2.id).select('df1.*') 
+  
+  #we can also select everything but one column from right:
+  df1 = df.alias('df1')
+  df2 = df.alias('df2')  
+  df1.join(df2, df1.id == df2.id).drop(df2.bankid)
+  
+Join on multiple conditions:
+
+.. sourcecode:: python
+
+  join = txn.join(external, on=[txn.colA == external.colC, txn.colB == external.colD], how='left')   
+  
+  #or simply:
+  
+  join = txn.join(external, [txn.colA == external.colC, txn.colB == external.colD], 'left')   
+
   
   
 Window functions
 ---------------------------
+
+The main window functions:
+
+.. sourcecode:: python
+
+  cumeDist, denseRank, lag, lead, ntile, percentRank, rank, rowNumber
 
 .. sourcecode:: python
 
@@ -316,7 +633,299 @@ Example: a ranking on a window, and selection of first rank:
   window = Window.partitionBy('mtts','pcatkey1','pcatkey2').orderBy(F.desc('pcat_opts'))
   trx_2018=trx_2018.withColumn("rank_pcatids", F.rank().over(window))
   trx_2018=trx_2018.filter("rank_pcatids==1")  
+  
+  
+Another thing: when we want to count the number of rows PER GROUP:
 
+.. sourcecode:: python
+
+  #some data:
+  data = [
+    ('a', 5),
+    ('a', 8),
+    ('a', 7),
+    ('b', 1),
+  ]
+  df = sqlCtx.createDataFrame(data, ["x", "y"])  
+  df.show()
+  
+  +---+---+
+  |  x|  y|
+  +---+---+
+  |  a|  5|
+  |  a|  8|
+  |  a|  7|
+  |  b|  1|
+  +---+---+  
+  
+  w = Window.partitionBy('x')
+  df.select('x', 'y', count('x').over(w).alias('count')).sort('x', 'y').show()
+  
+  +---+---+-----+
+  |  x|  y|count|
+  +---+---+-----+
+  |  a|  5|    3|
+  |  a|  7|    3|
+  |  a|  8|    3|
+  |  b|  1|    1|
+  +---+---+-----+  
+  
+  #We can get exactly the same using pure SQL:
+  df.registerTempTable('table')
+  sqlCtx.sql(
+    'SELECT x, y, COUNT(x) OVER (PARTITION BY x) AS n FROM table ORDER BY x, y'
+  ).show()
+  
+  #Slightly different: we want to have the new column included into the dataframe. Very similar.
+  #the advantage of this is when there are many columns, not practical with select.   
+  w = Window.partitionBy('x')
+  df = df.withColumn("count", count('x').over(w)) #not necessary to sort in fact
+  #if we want to sort:
+  df = df.withColumn("count", count('x').over(w)).sort('x', 'y')
+
+  
+See also a comparison of cumulative sum made on groups in pandas and in pyspark (see the pandas section).  
+
+
+Generate a column with dates between 2 dates
+-----------------------------------------------------------
+
+I could not find a native way, so I generated it from Pandas and converted to Spark:
+
+.. sourcecode:: python
+
+  # Create a Pandas dataframe with the column "time" containing the dates between start_date and end_date
+  time = pd.date_range(start_date, end_date, freq='D')
+  df = pd.DataFrame(columns=['time'])
+  df['time'] = time 
+  df['time'] = pd.to_datetime(df['time'])
+
+  # Converting to Pyspark
+  df_sp = spark.createDataFrame(dff)
+  df_sp = df_sp.withColumn('transactiondate',psf.to_date(df_sp.time))
+  df_sp.show(5)
+  
+  +-------------------+---------------+
+  |               time|transactiondate|
+  +-------------------+---------------+
+  |2017-01-01 00:00:00|     2017-01-01|
+  |2017-01-02 00:00:00|     2017-01-02|
+  |2017-01-03 00:00:00|     2017-01-03|
+  |2017-01-04 00:00:00|     2017-01-04|
+  |2017-01-05 00:00:00|     2017-01-05|
+  +-------------------+---------------+
+  
+
+Fill forward or backward in spark
+-----------------------------------------------------
+
+Taken from https://johnpaton.net/posts/forward-fill-spark/ . This is also based on window functions.
+
+Forward fill: filling null values with the last known non-null value, leaving only leading nulls unchanged. 
+
+Note: in Pandas this is easy. We just do a groupby without aggregation, and to each group apply the .fillna method, specifying specifying method='ffill', also known as method='pad':
+
+.. sourcecode:: python
+
+  df_filled = df.groupby('location')\
+              .apply(lambda group: group.fillna(method='ffill'))
+              
+In Pyspark we need a window function as well as the 'last' function of pyspark.sql. 'last' returns the last value in the window (implying that the window must have a meaningful ordering).  It takes an optional argument ignorenulls which, when set to True, causes last to return the last non-null value in the window, if such a value exists.          
+
+The strategy to forward fill in Spark is as follows. First we define a window, which is ordered in time, and which includes all the rows from the beginning of time up until the current row. We achieve this here simply by selecting the rows in the window as being the rowsBetween -sys.maxint (the largest negative value possible), and 0 (the current row). Specifying too large of a value for the rows doesn't cause any errors, so we can just use a very large number to be sure our window reaches until the very beginning of the dataframe. If you need to optimize memory usage, you can make your job much more efficient by finding the maximal number of consecutive nulls in your dataframe and only taking a large enough window to include all of those plus one non-null value. 
+
+We act with last over the window we have defined, specifying ignorenulls=True. If the current row is non-null, then the output will just be the value of current row. However, if the current row is null, then the function will return the most recent (last) non-null value in the window.
+
+Let's say we have some array:
+
+.. sourcecode:: python
+
+  values = [
+    (1, "2015-12-01", None),
+    (1, "2015-12-02", 25),
+    (1, "2015-12-03", 30),
+    (1, "2015-12-04", 55),
+    (1, "2015-12-05", None),
+    (1, "2015-12-06", None),
+    (2, "2015-12-07", None),
+    (2, "2015-12-08", None),
+    (2, "2015-12-09", 49),
+    (2, "2015-12-10", None),
+  ] 
+
+  df = spark.createDataFrame(values, ['customer', 'date', 'value'])
+  df.show()
+  
+  +--------+----------+-----+
+  |customer|      date|value|
+  +--------+----------+-----+
+  |       1|2015-12-01| null|
+  |       1|2015-12-02|   25|
+  |       1|2015-12-03|   30|
+  |       1|2015-12-04|   55|
+  |       1|2015-12-05| null|
+  |       1|2015-12-06| null|
+  |       2|2015-12-07| null|
+  |       2|2015-12-08| null|
+  |       2|2015-12-09|   49|
+  |       2|2015-12-10| null|
+  +--------+----------+-----+  
+  
+  from pyspark.sql import Window
+  from pyspark.sql.functions import last
+  import sys
+
+  window = Window.partitionBy('customer')\
+               .orderBy('date')\
+               .rowsBetween(-sys.maxsize, 0)
+
+  spark_df_filled = df.withColumn('value_ffill', last(df['value'], ignorenulls=True).over(window) )
+  spark_df_filled = spark_df_filled.orderBy('customer','date')
+  spark_df_filled.show()   
+  
+  +--------+----------+-----+-----------+
+  |customer|      date|value|value_ffill|
+  +--------+----------+-----+-----------+
+  |       1|2015-12-01| null|       null|
+  |       1|2015-12-02|   25|         25|
+  |       1|2015-12-03|   30|         30|
+  |       1|2015-12-04|   55|         55|
+  |       1|2015-12-05| null|         55|
+  |       1|2015-12-06| null|         55|
+  |       2|2015-12-07| null|       null|
+  |       2|2015-12-08| null|       null|
+  |       2|2015-12-09|   49|         49|
+  |       2|2015-12-10| null|         49|
+  +--------+----------+-----+-----------+  
+
+
+Create time series format from row time series
+-------------------------------------------------------------------
+
+.. sourcecode:: python
+
+  #https://stackoverflow.com/questions/38080748/convert-pyspark-string-to-date-format
+  df = sqlContext.createDataFrame([("1991-11-15",'a',23),
+                                 ("1991-11-16",'a',24),
+                                 ("1991-11-17",'a',32),
+                                 ("1991-11-25",'b',13),
+                                 ("1991-11-26",'b',14)], schema=['date', 'customer', 'balance_day'])
+
+  df.show()
+  
+  +----------+--------+-----------+
+  |      date|customer|balance_day|
+  +----------+--------+-----------+
+  |1991-11-15|       a|         23|
+  |1991-11-16|       a|         24|
+  |1991-11-17|       a|         32|
+  |1991-11-25|       b|         13|
+  |1991-11-26|       b|         14|
+  +----------+--------+-----------+  
+
+  df = df.groupby("customer").agg(psf.collect_list('date').alias('time_series_dates'),
+                                psf.collect_list('balance_day').alias('time_series_values'),
+                                psf.collect_list(psf.struct('date','balance_day')).alias('time_series_tuples'))
+
+
+  df.show(20,False)
+  
+  +--------+------------------------------------+------------------+---------------------------------------------------+
+  |customer|time_series_dates                   |time_series_values|time_series_tuples                                 |
+  +--------+------------------------------------+------------------+---------------------------------------------------+
+  |b       |[1991-11-25, 1991-11-26]            |[13, 14]          |[[1991-11-25,13], [1991-11-26,14]]                 |
+  |a       |[1991-11-15, 1991-11-16, 1991-11-17]|[23, 24, 32]      |[[1991-11-15,23], [1991-11-16,24], [1991-11-17,32]]|
+  +--------+------------------------------------+------------------+---------------------------------------------------+  
+  
+  
+Revert from time series (list) format to traditional (exploded) format
+----------------------------------------------------------------------------------------------------
+
+Taken from https://stackoverflow.com/questions/41027315/pyspark-split-multiple-array-columns-into-rows
+
+Let's say we have 2 customers 1 and 2
+
+.. sourcecode:: python
+
+  from pyspark.sql import Row
+  df = sqlContext.createDataFrame([Row(customer=1, time=[1,2,3],value=[7,8,9]), Row(customer=2, time=[4,5,6],value=[10,11,12])])
+  df.show()  
+  
+  +--------+---------+------------+
+  |customer|     time|       value|
+  +--------+---------+------------+
+  |       1|[1, 2, 3]|   [7, 8, 9]|
+  |       2|[4, 5, 6]|[10, 11, 12]|
+  +--------+---------+------------+ 
+  
+  df_exploded = (df.rdd
+                 .flatMap(lambda row: [(row.key, b, c) for b, c in zip(row.time, row.value)])
+                 .toDF(['key', 'time', 'value']))
+
+  +--------+--------+---------+
+  |customer|time_row|value_row|
+  +--------+--------+---------+
+  |       1|       1|        7|
+  |       1|       2|        8|
+  |       1|       3|        9|
+  |       2|       4|       10|
+  |       2|       5|       11|
+  |       2|       6|       12| 
+  +--------+--------+---------+
+  
+Based on this, here is a function that does the same:
+
+.. sourcecode:: python
+
+  def explode_time_series(df, key, time, value):
+    '''
+    This function explodes the time series format to classical format
+    
+    Input  : - df          : the dataframe containin the time series
+             - key         : the name of the key column (ex: "customer")
+             - time        : the name of the time column
+             - value       : the name of the value column
+    
+    Output : - df_exploded : the same dataframe as input but with exploded time and value
+    
+    example: a simple dataframe with time series:
+    
+    from pyspark.sql import Row
+    df = sqlContext.createDataFrame([Row(customer=1, time=[1,2,3],value=[7,8,9]), Row(customer=2, time=[4,5,6],value=[10,11,12])])
+    df.show()      
+    
+    +--------+---------+------------+
+    |customer|     time|       value|
+    +--------+---------+------------+
+    |       1|[1, 2, 3]|   [7, 8, 9]|
+    |       2|[4, 5, 6]|[10, 11, 12]|
+    +--------+---------+------------+
+    
+    will become:
+    
+    df_exploded = explode_time_series(df,'customer','time','value')
+    df_exploded.show()    
+    
+    +--------+--------+---------+
+    |customer|time_row|value_row|
+    +--------+--------+---------+
+    |       1|       1|        7|
+    |       1|       2|        8|
+    |       1|       3|        9|
+    |       2|       4|       10|
+    |       2|       5|       11|
+    |       2|       6|       12|
+    +--------+--------+---------+
+    '''
+    
+    df_exploded = (df.rdd
+                   .flatMap(lambda row: [(row[key], b, c) for b, c in zip(row[time], row[value])])
+                   .toDF([key, time, value]))
+    
+    return df_exploded
+
+  df_exploded = explode_time_series(df,'customer','time','value')
+  df_exploded.show()
   
 Converting dates in Pyspark
 ---------------------------------
@@ -345,6 +954,66 @@ Converting dates in Pyspark
   +-------------------+----+-----+---+
   |2017-04-12 00:00:00|2017|    4| 12|
   +-------------------+----+-----+---+  
+
+Create column by casting a date, using to_date:
+  
+.. sourcecode:: python  
+  
+  txn = transactions.withColumn('date',to_date(transactions.transactiondate))
+  
+Convert a column to date time:
+
+.. sourcecode:: python
+
+  df = df.withColumn('date', col('date_string').cast(DateType()))
+
+Get the minimum date and maximum date of a column:
+
+.. sourcecode:: python
+
+  from pyspark.sql.functions import min, max
+
+  df = spark.createDataFrame([
+    "2017-01-01", "2018-02-08", "2019-01-03"], "string"
+  ).selectExpr("CAST(value AS date) AS date")
+
+  min_date, max_date = df.select(min("date"), max("date")).first()
+  min_date, max_date    
+  
+Select rows (filter) between 2 dates (or datetime):
+
+.. sourcecode:: python
+
+  txn = txn.filter(col("date").between('2017-01-01','2018-12-31')) #for dates only  
+  
+  txn = txn.filter(col("date").between(pd.to_datetime('2017-04-13'),pd.to_datetime('2017-04-14')) #for dates only; works also with pandas dates   
+  
+  txn = txn.filter(col("datetime").between('2017-04-13 12:00:00','2017-04-14 00:00:00')) #for datetime
+  
+Create a df with a date range:
+
+.. sourcecode:: python
+
+  date_range = pd.DataFrame()
+  date_range['date'] = pd.date_range(start='2017-01-01', end='2018-09-01')
+  date_range_sp = sqlContext.createDataFrame(date_range)
+  date_range_sp = date_range_sp.withColumn('date',to_date('date', "yyyy-MM-dd"))
+  date_range_sp.show()
+  
+Casting to timestamp from string with format 2015-01-01 23:59:59:
+
+.. sourcecode:: python
+
+  df.select( df.start_time.cast("timestamp").alias("start_time") )  
+  
+.. sourcecode:: python  
+
+  # datetime function
+  current_date, current_timestamp, trunc, date_format
+  datediff, date_add, date_sub, add_months, last_day, next_day, months_between
+  year, month, dayofmonth, hour, minute, second
+  unix_timestamp, from_unixtime, to_date, quarter, day, dayofyear, weekofyear, from_utc_timestamp, to_utc_timestamp  
+
   
 NaN/Null/None handling
 ----------------------------
@@ -395,6 +1064,9 @@ Filtering data in Pyspark
   #example 2:
   p3 = p2.filter(trim(p2.KNID) == '0011106277').cache()
   
+  # we can also use the "between" function:
+  df = df.filter(col("age").between(20,30))
+  
 Here is a comparison of the filtering of a dataframe done in Pandas and the same operation done in Pyspark (taken from https://lab.getbase.com/pandarize-spark-dataframes/):
 
 .. sourcecode:: python
@@ -420,8 +1092,10 @@ There is one important difference. In Pandas, boolean slicing expects just a boo
   
  
 
-Opening tables from Data Warehouse and MCS
+Opening tables from Data Warehouse
 -------------------------------------------------------
+
+(strongly outdated)
 
 .. sourcecode:: python
 
@@ -450,6 +1124,20 @@ Opening tables from Data Warehouse and MCS
 User-defined functions (UDF)
 ----------------------------------
 
+Here is a very good and simple introduction: https://changhsinlee.com/pyspark-udf/
+
+Simple example:
+
+.. sourcecode:: python
+
+  from pyspark.sql.types import StringType
+  from pyspark.sql.functions import udf
+
+  maturity_udf = udf(lambda age: "adult" if age >=18 else "child", StringType())
+
+  df = sqlContext.createDataFrame([{'name': 'Alice', 'age': 1}])
+  df.withColumn("maturity", maturity_udf(df.age)) 
+
 Here is an example of removal of whitespaces in a string column of a dataframe:
 
 .. sourcecode:: python
@@ -469,7 +1157,40 @@ Here is an example of removal of whitespaces in a string column of a dataframe:
   |bbb222|
   |ccc333|
   +------+
+  
+Here is a great example of a UDF with MULTIPLE COLUMNS AS INPUT: 
+
+(Taken from https://stackoverflow.com/questions/47824841/pyspark-passing-multiple-dataframe-fields-to-udf?rq=1)
+
+.. sourcecode:: python
+
+  import math
+
+  def distance(origin, destination):
+    lat1, lon1 = origin
+    lat2, lon2 = destination
+    radius = 6371 # km
+    dlat = math.radians(lat2-lat1)
+    dlon = math.radians(lon2-lon1)
+    a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(lat1)) \
+    * math.cos(math.radians(lat2)) * math.sin(dlon/2) * math.sin(dlon/2)
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+    d = radius * c
+    return d
+
+  df = spark.createDataFrame([([101, 121], [-121, -212])], ["origin", "destination"])
+  filter_udf = psf.udf(distance, pst.DoubleType())
+  df = df.withColumn("distance", filter_udf(df.origin, df.destination))
+  df.show()  
+  
+  +----------+------------+------------------+
+  |    origin| destination|          distance|
+  +----------+------------+------------------+
+  |[101, 121]|[-121, -212]|15447.812243421227|
+  +----------+------------+------------------+
  
+UDF's are slow... But there are now pandas_udf pyspark function, that is said to work faster, and convert a simple pandas function to pyspark:
+https://databricks.com/blog/2017/10/30/introducing-vectorized-udfs-for-pyspark.html  
 
 Machine Learning using the MLlib package
 ========================================
@@ -894,6 +1615,23 @@ For binary (2-classes) target, we can use the area under the ROC curve (AUC):
   0.708
 
 
+Parallelization of scikit-learn into spark
+=============================================================
+
+Example using spark_sklearn:
+
+- https://databricks.com/blog/2016/02/08/auto-scaling-scikit-learn-with-apache-spark.html  
+
+- https://quickbooks-engineering.intuit.com/operationalizing-scikit-learn-machine-learning-model-under-apache-spark-b009fb6b6c45
+
+- https://mapr.com/blog/predicting-airbnb-listing-prices-scikit-learn-and-apache-spark/
+
+Directly using scikit-learn and pyspark's broadcast function:
+
+- https://stackoverflow.com/questions/42887621/how-to-do-prediction-with-sklearn-model-inside-spark/42887751
+
+- https://towardsdatascience.com/deploy-a-python-model-more-efficiently-over-spark-497fc03e0a8d
+  
 
 Text analysis in Pyspark
 ========================

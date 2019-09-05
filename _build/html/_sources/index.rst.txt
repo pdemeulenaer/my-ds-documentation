@@ -16,10 +16,14 @@ Contents:
    Pyspark_Documentation
    Text_Mining_Documentation
    DeepLearning_Documentation   
+   ReinforcementLearning_Documentation
    Time_Series_inPython_Documentation
-   Algorithms_Documentation   
+   Algorithms_Documentation
+   Statistics_probabilities_Documentation
+   Plot_libraries_Documentation.rst   
    SQL_Documentation
-   Bash_Documentation   
+   Bash_Documentation  
+   Business_models_Documentation   
    Sphinx_stuff
 
 Indices and tables

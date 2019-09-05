@@ -13,45 +13,43 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Pyspark_Documentation 0.1 documentation" href="index.html"/>
-        <link rel="next" title="Algorithms" href="Algorithms_Documentation.html"/>
-        <link rel="prev" title="Deep Learning" href="DeepLearning_Documentation.html"/>
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Algorithms" href="Algorithms_Documentation.html" />
+    <link rel="prev" title="Reinforcement Learning" href="ReinforcementLearning_Documentation.html" />
     <link href="_static/style.css" rel="stylesheet" type="text/css">
-
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -86,34 +84,48 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Sklearn_Documentation.html">Scikit-learn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html">Pyspark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Text_Mining_Documentation.html">Text Mining in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DeepLearning_Documentation.html">Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReinforcementLearning_Documentation.html">Reinforcement Learning</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Time Series in Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-ts-concepts">Basic TS concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#forecast-quality-metrics">Forecast quality metrics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#augmented-dickey-fuller-test">Augmented Dickey-Fuller test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#main-forecasting-methods">Main forecasting methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#basic-pandas-time-series">Basic Pandas Time Series</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ts-reading-from-csv-file">TS reading from CSV file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#filtering-times-and-time-ranges">Filtering times and time ranges</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#reindexing">Reindexing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#resampling">Resampling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rolling-mean-moving-average">Rolling mean (moving average)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exponential-smoothing-double-exponential-smoothing">exponential smoothing, Double exponential smoothing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#interpolation">Interpolation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#df-str-method-how-does-it-work">df.str method: how does it work?</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#seasonal-arima">Seasonal ARIMA</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#scaling-data">Scaling Data</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#time-series-decomposition">Time series decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tsfresh-extracting-features-from-time-series">Tsfresh: extracting features from time series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seasonal-arima-an-example">Seasonal ARIMA: an example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Algorithms_Documentation.html">Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Statistics_probabilities_Documentation.html">Statistics and Probabilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Plot_libraries_Documentation.html">Great plot libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SQL_Documentation.html">SQL Server documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html">Useful Bash commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html">Useful Bash commands (or batch)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html#useful-git-commands">Useful GIT commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html#useful-vim-commands">Useful VIM commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bash_Documentation.html#data-types">Data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Business_models_Documentation.html">Interesting business models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Sphinx_stuff.html">Sphinx</a></li>
 </ul>
 
@@ -126,34 +138,54 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">Pyspark_Documentation</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pyspark_Documentation</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Time Series in Python</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Time Series in Python</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/Time_Series_inPython_Documentation.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -161,12 +193,153 @@
             
   <div class="section" id="time-series-in-python">
 <h1>Time Series in Python<a class="headerlink" href="#time-series-in-python" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="basic-pandas-time-series">
-<h2>Basic Pandas Time Series<a class="headerlink" href="#basic-pandas-time-series" title="Permalink to this headline">¶</a></h2>
 <div class="topic">
 <p class="topic-title first">Introduction</p>
-<p>The objective here is to have everything useful for the projects, not to make a complete documentation of the whole package. Here I will try to document both version 1.6 and &gt;2.0. A special enphase will be done on machine learning module ml (mllib is outdated).</p>
+<p>Blabla</p>
 </div>
+<p>General good links for time series:</p>
+<p>book: <a class="reference external" href="http://www.maths.qmul.ac.uk/~bb/TimeSeries/">http://www.maths.qmul.ac.uk/~bb/TimeSeries/</a></p>
+<p>simple intro: <a class="reference external" href="https://towardsdatascience.com/the-complete-guide-to-time-series-analysis-and-forecasting-70d476bfe775">https://towardsdatascience.com/the-complete-guide-to-time-series-analysis-and-forecasting-70d476bfe775</a></p>
+<div class="section" id="basic-ts-concepts">
+<h2>Basic TS concepts<a class="headerlink" href="#basic-ts-concepts" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference external" href="https://medium.com/&#64;ATavgen/time-series-modelling-a9bf4f467687">https://medium.com/&#64;ATavgen/time-series-modelling-a9bf4f467687</a></p>
+<p><strong>Stationarity</strong>:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="Images/TS_stationary.png"><img alt="TS_stationary" src="Images/TS_stationary.png" /></a>
+</div>
+<p>It is stationary when the trend line is 0 and the dispersion is constant in time. For example, white noise is a stationary process.</p>
+<p>The test for the stationarity of a time series is the Augmented Dickey-Fuller test (see below)</p>
+<p><strong>Seasonality</strong>:</p>
+<p>It is possible to decompose a signal into different pieces: the trend, the seasonality, the noise:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="Images/TS_decomposition.png"><img alt="TS_decomposition" src="Images/TS_decomposition.png" /></a>
+</div>
+<p>(Taken from <a class="reference external" href="https://towardsdatascience.com/trend-seasonality-moving-average-auto-regressive-model-my-journey-to-time-series-data-with-edc4c0c8284b">https://towardsdatascience.com/trend-seasonality-moving-average-auto-regressive-model-my-journey-to-time-series-data-with-edc4c0c8284b</a> )</p>
+<p><strong>Autocorrelation (ACF)</strong>:</p>
+<p>the autocorrelation function tells you the correlation between points separated by various time lags. As an example, here are some possible acf function values for a series with discrete time periods:</p>
+<p>The notation is ACF(n=number of time periods between points)=correlation between points separated by n time periods. Ill give examples for the first few values of n.</p>
+<p>ACF(0)=1 (all data are perfectly correlated with themselves), ACF(1)=.9 (the correlation between a point and the next point is 0.9), ACF(2)=.4 (the correlation between a point and a point two time steps ahead is 0.4)…etc.</p>
+<p>So, the ACF tells you how correlated points are with each other, based on how many time steps they are separated by. It is how correlated past data points are to future data points, for different values of the time separation. Typically, you’d expect the autocorrelation function to fall towards 0 as points become more separated (i.e. n becomes large in the above notation) because its generally harder to forecast further into the future from a given set of data. This is not a rule, but is typical.</p>
+<p>Note on the PARTIAL autocorrelation (PACF): The ACF and its sister function, the partial autocorrelation function (more on this in a bit), are used in the Box-Jenkins/ARIMA modeling approach to determine how past and future data points are related in a time series. The partial autocorrelation function (PACF) can be thought of as the correlation between two points that are separated by some number of periods n, BUT with the effect of the intervening correlations removed. This is important because lets say that in reality, each data point is only directly correlated with the NEXT data point, and none other. However, it will APPEAR as if the current point is correlated with points further into the future, but only due to a “chain reaction” type effect, i.e., T1 is directly correlated with T2 which is directly correlated with T3, so it LOOKs like T1 is directly correlated with T3. The PACF will remove the intervening correlation with T2 so you can better discern patterns. A nice intro to this is here: <a class="reference external" href="http://people.duke.edu/~rnau/411arim3.htm">http://people.duke.edu/~rnau/411arim3.htm</a>.</p>
+<p>So PACF corrects the lag-1 problem of the ACF. See also here for python use: <a class="reference external" href="https://machinelearningmastery.com/gentle-introduction-autocorrelation-partial-autocorrelation/">https://machinelearningmastery.com/gentle-introduction-autocorrelation-partial-autocorrelation/</a></p>
+<p>Partial autocorrelations measure the linear dependence of one variable after removing the effect of other variable(s) that affect to both variables. For example, the partial autocorrelation of order measures the effect (linear dependence) of yt−2 on yt after removing the effect of yt−1 on both yt and yt−2: see <a class="reference external" href="https://stats.stackexchange.com/questions/129052/acf-and-pacf-formula">https://stats.stackexchange.com/questions/129052/acf-and-pacf-formula</a></p>
+<div class="figure">
+<a class="reference internal image-reference" href="Images/ACF_vs_PACF.png"><img alt="ACF_vs_PACF" src="Images/ACF_vs_PACF.png" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/ACF_PCF_example.png"><img alt="ACF_PCF_example" src="_images/ACF_PCF_example.png" style="width: 692.0px; height: 234.4px;" /></a>
+</div>
+<p>A beautiful video constructing ACP and PACF: <a class="reference external" href="https://www.youtube.com/watch?v=ZjaBn93YPWo">https://www.youtube.com/watch?v=ZjaBn93YPWo</a></p>
+<div class="section" id="forecast-quality-metrics">
+<h3>Forecast quality metrics<a class="headerlink" href="#forecast-quality-metrics" title="Permalink to this headline">¶</a></h3>
+<p>Before actually forecasting, let’s understand how to measure the quality of predictions and have a look at the most common and widely used metrics</p>
+<table border="1" class="colwidths-given docutils" id="id1">
+<caption><span class="caption-text">Forecast quality metrics for time series</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="42%" />
+<col width="8%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Metric</th>
+<th class="head">Description</th>
+<th class="head">Range</th>
+<th class="head">Tool</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>R-squared</strong></td>
+<td>coefficient of determination (in econometrics it can be interpreted as a percentage of variance explained by the model)</td>
+<td>(-inf, 1]</td>
+<td>sklearn.metrics.r2_score</td>
+</tr>
+<tr class="row-odd"><td><strong>Mean Absolute Error (MAE)</strong></td>
+<td>it is an interpretable metric because it has the same unit of measurement as the initial series</td>
+<td>[0, +inf)</td>
+<td>sklearn.metrics.mean_absolute_error</td>
+</tr>
+<tr class="row-even"><td><strong>Median Absolute Error</strong></td>
+<td>again an interpretable metric, particularly interesting because it is robust to outliers</td>
+<td>[0, +inf)</td>
+<td>sklearn.metrics.median_absolute_error</td>
+</tr>
+<tr class="row-odd"><td><strong>Mean Squared Error (MSE)</strong></td>
+<td>most commonly used, gives higher penalty to big mistakes and vice versa</td>
+<td>[0, +inf)</td>
+<td>sklearn.metrics.mean_squared_error</td>
+</tr>
+<tr class="row-even"><td><strong>Mean Squared Logarithmic Error</strong></td>
+<td>practically the same as MSE but we initially take logarithm of the series. As a result we give attention to small mistakes. As well usually is used when data has exponential trends</td>
+<td>[0, +inf)</td>
+<td>sklearn.metrics.mean_squared_log_error</td>
+</tr>
+<tr class="row-odd"><td><strong>Mean Absolute Percentage Error (MAPE)</strong></td>
+<td>same as MAE but percentage. Very convenient when you want to explain the quality of the model to your management</td>
+<td>[0, +inf)</td>
+<td>not implemented in sklearn</td>
+</tr>
+</tbody>
+</table>
+<p>Here is how to get all of them:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span><span class="p">,</span> <span class="n">median_absolute_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">median_absolute_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_squared_log_error</span>
+
+<span class="k">def</span> <span class="nf">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">/</span> <span class="n">y_true</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="Images/MAE.png"><img alt="MAE" src="Images/MAE.png" /></a>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="Images/RMSE.png"><img alt="RMSE" src="Images/RMSE.png" /></a>
+</div>
+<p>The main idea in the debate MAE vs RMSE is that the RMSE should be more useful when large errors are particularly undesirable; it penalizes better large errors. The three tables below show examples where MAE is steady and RMSE increases as the variance associated with the frequency distribution of error magnitudes also increases.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="Images/MAE_vs_RMSE.png"><img alt="MAE_vs_RMSE" src="Images/MAE_vs_RMSE.png" /></a>
+</div>
+<p>Interesting: the sample size influence. Using MAE, we can put a lower and upper bound on RMSE:</p>
+<ul class="simple">
+<li>[MAE] ≤ [RMSE]. The RMSE result will always be larger or equal to the MAE. If all of the errors have the same magnitude, then RMSE=MAE.</li>
+<li>[RMSE] ≤ [MAE * sqrt(n)], where n is the number of test samples. The difference between RMSE and MAE is greatest when all of the prediction error comes from a single test sample. The squared error then equals to [MAE^2 * n] for that single test sample and 0 for all other samples. Taking the square root, RMSE then equals to [MAE * sqrt(n)].</li>
+</ul>
+<p>Focusing on the upper bound, this means that RMSE has a tendency to be increasingly larger than MAE as the test sample size increases. This can problematic when comparing RMSE results calculated on different sized test samples, which is frequently the case in real world modeling.</p>
+<p>Links:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://medium.com/human-in-a-machine-world/mae-and-rmse-which-metric-is-better-e60ac3bde13d">https://medium.com/human-in-a-machine-world/mae-and-rmse-which-metric-is-better-e60ac3bde13d</a> : comparison MAE vs RMSE</li>
+<li><a class="reference external" href="https://machinelearningmastery.com/time-series-forecasting-performance-measures-with-python/">https://machinelearningmastery.com/time-series-forecasting-performance-measures-with-python/</a> : intro</li>
+<li><a class="reference external" href="http://www.edscave.com/forecasting---time-series-metrics.html">http://www.edscave.com/forecasting—time-series-metrics.html</a> : useful for MAPE definition</li>
+</ul>
+</div>
+<div class="section" id="augmented-dickey-fuller-test">
+<h3>Augmented Dickey-Fuller test<a class="headerlink" href="#augmented-dickey-fuller-test" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://machinelearningmastery.com/time-series-data-stationary-python/">https://machinelearningmastery.com/time-series-data-stationary-python/</a></p>
+<p>This tests whether a time series is non-stationary (H0, Null hypothesis) or stationary (H1, Null hypothesis rejected)</p>
+<p>We interpret this result using the p-value from the test. A p-value below a threshold (such as 5% or 1%) suggests we reject the null hypothesis (stationary), otherwise a p-value above the threshold suggests we fail to reject the null hypothesis (non-stationary).</p>
+<ul class="simple">
+<li>p-value &gt; 0.05: Fail to reject the null hypothesis (H0), the data is non-stationary.</li>
+<li>p-value &lt;= 0.05: Reject the null hypothesis (H0), the data is stationary.</li>
+</ul>
+<p>Statsmodels has the test: from statsmodels.tsa.stattools import adfuller</p>
+</div>
+</div>
+<div class="section" id="main-forecasting-methods">
+<h2>Main forecasting methods<a class="headerlink" href="#main-forecasting-methods" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://towardsdatascience.com/trend-seasonality-moving-average-auto-regressive-model-my-journey-to-time-series-data-with-edc4c0c8284b">https://towardsdatascience.com/trend-seasonality-moving-average-auto-regressive-model-my-journey-to-time-series-data-with-edc4c0c8284b</a></p>
+<p>Standard / Exponentially Moving Average → calculation to analyze data points by creating series of averages of different subsets of the full data set</p>
+<p>Auto Regression → is a representation of a type of random process; as such, it is used to describe certain time-varying processes in nature, economics, etc</p>
+<p>Linear/Polynomial Regression → regression analysis in which the relationship between the independent variable x and the dependent variable is modeled as an nth degree polynomial (or 1 degree for linear)</p>
+<p>ARMA → model that provide a parsimonious description of a (weakly) stationary stochastic process in terms of two polynomials, one for the autoregression and the second for the moving average.</p>
+<p>ARIMA (Autoregressive integrated moving average) → is a generalization of an autoregressive moving average (ARMA) model. Both of these models are fitted to time series data either to better understand the data or to predict future points in the series (forecasting)</p>
+<p>Seasonal ARIMA → seasonal AR and MA terms predict xt using data values and errors at times with lags that are multiples of S (the span of the seasonality)</p>
+<p>ARIMAX → An ARIMA model with covariate on the right hand side</p>
+<p>Regression with seasonality: prophet (<a class="reference external" href="https://facebook.github.io/prophet/docs/quick_start.html">https://facebook.github.io/prophet/docs/quick_start.html</a>)</p>
+<p>Recurrent Neural Network (LSTM) → a class of artificial neural network where connections between nodes form a directed graph along a sequence in which allows it to exhibit dynamic temporal behavior for a time sequence.</p>
+<p>Autoencoders (based on LSTM). See the part on Deep Learning</p>
+</div>
+<div class="section" id="basic-pandas-time-series">
+<h2>Basic Pandas Time Series<a class="headerlink" href="#basic-pandas-time-series" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="ts-reading-from-csv-file">
 <h3>TS reading from CSV file<a class="headerlink" href="#ts-reading-from-csv-file" title="Permalink to this headline">¶</a></h3>
 <p>Here is the reading of a time series form a CSV file. It is important to read it specifying the index_col, i.e. the column selected to be the index of the dataframe.
@@ -238,6 +411,7 @@ Here are 3 examples, only the third one is really usable as a time series!</p>
 </div>
 <div class="section" id="rolling-mean-moving-average">
 <h3>Rolling mean (moving average)<a class="headerlink" href="#rolling-mean-moving-average" title="Permalink to this headline">¶</a></h3>
+<p>See <a class="reference external" href="https://towardsdatascience.com/the-complete-guide-to-time-series-analysis-and-forecasting-70d476bfe775">https://towardsdatascience.com/the-complete-guide-to-time-series-analysis-and-forecasting-70d476bfe775</a></p>
 <p>Using the same dataframe as above (df[‘Temperature’]), we can compute the daily moving average, or rolling mean:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract data from 2010-Aug-01 to 2010-Aug-15: unsmoothed</span>
 <span class="n">unsmoothed</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Temperature&#39;</span><span class="p">][</span><span class="s1">&#39;2010-Aug-01&#39;</span><span class="p">:</span><span class="s1">&#39;2010-Aug-15&#39;</span><span class="p">]</span>
@@ -246,6 +420,10 @@ Here are 3 examples, only the third one is really usable as a time series!</p>
 <span class="n">smoothed</span> <span class="o">=</span> <span class="n">unsmoothed</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="exponential-smoothing-double-exponential-smoothing">
+<h3>exponential smoothing, Double exponential smoothing<a class="headerlink" href="#exponential-smoothing-double-exponential-smoothing" title="Permalink to this headline">¶</a></h3>
+<p>See <a class="reference external" href="https://towardsdatascience.com/the-complete-guide-to-time-series-analysis-and-forecasting-70d476bfe775">https://towardsdatascience.com/the-complete-guide-to-time-series-analysis-and-forecasting-70d476bfe775</a></p>
 </div>
 <div class="section" id="interpolation">
 <h3>Interpolation<a class="headerlink" href="#interpolation" title="Permalink to this headline">¶</a></h3>
@@ -265,8 +443,41 @@ Here are 3 examples, only the third one is really usable as a time series!</p>
 </div>
 </div>
 </div>
-<div class="section" id="seasonal-arima">
-<h2>Seasonal ARIMA<a class="headerlink" href="#seasonal-arima" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="time-series-decomposition">
+<h2>Time series decomposition<a class="headerlink" href="#time-series-decomposition" title="Permalink to this headline">¶</a></h2>
+<p>A time series with some seasonality could be decomposed into its long-term trend, the seasonality and the remaining “noise”.
+The STL (Seasonal and Trend decomposition using Loess, Cleveland et al. 1990) basically implements this.</p>
+<p>R has a lot of nice features for time series. STL is implemented in R (<a class="reference external" href="https://www.r-bloggers.com/seasonal-trend-decomposition-in-r/">https://www.r-bloggers.com/seasonal-trend-decomposition-in-r/</a>), python’s statsmodel also has a variant (<a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.tsa.seasonal.seasonal_decompose.html">https://www.statsmodels.org/dev/generated/statsmodels.tsa.seasonal.seasonal_decompose.html</a>, <a class="reference external" href="http://www.statsmodels.org/stable/release/version0.6.html?highlight=seasonal#seasonal-decomposition">http://www.statsmodels.org/stable/release/version0.6.html?highlight=seasonal#seasonal-decomposition</a>).</p>
+<p>Few Links:</p>
+<p><a class="reference external" href="https://stackoverflow.com/questions/20672236/time-series-decomposition-function-in-python">https://stackoverflow.com/questions/20672236/time-series-decomposition-function-in-python</a></p>
+<p><a class="reference external" href="https://www.statsmodels.org/dev/generated/statsmodels.tsa.seasonal.seasonal_decompose.html">https://www.statsmodels.org/dev/generated/statsmodels.tsa.seasonal.seasonal_decompose.html</a></p>
+<p><a class="reference external" href="https://machinelearningmastery.com/decompose-time-series-data-trend-seasonality/">https://machinelearningmastery.com/decompose-time-series-data-trend-seasonality/</a></p>
+<p><a class="reference external" href="https://forecasters.org/wp-content/uploads/gravity_forms/7-c6dd08fee7f0065037affb5b74fec20a/2017/07/Laptev_Nikolay_ISF2017.pdf">https://forecasters.org/wp-content/uploads/gravity_forms/7-c6dd08fee7f0065037affb5b74fec20a/2017/07/Laptev_Nikolay_ISF2017.pdf</a></p>
+<p><a class="reference external" href="https://www.google.com/search?client=ubuntu&amp;channel=fs&amp;q=Detrending%2C+de-seasoning+%28using+STL%29&amp;ie=utf-8&amp;oe=utf-8">https://www.google.com/search?client=ubuntu&amp;channel=fs&amp;q=Detrending%2C+de-seasoning+%28using+STL%29&amp;ie=utf-8&amp;oe=utf-8</a></p>
+<p><a class="reference external" href="https://www.r-bloggers.com/seasonal-trend-decomposition-in-r/">https://www.r-bloggers.com/seasonal-trend-decomposition-in-r/</a></p>
+<p><a class="reference external" href="https://pypi.org/project/stldecompose/">https://pypi.org/project/stldecompose/</a></p>
+<p>Here the decomposition of the CO2 curve:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="kn">as</span> <span class="nn">sm</span>
+
+<span class="n">dta</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">co2</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
+<span class="c1"># deal with missing values. see issue</span>
+<span class="n">dta</span><span class="o">.</span><span class="n">co2</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">seasonal_decompose</span><span class="p">(</span><span class="n">dta</span><span class="o">.</span><span class="n">co2</span><span class="p">)</span>
+<span class="n">resplot</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/TS_Decomposition_statsmodels.png"><img alt="ts decomposition" src="_images/TS_Decomposition_statsmodels.png" style="width: 404.8px; height: 300.8px;" /></a>
+</div>
+</div>
+<div class="section" id="tsfresh-extracting-features-from-time-series">
+<h2>Tsfresh: extracting features from time series<a class="headerlink" href="#tsfresh-extracting-features-from-time-series" title="Permalink to this headline">¶</a></h2>
+<p>Main links:
+Arxiv: <a class="reference external" href="https://arxiv.org/abs/1610.07717">https://arxiv.org/abs/1610.07717</a></p>
+</div>
+<div class="section" id="seasonal-arima-an-example">
+<h2>Seasonal ARIMA: an example<a class="headerlink" href="#seasonal-arima-an-example" title="Permalink to this headline">¶</a></h2>
 <p>Here is an example taken from</p>
 <!DOCTYPE html>
 <html>
@@ -21169,35 +21380,21 @@ OwAAABTsF7fdStwBu6ciAAAAAElFTkSuQmCC
 
 
 </html>
-<div class="section" id="scaling-data">
-<h3>Scaling Data<a class="headerlink" href="#scaling-data" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
-
-<span class="c1"># Fit only to the training data</span>
-<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-
-<span class="c1"># Now apply the transformations to the data:</span>
-<span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 
 
            </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Algorithms_Documentation.html" class="btn btn-neutral float-right" title="Algorithms" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Algorithms_Documentation.html" class="btn btn-neutral float-right" title="Algorithms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="DeepLearning_Documentation.html" class="btn btn-neutral" title="Deep Learning" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ReinforcementLearning_Documentation.html" class="btn btn-neutral float-left" title="Reinforcement Learning" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -21206,11 +21403,11 @@ OwAAABTsF7fdStwBu6ciAAAAAElFTkSuQmCC
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017, pmeu.
+        &copy; Copyright 2017, pmeu
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -21223,36 +21420,15 @@ OwAAABTsF7fdStwBu6ciAAAAAElFTkSuQmCC
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.1',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

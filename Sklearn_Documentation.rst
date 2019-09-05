@@ -26,11 +26,52 @@ Many algorithms need to have the data normalized or scaled first.
 Scaling Data
 --------------
 
+MinMax scaler: get the data in the [0,1] range (can be adapted to [-1,1] or other). Very sensitive to outliers.
+
+https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html
+
+.. sourcecode:: python
+
+  from sklearn.preprocessing import StandardScaler
+
+  scaler = MinMaxScaler()
+
+  # Fit only to the training data
+  scaler.fit(X_train)
+
+  # Now apply the transformations to the data:
+  X_train = scaler.transform(X_train)
+  X_test = scaler.transform(X_test)
+
+To get back the original scale, use scaler.inverse_transform() function.
+
+Standard scaler: we substract the mean of data and divide by the standard deviation. (we then get the so-called Z values):
+
+https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html
+
 .. sourcecode:: python
 
   from sklearn.preprocessing import StandardScaler
 
   scaler = StandardScaler()
+
+  # Fit only to the training data
+  scaler.fit(X_train)
+
+  # Now apply the transformations to the data:
+  X_train = scaler.transform(X_train)
+  X_test = scaler.transform(X_test)
+  
+  
+Standard scaler can still be rather sensitive to outliers. Substracting by the median instead of the mean, and dividing by the inter quantile is much more robust to outliers:
+
+https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html  
+
+.. sourcecode:: python
+
+  from sklearn.preprocessing import RobustScaler
+
+  scaler = RobustScaler()
 
   # Fit only to the training data
   scaler.fit(X_train)
@@ -515,6 +556,20 @@ This package is designed for tree based methods like decision tree, random fores
    :alt: Contributions to the prediction probability by tree-interpreter  
    
    
+Very important update in the field of interpretation: 
+==========================================================================
+
+- ELI5 (Explain me like I am 5): https://eli5.readthedocs.io/en/latest/    
+
+- SHAP: 
+
+  * https://github.com/slundberg/shap : main intro + examples
+
+  * http://www.f1-predictor.com/model-interpretability-with-shap/
+  
+  * https://medium.com/civis-analytics/demystifying-black-box-models-with-shap-value-analysis-3e20b536fc80
+   
+   
 Ensemble Classification
 ======================================
 
@@ -540,14 +595,169 @@ Here a case with 3 classifiers, with a parameter grid search:
   grid = GridSearchCV(estimator=eclf, param_grid=params, cv=5)
   grid = grid.fit(iris.data, iris.target)
 
- 
-Performance metrics
-======================
-
-Excellent post on different metrics usually used: https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c
-
 
 Clustering
 ======================
 
 Excellent intro to the field: https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68 
+
+
+
+Gaussian Mixture Model (GMM)
+-----------------------------------
+
+http://scikit-learn.org/stable/modules/mixture.html
+
+1. Classical GMM
+
+2. Bayesian GMM
+
+Here we can detect the number of component automatically (in theory).
+
+Due to its Bayesian nature, the variational algorithm needs more hyper- parameters than expectation-maximization, the most important of these being the concentration parameter weight_concentration_prior. Specifying a low value for the concentration prior will make the model put most of the weight on few components set the remaining components weights very close to zero. High values of the concentration prior will allow a larger number of components to be active in the mixture.
+
+The parameters implementation of the BayesianGaussianMixture class proposes two types of prior for the weights distribution: a finite mixture model with Dirichlet distribution and an infinite mixture model with the Dirichlet Process. In practice Dirichlet Process inference algorithm is approximated and uses a truncated distribution with a fixed maximum number of components (called the Stick-breaking representation). The number of components actually used almost always depends on the data.
+
+Important parameters:
+
+* weight_concentration_prior_type : str, defaults to ‘dirichlet_process’.
+
+String describing the type of the weight concentration prior. Must be one of:
+
+'dirichlet_process' (using the Stick-breaking representation),
+'dirichlet_distribution' (can favor more uniform weights).
+
+* weight_concentration_prior : float | None, optional.
+
+The dirichlet concentration of each component on the weight distribution (Dirichlet). This is commonly called gamma in the literature. The higher concentration puts more mass in the center and will lead to more components being active, while a lower concentration parameter will lead to more mass at the edge of the mixture weights simplex. The value of the parameter must be greater than 0. If it is None, it’s set to 1. / n_components.
+
+
+
+
+See See http://scikit-learn.org/stable/modules/mixture.html#variational-bayesian-gaussian-mixture
+
+See http://scikit-learn.org/stable/modules/generated/sklearn.mixture.BayesianGaussianMixture.html#sklearn.mixture.BayesianGaussianMixture 
+
+Based on http://scikit-learn.org/stable/auto_examples/mixture/plot_concentration_prior.html#sphx-glr-auto-examples-mixture-plot-concentration-prior-py 
+
+.. sourcecode:: python
+
+  import pandas as pd
+  import numpy as np
+
+  from sklearn.grid_search import GridSearchCV
+  from sklearn.datasets import make_classification
+  from sklearn.ensemble import RandomForestClassifier
+  from sklearn.mixture import BayesianGaussianMixture
+
+
+  import matplotlib as mpl
+  import matplotlib.pyplot as plt
+
+  %matplotlib inline
+
+  # THE GENERATED DATASET
+
+  # Parameters of the dataset
+  random_state, n_components, n_features = 2, 3, 2
+  colors = np.array(['#0072B2', '#F0E442', '#D55E00'])
+
+  covars = np.array([[[.7, .0], [.0, .1]],
+                     [[.5, .0], [.0, .1]],
+                     [[.5, .0], [.0, .1]]])
+  samples = np.array([500, 500, 500])
+  means = np.array([[1, 0],
+                    [2, 1],
+                    [3, 2]])
+
+
+  #covars = np.array([[[.7, .0], [.0, .1]],
+  #                   [[.5, .0], [.0, .2]],
+  #                   [[.5, .0], [.0, .3]]])
+  #samples = np.array([5000, 5000, 5000])
+  #means = np.array([[1, 0],
+  #                  [2, 1],
+  #                  [1, 1]])
+
+  # Build a classification task using 3 informative features  (COULD USE THIS)
+  #X, y = make_classification(n_samples=1000,
+  #                         n_features=10,
+  #                         n_informative=3,
+  #                         n_redundant=0,
+  #                         n_repeated=0,
+  #                         n_classes=2,
+  #                         random_state=0,
+  #                         shuffle=False)
+
+  # Generate data
+  rng = np.random.RandomState(random_state)
+  X = np.vstack([
+      rng.multivariate_normal(means[j], covars[j], samples[j])
+      for j in range(n_components)])
+  y = np.concatenate([j * np.ones(samples[j], dtype=int)
+                      for j in range(n_components)])
+
+  X.shape,y.shape
+
+  estimator = BayesianGaussianMixture(
+        weight_concentration_prior_type="dirichlet_process", #(i.e. infinite)  #or "dirichlet_distribution" (i.e. finite)
+        n_components=5*n_components, reg_covar=0, init_params='random',
+        max_iter=1500, mean_precision_prior=.8,
+        random_state=random_state)  #, [1, 1000, 100000])
+
+  estimator.fit(X)
+
+
+  def plot_ellipses(ax, weights, means, covars,edgecolor='black',by_weights='no'):
+    for n in range(means.shape[0]):
+        eig_vals, eig_vecs = np.linalg.eigh(covars[n])
+        unit_eig_vec = eig_vecs[0] / np.linalg.norm(eig_vecs[0])
+        angle = np.arctan2(unit_eig_vec[1], unit_eig_vec[0])
+        # Ellipse needs degrees
+        angle = 180 * angle / np.pi
+        # eigenvector normalization
+        eig_vals = 2 * np.sqrt(2) * np.sqrt(eig_vals)
+        ell = mpl.patches.Ellipse(means[n], eig_vals[0], eig_vals[1],
+                                  180 + angle, edgecolor=edgecolor)
+        ell.set_clip_box(ax.bbox)
+        if by_weights=='yes': ell.set_alpha(5*weights[n])
+        #ell.set_facecolor('#56B4E9')
+        ell.set_facecolor('none')
+        ax.add_artist(ell)
+
+  fig=plt.figure(1,(17,6))
+
+  ax = plt.subplot(121)
+  ax.scatter(X[:,0],X[:,1], s=5, marker='o', color=colors[y])
+  ax.set_xlabel('recency',fontsize=15)
+  ax.set_ylabel('frequency',fontsize=15)
+
+  plot_ellipses(ax, estimator.weights_, estimator.means_,
+                estimator.covariances_,edgecolor='red')
+  plot_ellipses(ax, [1,1,1], means,
+                covars)
+
+
+  ax = plt.subplot(122)
+  ax.scatter(X[:,0],X[:,1], s=5, marker='o', color=colors[y])
+  ax.set_xlabel('recency',fontsize=15)
+  ax.set_ylabel('frequency',fontsize=15)
+
+  plot_ellipses(ax, estimator.weights_, estimator.means_,
+                estimator.covariances_,edgecolor='red',by_weights='yes')
+  plot_ellipses(ax, [1,1,1], means,
+                covars)
+
+  plt.show()
+
+  estimator.weights_
+
+  array([3.23183804e-01, 1.07006400e-01, 3.24464101e-01, 2.45301497e-01,
+       4.14353274e-05, 2.58970793e-06, 1.61856745e-07, 1.01160466e-08,
+       6.32252912e-10, 3.95158070e-11, 2.46973794e-12, 1.54358621e-13,
+       9.64741381e-15, 6.02963363e-16, 3.76852102e-17])
+       
+       
+.. figure:: Images/GMM_bayes.png
+   :scale: 100 %
+   :alt: map to buried treasure      

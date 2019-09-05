@@ -10,11 +10,15 @@ Introduction
 The different "beasts" in deep learning:
 
 .. figure:: Cheatsheets/Networks.png
-   :scale: 100 %
+   :scale: 30 %
    :alt: map to buried treasure
+   
+Deep learning is performing a universal function approximation. Provided that we have enough data, we can approximate any function.
 
 Good general introduction links:
 -----------------------------------------
+
+Intro to DL by playing, for both classification and regression: http://playground.tensorflow.org/
 
 https://towardsdatascience.com/a-weird-introduction-to-deep-learning-7828803693b0
 
@@ -25,8 +29,21 @@ https://medium.com/@dataturks/deep-learning-and-computer-vision-from-basic-imple
 General intro: https://towardsdatascience.com/deep-learning-with-python-703e26853820
 
 Vanishing gradient: https://www.quora.com/What-is-the-vanishing-gradient-problem
-Vanishing gradient example: https://cs224d.stanford.edu/notebooks/vanishing_grad_example.html (exercise of clusturing)
+Vanishing gradient example: https://cs224d.stanford.edu/notebooks/vanishing_grad_example.html (exercise of clustering)
 
+terminology: https://towardsdatascience.com/epoch-vs-iterations-vs-batch-size-4dfb9c7ce9c9
+
+
+Terminology
+------------------------------
+
+epoch: One Epoch is when an ENTIRE dataset is passed forward and backward through the neural network only ONCE. We need indeed more than one epoch in order the optimizer (SGD or else) to update the weights of the net. One such iteration is not enough.
+
+batch: the batch is a subset of the total dataset. The bacth size is the number of training examples present in a single batch. The total dataset is often divided into batches because it can sometimes be impossible to load the entire dataset in the neural net at once.
+
+iterations: the iterations is the number of batches needed to complete one epoch. Note: The number of batches is equal to number of iterations for one epoch.
+
+Let’s say we have dataset = 2000 training examples that we are going to use . We can divide the dataset of 2000 examples into batches of 500 then it will take 4 iterations to complete 1 epoch.
 
 
 Activation functions
@@ -132,6 +149,13 @@ This is another regularization technique that was used before Batch Norm. The wa
    :scale: 100 %
    :alt: Dropout
    
+Note on dropout:
+
+- In general: https://machinelearningmastery.com/dropout-regularization-deep-learning-models-keras/
+
+- For LSTM: https://machinelearningmastery.com/use-dropout-lstm-networks-time-series-forecasting/ 
+   
+   
 Zero-Padding
 -----------------
 
@@ -162,7 +186,7 @@ Keras is a high-level Deep Learning framework for Python, which is capable of ru
 
    This Cheatsheet is taken from DataCamp.
 
-
+Install: on top of tensorflow: http://inmachineswetrust.com/posts/deep-learning-setup/ 
 
 
 
@@ -211,6 +235,8 @@ Instead of adapting the parameter learning rates based on the average first mome
 
 * For an intro to SGD: http://neuralnetworksanddeeplearning.com/chap1.html and associated code: https://github.com/mnielsen/neural-networks-and-deep-learning/blob/master/src/network.py
 
+* comparison of optimizers: https://shaoanlu.wordpress.com/2017/05/29/sgd-all-which-one-is-the-best-optimizer-dogs-vs-cats-toy-experiment/
+
 
 Conversion the label to categorical: One-Hot-Encoding
 -----------------------------------------------------------------
@@ -225,16 +251,159 @@ The OHE is used to convert the labels to categorical columns, one column per cat
 RNN: Recurrent Neural Networks
 -----------------------------------------
 
+In RNNs, connections form a cycle: they are able to retain state from one iteration to the next by using their own input for the next step.
+
+Here are the different types of RNNs:
+
+
+.. figure:: Images/one_multiple.PNG
+   :scale: 80 %
+   :alt: autoencoders
+
+Here is the vanilla RNN:
+
+.. figure:: Images/RNN_vanilla_1.png
+   :scale: 80 %
+   :alt: autoencoders
+   
+w, u weights do not depend on t: same weights at all times.
+
+Deep networks can be built by stacking recurrent units onto one another:
+
+.. figure:: Images/RNN_vanilla_2.png
+   :scale: 80 %
+   :alt: autoencoders
+
+RNN scheme is short term; it does not have a “memory” for far-past events.
+
+Also, RNN suffers from vanishing gradients problem.
+
+Good links: https://www.deeplearningbook.org/contents/rnn.html
+
+An RNN from scratch in Numpy ONLY (great): https://www.analyticsvidhya.com/blog/2019/01/fundamentals-deep-learning-recurrent-neural-networks-scratch-python/?utm_source=linkedin.com&utm_medium=social 
+
 LSTM: Long Short-Term Memory
 -----------------------------------------
 
-Good post: http://colah.github.io/posts/2015-08-Understanding-LSTMs/
+Here is the comparison of RNN vs LSTM
+
+.. figure:: Images/RNN_vs_LSTM.png
+   :scale: 80 %
+   :alt: RNN_vs_LSTM
+   
+Here are details of the LSTM scheme:
+
+.. figure:: Images/LSTM_details.png
+   :scale: 80 %
+   :alt: LSTM_details
+   
+
+.. figure:: Images/LSTM_scheme.png
+   :scale: 80 %
+   :alt: LSTM scheme
+
+Good links: 
+
+http://colah.github.io/posts/2015-08-Understanding-LSTMs/
+
+http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/
+
 Post with Keras example: https://www.analyticsvidhya.com/blog/2017/12/fundamentals-of-deep-learning-introduction-to-lstm/
 
 GRU (Gated Recurrent Unit): variant of LSTM 
 
 
-GAN: Genetic Algorithm Networks
+Autoencoders
+------------------------------------------
+
+Principle:
+
+.. figure:: Images/Encoder_Decoder_idea.PNG
+   :scale: 80 %
+   :alt: autoencoders
+
+Links:
+
+https://machinelearningmastery.com/encoder-decoder-long-short-term-memory-networks/ 
+
+https://machinelearningmastery.com/develop-encoder-decoder-model-sequence-sequence-prediction-keras/
+
+https://machinelearningmastery.com/define-encoder-decoder-sequence-sequence-model-neural-machine-translation-keras/ (more sequence to sequence)
+
+http://rickyhan.com/jekyll/update/2017/09/14/autoencoders.html
+
+https://machinelearningmastery.com/timedistributed-layer-for-long-short-term-memory-networks-in-python/
+
+https://github.com/keras-team/keras/issues/1029
+
+https://github.com/keras-team/keras/issues/5203 #!!!
+
+https://keras.io/layers/wrappers/
+
+https://keras.io/layers/core/
+
+https://blog.keras.io/building-autoencoders-in-keras.html
+
+https://machinelearningmastery.com/lstm-autoencoders/
+
+Autoencoder with CNN: https://machinelearningmastery.com/how-to-develop-convolutional-neural-network-models-for-time-series-forecasting/
+
+TimeDistributed layer: allows to apply a layer to every temporal slice of an input.
+
+There are two key points to remember when using the TimeDistributed wrapper layer:
+
+- The input must be (at least) 3D. This often means that you will need to configure your last LSTM layer prior to your TimeDistributed wrapped Dense layer to return sequences (e.g. set the “return_sequences” argument to “True”).
+
+- The output will be 3D. This means that if your TimeDistributed wrapped Dense layer is your output layer and you are predicting a sequence, you will need to resize your y array into a 3D vector.
+
+TimeDistributedDense applies a same Dense (fully-connected) operation to every timestep of a 3D tensor.
+
+Here taken from https://github.com/keras-team/keras/issues/1029:
+But I think you still don't catch the point. The most common scenario for using TimeDistributedDense is using a recurrent NN for tagging task.e.g. POS labeling or slot filling task.
+
+In this kind of task:
+For each sample, the input is a sequence (a1,a2,a3,a4...aN) and the output is a sequence (b1,b2,b3,b4...bN) with the same length. bi could be viewed as the label of ai.
+Push a1 into a recurrent nn to get output b1. Than push a2 and the hidden output of a1 to get b2...
+
+If you want to model this by Keras, you just need to used a TimeDistributedDense after a RNN or LSTM layer(with return_sequence=True) to make the cost function is calculated on all time-step output. If you don't use TimeDistributedDense ans set the return_sequence of RNN=False, then the cost is calculated on the last time-step output and you could only get the last bN.
+
+I am also new to Keras, but I am trying to use it to do sequence labeling and I find this could only be done by using TimeDistributedDense. If I make something wrong, please correct me.
+
+Link: https://machinelearningmastery.com/timedistributed-layer-for-long-short-term-memory-networks-in-python/
+
+
+Variational autoencoders
+--------------------------------------------
+
+https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf
+
+https://medium.com/datadriveninvestor/variational-autoencoder-vae-d1cf436e1e8f
+
+Variational Autoencoders (VAEs) have one fundamentally unique property that separates them from vanilla autoencoders, and it is this property that makes them so useful for generative modeling: their latent spaces are, by design, continuous, allowing easy random sampling and interpolation.
+
+It achieves this by doing something that seems rather surprising at first: making its encoder not output an encoding vector of size n, rather, outputting two vectors of size n: a vector of means, μ, and another vector of standard deviations, σ.
+
+.. figure:: Images/VAE1.PNG
+   :scale: 70 %
+   :alt: VAE encoder
+
+They form the parameters of a vector of random variables of length n, with the i th element of μ and σ being the mean and standard deviation of the i th random variable, X i, from which we sample, to obtain the sampled encoding which we pass onward to the decoder:
+
+.. figure:: Images/VAE2.PNG
+   :scale: 70 %
+   :alt: VAE encoder
+
+This stochastic generation means, that even for the same input, while the mean and standard deviations remain the same, the actual encoding will somewhat vary on every single pass simply due to sampling.
+
+.. figure:: Images/Autoencoder_vs_VAE.PNG
+   :scale: 70 %
+   :alt: Autoencoder_vs_VAE
+   
+Intuitively, the mean vector controls where the encoding of an input should be centered around, while the standard deviation controls the “area”, how much from the mean the encoding can vary. As encodings are generated at random from anywhere inside the “circle” (the distribution), the decoder learns that not only is a single point in latent space referring to a sample of that class, but all nearby points refer to the same as well. This allows the decoder to not just decode single, specific encodings in the latent space (leaving the decodable latent space discontinuous), but ones that slightly vary too, as the decoder is exposed to a range of variations of the encoding of the same input during training
+
+See also p 298 of "Deep learning in Python" from Chollet.
+
+Genetic Algorithm hyperparameters tuning
 ------------------------------------------
 
 Problem: the discovery of the best hyperparameters of a neural network is very time consuming, especially when it is done brute force. 
@@ -266,10 +435,51 @@ Repeat this process enough times and you should be left with the very best possi
 
 See https://github.com/harvitronix/neural-network-genetic-algorithm for a code intro.
 
+GAN: Generative Adversarial Networks
+-------------------------------------------------
+
+Intro: https://medium.com/@devnag/generative-adversarial-networks-gans-in-50-lines-of-code-pytorch-e81b79659e3f
+
+https://www.dlology.com/blog/how-to-do-novelty-detection-in-keras-with-generative-adversarial-network/
+
+GAN is a family of Neural Network (NN) models that have two or more NN components (Generator/Discriminator) competing adversarially with each other that result in component NNs get better over time.
+
+The models play two distinct (literally, adversarial) roles. Given some real data set R, G is the generator, trying to create fake data that looks just like the genuine data, while D is the discriminator, getting data from either the real set or G and labeling the difference. Goodfellow’s metaphor (and a fine one it is) was that G was like a team of forgers trying to match real paintings with their output, while D was the team of detectives trying to tell the difference. (Except that in this case, the forgers G never get to see the original data — only the judgments of D. They’re like blind forgers.)
+
+Here is the metaphor of Ian Goodfellow:
+
+.. figure:: Images/GAN_metaphor.PNG
+   :scale: 50 %
+   :alt: Here is the metaphor of Ian Goodfellow
+   
+R: The original, genuine data set
+
+I: The random noise that goes into the generator as a source of entropy
+
+G: The generator which tries to copy/mimic the original data set
+
+D: The discriminator which tries to tell apart G’s output from R
+
+The actual ‘training’ loop where we teach G to trick D and D to beware G.   
+   
+The GAN can be seen as a minmax game:   
+   
+.. figure:: Images/GAN_minmax_game_1.PNG
+   :scale: 50 %
+   :alt: GAN_minmax_game_1.PNG 
+   
+.. figure:: Images/GAN_minmax_game_2.PNG
+   :scale: 50 %
+   :alt: GAN_minmax_game_2.PNG
+   
+GANs can be used for anomaly detection:   
+
+.. figure:: Images/Gan_anomaly_detection.PNG
+   :scale: 50 %
+   :alt: Gan_anomaly_detection.PNG   
 
 
-
-Simple examples
+Simple NN examples
 ---------------------------
 
 1. **CLASSIFICATION**: Example making new class predictions for a classification problem
@@ -470,10 +680,11 @@ Installation
 
 Here is a cheatsheet taken from Tensorflow.
 
+better: http://inmachineswetrust.com/posts/deep-learning-setup/
+
 .. figure:: Images/TS_Linux.png
    :scale: 50 %
    :alt: Installation in Linux/Mac
-
 
 .. figure:: Images/TS_Windows.png
    :scale: 50 %
