@@ -437,7 +437,7 @@ Dropping duplicate rows:
 
 .. sourcecode:: python
 
-  df = sqlContext.createDataFrame([(1, 4, 3), (2, 8, 1), (2, 8, 1), (2, 8, 3), (3, 2, 1)], ["A", "B", "C"])  
+  df = spark.createDataFrame([(1, 4, 3), (2, 8, 1), (2, 8, 1), (2, 8, 3), (3, 2, 1)], ["A", "B", "C"])  
   
   df.dropDuplicates() # drops all rows which have all same columns
   
@@ -476,6 +476,96 @@ To do this in Spark, we could use a temp table, like this. Let's say we have a d
 
 By this we extracted the list of 100K customers. Then we can extract the associated data (time series) selecting for only these customers (using a join).
   
+
+Interesting RDD operations
+-----------------------------------------------
+
+Sometimes the operations are more handy/faster to perform using RDDs than dataframes.
+
+Example: 
+
+.. sourcecode:: python
+
+    # Let's say we have some data:
+    a = [
+        ('Bob', 562),
+        ('Bob',880),
+        ('Bob',380),
+        ('Sue',85),
+        ('Sue',963)
+    ] 
+    df = spark.createDataFrame(a, ["Person", "Amount"])
+
+    #If you can't use udf (they are longer to execute) you can use the map function, but to have all columns (original + new one), do the following:
+
+    df = df.rdd\
+        .map(lambda x: (x["Person"], x["Amount"], hash(str(x["Amount"]))))\
+        .toDF(["Person", "Amount", "Hash"])
+
+    df.show()
+    #+------+------+--------------------+
+    #|Person|Amount|                Hash|
+    #+------+------+--------------------+
+    #|   Bob|   562|-4340709941618811062|
+    #|   Bob|   880|-7718876479167384701|
+    #|   Bob|   380|-2088598916611095344|
+    #|   Sue|    85|    7168043064064671|
+    #|   Sue|   963|-8844931991662242457|
+    #+------+------+--------------------+
+
+    #of course the example is a bit bad since there actually exists a pyspark hash function:
+
+    import pyspark.sql.functions as f
+    df.withColumn("Hash", f.hash("Amount")).show()
+
+    #But it's just to show the principle. In place of hash, we could have another not spark function)
+    
+Other simple example:
+
+.. sourcecode:: python
+
+  df = spark.createDataFrame([(1, 4, 3), (2, 8, 1), (2, 8, 1), (2, 8, 3), (3, 2, 1)], ["A", "B", "C"])     
+  df.show()
+  +---+---+---+
+  |  A|  B|  C|
+  +---+---+---+
+  |  1|  4|  3|
+  |  2|  8|  1|
+  |  2|  8|  1|
+  |  2|  8|  3|
+  |  3|  2|  1|
+  +---+---+---+
+  
+  # We can map to have a RDD version of Numpy arrays:
+  bidon.rdd.map(np.array).collect()
+  
+  [array([1, 4, 3]),
+   array([2, 8, 1]),
+   array([2, 8, 1]),
+   array([2, 8, 3]),
+   array([3, 2, 1])]
+  
+  # We can append some stuff:
+  arr = np.array([37,38])
+  bidon.rdd.map(lambda x: np.append(x, arr)).collect()
+  
+  [array([ 1,  4,  3, 37, 38]),
+   array([ 2,  8,  1, 37, 38]),
+   array([ 2,  8,  1, 37, 38]),
+   array([ 2,  8,  3, 37, 38]),
+   array([ 3,  2,  1, 37, 38])]
+  
+  # We can map some super function:
+  def dummy(x):
+      return x+1
+  bidon.rdd.map(np.array).map(lambda row: dummy(row.reshape(3))).collect()
+  
+  [array([2, 5, 4]),
+   array([3, 9, 2]),
+   array([3, 9, 2]),
+   array([3, 9, 4]),
+   array([4, 3, 2])]
+
 
 Aggregating in Pyspark
 ------------------------------------
