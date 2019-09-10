@@ -1460,7 +1460,7 @@ And we can use them like this:
 
   
 Dask, or parallel Pandas
-=====================================
+===========================================
 
 Links:
 
@@ -1485,3 +1485,42 @@ Other package: swifter:
 - https://github.com/jmcarpenter2/swifter
 
 - https://medium.com/@jmcarpenter2/swiftapply-automatically-efficient-pandas-apply-operations-50e1058909f9 
+
+
+Koalas, or Pandas for Spark
+===========================================
+
+Koalas is a databricks tools that aim to simulate Pandas on Spark. 
+
+The github: https://github.com/databricks/koalas (with some intro doc)
+
+Good intro from databricks: https://databricks.com/blog/2019/04/24/koalas-easy-transition-from-pandas-to-apache-spark.html
+
+Comparison between Pandas, Koalas, Optimus and Pyspark: https://towardsdatascience.com/the-jungle-of-koalas-pandas-optimus-and-spark-dd486f873aa4
+
+Small Medium blog: https://medium.com/future-vision/databricks-koalas-python-pandas-for-spark-ce20fc8a7d08
+
+Main documentation: https://koalas.readthedocs.io/en/latest/
+
+Example:
+
+.. sourcecode:: python
+
+  import databricks.koalas as ks
+  
+  Now you can turn a pandas DataFrame into a Koalas DataFrame that is API-compliant with the former:
+  
+  import pandas as pd
+  pdf = pd.DataFrame({'x':range(3), 'y':['a','b','b'], 'z':['a','b','b']})
+  
+  # Create a Koalas DataFrame from pandas DataFrame
+  df = ks.from_pandas(pdf)
+  
+  # Rename the columns
+  df.columns = ['x', 'y', 'z1']
+  
+  # Do some operations in place:
+  df['x2'] = df.x * df.x
+
+
+

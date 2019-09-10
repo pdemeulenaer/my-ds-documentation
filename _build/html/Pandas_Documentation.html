@@ -148,6 +148,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#dask-or-parallel-pandas">Dask, or parallel Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#koalas-or-pandas-for-spark">Koalas, or Pandas for Spark</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Sklearn_Documentation.html">Scikit-learn</a></li>
@@ -1485,6 +1486,33 @@ X_train, y_train, X_test, y_test = load_svmlight_files( (“/path/to/train_datas
 <li><a class="reference external" href="https://github.com/jmcarpenter2/swifter">https://github.com/jmcarpenter2/swifter</a></li>
 <li><a class="reference external" href="https://medium.com/&#64;jmcarpenter2/swiftapply-automatically-efficient-pandas-apply-operations-50e1058909f9">https://medium.com/&#64;jmcarpenter2/swiftapply-automatically-efficient-pandas-apply-operations-50e1058909f9</a></li>
 </ul>
+</div>
+<div class="section" id="koalas-or-pandas-for-spark">
+<h2>Koalas, or Pandas for Spark<a class="headerlink" href="#koalas-or-pandas-for-spark" title="Permalink to this headline">¶</a></h2>
+<p>Koalas is a databricks tools that aim to simulate Pandas on Spark.</p>
+<p>The github: <a class="reference external" href="https://github.com/databricks/koalas">https://github.com/databricks/koalas</a> (with some intro doc)</p>
+<p>Good intro from databricks: <a class="reference external" href="https://databricks.com/blog/2019/04/24/koalas-easy-transition-from-pandas-to-apache-spark.html">https://databricks.com/blog/2019/04/24/koalas-easy-transition-from-pandas-to-apache-spark.html</a></p>
+<p>Comparison between Pandas, Koalas, Optimus and Pyspark: <a class="reference external" href="https://towardsdatascience.com/the-jungle-of-koalas-pandas-optimus-and-spark-dd486f873aa4">https://towardsdatascience.com/the-jungle-of-koalas-pandas-optimus-and-spark-dd486f873aa4</a></p>
+<p>Small Medium blog: <a class="reference external" href="https://medium.com/future-vision/databricks-koalas-python-pandas-for-spark-ce20fc8a7d08">https://medium.com/future-vision/databricks-koalas-python-pandas-for-spark-ce20fc8a7d08</a></p>
+<p>Main documentation: <a class="reference external" href="https://koalas.readthedocs.io/en/latest/">https://koalas.readthedocs.io/en/latest/</a></p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">databricks.koalas</span> <span class="kn">as</span> <span class="nn">ks</span>
+
+<span class="n">Now</span> <span class="n">you</span> <span class="n">can</span> <span class="n">turn</span> <span class="n">a</span> <span class="n">pandas</span> <span class="n">DataFrame</span> <span class="n">into</span> <span class="n">a</span> <span class="n">Koalas</span> <span class="n">DataFrame</span> <span class="n">that</span> <span class="ow">is</span> <span class="n">API</span><span class="o">-</span><span class="n">compliant</span> <span class="k">with</span> <span class="n">the</span> <span class="n">former</span><span class="p">:</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="n">pdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;y&#39;</span><span class="p">:[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="s1">&#39;z&#39;</span><span class="p">:[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">]})</span>
+
+<span class="c1"># Create a Koalas DataFrame from pandas DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">ks</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">pdf</span><span class="p">)</span>
+
+<span class="c1"># Rename the columns</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z1&#39;</span><span class="p">]</span>
+
+<span class="c1"># Do some operations in place:</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">df</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
 </div>
 </div>
 

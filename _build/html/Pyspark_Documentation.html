@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#spark-executor-cores-and-memory-management-resources-allocation-in-spark">Spark executor/cores and memory management: Resources allocation in Spark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#basic-commands">Basic commands</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#random-sampling">Random sampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interesting-rdd-operations">Interesting RDD operations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aggregating-in-pyspark">Aggregating in Pyspark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#joins">Joins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#window-functions">Window functions</a></li>
@@ -559,7 +560,7 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 </pre></div>
 </div>
 <p>Dropping duplicate rows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">sqlContext</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">])</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">dropDuplicates</span><span class="p">()</span> <span class="c1"># drops all rows which have all same columns</span>
 
@@ -588,6 +589,90 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 </pre></div>
 </div>
 <p>By this we extracted the list of 100K customers. Then we can extract the associated data (time series) selecting for only these customers (using a join).</p>
+</div>
+<div class="section" id="interesting-rdd-operations">
+<h3>Interesting RDD operations<a class="headerlink" href="#interesting-rdd-operations" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes the operations are more handy/faster to perform using RDDs than dataframes.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s say we have some data:</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="mi">562</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span><span class="mi">880</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span><span class="mi">380</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Sue&#39;</span><span class="p">,</span><span class="mi">85</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Sue&#39;</span><span class="p">,</span><span class="mi">963</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Person&quot;</span><span class="p">,</span> <span class="s2">&quot;Amount&quot;</span><span class="p">])</span>
+
+<span class="c1">#If you can&#39;t use udf (they are longer to execute) you can use the map function, but to have all columns (original + new one), do the following:</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rdd</span>\
+    <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;Person&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;Amount&quot;</span><span class="p">],</span> <span class="nb">hash</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;Amount&quot;</span><span class="p">]))))</span>\
+    <span class="o">.</span><span class="n">toDF</span><span class="p">([</span><span class="s2">&quot;Person&quot;</span><span class="p">,</span> <span class="s2">&quot;Amount&quot;</span><span class="p">,</span> <span class="s2">&quot;Hash&quot;</span><span class="p">])</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">#+------+------+--------------------+</span>
+<span class="c1">#|Person|Amount|                Hash|</span>
+<span class="c1">#+------+------+--------------------+</span>
+<span class="c1">#|   Bob|   562|-4340709941618811062|</span>
+<span class="c1">#|   Bob|   880|-7718876479167384701|</span>
+<span class="c1">#|   Bob|   380|-2088598916611095344|</span>
+<span class="c1">#|   Sue|    85|    7168043064064671|</span>
+<span class="c1">#|   Sue|   963|-8844931991662242457|</span>
+<span class="c1">#+------+------+--------------------+</span>
+
+<span class="c1">#of course the example is a bit bad since there actually exists a pyspark hash function:</span>
+
+<span class="kn">import</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">as</span> <span class="nn">f</span>
+<span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;Hash&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="s2">&quot;Amount&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#But it&#39;s just to show the principle. In place of hash, we could have another not spark function)</span>
+</pre></div>
+</div>
+<p>Other simple example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="o">+---+---+---+</span>
+<span class="o">|</span>  <span class="n">A</span><span class="o">|</span>  <span class="n">B</span><span class="o">|</span>  <span class="n">C</span><span class="o">|</span>
+<span class="o">+---+---+---+</span>
+<span class="o">|</span>  <span class="mi">1</span><span class="o">|</span>  <span class="mi">4</span><span class="o">|</span>  <span class="mi">3</span><span class="o">|</span>
+<span class="o">|</span>  <span class="mi">2</span><span class="o">|</span>  <span class="mi">8</span><span class="o">|</span>  <span class="mi">1</span><span class="o">|</span>
+<span class="o">|</span>  <span class="mi">2</span><span class="o">|</span>  <span class="mi">8</span><span class="o">|</span>  <span class="mi">1</span><span class="o">|</span>
+<span class="o">|</span>  <span class="mi">2</span><span class="o">|</span>  <span class="mi">8</span><span class="o">|</span>  <span class="mi">3</span><span class="o">|</span>
+<span class="o">|</span>  <span class="mi">3</span><span class="o">|</span>  <span class="mi">2</span><span class="o">|</span>  <span class="mi">1</span><span class="o">|</span>
+<span class="o">+---+---+---+</span>
+
+<span class="c1"># We can map to have a RDD version of Numpy arrays:</span>
+<span class="n">bidon</span><span class="o">.</span><span class="n">rdd</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+<span class="p">[</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
+ <span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+ <span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+ <span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
+ <span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
+
+<span class="c1"># We can append some stuff:</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">37</span><span class="p">,</span><span class="mi">38</span><span class="p">])</span>
+<span class="n">bidon</span><span class="o">.</span><span class="n">rdd</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">arr</span><span class="p">))</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+<span class="p">[</span><span class="n">array</span><span class="p">([</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">38</span><span class="p">]),</span>
+ <span class="n">array</span><span class="p">([</span> <span class="mi">2</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">38</span><span class="p">]),</span>
+ <span class="n">array</span><span class="p">([</span> <span class="mi">2</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">38</span><span class="p">]),</span>
+ <span class="n">array</span><span class="p">([</span> <span class="mi">2</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">38</span><span class="p">]),</span>
+ <span class="n">array</span><span class="p">([</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">38</span><span class="p">])]</span>
+
+<span class="c1"># We can map some super function:</span>
+<span class="k">def</span> <span class="nf">dummy</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">bidon</span><span class="o">.</span><span class="n">rdd</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">dummy</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">)))</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+<span class="p">[</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span>
+ <span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+ <span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+ <span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span>
+ <span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="aggregating-in-pyspark">
 <h3>Aggregating in Pyspark<a class="headerlink" href="#aggregating-in-pyspark" title="Permalink to this headline">¶</a></h3>
