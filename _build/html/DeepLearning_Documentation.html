@@ -124,10 +124,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#tensorflow">Tensorflow</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#main-tensorflow-outline">Main Tensorflow outline</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#graph-session">Graph, Session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#graph-session-deprecated-in-tf2-0">Graph, Session (deprecated in TF2.0!!)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#data-types">Data types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#regression">Regression</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#classification">Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#saving-reloading-tf-models-frozen-graph">Saving/reloading TF models: Frozen graph</a></li>
 </ul>
 </li>
 </ul>
@@ -747,8 +748,8 @@ loss function. To accomplish this, we feed in data through placeholders. We need
 <li><strong>Deploy/predict new outcomes</strong>: It is also important to know how to make predictions on new, unseen, data. We can do this with all of our models, once we have them trained.</li>
 </ol>
 </div>
-<div class="section" id="graph-session">
-<h3>Graph, Session<a class="headerlink" href="#graph-session" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="graph-session-deprecated-in-tf2-0">
+<h3>Graph, Session (deprecated in TF2.0!!)<a class="headerlink" href="#graph-session-deprecated-in-tf2-0" title="Permalink to this headline">¶</a></h3>
 <p>The structure of TensorFlow programs is made of Graph and Session:</p>
 <div class="figure">
 <a class="reference internal image-reference" href="_images/Graph.png"><img alt="Session is Graph with Data" src="_images/Graph.png" style="width: 446.5px; height: 235.5px;" /></a>
@@ -890,6 +891,28 @@ loss function. To accomplish this, we feed in data through placeholders. We need
 <div class="figure">
 <a class="reference internal image-reference" href="_images/Classification_exo4.png"><img alt="Classification exercise" src="_images/Classification_exo4.png" style="width: 277.0px; height: 121.0px;" /></a>
 </div>
+</div>
+<div class="section" id="saving-reloading-tf-models-frozen-graph">
+<h3>Saving/reloading TF models: Frozen graph<a class="headerlink" href="#saving-reloading-tf-models-frozen-graph" title="Permalink to this headline">¶</a></h3>
+<p>Intro to TF model files format: <a class="reference external" href="https://cv-tricks.com/how-to/freeze-tensorflow-models/">https://cv-tricks.com/how-to/freeze-tensorflow-models/</a></p>
+<p>A typical Tensorflow model contains 4 files:</p>
+<ul class="simple">
+<li>model-ckpt.meta: This contains the complete graph. [This contains a serialized MetaGraphDef protocol buffer. It contains the graphDef that describes the data-flow, annotations for variables, input pipelines and other relevant information]</li>
+<li>model-ckpt.data-0000-of-00001: This contains all the values of variables(weights, biases, placeholders,gradients, hyper-parameters etc).</li>
+<li>model-ckpt.index: metadata. [ It’s an immutable table(tensoflow::table::Table). Each key is a name of a Tensor and it’s value is a serialized BundleEntryProto. Each BundleEntryProto describes the metadata of a Tensor]</li>
+<li>checkpoint: All checkpoint information</li>
+</ul>
+<p>TensorFlow model saving has become easier than it was in the early days. Now you can either use Keras to save h5 format model or use tf.train.Saver to save the check point files. Loading those saved models are also easy. You can find a lot of instructions on TensorFlow official tutorials.</p>
+<ol class="arabic simple">
+<li>Saving/restoring model checkpoints using tf.train.Saver:</li>
+</ol>
+<p>Documentation: <a class="reference external" href="https://www.tensorflow.org/guide/saved_model">https://www.tensorflow.org/guide/saved_model</a></p>
+<ol class="arabic simple" start="2">
+<li>Frozen Graphs:</li>
+</ol>
+<p>Intro: <a class="reference external" href="https://leimao.github.io/blog/Save-Load-Inference-From-TF-Frozen-Graph/">https://leimao.github.io/blog/Save-Load-Inference-From-TF-Frozen-Graph/</a></p>
+<p>Medium blog intro: <a class="reference external" href="https://blog.metaflow.fr/tensorflow-how-to-freeze-a-model-and-serve-it-with-a-python-api-d4f3596b3adc">https://blog.metaflow.fr/tensorflow-how-to-freeze-a-model-and-serve-it-with-a-python-api-d4f3596b3adc</a></p>
+<p>There is another model format called pb which is frequently seen in model zoos but hardly mentioned by TensorFlow official channels. pb stands for Protocol Buffers, it is a language-neutral, platform-neutral extensible mechanism for serializing structured data. It is widely used in model deployment, such as fast inference tool TensorRT.</p>
 </div>
 </div>
 </div>

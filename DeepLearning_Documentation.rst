@@ -756,8 +756,8 @@ loss function. To accomplish this, we feed in data through placeholders. We need
 11. **Deploy/predict new outcomes**: It is also important to know how to make predictions on new, unseen, data. We can do this with all of our models, once we have them trained.
 
 
-Graph, Session
-------------------
+Graph, Session (deprecated in TF2.0!!)
+------------------------------------------------------
 
 The structure of TensorFlow programs is made of Graph and Session:
 
@@ -809,7 +809,7 @@ For example:
 
 
 Data types
-------------------
+------------------------
 
 **Matrices**: here we create 5 matrices (2D arrays):
 
@@ -885,7 +885,7 @@ Eigenvalues and Eigenvectors:
 
 
 Regression
----------------
+---------------------
 
 Here is a simple example of a regression exercise: let's "learn" to a machine how to sum numbers! We give inputs and outputs, and it has to infer how to sum.
 
@@ -919,7 +919,7 @@ We could even put non-linear functions in the hidden layers:
 
 
 Classification
---------------------
+------------------------------
 
 Exercise: let's try to classify sums of 2 numbers, above 10 or not.
 
@@ -940,4 +940,37 @@ Exercise: let's try to classify sums of 2 numbers, above 10 or not.
 .. figure:: Images/Classification_exo4.png
    :scale: 50 %
    :alt: Classification exercise
+
+
+Saving/reloading TF models: Frozen graph
+-----------------------------------------------------
+
+Intro to TF model files format: https://cv-tricks.com/how-to/freeze-tensorflow-models/
+
+A typical Tensorflow model contains 4 files:
+
+- model-ckpt.meta: This contains the complete graph. [This contains a serialized MetaGraphDef protocol buffer. It contains the graphDef that describes the data-flow, annotations for variables, input pipelines and other relevant information] 
+
+- model-ckpt.data-0000-of-00001: This contains all the values of variables(weights, biases, placeholders,gradients, hyper-parameters etc). 
+
+- model-ckpt.index: metadata. [ It’s an immutable table(tensoflow::table::Table). Each key is a name of a Tensor and it’s value is a serialized BundleEntryProto. Each BundleEntryProto describes the metadata of a Tensor]
+
+- checkpoint: All checkpoint information
+
+
+TensorFlow model saving has become easier than it was in the early days. Now you can either use Keras to save h5 format model or use tf.train.Saver to save the check point files. Loading those saved models are also easy. You can find a lot of instructions on TensorFlow official tutorials. 
+
+1. Saving/restoring model checkpoints using tf.train.Saver:
+
+Documentation: https://www.tensorflow.org/guide/saved_model 
+
+2. Frozen Graphs:
+
+Intro: https://leimao.github.io/blog/Save-Load-Inference-From-TF-Frozen-Graph/
+
+Medium blog intro: https://blog.metaflow.fr/tensorflow-how-to-freeze-a-model-and-serve-it-with-a-python-api-d4f3596b3adc
+
+There is another model format called pb which is frequently seen in model zoos but hardly mentioned by TensorFlow official channels. pb stands for Protocol Buffers, it is a language-neutral, platform-neutral extensible mechanism for serializing structured data. It is widely used in model deployment, such as fast inference tool TensorRT.
+
+
 
