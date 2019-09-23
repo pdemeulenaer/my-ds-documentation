@@ -63,6 +63,8 @@ Repeat these steps
  
 Way to learn more about git and how it works: https://learngitbranching.js.org/
 
+Interesting reading on git: https://dev.to/chrisachard/confused-by-git-here-s-a-git-crash-course-to-fix-that-4cmi?utm_source=digest_mailer&utm_medium=email&utm_campaign=digest_email
+
 Avoiding git pull
 ------------------------------
 
@@ -195,3 +197,23 @@ See much more in the link above.
 ============================================
 
 Definition of float vs double: https://stackoverflow.com/questions/2386772/what-is-the-difference-between-float-and-double 
+
+
+Checksum (SHA256/512, MD5)
+----------------------------------------------
+
+See https://www.computerhope.com/issues/ch001846.htm 
+
+Windows: let's say we download a .exe file from Oracle. There we have the different checksums. We can check what we downloaded by using: certutil:
+
+certutil -hashfile file.exe SHA256
+
+certutil -hashfile file.exe SHA512
+
+certutil -hashfile file.exe MD5
+
+Very simple.
+
+
+
+

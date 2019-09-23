@@ -102,6 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#concerning-partition-skewness-problem">Concerning partition skewness problem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#spark-executor-cores-and-memory-management-resources-allocation-in-spark">Spark executor/cores and memory management: Resources allocation in Spark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#basic-commands">Basic commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#saving-to-distributed-csv-file-using-spark">Saving to (distributed) CSV file using Spark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#random-sampling">Random sampling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#interesting-rdd-operations">Interesting RDD operations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aggregating-in-pyspark">Aggregating in Pyspark</a></li>
@@ -140,6 +141,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#scala-spark">Scala - Spark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Text_Mining_Documentation.html">Text Mining in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DeepLearning_Documentation.html">Deep Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ReinforcementLearning_Documentation.html">Reinforcement Learning</a></li>
@@ -565,6 +567,38 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <span class="n">df</span><span class="o">.</span><span class="n">dropDuplicates</span><span class="p">()</span> <span class="c1"># drops all rows which have all same columns</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">DropColumns</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">])</span> <span class="c1"># drops all rows which have all same elements in A and B</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="saving-to-distributed-csv-file-using-spark">
+<h3>Saving to (distributed) CSV file using Spark<a class="headerlink" href="#saving-to-distributed-csv-file-using-spark" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Saving some data:</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="mi">111</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">),</span>
+                            <span class="p">(</span><span class="mi">112</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">505.0</span><span class="p">),</span>
+                            <span class="p">(</span><span class="mi">113</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">510.0</span><span class="p">),</span>
+                            <span class="p">(</span><span class="mi">114</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">600.0</span><span class="p">),</span>
+                            <span class="p">(</span><span class="mi">115</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">)],</span>
+                           <span class="p">[</span><span class="s2">&quot;transactionid&quot;</span><span class="p">,</span> <span class="s2">&quot;customerid&quot;</span><span class="p">,</span> <span class="s2">&quot;itemid&quot;</span><span class="p">,</span> <span class="s2">&quot;amountpaid&quot;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s1">&#39;overwrite&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;mycsv.csv&#39;</span><span class="p">)</span>
+
+<span class="c1">#Loading the data:</span>
+<span class="n">userSchema</span> <span class="o">=</span> <span class="n">StructType</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;transactionid&quot;</span><span class="p">,</span> <span class="s2">&quot;integer&quot;</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;customerid&quot;</span><span class="p">,</span> <span class="s2">&quot;integer&quot;</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;itemid&quot;</span><span class="p">,</span> <span class="s2">&quot;integer&quot;</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;amountpaid&quot;</span><span class="p">,</span> <span class="s2">&quot;float&quot;</span><span class="p">)</span>
+
+<span class="n">dfCSV</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;sep&quot;</span><span class="p">,</span><span class="s2">&quot;,&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">schema</span><span class="p">(</span><span class="n">userSchema</span><span class="p">)</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;mycsv.csv&#39;</span><span class="p">)</span>
+<span class="n">dfCSV</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="o">+-------------+----------+------+----------+</span>
+<span class="o">|</span><span class="n">transactionid</span><span class="o">|</span><span class="n">customerid</span><span class="o">|</span><span class="n">itemid</span><span class="o">|</span><span class="n">amountpaid</span><span class="o">|</span>
+<span class="o">+-------------+----------+------+----------+</span>
+<span class="o">|</span>          <span class="mi">111</span><span class="o">|</span>         <span class="mi">1</span><span class="o">|</span>     <span class="mi">1</span><span class="o">|</span>     <span class="mf">100.0</span><span class="o">|</span>
+<span class="o">|</span>          <span class="mi">112</span><span class="o">|</span>         <span class="mi">2</span><span class="o">|</span>     <span class="mi">2</span><span class="o">|</span>     <span class="mf">505.0</span><span class="o">|</span>
+<span class="o">|</span>          <span class="mi">113</span><span class="o">|</span>         <span class="mi">3</span><span class="o">|</span>     <span class="mi">3</span><span class="o">|</span>     <span class="mf">510.0</span><span class="o">|</span>
+<span class="o">|</span>          <span class="mi">114</span><span class="o">|</span>         <span class="mi">4</span><span class="o">|</span>     <span class="mi">4</span><span class="o">|</span>     <span class="mf">600.0</span><span class="o">|</span>
+<span class="o">|</span>          <span class="mi">115</span><span class="o">|</span>         <span class="mi">1</span><span class="o">|</span>     <span class="mi">2</span><span class="o">|</span>     <span class="mf">500.0</span><span class="o">|</span>
+<span class="o">+-------------+----------+------+----------+</span>
 </pre></div>
 </div>
 </div>
@@ -1775,6 +1809,10 @@ In this example, we have a dataframe with 5 different values (a-f) and we one-ho
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="scala-spark">
+<h1>Scala - Spark<a class="headerlink" href="#scala-spark" title="Permalink to this headline">¶</a></h1>
+<p>Many operations here: <a class="reference external" href="http://www.openkb.info/2015/01/scala-on-spark-cheatsheet.html">http://www.openkb.info/2015/01/scala-on-spark-cheatsheet.html</a></p>
 </div>
 
 

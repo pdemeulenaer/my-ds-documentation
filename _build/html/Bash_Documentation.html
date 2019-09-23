@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Sklearn_Documentation.html">Scikit-learn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html">Pyspark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html#scala-spark">Scala - Spark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Text_Mining_Documentation.html">Text Mining in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DeepLearning_Documentation.html">Deep Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ReinforcementLearning_Documentation.html">Reinforcement Learning</a></li>
@@ -115,7 +116,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#useful-vim-commands">Useful VIM commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#data-types">Data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#data-types">Data types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#checksum-sha256-512-md5">Checksum (SHA256/512, MD5)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Business_models_Documentation.html">Interesting business models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Sphinx_stuff.html">Sphinx</a></li>
 </ul>
@@ -229,6 +233,7 @@ Here are the different steps:</p>
 </ol>
 <p>Repeat these steps</p>
 <p>Way to learn more about git and how it works: <a class="reference external" href="https://learngitbranching.js.org/">https://learngitbranching.js.org/</a></p>
+<p>Interesting reading on git: <a class="reference external" href="https://dev.to/chrisachard/confused-by-git-here-s-a-git-crash-course-to-fix-that-4cmi?utm_source=digest_mailer&amp;utm_medium=email&amp;utm_campaign=digest_email">https://dev.to/chrisachard/confused-by-git-here-s-a-git-crash-course-to-fix-that-4cmi?utm_source=digest_mailer&amp;utm_medium=email&amp;utm_campaign=digest_email</a></p>
 </div>
 <div class="section" id="avoiding-git-pull">
 <h2>Avoiding git pull<a class="headerlink" href="#avoiding-git-pull" title="Permalink to this headline">¶</a></h2>
@@ -321,6 +326,15 @@ git ~/.gitconfig</p>
 <div class="section" id="data-types">
 <h1>Data types<a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h1>
 <p>Definition of float vs double: <a class="reference external" href="https://stackoverflow.com/questions/2386772/what-is-the-difference-between-float-and-double">https://stackoverflow.com/questions/2386772/what-is-the-difference-between-float-and-double</a></p>
+<div class="section" id="checksum-sha256-512-md5">
+<h2>Checksum (SHA256/512, MD5)<a class="headerlink" href="#checksum-sha256-512-md5" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference external" href="https://www.computerhope.com/issues/ch001846.htm">https://www.computerhope.com/issues/ch001846.htm</a></p>
+<p>Windows: let’s say we download a .exe file from Oracle. There we have the different checksums. We can check what we downloaded by using: certutil:</p>
+<p>certutil -hashfile file.exe SHA256</p>
+<p>certutil -hashfile file.exe SHA512</p>
+<p>certutil -hashfile file.exe MD5</p>
+<p>Very simple.</p>
+</div>
 </div>
 
 

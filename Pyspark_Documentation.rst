@@ -445,6 +445,39 @@ Dropping duplicate rows:
   
 
   
+Saving to (distributed) CSV file using Spark
+-------------------------------------------------------------  
+  
+.. sourcecode:: python
+  
+  #Saving some data:  
+  df = spark.createDataFrame([(111, 1, 1, 100.0), 
+                              (112, 2, 2, 505.0), 
+                              (113, 3, 3, 510.0), 
+                              (114, 4, 4, 600.0), 
+                              (115, 1, 2, 500.0)], 
+                             ["transactionid", "customerid", "itemid", "amountpaid"])
+  df.write.format('csv').mode('overwrite').save('mycsv.csv')
+  
+  #Loading the data:
+  userSchema = StructType().add("transactionid", "integer")\
+                           .add("customerid", "integer")\
+                           .add("itemid", "integer")\
+                           .add("amountpaid", "float")
+              
+  dfCSV = spark.read.option("sep",",").option("header", "false").schema(userSchema).csv('mycsv.csv')
+  dfCSV.show()  
+    
+  +-------------+----------+------+----------+
+  |transactionid|customerid|itemid|amountpaid|
+  +-------------+----------+------+----------+
+  |          111|         1|     1|     100.0|
+  |          112|         2|     2|     505.0|
+  |          113|         3|     3|     510.0|
+  |          114|         4|     4|     600.0|
+  |          115|         1|     2|     500.0|
+  +-------------+----------+------+----------+  
+  
 Random sampling
 ------------------------------------
 
@@ -1791,4 +1824,15 @@ Here a more elaborated example:
   |    0|I wish Java could...|[i, wish, java, c...|(5,[0,2,3,4],[1.0...|(5,[0,2,3,4],[0.0...|
   |    1|Logistic regressi...|[logistic, regres...|(5,[0,1,3,4],[1.0...|(5,[0,1,3,4],[0.0...|
   +-----+--------------------+--------------------+--------------------+--------------------+    
+  
+  
+  
+  
+  
+=======================  
+Scala - Spark 
+=======================
+
+Many operations here: http://www.openkb.info/2015/01/scala-on-spark-cheatsheet.html
+  
  
