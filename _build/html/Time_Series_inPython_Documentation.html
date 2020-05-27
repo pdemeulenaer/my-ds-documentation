@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -88,7 +88,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas TESTTTTTTTTTTTTTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Sklearn_Documentation.html">Scikit-learn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html">Pyspark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html#scala-spark">Scala - Spark</a></li>
@@ -195,7 +195,7 @@
   <div class="section" id="time-series-in-python">
 <h1>Time Series in Python<a class="headerlink" href="#time-series-in-python" title="Permalink to this headline">¶</a></h1>
 <div class="topic">
-<p class="topic-title first">Introduction</p>
+<p class="topic-title">Introduction</p>
 <p>Blabla</p>
 </div>
 <p>General good links for time series:</p>
@@ -205,15 +205,15 @@
 <h2>Basic TS concepts<a class="headerlink" href="#basic-ts-concepts" title="Permalink to this headline">¶</a></h2>
 <p>See <a class="reference external" href="https://medium.com/&#64;ATavgen/time-series-modelling-a9bf4f467687">https://medium.com/&#64;ATavgen/time-series-modelling-a9bf4f467687</a></p>
 <p><strong>Stationarity</strong>:</p>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/TS_stationary.png"><img alt="TS_stationary" src="Images/TS_stationary.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/TS_stationary.png"><img alt="TS_stationary" src="_images/TS_stationary.png" style="width: 864.8000000000001px; height: 464.0px;" /></a>
 </div>
 <p>It is stationary when the trend line is 0 and the dispersion is constant in time. For example, white noise is a stationary process.</p>
 <p>The test for the stationarity of a time series is the Augmented Dickey-Fuller test (see below)</p>
 <p><strong>Seasonality</strong>:</p>
 <p>It is possible to decompose a signal into different pieces: the trend, the seasonality, the noise:</p>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/TS_decomposition.png"><img alt="TS_decomposition" src="Images/TS_decomposition.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/TS_decomposition.png"><img alt="TS_decomposition" src="_images/TS_decomposition.png" style="width: 832.0px; height: 526.4px;" /></a>
 </div>
 <p>(Taken from <a class="reference external" href="https://towardsdatascience.com/trend-seasonality-moving-average-auto-regressive-model-my-journey-to-time-series-data-with-edc4c0c8284b">https://towardsdatascience.com/trend-seasonality-moving-average-auto-regressive-model-my-journey-to-time-series-data-with-edc4c0c8284b</a> )</p>
 <p><strong>Autocorrelation (ACF)</strong>:</p>
@@ -224,61 +224,61 @@
 <p>Note on the PARTIAL autocorrelation (PACF): The ACF and its sister function, the partial autocorrelation function (more on this in a bit), are used in the Box-Jenkins/ARIMA modeling approach to determine how past and future data points are related in a time series. The partial autocorrelation function (PACF) can be thought of as the correlation between two points that are separated by some number of periods n, BUT with the effect of the intervening correlations removed. This is important because lets say that in reality, each data point is only directly correlated with the NEXT data point, and none other. However, it will APPEAR as if the current point is correlated with points further into the future, but only due to a “chain reaction” type effect, i.e., T1 is directly correlated with T2 which is directly correlated with T3, so it LOOKs like T1 is directly correlated with T3. The PACF will remove the intervening correlation with T2 so you can better discern patterns. A nice intro to this is here: <a class="reference external" href="http://people.duke.edu/~rnau/411arim3.htm">http://people.duke.edu/~rnau/411arim3.htm</a>.</p>
 <p>So PACF corrects the lag-1 problem of the ACF. See also here for python use: <a class="reference external" href="https://machinelearningmastery.com/gentle-introduction-autocorrelation-partial-autocorrelation/">https://machinelearningmastery.com/gentle-introduction-autocorrelation-partial-autocorrelation/</a></p>
 <p>Partial autocorrelations measure the linear dependence of one variable after removing the effect of other variable(s) that affect to both variables. For example, the partial autocorrelation of order measures the effect (linear dependence) of yt−2 on yt after removing the effect of yt−1 on both yt and yt−2: see <a class="reference external" href="https://stats.stackexchange.com/questions/129052/acf-and-pacf-formula">https://stats.stackexchange.com/questions/129052/acf-and-pacf-formula</a></p>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/ACF_vs_PACF.png"><img alt="ACF_vs_PACF" src="Images/ACF_vs_PACF.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/ACF_vs_PACF.png"><img alt="ACF_vs_PACF" src="_images/ACF_vs_PACF.png" style="width: 459.20000000000005px; height: 625.6px;" /></a>
 </div>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/ACF_PCF_example.png"><img alt="ACF_PCF_example" src="_images/ACF_PCF_example.png" style="width: 692.0px; height: 234.4px;" /></a>
 </div>
 <p>A beautiful video constructing ACP and PACF: <a class="reference external" href="https://www.youtube.com/watch?v=ZjaBn93YPWo">https://www.youtube.com/watch?v=ZjaBn93YPWo</a></p>
 <div class="section" id="forecast-quality-metrics">
 <h3>Forecast quality metrics<a class="headerlink" href="#forecast-quality-metrics" title="Permalink to this headline">¶</a></h3>
 <p>Before actually forecasting, let’s understand how to measure the quality of predictions and have a look at the most common and widely used metrics</p>
-<table border="1" class="colwidths-given docutils" id="id1">
+<table class="colwidths-given docutils align-default" id="id1">
 <caption><span class="caption-text">Forecast quality metrics for time series</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col width="33%" />
-<col width="42%" />
-<col width="8%" />
-<col width="17%" />
+<col style="width: 33%" />
+<col style="width: 42%" />
+<col style="width: 8%" />
+<col style="width: 17%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Metric</th>
-<th class="head">Description</th>
-<th class="head">Range</th>
-<th class="head">Tool</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Range</p></th>
+<th class="head"><p>Tool</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><strong>R-squared</strong></td>
-<td>coefficient of determination (in econometrics it can be interpreted as a percentage of variance explained by the model)</td>
-<td>(-inf, 1]</td>
-<td>sklearn.metrics.r2_score</td>
+<tbody>
+<tr class="row-even"><td><p><strong>R-squared</strong></p></td>
+<td><p>coefficient of determination (in econometrics it can be interpreted as a percentage of variance explained by the model)</p></td>
+<td><p>(-inf, 1]</p></td>
+<td><p>sklearn.metrics.r2_score</p></td>
 </tr>
-<tr class="row-odd"><td><strong>Mean Absolute Error (MAE)</strong></td>
-<td>it is an interpretable metric because it has the same unit of measurement as the initial series</td>
-<td>[0, +inf)</td>
-<td>sklearn.metrics.mean_absolute_error</td>
+<tr class="row-odd"><td><p><strong>Mean Absolute Error (MAE)</strong></p></td>
+<td><p>it is an interpretable metric because it has the same unit of measurement as the initial series</p></td>
+<td><p>[0, +inf)</p></td>
+<td><p>sklearn.metrics.mean_absolute_error</p></td>
 </tr>
-<tr class="row-even"><td><strong>Median Absolute Error</strong></td>
-<td>again an interpretable metric, particularly interesting because it is robust to outliers</td>
-<td>[0, +inf)</td>
-<td>sklearn.metrics.median_absolute_error</td>
+<tr class="row-even"><td><p><strong>Median Absolute Error</strong></p></td>
+<td><p>again an interpretable metric, particularly interesting because it is robust to outliers</p></td>
+<td><p>[0, +inf)</p></td>
+<td><p>sklearn.metrics.median_absolute_error</p></td>
 </tr>
-<tr class="row-odd"><td><strong>Mean Squared Error (MSE)</strong></td>
-<td>most commonly used, gives higher penalty to big mistakes and vice versa</td>
-<td>[0, +inf)</td>
-<td>sklearn.metrics.mean_squared_error</td>
+<tr class="row-odd"><td><p><strong>Mean Squared Error (MSE)</strong></p></td>
+<td><p>most commonly used, gives higher penalty to big mistakes and vice versa</p></td>
+<td><p>[0, +inf)</p></td>
+<td><p>sklearn.metrics.mean_squared_error</p></td>
 </tr>
-<tr class="row-even"><td><strong>Mean Squared Logarithmic Error</strong></td>
-<td>practically the same as MSE but we initially take logarithm of the series. As a result we give attention to small mistakes. As well usually is used when data has exponential trends</td>
-<td>[0, +inf)</td>
-<td>sklearn.metrics.mean_squared_log_error</td>
+<tr class="row-even"><td><p><strong>Mean Squared Logarithmic Error</strong></p></td>
+<td><p>practically the same as MSE but we initially take logarithm of the series. As a result we give attention to small mistakes. As well usually is used when data has exponential trends</p></td>
+<td><p>[0, +inf)</p></td>
+<td><p>sklearn.metrics.mean_squared_log_error</p></td>
 </tr>
-<tr class="row-odd"><td><strong>Mean Absolute Percentage Error (MAPE)</strong></td>
-<td>same as MAE but percentage. Very convenient when you want to explain the quality of the model to your management</td>
-<td>[0, +inf)</td>
-<td>not implemented in sklearn</td>
+<tr class="row-odd"><td><p><strong>Mean Absolute Percentage Error (MAPE)</strong></p></td>
+<td><p>same as MAE but percentage. Very convenient when you want to explain the quality of the model to your management</p></td>
+<td><p>[0, +inf)</p></td>
+<td><p>not implemented in sklearn</p></td>
 </tr>
 </tbody>
 </table>
@@ -290,27 +290,27 @@
   <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">/</span> <span class="n">y_true</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
 </pre></div>
 </div>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/MAE.png"><img alt="MAE" src="Images/MAE.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/MAE.png"><img alt="MAE" src="_images/MAE.png" style="width: 260.0px; height: 77.60000000000001px;" /></a>
 </div>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/RMSE.png"><img alt="RMSE" src="Images/RMSE.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/RMSE.png"><img alt="RMSE" src="_images/RMSE.png" style="width: 268.0px; height: 75.2px;" /></a>
 </div>
 <p>The main idea in the debate MAE vs RMSE is that the RMSE should be more useful when large errors are particularly undesirable; it penalizes better large errors. The three tables below show examples where MAE is steady and RMSE increases as the variance associated with the frequency distribution of error magnitudes also increases.</p>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/MAE_vs_RMSE.png"><img alt="MAE_vs_RMSE" src="Images/MAE_vs_RMSE.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/MAE_vs_RMSE.png"><img alt="MAE_vs_RMSE" src="_images/MAE_vs_RMSE.png" style="width: 709.0px; height: 319.0px;" /></a>
 </div>
 <p>Interesting: the sample size influence. Using MAE, we can put a lower and upper bound on RMSE:</p>
 <ul class="simple">
-<li>[MAE] ≤ [RMSE]. The RMSE result will always be larger or equal to the MAE. If all of the errors have the same magnitude, then RMSE=MAE.</li>
-<li>[RMSE] ≤ [MAE * sqrt(n)], where n is the number of test samples. The difference between RMSE and MAE is greatest when all of the prediction error comes from a single test sample. The squared error then equals to [MAE^2 * n] for that single test sample and 0 for all other samples. Taking the square root, RMSE then equals to [MAE * sqrt(n)].</li>
+<li><p>[MAE] ≤ [RMSE]. The RMSE result will always be larger or equal to the MAE. If all of the errors have the same magnitude, then RMSE=MAE.</p></li>
+<li><p>[RMSE] ≤ [MAE * sqrt(n)], where n is the number of test samples. The difference between RMSE and MAE is greatest when all of the prediction error comes from a single test sample. The squared error then equals to [MAE^2 * n] for that single test sample and 0 for all other samples. Taking the square root, RMSE then equals to [MAE * sqrt(n)].</p></li>
 </ul>
 <p>Focusing on the upper bound, this means that RMSE has a tendency to be increasingly larger than MAE as the test sample size increases. This can problematic when comparing RMSE results calculated on different sized test samples, which is frequently the case in real world modeling.</p>
 <p>Links:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://medium.com/human-in-a-machine-world/mae-and-rmse-which-metric-is-better-e60ac3bde13d">https://medium.com/human-in-a-machine-world/mae-and-rmse-which-metric-is-better-e60ac3bde13d</a> : comparison MAE vs RMSE</li>
-<li><a class="reference external" href="https://machinelearningmastery.com/time-series-forecasting-performance-measures-with-python/">https://machinelearningmastery.com/time-series-forecasting-performance-measures-with-python/</a> : intro</li>
-<li><a class="reference external" href="http://www.edscave.com/forecasting---time-series-metrics.html">http://www.edscave.com/forecasting—time-series-metrics.html</a> : useful for MAPE definition</li>
+<li><p><a class="reference external" href="https://medium.com/human-in-a-machine-world/mae-and-rmse-which-metric-is-better-e60ac3bde13d">https://medium.com/human-in-a-machine-world/mae-and-rmse-which-metric-is-better-e60ac3bde13d</a> : comparison MAE vs RMSE</p></li>
+<li><p><a class="reference external" href="https://machinelearningmastery.com/time-series-forecasting-performance-measures-with-python/">https://machinelearningmastery.com/time-series-forecasting-performance-measures-with-python/</a> : intro</p></li>
+<li><p><a class="reference external" href="http://www.edscave.com/forecasting---time-series-metrics.html">http://www.edscave.com/forecasting—time-series-metrics.html</a> : useful for MAPE definition</p></li>
 </ul>
 </div>
 <div class="section" id="augmented-dickey-fuller-test">
@@ -319,8 +319,8 @@
 <p>This tests whether a time series is non-stationary (H0, Null hypothesis) or stationary (H1, Null hypothesis rejected)</p>
 <p>We interpret this result using the p-value from the test. A p-value below a threshold (such as 5% or 1%) suggests we reject the null hypothesis (stationary), otherwise a p-value above the threshold suggests we fail to reject the null hypothesis (non-stationary).</p>
 <ul class="simple">
-<li>p-value &gt; 0.05: Fail to reject the null hypothesis (H0), the data is non-stationary.</li>
-<li>p-value &lt;= 0.05: Reject the null hypothesis (H0), the data is stationary.</li>
+<li><p>p-value &gt; 0.05: Fail to reject the null hypothesis (H0), the data is non-stationary.</p></li>
+<li><p>p-value &lt;= 0.05: Reject the null hypothesis (H0), the data is stationary.</p></li>
 </ul>
 <p>Statsmodels has the test: from statsmodels.tsa.stattools import adfuller</p>
 </div>
@@ -347,7 +347,7 @@
 Here are 3 examples, only the third one is really usable as a time series!</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
-<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Here is how to build a single time series (a Pandas series) using a list of dates as time index, and specifying the format:</p>
@@ -355,7 +355,7 @@ Here are 3 examples, only the third one is really usable as a time series!</p>
 <span class="n">time_format</span> <span class="o">=</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M&#39;</span>
 
 <span class="c1"># Convert date_list into a datetime object: my_datetimes</span>
-<span class="n">my_datetimes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date_list</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">time_format</span><span class="p">)</span>
+<span class="n">my_datetimes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date_list</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">time_format</span><span class="p">)</span>
 
 <span class="c1"># Construct a pandas Series using temperature_list and my_datetimes: time_series</span>
 <span class="n">time_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">temperature_list</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">my_datetimes</span><span class="p">)</span>
@@ -458,17 +458,17 @@ The STL (Seasonal and Trend decomposition using Loess, Cleveland et al. 1990) ba
 <p><a class="reference external" href="https://www.r-bloggers.com/seasonal-trend-decomposition-in-r/">https://www.r-bloggers.com/seasonal-trend-decomposition-in-r/</a></p>
 <p><a class="reference external" href="https://pypi.org/project/stldecompose/">https://pypi.org/project/stldecompose/</a></p>
 <p>Here the decomposition of the CO2 curve:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="kn">as</span> <span class="nn">sm</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 
 <span class="n">dta</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">co2</span><span class="o">.</span><span class="n">load_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">data</span>
 <span class="c1"># deal with missing values. see issue</span>
-<span class="n">dta</span><span class="o">.</span><span class="n">co2</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">dta</span><span class="o">.</span><span class="n">co2</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">res</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">seasonal_decompose</span><span class="p">(</span><span class="n">dta</span><span class="o">.</span><span class="n">co2</span><span class="p">)</span>
 <span class="n">resplot</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/TS_Decomposition_statsmodels.png"><img alt="ts decomposition" src="_images/TS_Decomposition_statsmodels.png" style="width: 404.8px; height: 300.8px;" /></a>
 </div>
 </div>

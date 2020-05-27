@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -88,7 +88,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas TESTTTTTTTTTTTTTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Sklearn_Documentation.html">Scikit-learn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html">Pyspark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html#scala-spark">Scala - Spark</a></li>
@@ -184,7 +184,7 @@
   <div class="section" id="reinforcement-learning">
 <h1>Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Permalink to this headline">¶</a></h1>
 <div class="topic">
-<p class="topic-title first">Introduction</p>
+<p class="topic-title">Introduction</p>
 <p>Blabla</p>
 </div>
 <p>Lecture to Deep Reinforcement Learning: <a class="reference external" href="https://simoninithomas.github.io/Deep_reinforcement_learning_Course/">https://simoninithomas.github.io/Deep_reinforcement_learning_Course/</a></p>
@@ -199,20 +199,20 @@
 <p>This makes the RL an ONLINE process, we learn as we play, in contrast with SL where we train once and use afterwards (and if we want to update the knowledge of our SL model, then we need to retrain it…). For example, after each episode of tic-tac-toe game, an agent gets better at it.</p>
 <p>Main RL architectures to solve RL problems:</p>
 <ul class="simple">
-<li>Q-learning,</li>
-<li>Deep Q-learning,</li>
-<li>Policy Gradients,</li>
-<li>Actor Critic,</li>
-<li>PPO.</li>
+<li><p>Q-learning,</p></li>
+<li><p>Deep Q-learning,</p></li>
+<li><p>Policy Gradients,</p></li>
+<li><p>Actor Critic,</p></li>
+<li><p>PPO.</p></li>
 </ul>
 <div class="section" id="definitions">
 <h2>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Agent</li>
-<li>State</li>
-<li>Environment</li>
-<li>Action</li>
-<li>Reward</li>
+<li><p>Agent</p></li>
+<li><p>State</p></li>
+<li><p>Environment</p></li>
+<li><p>Action</p></li>
+<li><p>Reward</p></li>
 </ul>
 <p>[insert image RL_principle]</p>
 <p>Episodic or Continuing tasks: episodic is typically a game with a clear end (game over), while an continuous task does not have a terminal state, like for example the stock trading; the agent keeps running, improving, over and over.</p>
@@ -244,8 +244,8 @@
 <p>To discount the rewards, we proceed like this:</p>
 <p>We define a discount rate called gamma. It must be between 0 and 1.</p>
 <ul class="simple">
-<li>The larger the gamma, the smaller the discount. This means the learning agent cares more about the long term reward.</li>
-<li>On the other hand, the smaller the gamma, the bigger the discount. This means our agent cares more about the short term reward (the nearest cheese).</li>
+<li><p>The larger the gamma, the smaller the discount. This means the learning agent cares more about the long term reward.</p></li>
+<li><p>On the other hand, the smaller the gamma, the bigger the discount. This means our agent cares more about the short term reward (the nearest cheese).</p></li>
 </ul>
 <p>[insert Discount_definition]</p>
 <p>To be simple, each reward will be discounted by gamma to the exponent of the time step. As the time step increases, the cat gets closer to us, so the future reward is less and less probable to happen.</p>
@@ -254,8 +254,8 @@
 <div class="section" id="how-to-learn-monte-carlo-vs-temporal-difference-learning">
 <h2>How to learn? Monte-Carlo vs Temporal Difference Learning<a class="headerlink" href="#how-to-learn-monte-carlo-vs-temporal-difference-learning" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Collecting the rewards at the end of the episode and then calculating the maximum expected future reward: Monte Carlo Approach</li>
-<li>Estimate the rewards at each step: Temporal Difference Learning</li>
+<li><p>Collecting the rewards at the end of the episode and then calculating the maximum expected future reward: Monte Carlo Approach</p></li>
+<li><p>Estimate the rewards at each step: Temporal Difference Learning</p></li>
 </ul>
 <p>Monte Carlo: (ex: maze, tic-tac-toe game,…)</p>
 <p>When the episode ends (the agent reaches a “terminal state”), the agent looks at the total cumulative reward to see how well it did. In Monte Carlo approach, rewards are only received at the end of the game.</p>
@@ -263,12 +263,12 @@
 <p>[insert Monte_Carlo_learning]</p>
 <p>If we take the mouse maze environment:</p>
 <ul class="simple">
-<li>We always start at the same starting point.</li>
-<li>We terminate the episode if the cat eats us or if we move &gt; 20 steps.</li>
-<li>At the end of the episode, we have a list of State, Actions, Rewards, and New States.</li>
-<li>The agent will sum the total rewards Gt (to see how well it did).</li>
-<li>It will then update V(st) based on the formula above.</li>
-<li>Then start a new game with this new knowledge.</li>
+<li><p>We always start at the same starting point.</p></li>
+<li><p>We terminate the episode if the cat eats us or if we move &gt; 20 steps.</p></li>
+<li><p>At the end of the episode, we have a list of State, Actions, Rewards, and New States.</p></li>
+<li><p>The agent will sum the total rewards Gt (to see how well it did).</p></li>
+<li><p>It will then update V(st) based on the formula above.</p></li>
+<li><p>Then start a new game with this new knowledge.</p></li>
 </ul>
 <p>By running more and more episodes, the agent will learn to play better and better.</p>
 <p>Temporal Difference Learning : learning at each time step</p>
@@ -281,15 +281,15 @@ This method is called TD(0) or one step TD (update the value function after any 
 <div class="section" id="exploration-exploitation-trade-off">
 <h2>Exploration/Exploitation trade off<a class="headerlink" href="#exploration-exploitation-trade-off" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Exploration is finding more information about the environment.</li>
-<li>Exploitation is exploiting known information to maximize the reward.</li>
+<li><p>Exploration is finding more information about the environment.</p></li>
+<li><p>Exploitation is exploiting known information to maximize the reward.</p></li>
 </ul>
 </div>
 <div class="section" id="rl-approaches">
 <h2>RL approaches<a class="headerlink" href="#rl-approaches" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Value based</li>
-<li>Policy based</li>
+<li><p>Value based</p></li>
+<li><p>Policy based</p></li>
 </ul>
 </div>
 <div class="section" id="the-policy-function">
@@ -303,8 +303,8 @@ This method is called TD(0) or one step TD (update the value function after any 
 <p>[insert RL_policy]</p>
 <p>We learn a policy function. This lets us map each state to the best corresponding action. We have two types of policy:</p>
 <ul class="simple">
-<li>Deterministic: a policy at a given state will always return the same action.</li>
-<li>Stochastic: output a distribution probability over actions.</li>
+<li><p>Deterministic: a policy at a given state will always return the same action.</p></li>
+<li><p>Stochastic: output a distribution probability over actions.</p></li>
 </ul>
 <p>[Stochastic_policy]</p>
 </div>

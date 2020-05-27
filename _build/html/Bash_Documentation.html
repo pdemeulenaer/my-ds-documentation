@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -88,7 +88,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas TESTTTTTTTTTTTTTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Sklearn_Documentation.html">Scikit-learn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html">Pyspark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html#scala-spark">Scala - Spark</a></li>
@@ -193,12 +193,12 @@
 <p>du -hsx * | sort -rh | head -10</p>
 <p>Where,</p>
 <ul class="simple">
-<li>du command -h option : display sizes in human readable format (e.g., 1K, 234M, 2G).</li>
-<li>du command -s option : show only a total for each argument (summary).</li>
-<li>du command -x option : skip directories on different file systems.</li>
-<li>sort command -r option : reverse the result of comparisons.</li>
-<li>sort command -h option : compare human readable numbers. This is GNU sort specific option only.</li>
-<li>head command -10 OR -n 10 option : show the first 10 lines.</li>
+<li><p>du command -h option : display sizes in human readable format (e.g., 1K, 234M, 2G).</p></li>
+<li><p>du command -s option : show only a total for each argument (summary).</p></li>
+<li><p>du command -x option : skip directories on different file systems.</p></li>
+<li><p>sort command -r option : reverse the result of comparisons.</p></li>
+<li><p>sort command -h option : compare human readable numbers. This is GNU sort specific option only.</p></li>
+<li><p>head command -10 OR -n 10 option : show the first 10 lines.</p></li>
 </ul>
 <p>This one is also very convenient: a “du” that limits the depth
 du -h –max-depth=1</p>
@@ -218,18 +218,18 @@ du -h –max-depth=1</p>
 <div class="section" id="pull-requests">
 <h2>Pull requests<a class="headerlink" href="#pull-requests" title="Permalink to this headline">¶</a></h2>
 <p>How to use git?
-Once in team meeting&nbsp;Ovidijus talked about other way of using git.&nbsp;He has now set safety rules almost on all stash repositories which don’t allow us to&nbsp;push directly to master, rewrite master history and made changes without Pull Request.
+Once in team meeting Ovidijus talked about other way of using git. He has now set safety rules almost on all stash repositories which don’t allow us to push directly to master, rewrite master history and made changes without Pull Request.
 Here are the different steps:</p>
 <ol class="arabic simple">
-<li>git checkout master &lt;this selects master branch&gt;</li>
-<li>git pull &lt;this get newest data from master branch&gt;</li>
-<li>git checkout –b “name” &lt;this create new branch&gt;</li>
-<li>change code</li>
-<li>git add &lt;this needed to add changed files&gt; (or git add –all in case we want to include all changes)</li>
-<li>git commit &lt;after this command usually we shortly write that we changed&gt;</li>
-<li>git push origin “name” &lt;this push our branch “name” to remote (stash) and this allows to us create PR&gt;</li>
-<li>create PR in stash &lt;PR = Pull Request&gt;</li>
-<li>merge PR in stash (ideally another team member actually does the merge)</li>
+<li><p>git checkout master &lt;this selects master branch&gt;</p></li>
+<li><p>git pull &lt;this get newest data from master branch&gt;</p></li>
+<li><p>git checkout –b “name” &lt;this create new branch&gt;</p></li>
+<li><p>change code</p></li>
+<li><p>git add &lt;this needed to add changed files&gt; (or git add –all in case we want to include all changes)</p></li>
+<li><p>git commit &lt;after this command usually we shortly write that we changed&gt;</p></li>
+<li><p>git push origin “name” &lt;this push our branch “name” to remote (stash) and this allows to us create PR&gt;</p></li>
+<li><p>create PR in stash &lt;PR = Pull Request&gt;</p></li>
+<li><p>merge PR in stash (ideally another team member actually does the merge)</p></li>
 </ol>
 <p>Repeat these steps</p>
 <p>Way to learn more about git and how it works: <a class="reference external" href="https://learngitbranching.js.org/">https://learngitbranching.js.org/</a></p>
@@ -240,8 +240,8 @@ Here are the different steps:</p>
 <p>Concerning git pull: better to avoid it as it suppresses the history of recent commits: <a class="reference external" href="https://coderwall.com/p/jgn6-q/git-pull-is-evil">https://coderwall.com/p/jgn6-q/git-pull-is-evil</a></p>
 <p>A better way is to:</p>
 <ul class="simple">
-<li>git fetch : it imports</li>
-<li>git rebase :</li>
+<li><p>git fetch : it imports</p></li>
+<li><p>git rebase :</p></li>
 </ul>
 </div>
 <div class="section" id="git-aliases">
@@ -266,7 +266,7 @@ git ~/.gitconfig</p>
 </div>
 <p>then we can use the aliases like this:</p>
 <p>git g -10</p>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/git_log_alias.PNG"><img alt="map to buried treasure" src="_images/git_log_alias.PNG" style="width: 701.0px; height: 182.0px;" /></a>
 </div>
 <p>The HEAD shows where “we” are, the origin/master is the remote master branch, origin/HEAD probably where is the HEAD at the origin branch, and master the local master branch on which we now sit.</p>
@@ -275,19 +275,19 @@ git ~/.gitconfig</p>
 <h2>Other useful commands<a class="headerlink" href="#other-useful-commands" title="Permalink to this headline">¶</a></h2>
 <p>git reset –hard 9e21211 : this brings you back (or bring the HEAD back) to the commit 9e21211 and changes all files in the directory to the ones of 9e21211 commit.</p>
 <p>Without –hard, it would only bring you to the commit but leave the files in the directory unchanged.</p>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/git_reset_hard.PNG"><img alt="map to buried treasure" src="_images/git_reset_hard.PNG" style="width: 760.0px; height: 368.0px;" /></a>
 </div>
 </div>
 <div class="section" id="cheatsheets">
 <h2>Cheatsheets<a class="headerlink" href="#cheatsheets" title="Permalink to this headline">¶</a></h2>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="Cheatsheets/Git_CheatSheet.PNG"><img alt="map to buried treasure" src="Cheatsheets/Git_CheatSheet.PNG" /></a>
 </div>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="Cheatsheets/Git_CheatSheet2.PNG"><img alt="map to buried treasure" src="Cheatsheets/Git_CheatSheet2.PNG" /></a>
 </div>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="Cheatsheets/Git_CheatSheet3.PNG"><img alt="map to buried treasure" src="Cheatsheets/Git_CheatSheet3.PNG" /></a>
 </div>
 </div>
@@ -303,23 +303,23 @@ git ~/.gitconfig</p>
 <p>Started learning to use Vim .. Some simple commands to get started</p>
 <p>Vim has two modes.</p>
 <ol class="arabic simple">
-<li>Insert mode (Where you can just type like normal text editor. Press i for insert mode)</li>
-<li>Command mode (Where you give commands to the editor to get things done . Press ESC for command mode)</li>
+<li><p>Insert mode (Where you can just type like normal text editor. Press i for insert mode)</p></li>
+<li><p>Command mode (Where you give commands to the editor to get things done . Press ESC for command mode)</p></li>
 </ol>
 <p>Most of them below are in command mode</p>
 <ul class="simple">
-<li>x - to delete the unwanted character</li>
-<li>u - to undo the last the command and U to undo the whole line</li>
-<li>CTRL-R to redo</li>
-<li>A - to append text at the end</li>
-<li>:wq - to save and exit</li>
-<li>:q! - to trash all changes</li>
-<li>dw - move the cursor to the beginning of the word to delete that word</li>
-<li>2w - to move the cursor two words forward.</li>
-<li>3e - to move the cursor to the end of the third word forward.</li>
-<li>0 (zero) to move to the start of the line.</li>
-<li>d2w - which deletes 2 words .. number can be changed for deleting the number of consecutive words like d3w</li>
-<li>dd to delete the line and 2dd to delete to line .number can be changed for deleting the number of consecutive words</li>
+<li><p>x - to delete the unwanted character</p></li>
+<li><p>u - to undo the last the command and U to undo the whole line</p></li>
+<li><p>CTRL-R to redo</p></li>
+<li><p>A - to append text at the end</p></li>
+<li><p>:wq - to save and exit</p></li>
+<li><p>:q! - to trash all changes</p></li>
+<li><p>dw - move the cursor to the beginning of the word to delete that word</p></li>
+<li><p>2w - to move the cursor two words forward.</p></li>
+<li><p>3e - to move the cursor to the end of the third word forward.</p></li>
+<li><p>0 (zero) to move to the start of the line.</p></li>
+<li><p>d2w - which deletes 2 words .. number can be changed for deleting the number of consecutive words like d3w</p></li>
+<li><p>dd to delete the line and 2dd to delete to line .number can be changed for deleting the number of consecutive words</p></li>
 </ul>
 <p>See much more in the link above.</p>
 </div>

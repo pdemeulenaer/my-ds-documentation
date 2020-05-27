@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -88,10 +88,11 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas TESTTTTTTTTTTTTTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Sklearn_Documentation.html">Scikit-learn</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Pyspark</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basic-pyspark-documentation">Basic Pyspark documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spark-installation">Spark installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#spark-submit-tasks">Spark-submit tasks</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#killing-yarn-applications">Killing YARN applications:</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#importing-pyspark-modules">Importing Pyspark modules</a></li>
@@ -103,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#spark-executor-cores-and-memory-management-resources-allocation-in-spark">Spark executor/cores and memory management: Resources allocation in Spark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#basic-commands">Basic commands</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#saving-to-distributed-csv-file-using-spark">Saving to (distributed) CSV file using Spark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#saving-and-loading-to-different-file-formats-orc-parquet">Saving and loading to different file formats (orc, parquet)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#random-sampling">Random sampling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#interesting-rdd-operations">Interesting RDD operations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aggregating-in-pyspark">Aggregating in Pyspark</a></li>
@@ -139,6 +141,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#dealing-with-text-tokenizer-hashing-idf">Dealing with text: Tokenizer, Hashing, IDF</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#spark-streaming">Spark Streaming</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#scala-spark">Scala - Spark</a></li>
@@ -225,11 +228,19 @@
 <div class="section" id="basic-pyspark-documentation">
 <h2>Basic Pyspark documentation<a class="headerlink" href="#basic-pyspark-documentation" title="Permalink to this headline">¶</a></h2>
 <div class="topic">
-<p class="topic-title first">Introduction</p>
+<p class="topic-title">Introduction</p>
 <p>The objective here is to have everything useful for the projects, not to make a complete documentation of the whole package. Here I will try to document both version 1.6 and &gt;2.0. A special enphase will be done on machine learning module ml (mllib is outdated).
 We will not review the full Pyspark documentation. For that, look at <a class="reference external" href="http://spark.apache.org/docs/1.6.0/programming-guide.html">http://spark.apache.org/docs/1.6.0/programming-guide.html</a> for version 1.6, <a class="reference external" href="http://spark.apache.org/docs/2.1.0/programming-guide.html">http://spark.apache.org/docs/2.1.0/programming-guide.html</a> for version 2.1.</p>
 </div>
-<p>To create</p>
+<div class="section" id="spark-installation">
+<h3>Spark installation<a class="headerlink" href="#spark-installation" title="Permalink to this headline">¶</a></h3>
+<p>On windows: <a class="reference external" href="https://medium.com/big-data-engineering/how-to-install-apache-spark-2-x-in-your-pc-e2047246ffc3">https://medium.com/big-data-engineering/how-to-install-apache-spark-2-x-in-your-pc-e2047246ffc3</a></p>
+<p>On Ubuntu:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://computingforgeeks.com/how-to-install-apache-spark-on-ubuntu-debian/">https://computingforgeeks.com/how-to-install-apache-spark-on-ubuntu-debian/</a></p></li>
+<li><p><a class="reference external" href="https://medium.com/devilsadvocatediwakar/installing-apache-spark-on-ubuntu-8796bfdd0861">https://medium.com/devilsadvocatediwakar/installing-apache-spark-on-ubuntu-8796bfdd0861</a></p></li>
+</ul>
+</div>
 <div class="section" id="spark-submit-tasks">
 <h3>Spark-submit tasks<a class="headerlink" href="#spark-submit-tasks" title="Permalink to this headline">¶</a></h3>
 <p>How to navigate between versions using spark-submit:</p>
@@ -333,18 +344,18 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 </pre></div>
 </div>
 <p>Here is the DataCamp Cheatsheet for RDDs:</p>
-<div class="figure" id="id2">
-<a class="reference internal image-reference" href="Cheatsheets/PySpark_Cheat_Sheet_Python.png"><img alt="map to buried treasure" src="Cheatsheets/PySpark_Cheat_Sheet_Python.png" /></a>
-<p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span></p>
+<div class="figure align-default" id="id2">
+<a class="reference internal image-reference" href="_images/PySpark_Cheat_Sheet_Python.png"><img alt="map to buried treasure" src="_images/PySpark_Cheat_Sheet_Python.png" style="width: 1403.0px; height: 993.0px;" /></a>
+<p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="dataframes">
 <h3>Dataframes<a class="headerlink" href="#dataframes" title="Permalink to this headline">¶</a></h3>
 <p>Starting from Pyspark 1.5, Dataframes are built ontop of RDDs and allow to deal easier with data, in a more Pandas-like way. Since version 2.0, they become the main data type.</p>
 <p>Here is the DataCamp Cheatsheet for RDDs:</p>
-<div class="figure" id="id3">
+<div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="_images/PySpark_SQL_Cheat_Sheet_Python.png"><img alt="map to buried treasure" src="_images/PySpark_SQL_Cheat_Sheet_Python.png" style="width: 1397.0px; height: 992.0px;" /></a>
-<p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span></p>
+<p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>From Pandas to Pyspark dataframe:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Loading a Pandas dataframe:</span>
@@ -381,8 +392,8 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <p>How many partitions should we have? Rule of thumb is to have 128Mb per partition.</p>
 <p>The default number of partitions in Spark is 200. For big dataframes, this low number of partitions leads to high shuffle block size (i.e. when shuffling, high block size to be shuffled). 2 Things to keep in mind against this:</p>
 <ul class="simple">
-<li>increase the number of partitions (therefore reducing the number of partion size)</li>
-<li>Get rid of skew in the data</li>
+<li><p>increase the number of partitions (therefore reducing the number of partion size)</p></li>
+<li><p>Get rid of skew in the data</p></li>
 </ul>
 <p>It is important not to have too big partitions, since the job might fail due to the 2Gb limit (no Spark shuffle block can be greater than 2Gb)</p>
 <p>Rule of thumb: if number of partitions lower than 2000 but close to it, better to bump it above 2000, safer.</p>
@@ -406,15 +417,15 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <p>A nice function to read the number of partitions as well as the size of each partitions:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_partition</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
 
-  <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Num partition: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">rdd</span><span class="o">.</span><span class="n">getNumPartitions</span><span class="p">()))</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Num partition: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">rdd</span><span class="o">.</span><span class="n">getNumPartitions</span><span class="p">()))</span>
 
   <span class="k">def</span> <span class="nf">count_partition</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">iterator</span><span class="p">):</span>
       <span class="k">yield</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">iterator</span><span class="p">)))</span>
 
-  <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">rdd</span><span class="o">.</span><span class="n">mapPartitionsWithIndex</span><span class="p">(</span><span class="n">count_partition</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">())</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">rdd</span><span class="o">.</span><span class="n">mapPartitionsWithIndex</span><span class="p">(</span><span class="n">count_partition</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">())</span>
 
   <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-      <span class="k">print</span><span class="p">(</span><span class="s2">&quot;partition {0:2d}: {1} bytes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">count</span><span class="p">))</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;partition </span><span class="si">{0:2d}</span><span class="s2">: </span><span class="si">{1}</span><span class="s2"> bytes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">count</span><span class="p">))</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;database.table&#39;</span><span class="p">)</span>
 <span class="n">check_partition</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
@@ -432,12 +443,12 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <h3>Concerning partition skewness problem<a class="headerlink" href="#concerning-partition-skewness-problem" title="Permalink to this headline">¶</a></h3>
 <p>Great link on avoiding data skewness: <a class="reference external" href="https://medium.com/simpl-under-the-hood/spark-protip-joining-on-skewed-dataframes-7bfa610be704">https://medium.com/simpl-under-the-hood/spark-protip-joining-on-skewed-dataframes-7bfa610be704</a></p>
 <p>Ideally we would like to have partitions like this:</p>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Distribution_system_good.png"><img alt="Memory management in yarn and spark" src="Images/Distribution_system_good.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Distribution_system_good.png"><img alt="Memory management in yarn and spark" src="_images/Distribution_system_good.png" style="width: 731.4px; height: 289.2px;" /></a>
 </div>
 <p>But sometimes things like this can happen:</p>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Distribution_system_bad.png"><img alt="Memory management in yarn and spark" src="Images/Distribution_system_bad.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Distribution_system_bad.png"><img alt="Memory management in yarn and spark" src="_images/Distribution_system_bad.png" style="width: 740.4px; height: 292.8px;" /></a>
 </div>
 </div>
 <div class="section" id="spark-executor-cores-and-memory-management-resources-allocation-in-spark">
@@ -450,43 +461,43 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <p>The –num-executors command-line flag or spark.executor.instances configuration property control the number of executors requested. Starting in CDH 5.4/Spark 1.3, you will be able to avoid setting this property by turning on dynamic allocation with the spark.dynamicAllocation.enabled property. Dynamic allocation enables a Spark application to request executors when there is a backlog of pending tasks and free up executors when idle.</p>
 <p>It’s also important to think about how the resources requested by Spark will fit into what YARN has available. The relevant YARN properties are:</p>
 <ul class="simple">
-<li>yarn.nodemanager.resource.memory-mb controls the maximum sum of memory used by the containers on each node.</li>
-<li>yarn.nodemanager.resource.cpu-vcores controls the maximum sum of cores used by the containers on each node.</li>
+<li><p>yarn.nodemanager.resource.memory-mb controls the maximum sum of memory used by the containers on each node.</p></li>
+<li><p>yarn.nodemanager.resource.cpu-vcores controls the maximum sum of cores used by the containers on each node.</p></li>
 </ul>
 <p>Asking for five executor cores will result in a request to YARN for five virtual cores. The memory requested from YARN is a little more complex for a couple reasons:</p>
 <ul class="simple">
-<li>–executor-memory/spark.executor.memory controls the executor heap size, but JVMs can also use some memory off heap, for example for interned Strings and direct byte buffers. The value of the spark.yarn.executor.memoryOverhead property is added to the executor memory to determine the full memory request to YARN for each executor. It defaults to max(384, .07 * spark.executor.memory).</li>
-<li>YARN may round the requested memory up a little. YARN’s yarn.scheduler.minimum-allocation-mb and yarn.scheduler.increment-allocation-mb properties control the minimum and increment request values respectively.</li>
+<li><p>–executor-memory/spark.executor.memory controls the executor heap size, but JVMs can also use some memory off heap, for example for interned Strings and direct byte buffers. The value of the spark.yarn.executor.memoryOverhead property is added to the executor memory to determine the full memory request to YARN for each executor. It defaults to max(384, .07 * spark.executor.memory).</p></li>
+<li><p>YARN may round the requested memory up a little. YARN’s yarn.scheduler.minimum-allocation-mb and yarn.scheduler.increment-allocation-mb properties control the minimum and increment request values respectively.</p></li>
 </ul>
 <p>The following (not to scale with defaults) shows the hierarchy of memory properties in Spark and YARN:</p>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Memory_spark_yarn.png"><img alt="Memory management in yarn and spark" src="Images/Memory_spark_yarn.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Memory_spark_yarn.png"><img alt="Memory management in yarn and spark" src="_images/Memory_spark_yarn.png" style="width: 631.0px; height: 178.0px;" /></a>
 </div>
 <p>And if that weren’t enough to think about, a few final concerns when sizing Spark executors:</p>
 <ul class="simple">
-<li>The application master (AM), which is a non-executor container with the special capability of requesting containers from YARN, takes up resources of its own that must be budgeted in. In yarn-client mode, it defaults to a 1024MB and one vcore. In yarn-cluster mode, the application master runs the driver, so it’s often useful to bolster its resources with the –driver-memory and –driver-cores properties.</li>
-<li>Running executors with too much memory often results in excessive garbage collection delays. 64GB is a rough guess at a good upper limit for a single executor.</li>
-<li>the HDFS client has trouble with tons of concurrent threads. A rough guess is that at most five tasks per executor can achieve full write throughput, so it’s good to keep the number of cores per executor below that number.</li>
-<li>Running tiny executors (with a single core and just enough memory needed to run a single task, for example) throws away the benefits that come from running multiple tasks in a single JVM. For example, broadcast variables need to be replicated once on each executor, so many small executors will result in many more copies of the data.</li>
+<li><p>The application master (AM), which is a non-executor container with the special capability of requesting containers from YARN, takes up resources of its own that must be budgeted in. In yarn-client mode, it defaults to a 1024MB and one vcore. In yarn-cluster mode, the application master runs the driver, so it’s often useful to bolster its resources with the –driver-memory and –driver-cores properties.</p></li>
+<li><p>Running executors with too much memory often results in excessive garbage collection delays. 64GB is a rough guess at a good upper limit for a single executor.</p></li>
+<li><p>the HDFS client has trouble with tons of concurrent threads. A rough guess is that at most five tasks per executor can achieve full write throughput, so it’s good to keep the number of cores per executor below that number.</p></li>
+<li><p>Running tiny executors (with a single core and just enough memory needed to run a single task, for example) throws away the benefits that come from running multiple tasks in a single JVM. For example, broadcast variables need to be replicated once on each executor, so many small executors will result in many more copies of the data.</p></li>
 </ul>
 <p>EXAMPLE: Let’s say we have a cluster with the following physical specifications:</p>
 <ul class="simple">
-<li>6 physical nodes</li>
-<li>each node has 16 cores</li>
-<li>each node has 64Gb of memory</li>
+<li><p>6 physical nodes</p></li>
+<li><p>each node has 16 cores</p></li>
+<li><p>each node has 64Gb of memory</p></li>
 </ul>
 <p>What are the spark parameters, to use as much resources as possible from the cluster?</p>
 <p>Note that each of the node runs NodeManagers. The NodeManager capacities, yarn.nodemanager.resource.memory-mb and yarn.nodemanager.resource.cpu-vcores, should probably be set to 63 * 1024 = 64512 (megabytes) and 15 cores respectively. We avoid allocating 100% of the resources to YARN containers because the node needs some resources to run the OS and Hadoop daemons.</p>
 <p>The likely first impulse would be to use –num-executors 6 –executor-cores 15 –executor-memory 63G. However, this is the wrong approach because:</p>
 <ul class="simple">
-<li>63GB + the executor memory overhead won’t fit within the 63GB capacity of the NodeManagers.</li>
-<li>The application master will take up a core on one of the nodes, meaning that there won’t be room for a 15-core executor on that node.</li>
-<li>15 cores per executor can lead to bad HDFS I/O throughput.</li>
+<li><p>63GB + the executor memory overhead won’t fit within the 63GB capacity of the NodeManagers.</p></li>
+<li><p>The application master will take up a core on one of the nodes, meaning that there won’t be room for a 15-core executor on that node.</p></li>
+<li><p>15 cores per executor can lead to bad HDFS I/O throughput.</p></li>
 </ul>
 <p>A better option would be to use –num-executors 17 –executor-cores 5 –executor-memory 19G. Why?</p>
 <ul class="simple">
-<li>This config results in three executors on all nodes except for the one with the AM, which will have two executors.</li>
-<li>–executor-memory was derived as (63/3 executors per node) = 21. The memory overhead should take 7% (or in more recent cases 10%) of the allocated memory: 21 * 0.07 = 1.47 Gb. So the total memory allocated should be no large than 21 – 1.47 ~ 19.</li>
+<li><p>This config results in three executors on all nodes except for the one with the AM, which will have two executors.</p></li>
+<li><p>–executor-memory was derived as (63/3 executors per node) = 21. The memory overhead should take 7% (or in more recent cases 10%) of the allocated memory: 21 * 0.07 = 1.47 Gb. So the total memory allocated should be no large than 21 – 1.47 ~ 19.</p></li>
 </ul>
 </div>
 <div class="section" id="basic-commands">
@@ -509,7 +520,7 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;column&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;column&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">))</span>
 
 <span class="c1">#Sorting:</span>
-<span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;KNID&quot;</span><span class="p">,</span><span class="s2">&quot;sum(BLPS)&quot;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;KNID&quot;</span><span class="p">,</span><span class="s2">&quot;sum(BLPS)&quot;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 
 <span class="c1">#Moving to a Pandas dataframe:</span>
 <span class="n">df_pd</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
@@ -602,6 +613,27 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 </pre></div>
 </div>
 </div>
+<div class="section" id="saving-and-loading-to-different-file-formats-orc-parquet">
+<h3>Saving and loading to different file formats (orc, parquet)<a class="headerlink" href="#saving-and-loading-to-different-file-formats-orc-parquet" title="Permalink to this headline">¶</a></h3>
+<p>Saving to parquet to whatever file system (but I experienced problem to read that in hive):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ts_balance</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;parquet&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;ts_mock_10K_all_prepared.parquet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>But when spark runs on hadoop, it is not sure where this is saved… (impossible to find in hive, even when specifying some db)</p>
+<p>Saving to parquet to hive:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ts_balance</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;parquet&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s1">&#39;db.ts_mock_10K_all_prepared&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;overwrite&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>How to read?</p>
+<p>We can read either (when not saved in hive):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;db.ts_mock_10K.parquet&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Second case, from a hive database:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;db.ts_mock_10K_all_prepared&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="random-sampling">
 <h3>Random sampling<a class="headerlink" href="#random-sampling" title="Permalink to this headline">¶</a></h3>
 <p>The trick is to sort using a random number and the take the N first rows.</p>
@@ -657,7 +689,7 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 
 <span class="c1">#of course the example is a bit bad since there actually exists a pyspark hash function:</span>
 
-<span class="kn">import</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">as</span> <span class="nn">f</span>
+<span class="kn">import</span> <span class="nn">pyspark.sql.functions</span> <span class="k">as</span> <span class="nn">f</span>
 <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;Hash&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="s2">&quot;Amount&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="c1">#But it&#39;s just to show the principle. In place of hash, we could have another not spark function)</span>
@@ -717,10 +749,10 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Grouping and aggregating:</span>
 <span class="n">df</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&quot;KNID&quot;</span><span class="p">,</span><span class="s2">&quot;IDKT&quot;</span><span class="p">,</span><span class="s2">&quot;counter_account&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;BLPS&quot;</span><span class="p">:</span> <span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;KNID&quot;</span><span class="p">:</span> <span class="s2">&quot;count&quot;</span><span class="p">})</span>
 <span class="c1">#Other example with aggregation on distinct knid:</span>
-<span class="n">df</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;txft&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">countDistinct</span><span class="p">(</span><span class="s1">&#39;knid&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;count(knid)&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;txft&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">countDistinct</span><span class="p">(</span><span class="s1">&#39;knid&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;count(knid)&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1">#Here for one column only:</span>
-<span class="n">part_party</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;bankid&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">part_party</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;bankid&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1">#Example: we have a given dataframe like</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">sqlContext</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">])</span>
@@ -908,11 +940,11 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <span class="o">+-------------------+---------------+</span>
 <span class="o">|</span>               <span class="n">time</span><span class="o">|</span><span class="n">transactiondate</span><span class="o">|</span>
 <span class="o">+-------------------+---------------+</span>
-<span class="o">|</span><span class="mi">2017</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">01</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="o">|</span>     <span class="mi">2017</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">01</span><span class="o">|</span>
-<span class="o">|</span><span class="mi">2017</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">02</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="o">|</span>     <span class="mi">2017</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">02</span><span class="o">|</span>
-<span class="o">|</span><span class="mi">2017</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">03</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="o">|</span>     <span class="mi">2017</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">03</span><span class="o">|</span>
-<span class="o">|</span><span class="mi">2017</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">04</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="o">|</span>     <span class="mi">2017</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">04</span><span class="o">|</span>
-<span class="o">|</span><span class="mi">2017</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">05</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="o">|</span>     <span class="mi">2017</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">05</span><span class="o">|</span>
+<span class="o">|</span><span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">|</span>     <span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="o">|</span>
+<span class="o">|</span><span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">|</span>     <span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span><span class="o">|</span>
+<span class="o">|</span><span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">|</span>     <span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span><span class="o">|</span>
+<span class="o">|</span><span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">04</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">|</span>     <span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">04</span><span class="o">|</span>
+<span class="o">|</span><span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">05</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">|</span>     <span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">05</span><span class="o">|</span>
 <span class="o">+-------------------+---------------+</span>
 </pre></div>
 </div>
@@ -931,16 +963,16 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <p>We act with last over the window we have defined, specifying ignorenulls=True. If the current row is non-null, then the output will just be the value of current row. However, if the current row is null, then the function will return the most recent (last) non-null value in the window.</p>
 <p>Let’s say we have some array:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span>
-  <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2015-12-01&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+  <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2015-12-01&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
   <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2015-12-02&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>
   <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2015-12-03&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
   <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2015-12-04&quot;</span><span class="p">,</span> <span class="mi">55</span><span class="p">),</span>
-  <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2015-12-05&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
-  <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2015-12-06&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
-  <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;2015-12-07&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
-  <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;2015-12-08&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+  <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2015-12-05&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+  <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2015-12-06&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+  <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;2015-12-07&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+  <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;2015-12-08&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
   <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;2015-12-09&quot;</span><span class="p">,</span> <span class="mi">49</span><span class="p">),</span>
-  <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;2015-12-10&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+  <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;2015-12-10&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
 <span class="p">]</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;customer&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">])</span>
@@ -949,13 +981,13 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <span class="o">+--------+----------+-----+</span>
 <span class="o">|</span><span class="n">customer</span><span class="o">|</span>      <span class="n">date</span><span class="o">|</span><span class="n">value</span><span class="o">|</span>
 <span class="o">+--------+----------+-----+</span>
-<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">01</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>
-<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">02</span><span class="o">|</span>   <span class="mi">25</span><span class="o">|</span>
-<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">03</span><span class="o">|</span>   <span class="mi">30</span><span class="o">|</span>
-<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">04</span><span class="o">|</span>   <span class="mi">55</span><span class="o">|</span>
-<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">05</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>
-<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">06</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>
-<span class="o">|</span>       <span class="mi">2</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">07</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>
+<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">01</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>
+<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">02</span><span class="o">|</span>   <span class="mi">25</span><span class="o">|</span>
+<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span><span class="o">|</span>   <span class="mi">30</span><span class="o">|</span>
+<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">04</span><span class="o">|</span>   <span class="mi">55</span><span class="o">|</span>
+<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">05</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>
+<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">06</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>
+<span class="o">|</span>       <span class="mi">2</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">07</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>
 <span class="o">|</span>       <span class="mi">2</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>
 <span class="o">|</span>       <span class="mi">2</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">09</span><span class="o">|</span>   <span class="mi">49</span><span class="o">|</span>
 <span class="o">|</span>       <span class="mi">2</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">10</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>
@@ -969,20 +1001,20 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
              <span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>\
              <span class="o">.</span><span class="n">rowsBetween</span><span class="p">(</span><span class="o">-</span><span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
-<span class="n">spark_df_filled</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;value_ffill&#39;</span><span class="p">,</span> <span class="n">last</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> <span class="n">ignorenulls</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">window</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">spark_df_filled</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;value_ffill&#39;</span><span class="p">,</span> <span class="n">last</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> <span class="n">ignorenulls</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">window</span><span class="p">)</span> <span class="p">)</span>
 <span class="n">spark_df_filled</span> <span class="o">=</span> <span class="n">spark_df_filled</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;customer&#39;</span><span class="p">,</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
 <span class="n">spark_df_filled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="o">+--------+----------+-----+-----------+</span>
 <span class="o">|</span><span class="n">customer</span><span class="o">|</span>      <span class="n">date</span><span class="o">|</span><span class="n">value</span><span class="o">|</span><span class="n">value_ffill</span><span class="o">|</span>
 <span class="o">+--------+----------+-----+-----------+</span>
-<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">01</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>       <span class="n">null</span><span class="o">|</span>
-<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">02</span><span class="o">|</span>   <span class="mi">25</span><span class="o">|</span>         <span class="mi">25</span><span class="o">|</span>
-<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">03</span><span class="o">|</span>   <span class="mi">30</span><span class="o">|</span>         <span class="mi">30</span><span class="o">|</span>
-<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">04</span><span class="o">|</span>   <span class="mi">55</span><span class="o">|</span>         <span class="mi">55</span><span class="o">|</span>
-<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">05</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>         <span class="mi">55</span><span class="o">|</span>
-<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">06</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>         <span class="mi">55</span><span class="o">|</span>
-<span class="o">|</span>       <span class="mi">2</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">07</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>       <span class="n">null</span><span class="o">|</span>
+<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">01</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>       <span class="n">null</span><span class="o">|</span>
+<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">02</span><span class="o">|</span>   <span class="mi">25</span><span class="o">|</span>         <span class="mi">25</span><span class="o">|</span>
+<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span><span class="o">|</span>   <span class="mi">30</span><span class="o">|</span>         <span class="mi">30</span><span class="o">|</span>
+<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">04</span><span class="o">|</span>   <span class="mi">55</span><span class="o">|</span>         <span class="mi">55</span><span class="o">|</span>
+<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">05</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>         <span class="mi">55</span><span class="o">|</span>
+<span class="o">|</span>       <span class="mi">1</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">06</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>         <span class="mi">55</span><span class="o">|</span>
+<span class="o">|</span>       <span class="mi">2</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">07</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>       <span class="n">null</span><span class="o">|</span>
 <span class="o">|</span>       <span class="mi">2</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>       <span class="n">null</span><span class="o">|</span>
 <span class="o">|</span>       <span class="mi">2</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">09</span><span class="o">|</span>   <span class="mi">49</span><span class="o">|</span>         <span class="mi">49</span><span class="o">|</span>
 <span class="o">|</span>       <span class="mi">2</span><span class="o">|</span><span class="mi">2015</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">10</span><span class="o">|</span> <span class="n">null</span><span class="o">|</span>         <span class="mi">49</span><span class="o">|</span>
@@ -1016,7 +1048,7 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
                               <span class="n">psf</span><span class="o">.</span><span class="n">collect_list</span><span class="p">(</span><span class="n">psf</span><span class="o">.</span><span class="n">struct</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;balance_day&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;time_series_tuples&#39;</span><span class="p">))</span>
 
 
-<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="o">+--------+------------------------------------+------------------+---------------------------------------------------+</span>
 <span class="o">|</span><span class="n">customer</span><span class="o">|</span><span class="n">time_series_dates</span>                   <span class="o">|</span><span class="n">time_series_values</span><span class="o">|</span><span class="n">time_series_tuples</span>                                 <span class="o">|</span>
@@ -1133,7 +1165,7 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <span class="o">+-------------------+----+-----+---+</span>
 <span class="o">|</span>               <span class="n">date</span><span class="o">|</span><span class="n">year</span><span class="o">|</span><span class="n">month</span><span class="o">|</span><span class="n">day</span><span class="o">|</span>
 <span class="o">+-------------------+----+-----+---+</span>
-<span class="o">|</span><span class="mi">2017</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">12</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="o">|</span><span class="mi">2017</span><span class="o">|</span>    <span class="mi">4</span><span class="o">|</span> <span class="mi">12</span><span class="o">|</span>
+<span class="o">|</span><span class="mi">2017</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">12</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="o">|</span><span class="mi">2017</span><span class="o">|</span>    <span class="mi">4</span><span class="o">|</span> <span class="mi">12</span><span class="o">|</span>
 <span class="o">+-------------------+----+-----+---+</span>
 </pre></div>
 </div>
@@ -1263,15 +1295,15 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <span class="n">etpew_connector</span> <span class="o">=</span> <span class="n">SQLConnector</span><span class="p">(</span><span class="s1">&#39;ETPEW&#39;</span><span class="p">)</span>
 <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;select top 1 * from [ETZ3EW].[dbo].[ZW_KUNDE_MST_HV];&quot;</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">etpew_connector</span><span class="o">.</span><span class="n">query_to_pandas</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Loaded from [ETZ3EW].[dbo].[ZW_KUNDE_MST_HV]&#39;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Loaded from [ETZ3EW].[dbo].[ZW_KUNDE_MST_HV]&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># testing connection to MCS</span>
 <span class="n">mcs_connector</span> <span class="o">=</span> <span class="n">SQLConnector</span><span class="p">(</span><span class="s1">&#39;MCS&#39;</span><span class="p">)</span>
 <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT top 1 * FROM sys.databases&quot;</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">mcs_connector</span><span class="o">.</span><span class="n">query_to_pandas</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Loaded from sys.databases&#39;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Loaded from sys.databases&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1359,7 +1391,7 @@ Here is a very simple working code:</p>
 <span class="c1"># Creating RDD from data</span>
 <span class="n">trainingData</span><span class="o">=</span><span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">trainingData</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
-<span class="k">print</span> <span class="n">trainingData</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span> <span class="n">trainingData</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="o">+---------+-----+</span>
 <span class="o">|</span> <span class="n">features</span><span class="o">|</span><span class="n">label</span><span class="o">|</span>
@@ -1372,9 +1404,9 @@ Here is a very simple working code:</p>
 
 <span class="c1"># Model creation</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">RandomForest</span><span class="o">.</span><span class="n">trainClassifier</span><span class="p">(</span><span class="n">trainingData</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">{},</span> <span class="mi">3</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">model</span><span class="o">.</span><span class="n">numTrees</span><span class="p">()</span>
-<span class="k">print</span> <span class="n">model</span><span class="o">.</span><span class="n">totalNumNodes</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">toDebugString</span><span class="p">())</span>
+<span class="nb">print</span> <span class="n">model</span><span class="o">.</span><span class="n">numTrees</span><span class="p">()</span>
+<span class="nb">print</span> <span class="n">model</span><span class="o">.</span><span class="n">totalNumNodes</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">toDebugString</span><span class="p">())</span>
 
 <span class="c1"># Predicting a new sample</span>
 <span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([[</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">]])</span>
@@ -1387,7 +1419,7 @@ Here is a very simple working code:</p>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">Convert_to_LabelPoint_format</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
   <span class="sd">&#39;&#39;&#39;</span>
@@ -1416,7 +1448,7 @@ Here is a very simple working code:</p>
 <span class="c1"># Creating RDD from data</span>
 <span class="n">data_rdd</span><span class="o">=</span><span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">data_rdd</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
-<span class="k">print</span> <span class="n">data_rdd</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">data_rdd</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="o">+-----------------+-----+</span>
 <span class="o">|</span>         <span class="n">features</span><span class="o">|</span><span class="n">label</span><span class="o">|</span>
@@ -1435,10 +1467,10 @@ Here is a very simple working code:</p>
 <span class="n">model</span> <span class="o">=</span> <span class="n">RandomForest</span><span class="o">.</span><span class="n">trainClassifier</span><span class="p">(</span><span class="n">trainingData</span><span class="p">,</span> <span class="n">numClasses</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">categoricalFeaturesInfo</span><span class="o">=</span><span class="p">{},</span>
                                    <span class="n">numTrees</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">featureSubsetStrategy</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
                                    <span class="n">impurity</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span> <span class="n">maxDepth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">maxBins</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">model</span><span class="o">.</span><span class="n">numTrees</span><span class="p">()</span>
-<span class="k">print</span> <span class="n">model</span><span class="o">.</span><span class="n">totalNumNodes</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">toDebugString</span><span class="p">())</span>
-<span class="k">print</span>
+<span class="nb">print</span> <span class="n">model</span><span class="o">.</span><span class="n">numTrees</span><span class="p">()</span>
+<span class="nb">print</span> <span class="n">model</span><span class="o">.</span><span class="n">totalNumNodes</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">toDebugString</span><span class="p">())</span>
+<span class="nb">print</span>
 
 <span class="c1"># Predicting for test data</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">testData</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">features</span><span class="p">))</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
@@ -1447,7 +1479,7 @@ Here is a very simple working code:</p>
 <span class="n">testData_pd</span> <span class="o">=</span> <span class="n">testData</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
 <span class="n">y_test</span> <span class="o">=</span> <span class="n">testData_pd</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
 <span class="n">accuracy</span>    <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Accuracy = &quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy = &quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>(‘Accuracy = ‘, 0.9772)</p>
@@ -1496,8 +1528,8 @@ Here is a very simple working code:</p>
 <h2>Machine Learning using the ML package<a class="headerlink" href="#machine-learning-using-the-ml-package" title="Permalink to this headline">¶</a></h2>
 <p>For the machine-learning package, look at:</p>
 <ul class="simple">
-<li>Version 1.6: <a class="reference external" href="https://spark.apache.org/docs/1.6.0/ml-guide.html">https://spark.apache.org/docs/1.6.0/ml-guide.html</a></li>
-<li>Version 2.1: <a class="reference external" href="https://spark.apache.org/docs/2.1.0/ml-guide.html">https://spark.apache.org/docs/2.1.0/ml-guide.html</a></li>
+<li><p>Version 1.6: <a class="reference external" href="https://spark.apache.org/docs/1.6.0/ml-guide.html">https://spark.apache.org/docs/1.6.0/ml-guide.html</a></p></li>
+<li><p>Version 2.1: <a class="reference external" href="https://spark.apache.org/docs/2.1.0/ml-guide.html">https://spark.apache.org/docs/2.1.0/ml-guide.html</a></p></li>
 </ul>
 <div class="section" id="convert-a-string-column-to-indexed-labels">
 <h3>Convert a string column to indexed labels<a class="headerlink" href="#convert-a-string-column-to-indexed-labels" title="Permalink to this headline">¶</a></h3>
@@ -1631,7 +1663,7 @@ In this example, we have a dataframe with 5 different values (a-f) and we one-ho
 
 <span class="c1"># Transform original data into its bucket index.</span>
 <span class="n">bucketedData</span> <span class="o">=</span> <span class="n">bucketizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">dataFrame</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Bucketizer output with </span><span class="si">%d</span><span class="s2"> buckets&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bucketizer</span><span class="o">.</span><span class="n">getSplits</span><span class="p">())</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bucketizer output with </span><span class="si">%d</span><span class="s2"> buckets&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bucketizer</span><span class="o">.</span><span class="n">getSplits</span><span class="p">())</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">bucketedData</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="c1">#Bucketizer output with 3 buckets</span>
@@ -1656,8 +1688,8 @@ In this example, we have a dataframe with 5 different values (a-f) and we one-ho
 <span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">VectorAssembler</span><span class="p">,</span> <span class="n">StringIndexer</span><span class="p">,</span> <span class="n">VectorIndexer</span>
 <span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="kn">import</span> <span class="n">MulticlassClassificationEvaluator</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1">#USING IRIS DATASET:</span>
 <span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>                       <span class="c1">#The Iris dataset is available through the scikit-learn API</span>
@@ -1700,7 +1732,7 @@ In this example, we have a dataframe with 5 different values (a-f) and we one-ho
 <span class="c1"># Select (prediction, true label) and compute test error</span>
 <span class="n">evaluator</span> <span class="o">=</span> <span class="n">MulticlassClassificationEvaluator</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;indexedLabel&quot;</span><span class="p">,</span> <span class="n">predictionCol</span><span class="o">=</span><span class="s2">&quot;prediction&quot;</span><span class="p">,</span> <span class="n">metricName</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span>
 <span class="n">accuracy</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Accuracy = </span><span class="si">%g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy = </span><span class="si">%g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Accuracy = 0.973684.</p>
@@ -1723,7 +1755,7 @@ In this example, we have a dataframe with 5 different values (a-f) and we one-ho
 <span class="o">+---------+---------+</span>
 
 <span class="n">evaluator</span> <span class="o">=</span> <span class="n">BinaryClassificationEvaluator</span><span class="p">(</span><span class="n">rawPredictionCol</span><span class="o">=</span><span class="s2">&quot;raw&quot;</span><span class="p">,</span> <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;trueLabel&quot;</span><span class="p">,</span> <span class="n">metricName</span><span class="o">=</span><span class="s2">&quot;areaUnderROC&quot;</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
 
 <span class="mf">0.708</span>
 </pre></div>
@@ -1734,14 +1766,14 @@ In this example, we have a dataframe with 5 different values (a-f) and we one-ho
 <h2>Parallelization of scikit-learn into spark<a class="headerlink" href="#parallelization-of-scikit-learn-into-spark" title="Permalink to this headline">¶</a></h2>
 <p>Example using spark_sklearn:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://databricks.com/blog/2016/02/08/auto-scaling-scikit-learn-with-apache-spark.html">https://databricks.com/blog/2016/02/08/auto-scaling-scikit-learn-with-apache-spark.html</a></li>
-<li><a class="reference external" href="https://quickbooks-engineering.intuit.com/operationalizing-scikit-learn-machine-learning-model-under-apache-spark-b009fb6b6c45">https://quickbooks-engineering.intuit.com/operationalizing-scikit-learn-machine-learning-model-under-apache-spark-b009fb6b6c45</a></li>
-<li><a class="reference external" href="https://mapr.com/blog/predicting-airbnb-listing-prices-scikit-learn-and-apache-spark/">https://mapr.com/blog/predicting-airbnb-listing-prices-scikit-learn-and-apache-spark/</a></li>
+<li><p><a class="reference external" href="https://databricks.com/blog/2016/02/08/auto-scaling-scikit-learn-with-apache-spark.html">https://databricks.com/blog/2016/02/08/auto-scaling-scikit-learn-with-apache-spark.html</a></p></li>
+<li><p><a class="reference external" href="https://quickbooks-engineering.intuit.com/operationalizing-scikit-learn-machine-learning-model-under-apache-spark-b009fb6b6c45">https://quickbooks-engineering.intuit.com/operationalizing-scikit-learn-machine-learning-model-under-apache-spark-b009fb6b6c45</a></p></li>
+<li><p><a class="reference external" href="https://mapr.com/blog/predicting-airbnb-listing-prices-scikit-learn-and-apache-spark/">https://mapr.com/blog/predicting-airbnb-listing-prices-scikit-learn-and-apache-spark/</a></p></li>
 </ul>
 <p>Directly using scikit-learn and pyspark’s broadcast function:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://stackoverflow.com/questions/42887621/how-to-do-prediction-with-sklearn-model-inside-spark/42887751">https://stackoverflow.com/questions/42887621/how-to-do-prediction-with-sklearn-model-inside-spark/42887751</a></li>
-<li><a class="reference external" href="https://towardsdatascience.com/deploy-a-python-model-more-efficiently-over-spark-497fc03e0a8d">https://towardsdatascience.com/deploy-a-python-model-more-efficiently-over-spark-497fc03e0a8d</a></li>
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/42887621/how-to-do-prediction-with-sklearn-model-inside-spark/42887751">https://stackoverflow.com/questions/42887621/how-to-do-prediction-with-sklearn-model-inside-spark/42887751</a></p></li>
+<li><p><a class="reference external" href="https://towardsdatascience.com/deploy-a-python-model-more-efficiently-over-spark-497fc03e0a8d">https://towardsdatascience.com/deploy-a-python-model-more-efficiently-over-spark-497fc03e0a8d</a></p></li>
 </ul>
 </div>
 <div class="section" id="text-analysis-in-pyspark">
@@ -1790,7 +1822,7 @@ In this example, we have a dataframe with 5 different values (a-f) and we one-ho
 <span class="n">idfModel</span> <span class="o">=</span> <span class="n">idf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">featurizedData</span><span class="p">)</span>
 <span class="n">rescaledData</span> <span class="o">=</span> <span class="n">idfModel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">featurizedData</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">features_label</span> <span class="ow">in</span> <span class="n">rescaledData</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">features_label</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">features_label</span><span class="p">)</span>
 
 <span class="c1">#Row(features=SparseVector(5, {0: 0.0, 2: 0.5754, 4: 0.0}), label=0)</span>
 <span class="c1">#Row(features=SparseVector(5, {0: 0.0, 2: 0.5754, 3: 0.2877, 4: 0.0}), label=0)</span>
@@ -1808,6 +1840,9 @@ In this example, we have a dataframe with 5 different values (a-f) and we one-ho
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="spark-streaming">
+<h2>Spark Streaming<a class="headerlink" href="#spark-streaming" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 <div class="section" id="scala-spark">

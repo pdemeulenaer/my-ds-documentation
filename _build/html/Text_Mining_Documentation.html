@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -88,7 +88,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas TESTTTTTTTTTTTTTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Sklearn_Documentation.html">Scikit-learn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html">Pyspark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html#scala-spark">Scala - Spark</a></li>
@@ -189,7 +189,7 @@
 <h1>Text Mining in Python<a class="headerlink" href="#text-mining-in-python" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="libraries-and-useful-links">
 <h2>Libraries and useful links<a class="headerlink" href="#libraries-and-useful-links" title="Permalink to this headline">¶</a></h2>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/NLP_libraries.png"><img alt="NLP libraries" src="_images/NLP_libraries.png" style="width: 840.0px; height: 1221.5px;" /></a>
 </div>
 <p><a class="reference external" href="https://www.kdnuggets.com/2018/07/comparison-top-6-python-nlp-libraries.html">https://www.kdnuggets.com/2018/07/comparison-top-6-python-nlp-libraries.html</a></p>
@@ -241,7 +241,7 @@
 <span class="n">text</span> <span class="o">=</span> <span class="n">remove_stopWords_function</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>    <span class="c1">#Removes stopwords (&quot;the&quot;,...)</span>
 <span class="n">text</span> <span class="o">=</span> <span class="n">lemmatize_function</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>           <span class="c1">#Lemmatiz = gets singular form of words when applicable</span>
 <span class="n">text</span> <span class="o">=</span> <span class="n">stem_function</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>                <span class="c1">#Stemming = keeps root of words only</span>
-<span class="k">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output: [‘nonsens’, ‘kiss’, ‘geek’, ‘said’, ‘true’, “i’ll”, ‘account’, ‘termin’]</p>
@@ -274,15 +274,15 @@ Here for the blog: <a class="reference external" href="https://blog.insightdatas
 <span class="n">unique_tokens</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">scene_one</span><span class="p">))</span>
 
 <span class="c1"># Print the unique tokens result</span>
-<span class="k">print</span><span class="p">(</span><span class="n">unique_tokens</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">unique_tokens</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="intro-to-regular-expressions-regex">
 <h2>Intro to regular expressions (REGEX)<a class="headerlink" href="#intro-to-regular-expressions-regex" title="Permalink to this headline">¶</a></h2>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Regex_table.png"><img alt="REGEXES" src="Images/Regex_table.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Regex_table.png"><img alt="REGEXES" src="_images/Regex_table.png" style="width: 567.0px; height: 336.0px;" /></a>
 </div>
 <p>Examples of regex patterns:</p>
 <p>pattern1 = r”#w+”
@@ -310,8 +310,8 @@ Output: [‘🍕’, ‘🚕’]</p>
 <h2>Bag of Words (BOW)<a class="headerlink" href="#bag-of-words-bow" title="Permalink to this headline">¶</a></h2>
 <p>The most primitive method. The bag-of-words is a representation of text that describes the occurrence of words within a document. It involves two things:</p>
 <ul class="simple">
-<li>A vocabulary of known words.</li>
-<li>A measure of the presence of known words.</li>
+<li><p>A vocabulary of known words.</p></li>
+<li><p>A measure of the presence of known words.</p></li>
 </ul>
 <p>Why is it is called a “bag” of words? That is because any information about the order or structure of words in the document is discarded and the model is only concerned with whether the known words occur in the document, not where they occur in the document.</p>
 <p>The intuition behind the Bag of Words is that documents are similar if they have similar content. Also, we can learn something about the meaning of the document from its content alone.</p>
@@ -339,8 +339,8 @@ Output: [‘🍕’, ‘🚕’]</p>
 <p>Dot product (d1,d2) = d1[0] * d2[0] + d1[1] * d2[1] * … * d1[n] * d2[n]</p>
 <p>||d1|| = square root(d1[0]2 + d1[1]2 + … + d1[n]2)</p>
 <p>||d2|| = square root(d2[0]2 + d2[1]2 + … + d2[n]2)</p>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Cosine_similarity.png"><img alt="Cosine similarity" src="Images/Cosine_similarity.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Cosine_similarity.png"><img alt="Cosine similarity" src="_images/Cosine_similarity.png" style="width: 456.0px; height: 354.0px;" /></a>
 </div>
 <p>Note we can compute the similarity between words, but also between groups of words, i.e. sentences, documents.</p>
 <p>A very straightforward application of the cosine similarity is in chatbots, where a query can be compared to a bunch of documents; the most similar document being selected;</p>
@@ -353,16 +353,16 @@ Output: [‘🍕’, ‘🚕’]</p>
 <p><a class="reference external" href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/">http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/</a></p>
 <p>The problem of word representation in numbers:</p>
 <p>A traditional way of representing words is one-hot vector, which is essentially a vector with only one target element being 1 and the others being 0. The length of the vector is equal to the size of the total unique vocabulary in the corpora. Conventionally, these unique words are encoded in alphabetical order. Namely, you should expect the one-hot vectors for words starting with “a” with target “1” of lower index, while those for words beginning with “z” with target “1” of higher index.</p>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Word_OHE.png"><img alt="Word_OHE" src="Images/Word_OHE.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Word_OHE.png"><img alt="Word_OHE" src="_images/Word_OHE.png" style="width: 337.0px; height: 272.0px;" /></a>
 </div>
 <p>Word2Vec is an efficient solution to these problems, which leverages the context of the target words. Essentially, we want to use the surrounding words to represent the target words with a Neural Network whose hidden layer encodes the word representation.</p>
 <p>Word2Vec is a technique to find continuous embeddings for words. It learns from reading massive amounts of text and memorizing which words tend to appear in similar contexts. After being trained on enough data, it generates a 300-dimension vector for each word in a vocabulary, with words of similar meaning being closer to each other.</p>
 <p>Word2vec is a model that was pre-trained on a very large corpus, and provides embeddings that map words that are similar close to each other. A quick way to get a sentence embedding for our classifier, is to average word2vec scores of all words in our sentence.</p>
 <p>There are two types of Word2Vec, Skip-gram and Continuous Bag of Words (CBOW). Given a corpus (set of sentences) we can imagine 2 tasks:</p>
 <ul class="simple">
-<li>Skip-gram: Loop on each word and try to predict its neighbors (=its context, +-N words around it)</li>
-<li>CBOW: Loop on each word and use the context (+-N words around it) to predict the word</li>
+<li><p>Skip-gram: Loop on each word and try to predict its neighbors (=its context, +-N words around it)</p></li>
+<li><p>CBOW: Loop on each word and use the context (+-N words around it) to predict the word</p></li>
 </ul>
 <p>Skip-Gram:</p>
 <p>Let’s imagine a sentence like this traditional one: “the quick brown fox jumps over the lazy dog”. Here we use a window of size 2 as “context” of a given word.
@@ -370,39 +370,40 @@ The idea is to train a simple neural network (not deep), with only one hidden la
 Then the procedure is this one: given a specific word in a sentence, look at words nearby (i.e. in the context), and pick one randomly. The network will tell us the probability for every word in our vocabulary of being the “nearby word” that we choose.</p>
 <p>Example: input word: “Soviet”. The output probability will be much higher for “Union” or “Russia” than for “Watermelon”.</p>
 <p>So we will train the network by feeding the words pairs found in the corpus:</p>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Skip_Gram_1.png"><img alt="Skip_Gram_1" src="Images/Skip_Gram_1.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Skip_Gram_1.png"><img alt="Skip_Gram_1" src="_images/Skip_Gram_1.png" style="width: 468.29999999999995px; height: 295.4px;" /></a>
 </div>
 <p>with such a network:</p>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Skip_Gram_2.png"><img alt="Skip_Gram_2" src="Images/Skip_Gram_2.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Skip_Gram_2.png"><img alt="Skip_Gram_2" src="_images/Skip_Gram_2.png" style="width: 640.0px; height: 399.20000000000005px;" /></a>
 </div>
 <p>Say the vocabulary (each word in the corpus) has size 10000. So that means the input word “ants” will be fed like a one-hot-encoded of size 10000 full of zeros and just one “1”.
 The weights of the 300 neurons hidden layers, when trained, are (almost) the embeddings! The hidden layer is going to be represented by a weight matrix with 10,000 rows (one for every word in our vocabulary) and 300 columns (one for every hidden neuron, left on the next picture). If you look at the rows of this weight matrix (right, in the next picture), these are actually what will be our word vectors!</p>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="Images/Skip_Gram_3.png"><img alt="Skip_Gram_3" src="Images/Skip_Gram_3.png" /></a>
 </div>
 <p>Problem: We need few additional modifications to the basic skip-gram model which are important for actually making it feasible to train. Running gradient descent on a neural network that large is going to be slow. And to make matters worse, you need a huge amount of training data in order to tune that many weights and avoid over-fitting. millions of weights times billions of training samples means that training this model is going to be a beast.</p>
 <blockquote>
-<div>The authors of Word2Vec addressed these issues in their second paper.</div></blockquote>
+<div><p>The authors of Word2Vec addressed these issues in their second paper.</p>
+</div></blockquote>
 <p>There are three innovations in this second paper:</p>
 <ul class="simple">
-<li>Treating common word pairs or phrases as single “words” in their model.</li>
-<li>Subsampling frequent words to decrease the number of training examples.</li>
-<li>Modifying the optimization objective with a technique they called “Negative Sampling”, which causes each training sample to update only a small percentage of the model’s weights.</li>
+<li><p>Treating common word pairs or phrases as single “words” in their model.</p></li>
+<li><p>Subsampling frequent words to decrease the number of training examples.</p></li>
+<li><p>Modifying the optimization objective with a technique they called “Negative Sampling”, which causes each training sample to update only a small percentage of the model’s weights.</p></li>
 </ul>
 <p>It’s worth noting that subsampling frequent words and applying Negative Sampling not only reduced the compute burden of the training process, but also improved the quality of their resulting word vectors as well.</p>
 <p>Subsampling:</p>
 <p>There are two “problems” with common words like “the”:</p>
 <ul class="simple">
-<li>When looking at word pairs, (“fox”, “the”) doesn’t tell us much about the meaning of “fox”. “the” appears in the context of pretty much every word.</li>
-<li>We will have many more samples of (“the”, …) than we need to learn a good vector for “the”.</li>
+<li><p>When looking at word pairs, (“fox”, “the”) doesn’t tell us much about the meaning of “fox”. “the” appears in the context of pretty much every word.</p></li>
+<li><p>We will have many more samples of (“the”, …) than we need to learn a good vector for “the”.</p></li>
 </ul>
 <p>Word2Vec implements a “subsampling” scheme to address this. For each word we encounter in our training text, there is a chance that we will effectively delete it from the text. The probability that we cut the word is related to the word’s frequency.</p>
 <p>If we have a window size of 10, and we remove a specific instance of “the” from our text:</p>
 <ul class="simple">
-<li>As we train on the remaining words, “the” will not appear in any of their context windows.</li>
-<li>We’ll have 10 fewer training samples where “the” is the input word.</li>
+<li><p>As we train on the remaining words, “the” will not appear in any of their context windows.</p></li>
+<li><p>We’ll have 10 fewer training samples where “the” is the input word.</p></li>
 </ul>
 <p>Negative Sampling:</p>
 <p>As we discussed above, the size of our word vocabulary means that our skip-gram neural network has a tremendous number of weights, all of which would be updated slightly by every one of our billions of training samples!</p>

@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Pyspark" href="Pyspark_Documentation.html" />
-    <link rel="prev" title="Python, Jupyter and Pandas" href="Pandas_Documentation.html" />
+    <link rel="prev" title="Python, Jupyter and Pandas TESTTTTTTTTTTTTTTT" href="Pandas_Documentation.html" />
     <link href="_static/style.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -88,7 +88,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas TESTTTTTTTTTTTTTTT</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Scikit-learn</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basic-scikit-learn-documentation">Basic Scikit-learn documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#data-preparation">Data Preparation</a><ul>
@@ -206,13 +206,13 @@
 <div class="section" id="basic-scikit-learn-documentation">
 <h2>Basic Scikit-learn documentation<a class="headerlink" href="#basic-scikit-learn-documentation" title="Permalink to this headline">¶</a></h2>
 <div class="topic">
-<p class="topic-title first">Introduction</p>
+<p class="topic-title">Introduction</p>
 <p>The objective here is to have everything useful for the projects, not to make a complete documentation of the whole package. Here I will try to document both version 1.6 and &gt;2.0. A special enphase will be done on machine learning module ml (mllib is outdated).</p>
 </div>
 <p>Scikit-learn (<a class="reference external" href="http://scikit-learn.org/stable/">http://scikit-learn.org/stable/</a>) is the Machine Learning well-known library in python. Here is a very short summary from DataCamp:</p>
-<div class="figure" id="id1">
-<a class="reference internal image-reference" href="Cheatsheets/Sklearn_Cheat_Sheet.png"><img alt="map to buried treasure" src="Cheatsheets/Sklearn_Cheat_Sheet.png" /></a>
-<p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span></p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="_images/Sklearn_Cheat_Sheet.png"><img alt="map to buried treasure" src="_images/Sklearn_Cheat_Sheet.png" style="width: 1403.0px; height: 992.0px;" /></a>
+<p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="data-preparation">
@@ -275,8 +275,8 @@
 <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;TRANSTYPE&#39;</span><span class="p">,</span><span class="s1">&#39;TRANSTYPE_label&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Encoding_pandas.png"><img alt="map to buried treasure" src="Images/Encoding_pandas.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Encoding_pandas.png"><img alt="map to buried treasure" src="_images/Encoding_pandas.png" style="width: 175.79999999999998px; height: 265.8px;" /></a>
 </div>
 <p>A maybe more general way to label encode several features in one shot (and save the encoders!) would be:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">list_encoders</span><span class="o">=</span><span class="p">[]</span>
@@ -316,9 +316,9 @@ In essence, Label Encoding is ok when working with tree methods</p>
         <span class="c1">#macro, micro are defined here http://stackoverflow.com/questions/31421413/how-to-compute-precision-recall-accuracy-and-f1-score-for-the-multiclass-case</span>
         <span class="c1">#Macro: Take the average of the f1-score for each class macro</span>
         <span class="c1">#Micro: Compute the f1-score using the global count of true positives / false negatives, etc. (you sum the number of true positives / false negatives for each class) . accuracy_score gives the same!</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;macro&quot;</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;macro&quot;</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;macro&quot;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;macro&quot;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;macro&quot;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;macro&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -335,31 +335,31 @@ In essence, Label Encoding is ok when working with tree methods</p>
 </div>
 <p>We can use a vizualization tool, graphviz, to print the decision tree. It is sometimes useful to understand the classification of particular observation.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">graphviz</span>
-<span class="n">dot_data</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+<span class="n">dot_data</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                        <span class="n">feature_names</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span>
                        <span class="n">class_names</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">,</span>
-                       <span class="n">filled</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">rounded</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-                       <span class="n">special_characters</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                       <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                       <span class="n">special_characters</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">graph</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">dot_data</span><span class="p">)</span>
 <span class="n">graph</span>
 </pre></div>
 </div>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Graphviz_tree.png"><img alt="map to buried treasure" src="Images/Graphviz_tree.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Graphviz_tree.png"><img alt="map to buried treasure" src="_images/Graphviz_tree.png" style="width: 804.6px; height: 555.6px;" /></a>
 </div>
 </div>
 <div class="section" id="random-forest">
 <h2>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h2>
 <p>The RF algo applied on the iris dataset. For the algorithm description see <a class="reference internal" href="Algorithms_Documentation.html#rf-algo-label"><span class="std std-ref">Random Forest</span></a></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">IPython.core.pylabtools</span> <span class="kn">import</span> <span class="n">figsize</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">pylab</span>
 <span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="kn">as</span> <span class="nn">cm</span>
-<span class="kn">import</span> <span class="nn">matplotlib.mlab</span> <span class="kn">as</span> <span class="nn">mlab</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.mlab</span> <span class="k">as</span> <span class="nn">mlab</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
 <span class="c1">#Import of SKLEARN packages</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span><span class="p">,</span> <span class="n">confusion_matrix</span>
@@ -382,8 +382,8 @@ In essence, Label Encoding is ok when working with tree methods</p>
 <span class="n">data_pd</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Iris_Dataset.png"><img alt="Iris dataset" src="Images/Iris_Dataset.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Iris_Dataset.png"><img alt="Iris dataset" src="_images/Iris_Dataset.png" style="width: 429.0px; height: 153.0px;" /></a>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># A VERY SMALL EDA</span>
 
@@ -393,14 +393,14 @@ In essence, Label Encoding is ok when working with tree methods</p>
 <span class="n">g</span><span class="o">.</span><span class="n">map_upper</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Iris_Seaborn.png"><img alt="Iris with seaborn" src="Images/Iris_Seaborn.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Iris_Seaborn.png"><img alt="Iris with seaborn" src="_images/Iris_Seaborn.png" style="width: 668.0px; height: 679.0px;" /></a>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">data_pd</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Iris_boxplot.png"><img alt="Iris with seaborn's boxplot" src="Images/Iris_boxplot.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Iris_boxplot.png"><img alt="Iris with seaborn's boxplot" src="_images/Iris_boxplot.png" style="width: 464.0px; height: 327.0px;" /></a>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#FEATURES SELECTION</span>
 <span class="n">feature_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">]</span>
@@ -421,9 +421,9 @@ In essence, Label Encoding is ok when working with tree methods</p>
       <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
 
       <span class="c1"># EVALUATION OF THE ACCURACY</span>
-      <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-      <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Results with the classifier: &#39;</span><span class="p">,</span> <span class="n">clf_name</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
-      <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Accuracy derived (1=100%): &#39;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
+      <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Results with the classifier: &#39;</span><span class="p">,</span> <span class="n">clf_name</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy derived (1=100%): &#39;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
 
       <span class="k">return</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span>
 
@@ -433,23 +433,23 @@ In essence, Label Encoding is ok when working with tree methods</p>
                            <span class="n">max_features</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
                            <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span><span class="c1">#&#39;entropy&#39;,</span>
                            <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span>
-                           <span class="n">bootstrap</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                           <span class="n">bootstrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                            <span class="n">random_state</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span>
                            <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#n_jobs=-1 uses all available cores!!!</span>
 
 <span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">clf_name</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">data_pd</span><span class="p">,</span> <span class="n">feature_cols</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
 
 <span class="c1">#RANKING OF VARIABLES (available only for Random Forest)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Ranking of variables from Random Forest:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ranking of variables from Random Forest:&quot;</span><span class="p">)</span>
 <span class="n">feature_importance_index_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">jj</span> <span class="ow">in</span> <span class="n">feature_importance_index_sorted</span><span class="p">:</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">feature_cols</span><span class="p">[</span><span class="n">jj</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">[</span><span class="n">jj</span><span class="p">],</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">feature_cols</span><span class="p">[</span><span class="n">jj</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">[</span><span class="n">jj</span><span class="p">],</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
 
 <span class="c1"># Accuracy and Confusion Matrix</span>
 <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Accuracy = &#39;</span><span class="p">,</span><span class="n">accuracy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy = &#39;</span><span class="p">,</span><span class="n">accuracy</span><span class="p">)</span>
 <span class="c1">#print &#39;ROC_AUC  = &#39;, roc_auc</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Confusion matrix:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Confusion matrix:&#39;</span><span class="p">)</span>
 <span class="n">C</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 <span class="n">C_normalized</span> <span class="o">=</span> <span class="n">C</span> <span class="o">/</span> <span class="n">C</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="c1">#print C_normalized</span>
@@ -459,8 +459,8 @@ In essence, Label Encoding is ok when working with tree methods</p>
 <span class="n">C_normalized_pd</span>
 </pre></div>
 </div>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Accuracy_and_ConfMat.png"><img alt="Accuracy and Confusion matrix" src="Images/Accuracy_and_ConfMat.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Accuracy_and_ConfMat.png"><img alt="Accuracy and Confusion matrix" src="_images/Accuracy_and_ConfMat.png" style="width: 257.0px; height: 160.0px;" /></a>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># SENSITIVITY COMPUTATION (taken from https://stackoverflow.com/questions/31324218/scikit-learn-how-to-obtain-true-positive-true-negative-false-positive-and-fal)</span>
 <span class="n">FP</span> <span class="o">=</span> <span class="n">C_normalized_pd</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">C_normalized_pd</span><span class="p">)</span>
@@ -486,13 +486,13 @@ In essence, Label Encoding is ok when working with tree methods</p>
 <span class="c1"># Overall accuracy</span>
 <span class="n">ACC</span> <span class="o">=</span> <span class="p">(</span><span class="n">TP</span><span class="o">+</span><span class="n">TN</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">TP</span><span class="o">+</span><span class="n">FP</span><span class="o">+</span><span class="n">FN</span><span class="o">+</span><span class="n">TN</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;SENSITIVITY:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SENSITIVITY:&#39;</span><span class="p">)</span>
 <span class="n">Sensitivity_pd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">Classes</span><span class="p">,</span><span class="n">TPR</span><span class="p">)),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">,</span><span class="s1">&#39;Sensitivity&#39;</span><span class="p">])</span>
 <span class="n">Sensitivity_pd</span>
 </pre></div>
 </div>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Sensitivity.png"><img alt="Sensitivity" src="Images/Sensitivity.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Sensitivity.png"><img alt="Sensitivity" src="_images/Sensitivity.png" style="width: 157.0px; height: 110.0px;" /></a>
 </div>
 </div>
 <div class="section" id="neural-networks">
@@ -500,9 +500,9 @@ In essence, Label Encoding is ok when working with tree methods</p>
 <div class="section" id="introduction-to-keras-package">
 <h3>Introduction to Keras package<a class="headerlink" href="#introduction-to-keras-package" title="Permalink to this headline">¶</a></h3>
 <p>Keras (<a class="reference external" href="https://keras.io/">https://keras.io/</a>) is a python library that works ontop of the Neural Network Theano and TensorFlow libraries. Here is a very short summary from DataCamp:</p>
-<div class="figure" id="id2">
-<a class="reference internal image-reference" href="Cheatsheets/Keras_Cheat_Sheet_Python.png"><img alt="map to buried treasure" src="Cheatsheets/Keras_Cheat_Sheet_Python.png" /></a>
-<p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span></p>
+<div class="figure align-default" id="id2">
+<a class="reference internal image-reference" href="_images/Keras_Cheat_Sheet_Python.png"><img alt="map to buried treasure" src="_images/Keras_Cheat_Sheet_Python.png" style="width: 1399.0px; height: 989.0px;" /></a>
+<p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -522,9 +522,9 @@ In essence, Label Encoding is ok when working with tree methods</p>
                          <span class="n">n_repeated</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                          <span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                          <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                         <span class="n">shuffle</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                         <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">rfc</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">max_features</span><span class="o">=</span> <span class="s1">&#39;sqrt&#39;</span> <span class="p">,</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">oob_score</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">rfc</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">max_features</span><span class="o">=</span> <span class="s1">&#39;sqrt&#39;</span> <span class="p">,</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">oob_score</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">700</span><span class="p">],</span>
@@ -533,9 +533,9 @@ In essence, Label Encoding is ok when working with tree methods</p>
 
 <span class="n">CV_rfc</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">rfc</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">CV_rfc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">CV_rfc</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">CV_rfc</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">CV_rfc</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">CV_rfc</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">CV_rfc</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">CV_rfc</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -543,10 +543,11 @@ In essence, Label Encoding is ok when working with tree methods</p>
 0.86
 RandomForestClassifier(bootstrap=True, class_weight=None, criterion=’gini’,</p>
 <blockquote>
-<div>max_depth=None, max_features=’sqrt’, max_leaf_nodes=None,
+<div><p>max_depth=None, max_features=’sqrt’, max_leaf_nodes=None,
 min_samples_leaf=1, min_samples_split=2,
 min_weight_fraction_leaf=0.0, n_estimators=700, n_jobs=-1,
-oob_score=True, random_state=None, verbose=0, warm_start=False)</div></blockquote>
+oob_score=True, random_state=None, verbose=0, warm_start=False)</p>
+</div></blockquote>
 </div>
 <div class="section" id="how-to-measure-the-feature-importance-in-rf-or-other-algo">
 <h2>How to measure the Feature importance in RF (or other algo)<a class="headerlink" href="#how-to-measure-the-feature-importance-in-rf-or-other-algo" title="Permalink to this headline">¶</a></h2>
@@ -576,8 +577,8 @@ This method is not directly exposed in sklearn, but it is straightforward to imp
       <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">X_t</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span>
       <span class="n">shuff_acc</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_t</span><span class="p">))</span>
       <span class="n">scores</span><span class="p">[</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">acc</span><span class="o">-</span><span class="n">shuff_acc</span><span class="p">)</span><span class="o">/</span><span class="n">acc</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span> <span class="s2">&quot;Features sorted by their score:&quot;</span> <span class="p">)</span>
-<span class="k">print</span><span class="p">(</span> <span class="nb">sorted</span><span class="p">([(</span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">score</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span> <span class="n">feat</span><span class="p">)</span> <span class="k">for</span> <span class="n">feat</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">scores</span><span class="o">.</span><span class="n">items</span><span class="p">()],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;Features sorted by their score:&quot;</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="nb">sorted</span><span class="p">([(</span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">score</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span> <span class="n">feat</span><span class="p">)</span> <span class="k">for</span> <span class="n">feat</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">scores</span><span class="o">.</span><span class="n">items</span><span class="p">()],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="p">)</span>
 </pre></div>
 </div>
 <p>Features sorted by their score:
@@ -596,7 +597,7 @@ In this example LSTAT and RM are two features that strongly impact model perform
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn</span>
 <span class="kn">import</span> <span class="nn">sklearn.datasets</span>
 <span class="kn">import</span> <span class="nn">sklearn.ensemble</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">lime</span>
 <span class="kn">import</span> <span class="nn">lime.lime_tabular</span>
 
@@ -610,28 +611,29 @@ In this example LSTAT and RM are two features that strongly impact model perform
 <p>Output:
 RandomForestClassifier(bootstrap=True, class_weight=None, criterion=’gini’,</p>
 <blockquote>
-<div>max_depth=None, max_features=’auto’, max_leaf_nodes=None,
+<div><p>max_depth=None, max_features=’auto’, max_leaf_nodes=None,
 min_impurity_decrease=0.0, min_impurity_split=None,
 min_samples_leaf=1, min_samples_split=2,
 min_weight_fraction_leaf=0.0, n_estimators=500, n_jobs=1,
 oob_score=False, random_state=None, verbose=0,
-warm_start=False)</div></blockquote>
+warm_start=False)</p>
+</div></blockquote>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">labels_test</span><span class="p">,</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:
 0.90</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">explainer</span> <span class="o">=</span> <span class="n">lime</span><span class="o">.</span><span class="n">lime_tabular</span><span class="o">.</span><span class="n">LimeTabularExplainer</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">,</span> <span class="n">discretize_continuous</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">explainer</span> <span class="o">=</span> <span class="n">lime</span><span class="o">.</span><span class="n">lime_tabular</span><span class="o">.</span><span class="n">LimeTabularExplainer</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">,</span> <span class="n">discretize_continuous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># We select one random observation (we can also take one particular, e.g. i=20)</span>
 <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">exp</span> <span class="o">=</span> <span class="n">explainer</span><span class="o">.</span><span class="n">explain_instance</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">top_labels</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">exp</span><span class="o">.</span><span class="n">show_in_notebook</span><span class="p">(</span><span class="n">show_table</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">show_all</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">exp</span><span class="o">.</span><span class="n">show_in_notebook</span><span class="p">(</span><span class="n">show_table</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_all</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/LIME_on_IRIS_classification_figure.png"><img alt="map to buried treasure" src="Images/LIME_on_IRIS_classification_figure.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/LIME_on_IRIS_classification_figure.png"><img alt="map to buried treasure" src="_images/LIME_on_IRIS_classification_figure.png" style="width: 771.0px; height: 113.0px;" /></a>
 </div>
 </div>
 </div>
@@ -640,7 +642,7 @@ warm_start=False)</div></blockquote>
 <p>This package is designed for tree based methods like decision tree, random forest, extreme randomized forest.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#built on top of the RF model on Iris dataset above</span>
 
-<span class="kn">import</span> <span class="nn">treeinterpreter</span> <span class="kn">as</span> <span class="nn">ti</span>
+<span class="kn">import</span> <span class="nn">treeinterpreter</span> <span class="k">as</span> <span class="nn">ti</span>
 <span class="n">feature_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span><span class="s1">&#39;sepal_width&#39;</span><span class="p">,</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span><span class="s1">&#39;petal_width&#39;</span><span class="p">]</span>
 <span class="n">Classes</span>      <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;setosa&#39;</span><span class="p">,</span><span class="s1">&#39;versicolor&#39;</span><span class="p">,</span><span class="s1">&#39;virginica&#39;</span><span class="p">]</span>
 
@@ -660,9 +662,9 @@ warm_start=False)</div></blockquote>
   <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
   <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">pos_name</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">series</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">neg_name</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">series</span><span class="p">,</span><span class="mi">0</span><span class="p">)})</span>
   <span class="n">blank</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-  <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="n">blank</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">],</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+  <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="n">blank</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">],</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
   <span class="n">ax</span><span class="o">.</span><span class="n">get_children</span><span class="p">()[</span><span class="nb">len</span><span class="p">(</span><span class="n">series</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">)</span> <span class="c1">#Put the prediction in green</span>
-  <span class="n">step</span> <span class="o">=</span> <span class="n">blank</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">step</span> <span class="o">=</span> <span class="n">blank</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
   <span class="n">step</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">step</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">step</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="s1">&#39;-k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">fig</span>
@@ -671,7 +673,7 @@ warm_start=False)</div></blockquote>
 <span class="n">prediction</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">contributions</span> <span class="o">=</span> <span class="n">TreeInterpreter_contributions</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span><span class="n">clf</span><span class="p">,</span><span class="n">feature_cols</span><span class="p">)</span>
 <span class="n">class_selected</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">prediction</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">class_name_selected</span> <span class="o">=</span> <span class="n">Classes</span><span class="p">[</span><span class="n">class_selected</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">class_selected</span><span class="p">,</span><span class="n">class_name_selected</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">class_selected</span><span class="p">,</span><span class="n">class_name_selected</span><span class="p">)</span>
 <span class="n">test2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">bias</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">class_selected</span><span class="p">]]</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">contributions</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="n">class_selected</span><span class="p">])</span><span class="o">+</span><span class="p">[</span><span class="o">-</span><span class="n">prediction</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">class_selected</span><span class="p">]],</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bias&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">feature_cols</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;Net&#39;</span><span class="p">])</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">waterfall</span><span class="p">(</span><span class="n">test2</span><span class="p">,</span><span class="n">class_name_selected</span><span class="p">,</span><span class="s1">&#39;Other labels&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">])</span>
@@ -679,18 +681,19 @@ warm_start=False)</div></blockquote>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="figure">
-<a class="reference internal image-reference" href="Images/Contributions.png"><img alt="Contributions to the prediction probability by tree-interpreter" src="Images/Contributions.png" /></a>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Contributions.png"><img alt="Contributions to the prediction probability by tree-interpreter" src="_images/Contributions.png" style="width: 491.0px; height: 514.0px;" /></a>
 </div>
 </div>
 <div class="section" id="very-important-update-in-the-field-of-interpretation">
 <h2>Very important update in the field of interpretation:<a class="headerlink" href="#very-important-update-in-the-field-of-interpretation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>ELI5 (Explain me like I am 5): <a class="reference external" href="https://eli5.readthedocs.io/en/latest/">https://eli5.readthedocs.io/en/latest/</a></li>
-<li>SHAP:<ul>
-<li><a class="reference external" href="https://github.com/slundberg/shap">https://github.com/slundberg/shap</a> : main intro + examples</li>
-<li><a class="reference external" href="http://www.f1-predictor.com/model-interpretability-with-shap/">http://www.f1-predictor.com/model-interpretability-with-shap/</a></li>
-<li><a class="reference external" href="https://medium.com/civis-analytics/demystifying-black-box-models-with-shap-value-analysis-3e20b536fc80">https://medium.com/civis-analytics/demystifying-black-box-models-with-shap-value-analysis-3e20b536fc80</a></li>
+<li><p>ELI5 (Explain me like I am 5): <a class="reference external" href="https://eli5.readthedocs.io/en/latest/">https://eli5.readthedocs.io/en/latest/</a></p></li>
+<li><p>SHAP:</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/slundberg/shap">https://github.com/slundberg/shap</a> : main intro + examples</p></li>
+<li><p><a class="reference external" href="http://www.f1-predictor.com/model-interpretability-with-shap/">http://www.f1-predictor.com/model-interpretability-with-shap/</a></p></li>
+<li><p><a class="reference external" href="https://medium.com/civis-analytics/demystifying-black-box-models-with-shap-value-analysis-3e20b536fc80">https://medium.com/civis-analytics/demystifying-black-box-models-with-shap-value-analysis-3e20b536fc80</a></p></li>
 </ul>
 </li>
 </ul>
@@ -724,28 +727,28 @@ warm_start=False)</div></blockquote>
 <h3>Gaussian Mixture Model (GMM)<a class="headerlink" href="#gaussian-mixture-model-gmm" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://scikit-learn.org/stable/modules/mixture.html">http://scikit-learn.org/stable/modules/mixture.html</a></p>
 <ol class="arabic simple">
-<li>Classical GMM</li>
-<li>Bayesian GMM</li>
+<li><p>Classical GMM</p></li>
+<li><p>Bayesian GMM</p></li>
 </ol>
 <p>Here we can detect the number of component automatically (in theory).</p>
 <p>Due to its Bayesian nature, the variational algorithm needs more hyper- parameters than expectation-maximization, the most important of these being the concentration parameter weight_concentration_prior. Specifying a low value for the concentration prior will make the model put most of the weight on few components set the remaining components weights very close to zero. High values of the concentration prior will allow a larger number of components to be active in the mixture.</p>
 <p>The parameters implementation of the BayesianGaussianMixture class proposes two types of prior for the weights distribution: a finite mixture model with Dirichlet distribution and an infinite mixture model with the Dirichlet Process. In practice Dirichlet Process inference algorithm is approximated and uses a truncated distribution with a fixed maximum number of components (called the Stick-breaking representation). The number of components actually used almost always depends on the data.</p>
 <p>Important parameters:</p>
 <ul class="simple">
-<li>weight_concentration_prior_type : str, defaults to ‘dirichlet_process’.</li>
+<li><p>weight_concentration_prior_type : str, defaults to ‘dirichlet_process’.</p></li>
 </ul>
 <p>String describing the type of the weight concentration prior. Must be one of:</p>
 <p>‘dirichlet_process’ (using the Stick-breaking representation),
 ‘dirichlet_distribution’ (can favor more uniform weights).</p>
 <ul class="simple">
-<li>weight_concentration_prior : float | None, optional.</li>
+<li><p>weight_concentration_prior : float | None, optional.</p></li>
 </ul>
 <p>The dirichlet concentration of each component on the weight distribution (Dirichlet). This is commonly called gamma in the literature. The higher concentration puts more mass in the center and will lead to more components being active, while a lower concentration parameter will lead to more mass at the edge of the mixture weights simplex. The value of the parameter must be greater than 0. If it is None, it’s set to 1. / n_components.</p>
 <p>See See <a class="reference external" href="http://scikit-learn.org/stable/modules/mixture.html#variational-bayesian-gaussian-mixture">http://scikit-learn.org/stable/modules/mixture.html#variational-bayesian-gaussian-mixture</a></p>
 <p>See <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.mixture.BayesianGaussianMixture.html#sklearn.mixture.BayesianGaussianMixture">http://scikit-learn.org/stable/modules/generated/sklearn.mixture.BayesianGaussianMixture.html#sklearn.mixture.BayesianGaussianMixture</a></p>
 <p>Based on <a class="reference external" href="http://scikit-learn.org/stable/auto_examples/mixture/plot_concentration_prior.html#sphx-glr-auto-examples-mixture-plot-concentration-prior-py">http://scikit-learn.org/stable/auto_examples/mixture/plot_concentration_prior.html#sphx-glr-auto-examples-mixture-plot-concentration-prior-py</a></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
@@ -753,8 +756,8 @@ warm_start=False)</div></blockquote>
 <span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">BayesianGaussianMixture</span>
 
 
-<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="kn">as</span> <span class="nn">mpl</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 
@@ -860,7 +863,7 @@ warm_start=False)</div></blockquote>
      <span class="mf">9.64741381e-15</span><span class="p">,</span> <span class="mf">6.02963363e-16</span><span class="p">,</span> <span class="mf">3.76852102e-17</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="_images/GMM_bayes.png"><img alt="map to buried treasure" src="_images/GMM_bayes.png" style="width: 989.0px; height: 366.0px;" /></a>
 </div>
 </div>
@@ -878,7 +881,7 @@ warm_start=False)</div></blockquote>
         <a href="Pyspark_Documentation.html" class="btn btn-neutral float-right" title="Pyspark" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="Pandas_Documentation.html" class="btn btn-neutral float-left" title="Python, Jupyter and Pandas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Pandas_Documentation.html" class="btn btn-neutral float-left" title="Python, Jupyter and Pandas TESTTTTTTTTTTTTTTT" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

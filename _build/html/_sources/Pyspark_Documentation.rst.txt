@@ -10,7 +10,16 @@ Basic Pyspark documentation
     The objective here is to have everything useful for the projects, not to make a complete documentation of the whole package. Here I will try to document both version 1.6 and >2.0. A special enphase will be done on machine learning module ml (mllib is outdated).
     We will not review the full Pyspark documentation. For that, look at http://spark.apache.org/docs/1.6.0/programming-guide.html for version 1.6, http://spark.apache.org/docs/2.1.0/programming-guide.html for version 2.1.
  
-To create
+Spark installation
+-------------------------------
+
+On windows: https://medium.com/big-data-engineering/how-to-install-apache-spark-2-x-in-your-pc-e2047246ffc3
+
+On Ubuntu: 
+
+- https://computingforgeeks.com/how-to-install-apache-spark-on-ubuntu-debian/
+
+- https://medium.com/devilsadvocatediwakar/installing-apache-spark-on-ubuntu-8796bfdd0861
 
 Spark-submit tasks
 -------------------------------
@@ -477,6 +486,39 @@ Saving to (distributed) CSV file using Spark
   |          114|         4|     4|     600.0|
   |          115|         1|     2|     500.0|
   +-------------+----------+------+----------+  
+  
+Saving and loading to different file formats (orc, parquet)
+----------------------------------------------------------------------------------
+
+Saving to parquet to whatever file system (but I experienced problem to read that in hive):
+
+.. sourcecode:: python
+
+  ts_balance.write.format("parquet").mode("overwrite").save("ts_mock_10K_all_prepared.parquet")  
+  
+But when spark runs on hadoop, it is not sure where this is saved... (impossible to find in hive, even when specifying some db) 
+
+Saving to parquet to hive:
+
+.. sourcecode:: python
+
+  ts_balance.write.format("parquet").saveAsTable('db.ts_mock_10K_all_prepared', mode='overwrite')   
+  
+How to read?
+
+We can read either (when not saved in hive):
+
+.. sourcecode:: python
+
+  df = spark.read.parquet("db.ts_mock_10K.parquet").cache()
+
+Second case, from a hive database:
+
+.. sourcecode:: python
+
+  df = spark.table('db.ts_mock_10K_all_prepared')
+  
+  
   
 Random sampling
 ------------------------------------
@@ -1826,6 +1868,9 @@ Here a more elaborated example:
   +-----+--------------------+--------------------+--------------------+--------------------+    
   
   
+Spark Streaming
+=======================
+
   
   
   

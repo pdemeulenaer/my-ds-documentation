@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -88,7 +88,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas TESTTTTTTTTTTTTTTT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Sklearn_Documentation.html">Scikit-learn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html">Pyspark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html#scala-spark">Scala - Spark</a></li>
@@ -186,7 +186,7 @@
 <div class="section" id="basic-sql-documentation">
 <h2>Basic SQL documentation<a class="headerlink" href="#basic-sql-documentation" title="Permalink to this headline">¶</a></h2>
 <div class="topic">
-<p class="topic-title first">Your Topic Title</p>
+<p class="topic-title">Your Topic Title</p>
 <p>The objective here is to have everything useful for the projects, not to make a complete documentation of the whole SQL.
 Let us have here the basics, as well as the useful (small) pieces of codes that are often used in our team.</p>
 </div>
@@ -199,9 +199,9 @@ Let us have here the basics, as well as the useful (small) pieces of codes that 
 <div class="section" id="joining-tables">
 <h3>Joining tables<a class="headerlink" href="#joining-tables" title="Permalink to this headline">¶</a></h3>
 <p>Here is a graphical visualization of the different JOIN operations:</p>
-<div class="figure" id="id1">
+<div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="_images/Visual_SQL_JOINS.jpg"><img alt="map to buried treasure" src="_images/Visual_SQL_JOINS.jpg" style="width: 966.0px; height: 760.0px;" /></a>
-<p class="caption"><span class="caption-text">Taken from <a class="reference external" href="https://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins">https://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins</a></span></p>
+<p class="caption"><span class="caption-text">Taken from <a class="reference external" href="https://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins">https://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins</a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="import-data-from-another-server">
@@ -247,9 +247,9 @@ FROM OPENROWSET(
 <h3>Data warehouse tables authorizations (works only for some tables)<a class="headerlink" href="#data-warehouse-tables-authorizations-works-only-for-some-tables" title="Permalink to this headline">¶</a></h3>
 <p>Environment: etpewinst004</p>
 <ol class="arabic simple">
-<li>Find the table you need in MCS (example with a table EDW_HOVEDGR_H)</li>
-<li>Right click on the table properties -&gt; permissions</li>
-<li>Under “Users and Roles” you will find something like XPEWEW2F but you do not need the XP part. The authorization name is EW-EW-2F.</li>
+<li><p>Find the table you need in MCS (example with a table EDW_HOVEDGR_H)</p></li>
+<li><p>Right click on the table properties -&gt; permissions</p></li>
+<li><p>Under “Users and Roles” you will find something like XPEWEW2F but you do not need the XP part. The authorization name is EW-EW-2F.</p></li>
 </ol>
 <p>The code below is also can be used instead of clicking Properties -&gt; Permissions.</p>
 <p>USE Etz3edw (use the correct environment name)</p>
@@ -260,7 +260,7 @@ FROM OPENROWSET(
 </div>
 <div class="section" id="rank-function-exercise">
 <h3>Rank function - Exercise<a class="headerlink" href="#rank-function-exercise" title="Permalink to this headline">¶</a></h3>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="Images/Exercise_GiveScore_for_ClosestDate_result.jpg"><img alt="Images/Exercise_GiveScore_for_ClosestDate_result.jpg" src="Images/Exercise_GiveScore_for_ClosestDate_result.jpg" /></a>
 </div>
 <div class="highlight-sql notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -308,7 +308,7 @@ FROM OPENROWSET(
 <span class="k">order</span> <span class="k">by</span> <span class="n">CREATIONDATE</span> <span class="k">desc</span>
 </pre></div>
 </td></tr></table></div>
-<div class="figure">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="Images/Exercise_GiveScore_for_ClosestDate_result2.jpg"><img alt="Images/Exercise_GiveScore_for_ClosestDate_result2.jpg" src="Images/Exercise_GiveScore_for_ClosestDate_result2.jpg" /></a>
 </div>
 </div>
