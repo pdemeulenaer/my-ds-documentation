@@ -1,0 +1,165 @@
+===============
+ Time Series in Python
+===============
+
+Basic Pandas Time Series
+===============
+
+.. topic:: Introduction
+
+    The objective here is to have everything useful for the projects, not to make a complete documentation of the whole package. Here I will try to document both version 1.6 and >2.0. A special enphase will be done on machine learning module ml (mllib is outdated).
+
+
+TS reading from CSV file
+----------------------------------
+
+Here is the reading of a time series form a CSV file. It is important to read it specifying the index_col, i.e. the column selected to be the index of the dataframe.
+Here are 3 examples, only the third one is really usable as a time series!
+
+
+.. sourcecode:: python
+
+  df1 = pd.read_csv(filename)
+  df2 = pd.read_csv(filename, parse_dates=['Date'])
+  df3 = pd.read_csv(filename, index_col='Date', parse_dates=True)
+
+  
+Here is how to build a single time series (a Pandas series) using a list of dates as time index, and specifying the format:
+
+
+.. sourcecode:: python
+
+  # Prepare a format string: time_format
+  time_format = '%Y-%m-%d %H:%M'
+
+  # Convert date_list into a datetime object: my_datetimes
+  my_datetimes = pd.to_datetime(date_list, format=time_format)  
+
+  # Construct a pandas Series using temperature_list and my_datetimes: time_series
+  time_series = pd.Series(temperature_list, index=my_datetimes)
+
+
+Filtering times and time ranges
+-------------------------------------------
+
+.. sourcecode:: python
+
+  # Extract the hour from 9pm to 10pm on '2010-10-11': ts1
+  ts1 = ts0.loc['2010-10-11 21:00:00']
+
+  # Extract '2010-07-04' from ts0: ts2
+  ts2 = ts0.loc['July 4th, 2010']
+
+  # Extract data from '2010-12-15' to '2010-12-31': ts3
+  ts3 = ts0.loc['12/15/2010':'12/31/2010']
+
+Reindexing
+------------------
+
+Create a new time series ts3 by reindexing ts2 with the index of ts1.
+
+.. sourcecode:: python
+
+  # Reindex without fill method: ts3
+  ts3 = ts2.reindex(ts1.index)
+
+  # Reindex with fill method, using forward fill: ts4
+  ts4 = ts2.reindex(ts1.index,method='ffill')
+
+
+Resampling
+-------------------
+  
+Here: downsampling:  
+  
+.. sourcecode:: python  
+  
+  #Resampling for each day frequency  
+  sales_byDay  = sales.resample('D')
+  
+  #Resampling for 2 weeks frequency  
+  sales_byDay  = sales.resample('2W')  
+  
+  
+Here: upsampling (so a smaller frequency than available in the original sales dataframe):
+  
+.. sourcecode:: python  
+  
+  #Resampling for each 4H frequency:
+  sales_byDay  = sales.resample('4H').ffill() #ffill() method fills indexes forward in time, until it finds another time already present in the original dataframe.
+  
+  
+Exercise: we have a dataframe with temperature of one year, each day, each hour. We want the maximum daily temperature in August:
+  
+.. sourcecode:: python    
+  
+  # Extract temperature data for August: august
+  august = df.loc['2010-08','Temperature']  
+
+  # Downsample to obtain only the daily highest temperatures in August: august_highs
+  august_highs = august.resample('D').max()
+
+  
+Rolling mean (moving average)  
+-----------------------------------------
+
+Using the same dataframe as above (df['Temperature']), we can compute the daily moving average, or rolling mean:
+
+.. sourcecode:: python
+
+  # Extract data from 2010-Aug-01 to 2010-Aug-15: unsmoothed
+  unsmoothed = df['Temperature']['2010-Aug-01':'2010-Aug-15']
+
+  # Apply a rolling mean with a 24 hour window: smoothed
+  smoothed = unsmoothed.rolling(window=24).mean()
+
+  
+Interpolation
+-------------------
+
+Working with a dataframe "population" with 10-years steps, we can linearly interpolate each year between the steps using:
+
+.. sourcecode:: python
+
+  population.resample('A').first().interpolate('linear')
+  
+  
+df.str method: how does it work?
+----------------------------------------------
+
+.. sourcecode:: python
+
+  # Strip extra whitespace from the column names: df.columns
+  df.columns = df.columns.str.strip()
+
+  # Extract data for which the destination airport is Dallas: dallas
+  dallas = df['Destination Airport'].str.contains('DAL')
+  
+  
+Seasonal ARIMA
+==============
+
+Here is an example taken from 
+
+.. raw:: html
+   :file: SeasonalARIMA_CO2.html
+
+Scaling Data
+--------------
+
+.. sourcecode:: python
+
+  from sklearn.preprocessing import StandardScaler
+
+  scaler = StandardScaler()
+
+  # Fit only to the training data
+  scaler.fit(X_train)
+
+  # Now apply the transformations to the data:
+  X_train = scaler.transform(X_train)
+  X_test = scaler.transform(X_test)
+
+
+
+   

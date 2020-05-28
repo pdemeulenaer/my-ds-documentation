@@ -63,8 +63,6 @@ Repeat these steps
  
 Way to learn more about git and how it works: https://learngitbranching.js.org/
 
-Interesting reading on git: https://dev.to/chrisachard/confused-by-git-here-s-a-git-crash-course-to-fix-that-4cmi?utm_source=digest_mailer&utm_medium=email&utm_campaign=digest_email
-
 Avoiding git pull
 ------------------------------
 
@@ -74,7 +72,9 @@ A better way is to:
 
 - git fetch : it imports 
 
-- git rebase : 
+- git rebase : (git rebase origin/master) . That will find the earliest common commit between master and origin/master, move to a temporary space everything in your local branch that comes after that, fast forward it to the latest commit on origin/master and then apply each of the commits that were put aside on top of it, one by one, stopping if conflicts are found so that you can fix them before going on with the rebase.
+
+About git rebase: https://blog.algolia.com/master-git-rebase/, https://medium.com/datadriveninvestor/git-rebase-vs-merge-cc5199edd77c
 
 
 Git aliases
@@ -122,6 +122,24 @@ Without --hard, it would only bring you to the commit but leave the files in the
    :scale: 100 %
    :alt: map to buried treasure
     
+Git push configuration: matching vs simple
+--------------------------------------------------------
+
+Default before git 2.0 was matching, from 2.0 will be simple. 
+
+git push - can push all branches or a single one dependent on this configuration:
+
+Configuration 1 – Push all branches
+
+* git config --global push.default matching
+
+It will push all the branches to the remote branch and would merge them. If you don’t want to push all branches, you can push the current branch only.
+
+Configuration 2: Push only the current branch
+
+* git config --global push.default simple
+
+See http://www.fleekitsolutions.com/blogs/git/difference-between-push-default-matching-simple    
         
 Cheatsheets
 ------------------------------    
@@ -197,23 +215,3 @@ See much more in the link above.
 ============================================
 
 Definition of float vs double: https://stackoverflow.com/questions/2386772/what-is-the-difference-between-float-and-double 
-
-
-Checksum (SHA256/512, MD5)
-----------------------------------------------
-
-See https://www.computerhope.com/issues/ch001846.htm 
-
-Windows: let's say we download a .exe file from Oracle. There we have the different checksums. We can check what we downloaded by using: certutil:
-
-certutil -hashfile file.exe SHA256
-
-certutil -hashfile file.exe SHA512
-
-certutil -hashfile file.exe MD5
-
-Very simple.
-
-
-
-

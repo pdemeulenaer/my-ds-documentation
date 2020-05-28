@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python, Jupyter and Pandas TESTTTTTTTTTTTTTTT &mdash; Pyspark_Documentation 0.1 documentation</title>
+  <title>Python, Jupyter and Pandas &mdash; Pyspark_Documentation 0.1 documentation</title>
   
 
   
@@ -88,7 +88,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Python, Jupyter and Pandas TESTTTTTTTTTTTTTTT</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python, Jupyter and Pandas</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basic-jupyter-infos">Basic Jupyter infos</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#getting-notebooks-work-on-server-and-access-them-using-ssh">Getting Notebooks work on server and access them using ssh</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#python-basic-info">Python basic info</a><ul>
@@ -124,6 +124,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#transform-format-of-dataframe-collapse-multiple-columns-into-one">Transform format of dataframe: collapse multiple columns into one</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#apply-function-to-all-rows-axis-1-or-to-all-columns-axis-0">Apply function to all rows (axis=1) or to all columns (axis=0):</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dataframe-containing-column-of-lists">Dataframe containing column of lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exploding-a-dataframe-of-lists-of-items-with-id-column-into-exploded-id-item-column">Exploding a dataframe of lists of items (with ID column) into exploded ID-item column</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#group-by-operations-in-pandas">Group by operations in Pandas</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ranking-inside-groups">Ranking inside groups</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#apply-vs-transform-operations-on-groupby-objects">Apply vs transform operations on groupby objects</a></li>
@@ -148,12 +149,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#dask-or-parallel-pandas">Dask, or parallel Pandas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#koalas-or-pandas-for-spark">Koalas, or Pandas for Spark</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Sklearn_Documentation.html">Scikit-learn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html">Pyspark</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Pyspark_Documentation.html#scala-spark">Scala - Spark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Text_Mining_Documentation.html">Text Mining in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DeepLearning_Documentation.html">Deep Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ReinforcementLearning_Documentation.html">Reinforcement Learning</a></li>
@@ -213,7 +212,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Python, Jupyter and Pandas TESTTTTTTTTTTTTTTT</li>
+      <li>Python, Jupyter and Pandas</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -232,8 +231,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="python-jupyter-and-pandas-testtttttttttttttt">
-<h1>Python, Jupyter and Pandas TESTTTTTTTTTTTTTTT<a class="headerlink" href="#python-jupyter-and-pandas-testtttttttttttttt" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="python-jupyter-and-pandas">
+<h1>Python, Jupyter and Pandas<a class="headerlink" href="#python-jupyter-and-pandas" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="basic-jupyter-infos">
 <h2>Basic Jupyter infos<a class="headerlink" href="#basic-jupyter-infos" title="Permalink to this headline">¶</a></h2>
 <p>Here are useful shortcuts for the Jupyter Notebooks:</p>
@@ -927,6 +926,42 @@ Here other example:</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="exploding-a-dataframe-of-lists-of-items-with-id-column-into-exploded-id-item-column">
+<h3>Exploding a dataframe of lists of items (with ID column) into exploded ID-item column<a class="headerlink" href="#exploding-a-dataframe-of-lists-of-items-with-id-column-into-exploded-id-item-column" title="Permalink to this headline">¶</a></h3>
+<p>From <a class="reference external" href="https://towardsdatascience.com/pandas-tips-i-wish-i-knew-before-ef4ea6a39e1a">https://towardsdatascience.com/pandas-tips-i-wish-i-knew-before-ef4ea6a39e1a</a></p>
+<p>Let’s create a DataFrame with a column that has a random number of elements in lists:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;list_col&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">shape</span> <span class="c1">#(10, 1) output</span>
+
+      <span class="n">list_col</span>
+<span class="mi">0</span>     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="mi">1</span>     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="mi">2</span>     <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="mi">3</span>     <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="mi">4</span>     <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Now, let’s execute the explode function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">explode</span><span class="p">(</span><span class="s2">&quot;list_col&quot;</span><span class="p">)</span>
+ <span class="n">df</span><span class="o">.</span><span class="n">shape</span> <span class="c1">#(40, 1) output</span>
+
+   <span class="n">list_col</span>
+<span class="mi">0</span>      <span class="mi">0</span>
+<span class="mi">0</span>      <span class="mi">8</span>
+<span class="mi">0</span>      <span class="mi">4</span>
+<span class="mi">0</span>      <span class="mi">10</span>
+<span class="mi">1</span>      <span class="mi">0</span>
+<span class="mi">1</span>      <span class="mi">9</span>
+<span class="mi">1</span>      <span class="mi">9</span>
+<span class="mi">1</span>  <span class="mi">7</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="group-by-operations-in-pandas">
 <h3>Group by operations in Pandas<a class="headerlink" href="#group-by-operations-in-pandas" title="Permalink to this headline">¶</a></h3>
 <p>For a dataframe df with column ID, we can create a group by ID and count like this:</p>
@@ -981,6 +1016,20 @@ Here other example:</p>
 </div>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="_images/Groupby1.png"><img alt="map to buried treasure" src="_images/Groupby1.png" style="width: 608.3px; height: 225.39999999999998px;" /></a>
+</div>
+<p>In the case we want to extract N rows randomly per group. So let’s say we have a dataframe and group by a key “b”:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]})</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1">#There are 2 ways to do it:</span>
+
+<span class="c1">#slower, but ouptut sorted by key:</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">group_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">sample</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1">#much faster, just output not sorted by key:</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="ranking-inside-groups">
@@ -1487,33 +1536,6 @@ X_train, y_train, X_test, y_test = load_svmlight_files( (“/path/to/train_datas
 <li><p><a class="reference external" href="https://github.com/jmcarpenter2/swifter">https://github.com/jmcarpenter2/swifter</a></p></li>
 <li><p><a class="reference external" href="https://medium.com/&#64;jmcarpenter2/swiftapply-automatically-efficient-pandas-apply-operations-50e1058909f9">https://medium.com/&#64;jmcarpenter2/swiftapply-automatically-efficient-pandas-apply-operations-50e1058909f9</a></p></li>
 </ul>
-</div>
-<div class="section" id="koalas-or-pandas-for-spark">
-<h2>Koalas, or Pandas for Spark<a class="headerlink" href="#koalas-or-pandas-for-spark" title="Permalink to this headline">¶</a></h2>
-<p>Koalas is a databricks tools that aim to simulate Pandas on Spark.</p>
-<p>The github: <a class="reference external" href="https://github.com/databricks/koalas">https://github.com/databricks/koalas</a> (with some intro doc)</p>
-<p>Good intro from databricks: <a class="reference external" href="https://databricks.com/blog/2019/04/24/koalas-easy-transition-from-pandas-to-apache-spark.html">https://databricks.com/blog/2019/04/24/koalas-easy-transition-from-pandas-to-apache-spark.html</a></p>
-<p>Comparison between Pandas, Koalas, Optimus and Pyspark: <a class="reference external" href="https://towardsdatascience.com/the-jungle-of-koalas-pandas-optimus-and-spark-dd486f873aa4">https://towardsdatascience.com/the-jungle-of-koalas-pandas-optimus-and-spark-dd486f873aa4</a></p>
-<p>Small Medium blog: <a class="reference external" href="https://medium.com/future-vision/databricks-koalas-python-pandas-for-spark-ce20fc8a7d08">https://medium.com/future-vision/databricks-koalas-python-pandas-for-spark-ce20fc8a7d08</a></p>
-<p>Main documentation: <a class="reference external" href="https://koalas.readthedocs.io/en/latest/">https://koalas.readthedocs.io/en/latest/</a></p>
-<p>Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">databricks.koalas</span> <span class="k">as</span> <span class="nn">ks</span>
-
-<span class="n">Now</span> <span class="n">you</span> <span class="n">can</span> <span class="n">turn</span> <span class="n">a</span> <span class="n">pandas</span> <span class="n">DataFrame</span> <span class="n">into</span> <span class="n">a</span> <span class="n">Koalas</span> <span class="n">DataFrame</span> <span class="n">that</span> <span class="ow">is</span> <span class="n">API</span><span class="o">-</span><span class="n">compliant</span> <span class="k">with</span> <span class="n">the</span> <span class="n">former</span><span class="p">:</span>
-
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">pdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;y&#39;</span><span class="p">:[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="s1">&#39;z&#39;</span><span class="p">:[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">]})</span>
-
-<span class="c1"># Create a Koalas DataFrame from pandas DataFrame</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">ks</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">pdf</span><span class="p">)</span>
-
-<span class="c1"># Rename the columns</span>
-<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z1&#39;</span><span class="p">]</span>
-
-<span class="c1"># Do some operations in place:</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">df</span><span class="o">.</span><span class="n">x</span>
-</pre></div>
-</div>
 </div>
 </div>
 

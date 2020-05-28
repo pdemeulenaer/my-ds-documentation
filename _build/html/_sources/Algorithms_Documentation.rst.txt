@@ -211,6 +211,10 @@ Gradient Boosting: https://www.youtube.com/watch?v=sRktKszFmSk&t=370s
 
 XGboost: https://medium.com/@pushkarmandot/how-exactly-xgboost-works-a320d9b8aeef
 
+Differences between XGBoost over Gradient Boosting. Also gives great intro to all parameters:
+
+- https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/ 
+
 Video XGboost: https://www.youtube.com/watch?v=Vly8xGnNiWs
 
 - interpretable machine learning: XGBoost: https://towardsdatascience.com/interpretable-machine-learning-with-xgboost-9ec80d148d27

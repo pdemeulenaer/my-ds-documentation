@@ -88,11 +88,10 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas TESTTTTTTTTTTTTTTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pandas_Documentation.html">Python, Jupyter and Pandas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Sklearn_Documentation.html">Scikit-learn</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Pyspark</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basic-pyspark-documentation">Basic Pyspark documentation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#spark-installation">Spark installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#spark-submit-tasks">Spark-submit tasks</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#killing-yarn-applications">Killing YARN applications:</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#importing-pyspark-modules">Importing Pyspark modules</a></li>
@@ -103,16 +102,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#concerning-partition-skewness-problem">Concerning partition skewness problem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#spark-executor-cores-and-memory-management-resources-allocation-in-spark">Spark executor/cores and memory management: Resources allocation in Spark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#basic-commands">Basic commands</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#saving-to-distributed-csv-file-using-spark">Saving to (distributed) CSV file using Spark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#saving-and-loading-to-different-file-formats-orc-parquet">Saving and loading to different file formats (orc, parquet)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#random-sampling">Random sampling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#interesting-rdd-operations">Interesting RDD operations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aggregating-in-pyspark">Aggregating in Pyspark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#joins">Joins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#window-functions">Window functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#generate-a-column-with-dates-between-2-dates">Generate a column with dates between 2 dates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-an-array-of-dates-between-2-dates">Generate an array of dates between 2 dates</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fill-forward-or-backward-in-spark">Fill forward or backward in spark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#create-time-series-format-from-row-time-series">Create time series format from row time series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arrays-create-time-series-format-from-row-time-series-arraytype-format">Arrays: Create time series format from row time series (ArrayType format)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#revert-from-time-series-list-format-to-traditional-exploded-format">Revert from time series (list) format to traditional (exploded) format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#converting-dates-in-pyspark">Converting dates in Pyspark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nan-null-none-handling">NaN/Null/None handling</a></li>
@@ -120,6 +117,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#filtering-data-in-pyspark">Filtering data in Pyspark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#opening-tables-from-data-warehouse">Opening tables from Data Warehouse</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#user-defined-functions-udf">User-defined functions (UDF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pandas-udf">Pandas UDF</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#machine-learning-using-the-mllib-package">Machine Learning using the MLlib package</a><ul>
@@ -141,10 +139,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#dealing-with-text-tokenizer-hashing-idf">Dealing with text: Tokenizer, Hashing, IDF</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#spark-streaming">Spark Streaming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scala-spark">Scala Spark</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#scala-spark">Scala - Spark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Text_Mining_Documentation.html">Text Mining in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DeepLearning_Documentation.html">Deep Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ReinforcementLearning_Documentation.html">Reinforcement Learning</a></li>
@@ -229,18 +226,15 @@
 <h2>Basic Pyspark documentation<a class="headerlink" href="#basic-pyspark-documentation" title="Permalink to this headline">¶</a></h2>
 <div class="topic">
 <p class="topic-title">Introduction</p>
-<p>The objective here is to have everything useful for the projects, not to make a complete documentation of the whole package. Here I will try to document both version 1.6 and &gt;2.0. A special enphase will be done on machine learning module ml (mllib is outdated).
+<p>The objective here is to have everything useful for the projects, not to make a complete documentation of the whole package. Here I will try to document both version 1.6 and &gt;2.0. A special emphase will be done on machine learning module ml (mllib is outdated).
 We will not review the full Pyspark documentation. For that, look at <a class="reference external" href="http://spark.apache.org/docs/1.6.0/programming-guide.html">http://spark.apache.org/docs/1.6.0/programming-guide.html</a> for version 1.6, <a class="reference external" href="http://spark.apache.org/docs/2.1.0/programming-guide.html">http://spark.apache.org/docs/2.1.0/programming-guide.html</a> for version 2.1.</p>
 </div>
-<div class="section" id="spark-installation">
-<h3>Spark installation<a class="headerlink" href="#spark-installation" title="Permalink to this headline">¶</a></h3>
-<p>On windows: <a class="reference external" href="https://medium.com/big-data-engineering/how-to-install-apache-spark-2-x-in-your-pc-e2047246ffc3">https://medium.com/big-data-engineering/how-to-install-apache-spark-2-x-in-your-pc-e2047246ffc3</a></p>
-<p>On Ubuntu:</p>
+<p>General Spark resources:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://computingforgeeks.com/how-to-install-apache-spark-on-ubuntu-debian/">https://computingforgeeks.com/how-to-install-apache-spark-on-ubuntu-debian/</a></p></li>
-<li><p><a class="reference external" href="https://medium.com/devilsadvocatediwakar/installing-apache-spark-on-ubuntu-8796bfdd0861">https://medium.com/devilsadvocatediwakar/installing-apache-spark-on-ubuntu-8796bfdd0861</a></p></li>
+<li><p>nice intro to Spark concept: <a class="reference external" href="https://towardsdatascience.com/explaining-technical-stuff-in-a-non-techincal-way-apache-spark-274d6c9f70e9">https://towardsdatascience.com/explaining-technical-stuff-in-a-non-techincal-way-apache-spark-274d6c9f70e9</a></p></li>
+<li><p><a class="reference external" href="https://sparkbyexamples.com/">https://sparkbyexamples.com/</a></p></li>
+<li><p><a class="reference external" href="https://data-flair.training/blogs/dag-in-apache-spark/">https://data-flair.training/blogs/dag-in-apache-spark/</a> (internal of Spark)</p></li>
 </ul>
-</div>
 <div class="section" id="spark-submit-tasks">
 <h3>Spark-submit tasks<a class="headerlink" href="#spark-submit-tasks" title="Permalink to this headline">¶</a></h3>
 <p>How to navigate between versions using spark-submit:</p>
@@ -442,6 +436,11 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <div class="section" id="concerning-partition-skewness-problem">
 <h3>Concerning partition skewness problem<a class="headerlink" href="#concerning-partition-skewness-problem" title="Permalink to this headline">¶</a></h3>
 <p>Great link on avoiding data skewness: <a class="reference external" href="https://medium.com/simpl-under-the-hood/spark-protip-joining-on-skewed-dataframes-7bfa610be704">https://medium.com/simpl-under-the-hood/spark-protip-joining-on-skewed-dataframes-7bfa610be704</a></p>
+<p>Very good presentations takling skewness:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=6zg7NTw-kTQ&amp;list=PLuitsavBRqtNM0XACsWSAHRzwdLIaHmq-&amp;index=4&amp;t=1391s">https://www.youtube.com/watch?v=6zg7NTw-kTQ&amp;list=PLuitsavBRqtNM0XACsWSAHRzwdLIaHmq-&amp;index=4&amp;t=1391s</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=daXEp4HmS-E&amp;list=PLuitsavBRqtNM0XACsWSAHRzwdLIaHmq-&amp;index=6&amp;t=912s">https://www.youtube.com/watch?v=daXEp4HmS-E&amp;list=PLuitsavBRqtNM0XACsWSAHRzwdLIaHmq-&amp;index=6&amp;t=912s</a></p></li>
+</ul>
 <p>Ideally we would like to have partitions like this:</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="_images/Distribution_system_good.png"><img alt="Memory management in yarn and spark" src="_images/Distribution_system_good.png" style="width: 731.4px; height: 289.2px;" /></a>
@@ -449,6 +448,23 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <p>But sometimes things like this can happen:</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="_images/Distribution_system_bad.png"><img alt="Memory management in yarn and spark" src="_images/Distribution_system_bad.png" style="width: 740.4px; height: 292.8px;" /></a>
+</div>
+<p>Let’s say we have 2 tables skewed:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/skewed_tables.png"><img alt="skewed tables" src="_images/skewed_tables.png" style="width: 283.2px; height: 162.0px;" /></a>
+</div>
+<p>If we want to do a join,</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/skewed_tables_joining.png"><img alt="skewed tables being joined" src="_images/skewed_tables_joining.png" style="width: 391.8px; height: 239.39999999999998px;" /></a>
+</div>
+<p>Solution using a broadcast join:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">broadcast</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">broadcast</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">B</span><span class="p">,[</span><span class="s2">&quot;join_col&quot;</span><span class="p">],</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Solution using a SALT key (applied for a groupby operation, but would be similar for a join):</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Data_skew_solution_using_salt.png"><img alt="Data_skew_solution_using_salt" src="_images/Data_skew_solution_using_salt.png" style="width: 792.6px; height: 414.0px;" /></a>
 </div>
 </div>
 <div class="section" id="spark-executor-cores-and-memory-management-resources-allocation-in-spark">
@@ -573,64 +589,11 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 </pre></div>
 </div>
 <p>Dropping duplicate rows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">sqlContext</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">])</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">dropDuplicates</span><span class="p">()</span> <span class="c1"># drops all rows which have all same columns</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">DropColumns</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">])</span> <span class="c1"># drops all rows which have all same elements in A and B</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="saving-to-distributed-csv-file-using-spark">
-<h3>Saving to (distributed) CSV file using Spark<a class="headerlink" href="#saving-to-distributed-csv-file-using-spark" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Saving some data:</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="mi">111</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">),</span>
-                            <span class="p">(</span><span class="mi">112</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">505.0</span><span class="p">),</span>
-                            <span class="p">(</span><span class="mi">113</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">510.0</span><span class="p">),</span>
-                            <span class="p">(</span><span class="mi">114</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">600.0</span><span class="p">),</span>
-                            <span class="p">(</span><span class="mi">115</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">)],</span>
-                           <span class="p">[</span><span class="s2">&quot;transactionid&quot;</span><span class="p">,</span> <span class="s2">&quot;customerid&quot;</span><span class="p">,</span> <span class="s2">&quot;itemid&quot;</span><span class="p">,</span> <span class="s2">&quot;amountpaid&quot;</span><span class="p">])</span>
-<span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s1">&#39;overwrite&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;mycsv.csv&#39;</span><span class="p">)</span>
-
-<span class="c1">#Loading the data:</span>
-<span class="n">userSchema</span> <span class="o">=</span> <span class="n">StructType</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;transactionid&quot;</span><span class="p">,</span> <span class="s2">&quot;integer&quot;</span><span class="p">)</span>\
-                         <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;customerid&quot;</span><span class="p">,</span> <span class="s2">&quot;integer&quot;</span><span class="p">)</span>\
-                         <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;itemid&quot;</span><span class="p">,</span> <span class="s2">&quot;integer&quot;</span><span class="p">)</span>\
-                         <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;amountpaid&quot;</span><span class="p">,</span> <span class="s2">&quot;float&quot;</span><span class="p">)</span>
-
-<span class="n">dfCSV</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;sep&quot;</span><span class="p">,</span><span class="s2">&quot;,&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">schema</span><span class="p">(</span><span class="n">userSchema</span><span class="p">)</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;mycsv.csv&#39;</span><span class="p">)</span>
-<span class="n">dfCSV</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="o">+-------------+----------+------+----------+</span>
-<span class="o">|</span><span class="n">transactionid</span><span class="o">|</span><span class="n">customerid</span><span class="o">|</span><span class="n">itemid</span><span class="o">|</span><span class="n">amountpaid</span><span class="o">|</span>
-<span class="o">+-------------+----------+------+----------+</span>
-<span class="o">|</span>          <span class="mi">111</span><span class="o">|</span>         <span class="mi">1</span><span class="o">|</span>     <span class="mi">1</span><span class="o">|</span>     <span class="mf">100.0</span><span class="o">|</span>
-<span class="o">|</span>          <span class="mi">112</span><span class="o">|</span>         <span class="mi">2</span><span class="o">|</span>     <span class="mi">2</span><span class="o">|</span>     <span class="mf">505.0</span><span class="o">|</span>
-<span class="o">|</span>          <span class="mi">113</span><span class="o">|</span>         <span class="mi">3</span><span class="o">|</span>     <span class="mi">3</span><span class="o">|</span>     <span class="mf">510.0</span><span class="o">|</span>
-<span class="o">|</span>          <span class="mi">114</span><span class="o">|</span>         <span class="mi">4</span><span class="o">|</span>     <span class="mi">4</span><span class="o">|</span>     <span class="mf">600.0</span><span class="o">|</span>
-<span class="o">|</span>          <span class="mi">115</span><span class="o">|</span>         <span class="mi">1</span><span class="o">|</span>     <span class="mi">2</span><span class="o">|</span>     <span class="mf">500.0</span><span class="o">|</span>
-<span class="o">+-------------+----------+------+----------+</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="saving-and-loading-to-different-file-formats-orc-parquet">
-<h3>Saving and loading to different file formats (orc, parquet)<a class="headerlink" href="#saving-and-loading-to-different-file-formats-orc-parquet" title="Permalink to this headline">¶</a></h3>
-<p>Saving to parquet to whatever file system (but I experienced problem to read that in hive):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ts_balance</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;parquet&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;ts_mock_10K_all_prepared.parquet&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>But when spark runs on hadoop, it is not sure where this is saved… (impossible to find in hive, even when specifying some db)</p>
-<p>Saving to parquet to hive:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ts_balance</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;parquet&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">saveAsTable</span><span class="p">(</span><span class="s1">&#39;db.ts_mock_10K_all_prepared&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;overwrite&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>How to read?</p>
-<p>We can read either (when not saved in hive):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;db.ts_mock_10K.parquet&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>Second case, from a hive database:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;db.ts_mock_10K_all_prepared&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -655,90 +618,6 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 </pre></div>
 </div>
 <p>By this we extracted the list of 100K customers. Then we can extract the associated data (time series) selecting for only these customers (using a join).</p>
-</div>
-<div class="section" id="interesting-rdd-operations">
-<h3>Interesting RDD operations<a class="headerlink" href="#interesting-rdd-operations" title="Permalink to this headline">¶</a></h3>
-<p>Sometimes the operations are more handy/faster to perform using RDDs than dataframes.</p>
-<p>Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s say we have some data:</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="mi">562</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span><span class="mi">880</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span><span class="mi">380</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;Sue&#39;</span><span class="p">,</span><span class="mi">85</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;Sue&#39;</span><span class="p">,</span><span class="mi">963</span><span class="p">)</span>
-<span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Person&quot;</span><span class="p">,</span> <span class="s2">&quot;Amount&quot;</span><span class="p">])</span>
-
-<span class="c1">#If you can&#39;t use udf (they are longer to execute) you can use the map function, but to have all columns (original + new one), do the following:</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rdd</span>\
-    <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;Person&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;Amount&quot;</span><span class="p">],</span> <span class="nb">hash</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;Amount&quot;</span><span class="p">]))))</span>\
-    <span class="o">.</span><span class="n">toDF</span><span class="p">([</span><span class="s2">&quot;Person&quot;</span><span class="p">,</span> <span class="s2">&quot;Amount&quot;</span><span class="p">,</span> <span class="s2">&quot;Hash&quot;</span><span class="p">])</span>
-
-<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="c1">#+------+------+--------------------+</span>
-<span class="c1">#|Person|Amount|                Hash|</span>
-<span class="c1">#+------+------+--------------------+</span>
-<span class="c1">#|   Bob|   562|-4340709941618811062|</span>
-<span class="c1">#|   Bob|   880|-7718876479167384701|</span>
-<span class="c1">#|   Bob|   380|-2088598916611095344|</span>
-<span class="c1">#|   Sue|    85|    7168043064064671|</span>
-<span class="c1">#|   Sue|   963|-8844931991662242457|</span>
-<span class="c1">#+------+------+--------------------+</span>
-
-<span class="c1">#of course the example is a bit bad since there actually exists a pyspark hash function:</span>
-
-<span class="kn">import</span> <span class="nn">pyspark.sql.functions</span> <span class="k">as</span> <span class="nn">f</span>
-<span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;Hash&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="s2">&quot;Amount&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1">#But it&#39;s just to show the principle. In place of hash, we could have another not spark function)</span>
-</pre></div>
-</div>
-<p>Other simple example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">])</span>
-<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="o">+---+---+---+</span>
-<span class="o">|</span>  <span class="n">A</span><span class="o">|</span>  <span class="n">B</span><span class="o">|</span>  <span class="n">C</span><span class="o">|</span>
-<span class="o">+---+---+---+</span>
-<span class="o">|</span>  <span class="mi">1</span><span class="o">|</span>  <span class="mi">4</span><span class="o">|</span>  <span class="mi">3</span><span class="o">|</span>
-<span class="o">|</span>  <span class="mi">2</span><span class="o">|</span>  <span class="mi">8</span><span class="o">|</span>  <span class="mi">1</span><span class="o">|</span>
-<span class="o">|</span>  <span class="mi">2</span><span class="o">|</span>  <span class="mi">8</span><span class="o">|</span>  <span class="mi">1</span><span class="o">|</span>
-<span class="o">|</span>  <span class="mi">2</span><span class="o">|</span>  <span class="mi">8</span><span class="o">|</span>  <span class="mi">3</span><span class="o">|</span>
-<span class="o">|</span>  <span class="mi">3</span><span class="o">|</span>  <span class="mi">2</span><span class="o">|</span>  <span class="mi">1</span><span class="o">|</span>
-<span class="o">+---+---+---+</span>
-
-<span class="c1"># We can map to have a RDD version of Numpy arrays:</span>
-<span class="n">bidon</span><span class="o">.</span><span class="n">rdd</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
-
-<span class="p">[</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
- <span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
- <span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
- <span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
- <span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
-
-<span class="c1"># We can append some stuff:</span>
-<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">37</span><span class="p">,</span><span class="mi">38</span><span class="p">])</span>
-<span class="n">bidon</span><span class="o">.</span><span class="n">rdd</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">arr</span><span class="p">))</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
-
-<span class="p">[</span><span class="n">array</span><span class="p">([</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">38</span><span class="p">]),</span>
- <span class="n">array</span><span class="p">([</span> <span class="mi">2</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">38</span><span class="p">]),</span>
- <span class="n">array</span><span class="p">([</span> <span class="mi">2</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">38</span><span class="p">]),</span>
- <span class="n">array</span><span class="p">([</span> <span class="mi">2</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">38</span><span class="p">]),</span>
- <span class="n">array</span><span class="p">([</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">38</span><span class="p">])]</span>
-
-<span class="c1"># We can map some super function:</span>
-<span class="k">def</span> <span class="nf">dummy</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
-<span class="n">bidon</span><span class="o">.</span><span class="n">rdd</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">dummy</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">)))</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
-
-<span class="p">[</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span>
- <span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
- <span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
- <span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span>
- <span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])]</span>
-</pre></div>
-</div>
 </div>
 <div class="section" id="aggregating-in-pyspark">
 <h3>Aggregating in Pyspark<a class="headerlink" href="#aggregating-in-pyspark" title="Permalink to this headline">¶</a></h3>
@@ -949,6 +828,35 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 </pre></div>
 </div>
 </div>
+<div class="section" id="generate-an-array-of-dates-between-2-dates">
+<h3>Generate an array of dates between 2 dates<a class="headerlink" href="#generate-an-array-of-dates-between-2-dates" title="Permalink to this headline">¶</a></h3>
+<p>Inspired by some of the answers here: <a class="reference external" href="https://stackoverflow.com/questions/43141671/sparksql-on-pyspark-how-to-generate-time-series">https://stackoverflow.com/questions/43141671/sparksql-on-pyspark-how-to-generate-time-series</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">sequence</span><span class="p">,</span> <span class="n">to_date</span><span class="p">,</span> <span class="n">explode</span><span class="p">,</span> <span class="n">col</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;SELECT sequence(to_date(&#39;2018-01-01&#39;), to_date(&#39;2018-03-01&#39;), interval 1 month) as date&quot;</span><span class="p">)</span>
+
+<span class="o">+------------------------------------------+</span>
+<span class="o">|</span>                  <span class="n">date</span>                    <span class="o">|</span>
+<span class="o">+------------------------------------------+</span>
+<span class="o">|</span> <span class="p">[</span><span class="s2">&quot;2018-01-01&quot;</span><span class="p">,</span><span class="s2">&quot;2018-02-01&quot;</span><span class="p">,</span><span class="s2">&quot;2018-03-01&quot;</span><span class="p">]</span> <span class="o">|</span>
+<span class="o">+------------------------------------------+</span>
+
+<span class="c1">#or in case of start_date, end_date already defined:</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;SELECT sequence(to_date(&#39;</span><span class="si">{0}</span><span class="s2">&#39;), to_date(&#39;</span><span class="si">{1}</span><span class="s2">&#39;), interval 1 month) as transactiondate&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>You can use the explode function to “pivot” this array into rows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;SELECT sequence(to_date(&#39;2018-01-01&#39;), to_date(&#39;2018-03-01&#39;), interval 1 month) as date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">explode</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">))</span>
+
+<span class="o">+------------+</span>
+<span class="o">|</span>    <span class="n">date</span>    <span class="o">|</span>
+<span class="o">+------------+</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">01</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">01</span> <span class="o">|</span>
+<span class="o">+------------+</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="fill-forward-or-backward-in-spark">
 <h3>Fill forward or backward in spark<a class="headerlink" href="#fill-forward-or-backward-in-spark" title="Permalink to this headline">¶</a></h3>
 <p>Taken from <a class="reference external" href="https://johnpaton.net/posts/forward-fill-spark/">https://johnpaton.net/posts/forward-fill-spark/</a> . This is also based on window functions.</p>
@@ -1022,8 +930,9 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 </pre></div>
 </div>
 </div>
-<div class="section" id="create-time-series-format-from-row-time-series">
-<h3>Create time series format from row time series<a class="headerlink" href="#create-time-series-format-from-row-time-series" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="arrays-create-time-series-format-from-row-time-series-arraytype-format">
+<h3>Arrays: Create time series format from row time series (ArrayType format)<a class="headerlink" href="#arrays-create-time-series-format-from-row-time-series-arraytype-format" title="Permalink to this headline">¶</a></h3>
+<p>List of general array operations in Spark: <a class="reference external" href="https://mungingdata.com/apache-spark/arraytype-columns/">https://mungingdata.com/apache-spark/arraytype-columns/</a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#https://stackoverflow.com/questions/38080748/convert-pyspark-string-to-date-format</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">sqlContext</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="s2">&quot;1991-11-15&quot;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">23</span><span class="p">),</span>
                                <span class="p">(</span><span class="s2">&quot;1991-11-16&quot;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">24</span><span class="p">),</span>
@@ -1366,8 +1275,69 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 <span class="o">+----------+------------+------------------+</span>
 </pre></div>
 </div>
+<p>Here is an example of a UDF with MULTIPLE COLUMNS AS OUTPUT:</p>
+<p>(Taken from <a class="reference external" href="https://stackoverflow.com/questions/47669895/how-to-add-multiple-columns-using-udf?rq=1">https://stackoverflow.com/questions/47669895/how-to-add-multiple-columns-using-udf?rq=1</a>)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyspark.sql.types</span> <span class="k">as</span> <span class="nn">pst</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">Row</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([(</span><span class="s2">&quot;Alive&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)],</span> <span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Number&quot;</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Row</span><span class="p">(</span><span class="s1">&#39;Signal_type&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">)(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">])</span>
+
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">pst</span><span class="o">.</span><span class="n">StructType</span><span class="p">([</span>
+    <span class="n">pst</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;Signal_type&quot;</span><span class="p">,</span> <span class="n">pst</span><span class="o">.</span><span class="n">IntegerType</span><span class="p">(),</span> <span class="kc">False</span><span class="p">),</span>
+    <span class="n">pst</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s2">&quot;array&quot;</span><span class="p">,</span> <span class="n">pst</span><span class="o">.</span><span class="n">ArrayType</span><span class="p">(</span><span class="n">pst</span><span class="o">.</span><span class="n">IntegerType</span><span class="p">()),</span> <span class="kc">False</span><span class="p">)])</span>
+
+<span class="n">example_udf</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">udf</span><span class="p">(</span><span class="n">example</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+
+<span class="n">newDF</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;Output&quot;</span><span class="p">,</span> <span class="n">example_udf</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Number&quot;</span><span class="p">]))</span>
+<span class="n">newDF</span> <span class="o">=</span> <span class="n">newDF</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Number&quot;</span><span class="p">,</span> <span class="s2">&quot;Output.*&quot;</span><span class="p">)</span>
+
+<span class="n">newDF</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="o">+-----+------+-----------+------+</span>
+<span class="o">|</span><span class="n">Name</span> <span class="o">|</span><span class="n">Number</span><span class="o">|</span><span class="n">signal_type</span><span class="o">|</span><span class="n">array</span> <span class="o">|</span>
+<span class="o">+-----+------+-----------+------+</span>
+<span class="o">|</span><span class="n">Alive</span><span class="o">|</span><span class="mi">4</span>     <span class="o">|</span><span class="mi">6</span>          <span class="o">|</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span><span class="o">|</span>
+<span class="o">+-----+------+-----------+------+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pandas-udf">
+<h3>Pandas UDF<a class="headerlink" href="#pandas-udf" title="Permalink to this headline">¶</a></h3>
 <p>UDF’s are slow… But there are now pandas_udf pyspark function, that is said to work faster, and convert a simple pandas function to pyspark:
 <a class="reference external" href="https://databricks.com/blog/2017/10/30/introducing-vectorized-udfs-for-pyspark.html">https://databricks.com/blog/2017/10/30/introducing-vectorized-udfs-for-pyspark.html</a></p>
+<p>Some example on arrays: <a class="reference external" href="https://stackoverflow.com/questions/54432794/pandas-udf-that-operates-on-arrays">https://stackoverflow.com/questions/54432794/pandas-udf-that-operates-on-arrays</a></p>
+<p>Great and deep intro: <a class="reference external" href="https://florianwilhelm.info/2019/04/more_efficient_udfs_with_pyspark/">https://florianwilhelm.info/2019/04/more_efficient_udfs_with_pyspark/</a> (good explanation of the 3 output modes of the pandas UDF)</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="_images/Pandas_UDF_explanation.PNG"><img alt="Pandas_UDF_explanation.PNG" src="_images/Pandas_UDF_explanation.PNG" style="width: 832.0px; height: 288.0px;" /></a>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">pandas_udf</span><span class="p">,</span><span class="n">PandasUDFType</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">([([</span><span class="mf">1.4343</span><span class="p">,</span><span class="mf">2.3434</span><span class="p">,</span><span class="mf">3.4545</span><span class="p">],</span><span class="s1">&#39;val1&#39;</span><span class="p">),([</span><span class="mf">4.5656</span><span class="p">,</span><span class="mf">5.1215</span><span class="p">,</span><span class="mf">6.5656</span><span class="p">],</span><span class="s1">&#39;val2&#39;</span><span class="p">)],[</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span><span class="s1">&#39;col2&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">pandas_udf</span><span class="p">,</span><span class="n">PandasUDFType</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="nd">@pandas_udf</span><span class="p">(</span><span class="n">ArrayType</span><span class="p">(</span><span class="n">FloatType</span><span class="p">()),</span><span class="n">PandasUDFType</span><span class="o">.</span><span class="n">SCALAR</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">round_func</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;col3&#39;</span><span class="p">,</span><span class="n">round_func</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">col1</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="o">+--------------------+----+------------------+</span>
+<span class="o">|</span>                <span class="n">col1</span><span class="o">|</span><span class="n">col2</span><span class="o">|</span>              <span class="n">col3</span><span class="o">|</span>
+<span class="o">+--------------------+----+------------------+</span>
+<span class="o">|</span><span class="p">[</span><span class="mf">1.4343</span><span class="p">,</span> <span class="mf">2.3434</span><span class="p">,</span> <span class="o">...|</span><span class="n">val1</span><span class="o">|</span><span class="p">[</span><span class="mf">1.43</span><span class="p">,</span> <span class="mf">2.34</span><span class="p">,</span> <span class="mf">3.45</span><span class="p">]</span><span class="o">|</span>
+<span class="o">|</span><span class="p">[</span><span class="mf">4.5656</span><span class="p">,</span> <span class="mf">5.1215</span><span class="p">,</span> <span class="o">...|</span><span class="n">val2</span><span class="o">|</span><span class="p">[</span><span class="mf">4.57</span><span class="p">,</span> <span class="mf">5.12</span><span class="p">,</span> <span class="mf">6.57</span><span class="p">]</span><span class="o">|</span>
+<span class="o">+--------------------+----+------------------+</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="machine-learning-using-the-mllib-package">
@@ -1841,13 +1811,37 @@ In this example, we have a dataframe with 5 different values (a-f) and we one-ho
 </div>
 </div>
 </div>
-<div class="section" id="spark-streaming">
-<h2>Spark Streaming<a class="headerlink" href="#spark-streaming" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
 <div class="section" id="scala-spark">
-<h1>Scala - Spark<a class="headerlink" href="#scala-spark" title="Permalink to this headline">¶</a></h1>
-<p>Many operations here: <a class="reference external" href="http://www.openkb.info/2015/01/scala-on-spark-cheatsheet.html">http://www.openkb.info/2015/01/scala-on-spark-cheatsheet.html</a></p>
+<h2>Scala Spark<a class="headerlink" href="#scala-spark" title="Permalink to this headline">¶</a></h2>
+<p>From <a class="reference external" href="https://jaceklaskowski.github.io/spark-workshop/exercises/spark-sql-exercise-How-to-add-days-as-values-of-a-column-to-date.html">https://jaceklaskowski.github.io/spark-workshop/exercises/spark-sql-exercise-How-to-add-days-as-values-of-a-column-to-date.html</a></p>
+<p>Write a structured query (using spark-shell or Databricks Community Edition) that adds a given number of days (from one column) to a date (from another column) and prints out the rows to the standard output:</p>
+<div class="highlight-scala notranslate"><div class="highlight"><pre><span></span><span class="k">val</span> <span class="n">data</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">(</span>
+  <span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">&quot;2016-01-1&quot;</span><span class="o">),</span>
+  <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">&quot;2016-02-2&quot;</span><span class="o">),</span>
+  <span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="s">&quot;2016-03-22&quot;</span><span class="o">),</span>
+  <span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="s">&quot;2016-04-25&quot;</span><span class="o">),</span>
+  <span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="s">&quot;2016-05-21&quot;</span><span class="o">),</span>
+  <span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="s">&quot;2016-06-1&quot;</span><span class="o">),</span>
+  <span class="o">(</span><span class="mi">6</span><span class="o">,</span> <span class="s">&quot;2016-03-21&quot;</span><span class="o">)</span>
+<span class="o">).</span><span class="n">toDF</span><span class="o">(</span><span class="s">&quot;number_of_days&quot;</span><span class="o">,</span> <span class="s">&quot;date&quot;</span><span class="o">)</span>
+
+<span class="k">import</span> <span class="nn">org.apache.spark.sql.functions.expr</span>
+<span class="n">data</span><span class="o">.</span><span class="n">withColumn</span><span class="o">(</span><span class="s">&quot;future&quot;</span><span class="o">,</span><span class="n">expr</span><span class="o">(</span><span class="s">&quot;date_add(date,number_of_days)&quot;</span><span class="o">)).</span><span class="n">show</span><span class="o">()</span>
+
+<span class="o">+--------------+----------+----------+</span>
+<span class="o">|</span><span class="n">number_of_days</span><span class="o">|</span>      <span class="n">date</span><span class="o">|</span>    <span class="n">future</span><span class="o">|</span>
+<span class="o">+--------------+----------+----------+</span>
+<span class="o">|</span>             <span class="mi">0</span><span class="o">|</span> <span class="mi">2016</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">1</span><span class="o">|</span><span class="mi">2016</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="o">|</span>
+<span class="o">|</span>             <span class="mi">1</span><span class="o">|</span> <span class="mi">2016</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">2</span><span class="o">|</span><span class="mi">2016</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">03</span><span class="o">|</span>
+<span class="o">|</span>             <span class="mi">2</span><span class="o">|</span><span class="mi">2016</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">22</span><span class="o">|</span><span class="mi">2016</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">24</span><span class="o">|</span>
+<span class="o">|</span>             <span class="mi">3</span><span class="o">|</span><span class="mi">2016</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">25</span><span class="o">|</span><span class="mi">2016</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">28</span><span class="o">|</span>
+<span class="o">|</span>             <span class="mi">4</span><span class="o">|</span><span class="mi">2016</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">21</span><span class="o">|</span><span class="mi">2016</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">25</span><span class="o">|</span>
+<span class="o">|</span>             <span class="mi">5</span><span class="o">|</span> <span class="mi">2016</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">1</span><span class="o">|</span><span class="mi">2016</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">06</span><span class="o">|</span>
+<span class="o">|</span>             <span class="mi">6</span><span class="o">|</span><span class="mi">2016</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span><span class="o">|</span><span class="mi">2016</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">27</span><span class="o">|</span>
+<span class="o">+--------------+----------+----------+</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 

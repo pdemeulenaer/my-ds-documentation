@@ -817,6 +817,50 @@ In pandas a simple apply function can do it (although might be slow):
   
   The problem is that the syntax is not as flexible (does not allow long list of columns...)
   
+  
+  
+Exploding a dataframe of lists of items (with ID column) into exploded ID-item column
+--------------------------------------------------------------------------------------------------------
+
+From https://towardsdatascience.com/pandas-tips-i-wish-i-knew-before-ef4ea6a39e1a
+
+Let’s create a DataFrame with a column that has a random number of elements in lists:
+
+.. sourcecode:: python
+
+  n = 10
+  df = pd.DataFrame(
+      {
+          "list_col": [[random.randint(0, 10) for _ in range(random.randint(3, 5))] for _ in range(10)],
+      }
+  )
+  df.shape #(10, 1) output
+  
+  	list_col
+  0	[0, 8, 4, 10]
+  1	[0, 9, 9, 7]
+  2	[7, 1, 0, 9, 6]
+  3	[1, 3, 7]
+  4	[1, 0, 1] 
+  
+Now, let’s execute the explode function.  
+
+.. sourcecode:: python
+
+  df = df.explode("list_col")
+  df.shape #(40, 1) output
+  
+    list_col
+ 0	0
+ 0	8
+ 0	4
+ 0	10
+ 1	0
+ 1	9
+ 1	9  
+ 1  7
+
+  
 Group by operations in Pandas
 ------------------------------------------------
 
@@ -886,6 +930,23 @@ In the case we want several features to be grouped, the second method hereabove 
 .. figure:: Images/Groupby1.png
    :scale: 70 %
    :alt: map to buried treasure  
+   
+   
+In the case we want to extract N rows randomly per group. So let's say we have a dataframe and group by a key "b":
+
+.. sourcecode:: python
+
+  df = pd.DataFrame({'a': [1,2,3,4,5,6,7,8,9,10,11], 'b': [1,1,1,0,0,0,0,2,2,2,2]})
+  
+  df.head(20)
+  
+  #There are 2 ways to do it: 
+  
+  #slower, but ouptut sorted by key:
+  df.groupby('b', group_keys=False).apply(pd.DataFrame.sample, n=2).head(20)
+  
+  #much faster, just output not sorted by key:
+  df.sample(frac=1).groupby('b').head(2)   
    
 
 Ranking inside groups
@@ -1460,7 +1521,7 @@ And we can use them like this:
 
   
 Dask, or parallel Pandas
-===========================================
+=====================================
 
 Links:
 
@@ -1485,42 +1546,3 @@ Other package: swifter:
 - https://github.com/jmcarpenter2/swifter
 
 - https://medium.com/@jmcarpenter2/swiftapply-automatically-efficient-pandas-apply-operations-50e1058909f9 
-
-
-Koalas, or Pandas for Spark
-===========================================
-
-Koalas is a databricks tools that aim to simulate Pandas on Spark. 
-
-The github: https://github.com/databricks/koalas (with some intro doc)
-
-Good intro from databricks: https://databricks.com/blog/2019/04/24/koalas-easy-transition-from-pandas-to-apache-spark.html
-
-Comparison between Pandas, Koalas, Optimus and Pyspark: https://towardsdatascience.com/the-jungle-of-koalas-pandas-optimus-and-spark-dd486f873aa4
-
-Small Medium blog: https://medium.com/future-vision/databricks-koalas-python-pandas-for-spark-ce20fc8a7d08
-
-Main documentation: https://koalas.readthedocs.io/en/latest/
-
-Example:
-
-.. sourcecode:: python
-
-  import databricks.koalas as ks
-  
-  Now you can turn a pandas DataFrame into a Koalas DataFrame that is API-compliant with the former:
-  
-  import pandas as pd
-  pdf = pd.DataFrame({'x':range(3), 'y':['a','b','b'], 'z':['a','b','b']})
-  
-  # Create a Koalas DataFrame from pandas DataFrame
-  df = ks.from_pandas(pdf)
-  
-  # Rename the columns
-  df.columns = ['x', 'y', 'z1']
-  
-  # Do some operations in place:
-  df['x2'] = df.x * df.x
-
-
-

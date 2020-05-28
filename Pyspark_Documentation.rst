@@ -7,19 +7,16 @@ Basic Pyspark documentation
 
 .. topic:: Introduction
 
-    The objective here is to have everything useful for the projects, not to make a complete documentation of the whole package. Here I will try to document both version 1.6 and >2.0. A special enphase will be done on machine learning module ml (mllib is outdated).
+    The objective here is to have everything useful for the projects, not to make a complete documentation of the whole package. Here I will try to document both version 1.6 and >2.0. A special emphase will be done on machine learning module ml (mllib is outdated).
     We will not review the full Pyspark documentation. For that, look at http://spark.apache.org/docs/1.6.0/programming-guide.html for version 1.6, http://spark.apache.org/docs/2.1.0/programming-guide.html for version 2.1.
  
-Spark installation
--------------------------------
+General Spark resources:
 
-On windows: https://medium.com/big-data-engineering/how-to-install-apache-spark-2-x-in-your-pc-e2047246ffc3
+- nice intro to Spark concept: https://towardsdatascience.com/explaining-technical-stuff-in-a-non-techincal-way-apache-spark-274d6c9f70e9
 
-On Ubuntu: 
+- https://sparkbyexamples.com/
 
-- https://computingforgeeks.com/how-to-install-apache-spark-on-ubuntu-debian/
-
-- https://medium.com/devilsadvocatediwakar/installing-apache-spark-on-ubuntu-8796bfdd0861
+- https://data-flair.training/blogs/dag-in-apache-spark/ (internal of Spark)
 
 Spark-submit tasks
 -------------------------------
@@ -282,6 +279,12 @@ Concerning partition skewness problem
 ------------------------------------------------------------------------  
 
 Great link on avoiding data skewness: https://medium.com/simpl-under-the-hood/spark-protip-joining-on-skewed-dataframes-7bfa610be704
+
+Very good presentations takling skewness:
+
+- https://www.youtube.com/watch?v=6zg7NTw-kTQ&list=PLuitsavBRqtNM0XACsWSAHRzwdLIaHmq-&index=4&t=1391s
+
+- https://www.youtube.com/watch?v=daXEp4HmS-E&list=PLuitsavBRqtNM0XACsWSAHRzwdLIaHmq-&index=6&t=912s
   
 Ideally we would like to have partitions like this:  
   
@@ -294,7 +297,31 @@ But sometimes things like this can happen:
 .. figure:: Images/Distribution_system_bad.png
    :scale: 60 %
    :alt: Memory management in yarn and spark 
+   
+Let's say we have 2 tables skewed:
 
+.. figure:: Images/skewed_tables.png
+   :scale: 60 %
+   :alt: skewed tables 
+
+If we want to do a join, 
+
+.. figure:: Images/skewed_tables_joining.png
+   :scale: 60 %
+   :alt: skewed tables being joined 
+   
+Solution using a broadcast join:
+
+.. sourcecode:: python
+
+  from pyspark.sql.functions import broadcast
+  result = broadcast(A).join(B,["join_col"],"left")
+   
+Solution using a SALT key (applied for a groupby operation, but would be similar for a join):
+
+.. figure:: Images/Data_skew_solution_using_salt.png
+   :scale: 60 %
+   :alt: Data_skew_solution_using_salt    
    
 
 Spark executor/cores and memory management: Resources allocation in Spark
@@ -446,79 +473,13 @@ Dropping duplicate rows:
 
 .. sourcecode:: python
 
-  df = spark.createDataFrame([(1, 4, 3), (2, 8, 1), (2, 8, 1), (2, 8, 3), (3, 2, 1)], ["A", "B", "C"])  
+  df = sqlContext.createDataFrame([(1, 4, 3), (2, 8, 1), (2, 8, 1), (2, 8, 3), (3, 2, 1)], ["A", "B", "C"])  
   
   df.dropDuplicates() # drops all rows which have all same columns
   
   df.DropColumns(['A','B']) # drops all rows which have all same elements in A and B
   
 
-  
-Saving to (distributed) CSV file using Spark
--------------------------------------------------------------  
-  
-.. sourcecode:: python
-  
-  #Saving some data:  
-  df = spark.createDataFrame([(111, 1, 1, 100.0), 
-                              (112, 2, 2, 505.0), 
-                              (113, 3, 3, 510.0), 
-                              (114, 4, 4, 600.0), 
-                              (115, 1, 2, 500.0)], 
-                             ["transactionid", "customerid", "itemid", "amountpaid"])
-  df.write.format('csv').mode('overwrite').save('mycsv.csv')
-  
-  #Loading the data:
-  userSchema = StructType().add("transactionid", "integer")\
-                           .add("customerid", "integer")\
-                           .add("itemid", "integer")\
-                           .add("amountpaid", "float")
-              
-  dfCSV = spark.read.option("sep",",").option("header", "false").schema(userSchema).csv('mycsv.csv')
-  dfCSV.show()  
-    
-  +-------------+----------+------+----------+
-  |transactionid|customerid|itemid|amountpaid|
-  +-------------+----------+------+----------+
-  |          111|         1|     1|     100.0|
-  |          112|         2|     2|     505.0|
-  |          113|         3|     3|     510.0|
-  |          114|         4|     4|     600.0|
-  |          115|         1|     2|     500.0|
-  +-------------+----------+------+----------+  
-  
-Saving and loading to different file formats (orc, parquet)
-----------------------------------------------------------------------------------
-
-Saving to parquet to whatever file system (but I experienced problem to read that in hive):
-
-.. sourcecode:: python
-
-  ts_balance.write.format("parquet").mode("overwrite").save("ts_mock_10K_all_prepared.parquet")  
-  
-But when spark runs on hadoop, it is not sure where this is saved... (impossible to find in hive, even when specifying some db) 
-
-Saving to parquet to hive:
-
-.. sourcecode:: python
-
-  ts_balance.write.format("parquet").saveAsTable('db.ts_mock_10K_all_prepared', mode='overwrite')   
-  
-How to read?
-
-We can read either (when not saved in hive):
-
-.. sourcecode:: python
-
-  df = spark.read.parquet("db.ts_mock_10K.parquet").cache()
-
-Second case, from a hive database:
-
-.. sourcecode:: python
-
-  df = spark.table('db.ts_mock_10K_all_prepared')
-  
-  
   
 Random sampling
 ------------------------------------
@@ -551,96 +512,6 @@ To do this in Spark, we could use a temp table, like this. Let's say we have a d
 
 By this we extracted the list of 100K customers. Then we can extract the associated data (time series) selecting for only these customers (using a join).
   
-
-Interesting RDD operations
------------------------------------------------
-
-Sometimes the operations are more handy/faster to perform using RDDs than dataframes.
-
-Example: 
-
-.. sourcecode:: python
-
-    # Let's say we have some data:
-    a = [
-        ('Bob', 562),
-        ('Bob',880),
-        ('Bob',380),
-        ('Sue',85),
-        ('Sue',963)
-    ] 
-    df = spark.createDataFrame(a, ["Person", "Amount"])
-
-    #If you can't use udf (they are longer to execute) you can use the map function, but to have all columns (original + new one), do the following:
-
-    df = df.rdd\
-        .map(lambda x: (x["Person"], x["Amount"], hash(str(x["Amount"]))))\
-        .toDF(["Person", "Amount", "Hash"])
-
-    df.show()
-    #+------+------+--------------------+
-    #|Person|Amount|                Hash|
-    #+------+------+--------------------+
-    #|   Bob|   562|-4340709941618811062|
-    #|   Bob|   880|-7718876479167384701|
-    #|   Bob|   380|-2088598916611095344|
-    #|   Sue|    85|    7168043064064671|
-    #|   Sue|   963|-8844931991662242457|
-    #+------+------+--------------------+
-
-    #of course the example is a bit bad since there actually exists a pyspark hash function:
-
-    import pyspark.sql.functions as f
-    df.withColumn("Hash", f.hash("Amount")).show()
-
-    #But it's just to show the principle. In place of hash, we could have another not spark function)
-    
-Other simple example:
-
-.. sourcecode:: python
-
-  df = spark.createDataFrame([(1, 4, 3), (2, 8, 1), (2, 8, 1), (2, 8, 3), (3, 2, 1)], ["A", "B", "C"])     
-  df.show()
-  +---+---+---+
-  |  A|  B|  C|
-  +---+---+---+
-  |  1|  4|  3|
-  |  2|  8|  1|
-  |  2|  8|  1|
-  |  2|  8|  3|
-  |  3|  2|  1|
-  +---+---+---+
-  
-  # We can map to have a RDD version of Numpy arrays:
-  bidon.rdd.map(np.array).collect()
-  
-  [array([1, 4, 3]),
-   array([2, 8, 1]),
-   array([2, 8, 1]),
-   array([2, 8, 3]),
-   array([3, 2, 1])]
-  
-  # We can append some stuff:
-  arr = np.array([37,38])
-  bidon.rdd.map(lambda x: np.append(x, arr)).collect()
-  
-  [array([ 1,  4,  3, 37, 38]),
-   array([ 2,  8,  1, 37, 38]),
-   array([ 2,  8,  1, 37, 38]),
-   array([ 2,  8,  3, 37, 38]),
-   array([ 3,  2,  1, 37, 38])]
-  
-  # We can map some super function:
-  def dummy(x):
-      return x+1
-  bidon.rdd.map(np.array).map(lambda row: dummy(row.reshape(3))).collect()
-  
-  [array([2, 5, 4]),
-   array([3, 9, 2]),
-   array([3, 9, 2]),
-   array([3, 9, 4]),
-   array([4, 3, 2])]
-
 
 Aggregating in Pyspark
 ------------------------------------
@@ -880,6 +751,38 @@ I could not find a native way, so I generated it from Pandas and converted to Sp
   |2017-01-05 00:00:00|     2017-01-05|
   +-------------------+---------------+
   
+Generate an array of dates between 2 dates
+------------------------------------------------------------  
+  
+Inspired by some of the answers here: https://stackoverflow.com/questions/43141671/sparksql-on-pyspark-how-to-generate-time-series  
+  
+.. sourcecode:: python
+  
+  from pyspark.sql.functions import sequence, to_date, explode, col
+  spark.sql("SELECT sequence(to_date('2018-01-01'), to_date('2018-03-01'), interval 1 month) as date")  
+  
+  +------------------------------------------+
+  |                  date                    |
+  +------------------------------------------+
+  | ["2018-01-01","2018-02-01","2018-03-01"] |
+  +------------------------------------------+  
+  
+  #or in case of start_date, end_date already defined:
+  spark.sql("SELECT sequence(to_date('{0}'), to_date('{1}'), interval 1 month) as transactiondate".format(start_date, end_date))
+    
+You can use the explode function to "pivot" this array into rows:
+
+.. sourcecode:: python
+
+  spark.sql("SELECT sequence(to_date('2018-01-01'), to_date('2018-03-01'), interval 1 month) as date").withColumn("date", explode(col("date"))
+  
+  +------------+
+  |    date    |
+  +------------+
+  | 2018-01-01 |
+  | 2018-02-01 |
+  | 2018-03-01 |
+  +------------+  
 
 Fill forward or backward in spark
 -----------------------------------------------------
@@ -964,8 +867,10 @@ Let's say we have some array:
   +--------+----------+-----+-----------+  
 
 
-Create time series format from row time series
--------------------------------------------------------------------
+Arrays: Create time series format from row time series (ArrayType format)
+--------------------------------------------------------------------------------------
+
+List of general array operations in Spark: https://mungingdata.com/apache-spark/arraytype-columns/
 
 .. sourcecode:: python
 
@@ -1353,9 +1258,78 @@ Here is a great example of a UDF with MULTIPLE COLUMNS AS INPUT:
   +----------+------------+------------------+
   |[101, 121]|[-121, -212]|15447.812243421227|
   +----------+------------+------------------+
+  
+  
+Here is an example of a UDF with MULTIPLE COLUMNS AS OUTPUT:
+
+(Taken from https://stackoverflow.com/questions/47669895/how-to-add-multiple-columns-using-udf?rq=1)
+
+.. sourcecode:: python
+
+  import pyspark.sql.types as pst
+  from pyspark.sql import Row
+  
+  df = spark.createDataFrame([("Alive", 4)], ["Name", "Number"])
+    
+  def example(n):
+      return Row('Signal_type', 'array')(n + 2, [n-2,n+2])
+  
+  
+  schema = pst.StructType([
+      pst.StructField("Signal_type", pst.IntegerType(), False),
+      pst.StructField("array", pst.ArrayType(pst.IntegerType()), False)])
+  
+  example_udf = F.udf(example, schema)
+  
+  newDF = df.withColumn("Output", example_udf(df["Number"]))
+  newDF = newDF.select("Name", "Number", "Output.*")
+  
+  newDF.show(truncate=False)  
+  
+  +-----+------+-----------+------+
+  |Name |Number|signal_type|array |
+  +-----+------+-----------+------+
+  |Alive|4     |6          |[2, 6]|
+  +-----+------+-----------+------+  
  
+Pandas UDF
+-----------------------
+
 UDF's are slow... But there are now pandas_udf pyspark function, that is said to work faster, and convert a simple pandas function to pyspark:
 https://databricks.com/blog/2017/10/30/introducing-vectorized-udfs-for-pyspark.html  
+
+Some example on arrays: https://stackoverflow.com/questions/54432794/pandas-udf-that-operates-on-arrays
+
+Great and deep intro: https://florianwilhelm.info/2019/04/more_efficient_udfs_with_pyspark/ (good explanation of the 3 output modes of the pandas UDF)
+
+.. figure:: Images/Pandas_UDF_explanation.PNG
+   :scale: 80 %
+   :alt: Pandas_UDF_explanation.PNG
+
+.. sourcecode:: python
+
+  from pyspark.sql.functions import pandas_udf,PandasUDFType
+  from pyspark.sql.types import *
+  
+  df = spark.createDataFrame([([1.4343,2.3434,3.4545],'val1'),([4.5656,5.1215,6.5656],'val2')],['col1','col2'])
+  df.show()
+  
+  from pyspark.sql.functions import pandas_udf,PandasUDFType
+  from pyspark.sql.types import *
+  import pandas as pd
+    
+  @pandas_udf(ArrayType(FloatType()),PandasUDFType.SCALAR)
+  def round_func(v):
+      return v.apply(lambda x:np.around(x,decimals=2))  
+  
+  df.withColumn('col3',round_func(df.col1)).show()
+  
+  +--------------------+----+------------------+
+  |                col1|col2|              col3|
+  +--------------------+----+------------------+
+  |[1.4343, 2.3434, ...|val1|[1.43, 2.34, 3.45]|
+  |[4.5656, 5.1215, ...|val2|[4.57, 5.12, 6.57]|
+  +--------------------+----+------------------+  
 
 Machine Learning using the MLlib package
 ========================================
@@ -1868,16 +1842,39 @@ Here a more elaborated example:
   +-----+--------------------+--------------------+--------------------+--------------------+    
   
   
-Spark Streaming
-=======================
+  
+  
+Scala Spark 
+=====================================
 
-  
-  
-  
-=======================  
-Scala - Spark 
-=======================
+From https://jaceklaskowski.github.io/spark-workshop/exercises/spark-sql-exercise-How-to-add-days-as-values-of-a-column-to-date.html
 
-Many operations here: http://www.openkb.info/2015/01/scala-on-spark-cheatsheet.html
+Write a structured query (using spark-shell or Databricks Community Edition) that adds a given number of days (from one column) to a date (from another column) and prints out the rows to the standard output:
+
+.. sourcecode:: scala
+
+  val data = Seq(
+    (0, "2016-01-1"),
+    (1, "2016-02-2"),
+    (2, "2016-03-22"),
+    (3, "2016-04-25"),
+    (4, "2016-05-21"),
+    (5, "2016-06-1"),
+    (6, "2016-03-21")
+  ).toDF("number_of_days", "date")  
   
+  import org.apache.spark.sql.functions.expr
+  data.withColumn("future",expr("date_add(date,number_of_days)")).show()
+  
+  +--------------+----------+----------+
+  |number_of_days|      date|    future|
+  +--------------+----------+----------+
+  |             0| 2016-01-1|2016-01-01|
+  |             1| 2016-02-2|2016-02-03|
+  |             2|2016-03-22|2016-03-24|
+  |             3|2016-04-25|2016-04-28|
+  |             4|2016-05-21|2016-05-25|
+  |             5| 2016-06-1|2016-06-06|
+  |             6|2016-03-21|2016-03-27|
+  +--------------+----------+----------+  
  
