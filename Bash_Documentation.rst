@@ -3,7 +3,7 @@
 ==========================================================================
       
 Find 10 largest files in a directory:
------------------------------------------------------
+--------------------------------------------------------------------------
 
 du -hsx * | sort -rh | head -10
 
@@ -26,24 +26,24 @@ du -h --max-depth=1
 
 
 Find RAM type in windows:
------------------------------------------------------
+--------------------------------------------------------------------------
 
 wmic MemoryChip get BankLabel, Capacity, MemoryType, TypeDetail, Speed
 
 Top
------------------------------------------------------
+--------------------------------------------------------------------------
 
 top -u user: gets the info for the particular user
 
 See https://www.tecmint.com/12-top-command-examples-in-linux/ for useful commands
 
 
-=====================================================
+==========================================================================
  Useful GIT commands
-=====================================================
+==========================================================================
 
 Pull requests: how-to
------------------------------------------------------
+--------------------------------------------------------------------------
 
 How to use git?
 Usually safety rules do not allow us to push directly to master, rewrite master history and made changes without Pull Request.
@@ -66,7 +66,7 @@ Repeat these steps
 Way to learn more about git and how it works: https://learngitbranching.js.org/
 
 Avoiding git pull
------------------------------------------------------
+--------------------------------------------------------------------------
 
 Concerning git pull: better to avoid it as it suppresses the history of recent commits: https://coderwall.com/p/jgn6-q/git-pull-is-evil
 
@@ -80,7 +80,7 @@ About git rebase: https://blog.algolia.com/master-git-rebase/, https://medium.co
 
 
 Git aliases
------------------------------------------------------
+--------------------------------------------------------------------------
 
 bash
 git ~/.gitconfig
@@ -114,7 +114,7 @@ git g -10
 The HEAD shows where "we" are, the origin/master is the remote master branch, origin/HEAD probably where is the HEAD at the origin branch, and master the local master branch on which we now sit.
 
 Other useful commands
------------------------------------------------------
+--------------------------------------------------------------------------
 
 git reset --hard 9e21211 : this brings you back (or bring the HEAD back) to the commit 9e21211 and changes all files in the directory to the ones of 9e21211 commit.
 
@@ -125,7 +125,7 @@ Without --hard, it would only bring you to the commit but leave the files in the
    :alt: map to buried treasure
     
 Git push configuration: matching vs simple
------------------------------------------------------
+--------------------------------------------------------------------------
 
 Default before git 2.0 was matching, from 2.0 will be simple. 
 
@@ -144,7 +144,7 @@ Configuration 2: Push only the current branch
 See http://www.fleekitsolutions.com/blogs/git/difference-between-push-default-matching-simple    
         
 Cheatsheets
------------------------------------------------------ 
+-------------------------------------------------------------------------- 
 
 .. figure:: Cheatsheets/Git_CheatSheet.PNG
    :scale: 100 %
@@ -161,7 +161,7 @@ Cheatsheets
 
 
 Screen commands
------------------------------------------------------
+--------------------------------------------------------------------------
 
 https://www.howtoforge.com/linux_screen
 
@@ -169,9 +169,9 @@ https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/
 
 
 
-=====================================================
+==========================================================================
  Useful VIM commands
-=====================================================
+==========================================================================
 
 https://coderwall.com/p/adv71w/basic-vim-commands-for-getting-started 
 
@@ -224,8 +224,8 @@ Most of them below are in command mode
 See much more in the link above.
 
 
-============================================
+==========================================================================
  Data types
-============================================
+==========================================================================
 
 Definition of float vs double: https://stackoverflow.com/questions/2386772/what-is-the-difference-between-float-and-double 
