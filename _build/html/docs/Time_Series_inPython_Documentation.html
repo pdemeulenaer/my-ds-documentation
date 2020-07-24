@@ -181,14 +181,14 @@
 <p>See <a class="reference external" href="https://medium.com/&#64;ATavgen/time-series-modelling-a9bf4f467687">https://medium.com/&#64;ATavgen/time-series-modelling-a9bf4f467687</a></p>
 <p><strong>Stationarity</strong>:</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/TS_stationary1.png"><img alt="TS_stationary" src="../_images/TS_stationary1.png" style="width: 864.8000000000001px; height: 464.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/TS_stationary.png"><img alt="TS_stationary" src="docs/Images/TS_stationary.png" /></a>
 </div>
 <p>It is stationary when the trend line is 0 and the dispersion is constant in time. For example, white noise is a stationary process.</p>
 <p>The test for the stationarity of a time series is the Augmented Dickey-Fuller test (see below)</p>
 <p><strong>Seasonality</strong>:</p>
 <p>It is possible to decompose a signal into different pieces: the trend, the seasonality, the noise:</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/TS_decomposition1.png"><img alt="TS_decomposition" src="../_images/TS_decomposition1.png" style="width: 832.0px; height: 526.4px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/TS_decomposition.png"><img alt="TS_decomposition" src="docs/Images/TS_decomposition.png" /></a>
 </div>
 <p>(Taken from <a class="reference external" href="https://towardsdatascience.com/trend-seasonality-moving-average-auto-regressive-model-my-journey-to-time-series-data-with-edc4c0c8284b">https://towardsdatascience.com/trend-seasonality-moving-average-auto-regressive-model-my-journey-to-time-series-data-with-edc4c0c8284b</a> )</p>
 <p><strong>Autocorrelation (ACF)</strong>:</p>
@@ -200,7 +200,7 @@
 <p>So PACF corrects the lag-1 problem of the ACF. See also here for python use: <a class="reference external" href="https://machinelearningmastery.com/gentle-introduction-autocorrelation-partial-autocorrelation/">https://machinelearningmastery.com/gentle-introduction-autocorrelation-partial-autocorrelation/</a></p>
 <p>Partial autocorrelations measure the linear dependence of one variable after removing the effect of other variable(s) that affect to both variables. For example, the partial autocorrelation of order measures the effect (linear dependence) of yt−2 on yt after removing the effect of yt−1 on both yt and yt−2: see <a class="reference external" href="https://stats.stackexchange.com/questions/129052/acf-and-pacf-formula">https://stats.stackexchange.com/questions/129052/acf-and-pacf-formula</a></p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/ACF_vs_PACF1.png"><img alt="ACF_vs_PACF" src="../_images/ACF_vs_PACF1.png" style="width: 459.20000000000005px; height: 625.6px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/ACF_vs_PACF.png"><img alt="ACF_vs_PACF" src="docs/Images/ACF_vs_PACF.png" /></a>
 </div>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../_images/ACF_PCF_example1.png"><img alt="ACF_PCF_example" src="../_images/ACF_PCF_example1.png" style="width: 692.0px; height: 234.4px;" /></a>
@@ -266,14 +266,14 @@
 </pre></div>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/MAE1.png"><img alt="MAE" src="../_images/MAE1.png" style="width: 260.0px; height: 77.60000000000001px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/MAE.png"><img alt="MAE" src="docs/Images/MAE.png" /></a>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/RMSE1.png"><img alt="RMSE" src="../_images/RMSE1.png" style="width: 268.0px; height: 75.2px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/RMSE.png"><img alt="RMSE" src="docs/Images/RMSE.png" /></a>
 </div>
 <p>The main idea in the debate MAE vs RMSE is that the RMSE should be more useful when large errors are particularly undesirable; it penalizes better large errors. The three tables below show examples where MAE is steady and RMSE increases as the variance associated with the frequency distribution of error magnitudes also increases.</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/MAE_vs_RMSE1.png"><img alt="MAE_vs_RMSE" src="../_images/MAE_vs_RMSE1.png" style="width: 709.0px; height: 319.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/MAE_vs_RMSE.png"><img alt="MAE_vs_RMSE" src="docs/Images/MAE_vs_RMSE.png" /></a>
 </div>
 <p>Interesting: the sample size influence. Using MAE, we can put a lower and upper bound on RMSE:</p>
 <ul class="simple">

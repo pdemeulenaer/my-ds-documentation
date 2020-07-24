@@ -1,6 +1,6 @@
-======================
+==========================================================================
  Useful Bash commands (or batch)
-======================
+==========================================================================
       
 Find 10 largest files in a directory:
 -----------------------------------------------------
@@ -189,7 +189,11 @@ Most of them below are in command mode
 
 - CTRL-R to redo
 
-- A - to append text at the end
+- A - to insert text at the end
+
+- a - to insert text at the cursor
+
+- e - move to the end of that word
 
 - :wq - to save and exit
 
@@ -206,6 +210,14 @@ Most of them below are in command mode
 - d2w - which deletes 2 words .. number can be changed for deleting the number of consecutive words like d3w
 
 - dd to delete the line and 2dd to delete to line .number can be changed for deleting the number of consecutive words
+
+- r - replace current letter by a new letter (re will replace current letter by "e")
+
+- :s/old/new/g - replace word "old" by "new", globally
+
+- yw - copy current word
+
+- p - paste what has been copied
 
 See much more in the link above.
 

@@ -334,7 +334,7 @@ mlxtend: <a class="reference external" href="https://rasbt.github.io/mlxtend/use
 <h3>Collaborative filtering<a class="headerlink" href="#collaborative-filtering" title="Permalink to this headline">¶</a></h3>
 <p>The main idea behind collaborative filtering is to adopt for a subject same item as for similar other subjects:</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Collaborative_filtering11.png"><img alt="Collaborative_filtering1" src="../_images/Collaborative_filtering11.png" style="width: 773.0px; height: 251.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Collaborative_filtering1.png"><img alt="Collaborative_filtering1" src="docs/Images/Collaborative_filtering1.png" /></a>
 </div>
 <p>See also <a class="reference external" href="https://towardsdatascience.com/various-implementations-of-collaborative-filtering-100385c6dfe0">https://towardsdatascience.com/various-implementations-of-collaborative-filtering-100385c6dfe0</a></p>
 </div>
@@ -360,7 +360,7 @@ Random forest combines trees and hence incorporates most of the advantages of tr
 Random Forest weaknesses are that when used for regression they cannot predict beyond the range in the training data, and that they may over-fit data sets that are particularly noisy.</p>
 <p>For an implementation using Scikit-learn, see <a class="reference internal" href="Sklearn_Documentation.html#rf-sklearn-label"><span class="std std-ref">Random Forest</span></a></p>
 <div class="figure align-default" id="id5">
-<a class="reference internal image-reference" href="../_images/RF_algo1.png"><img alt="Random Forest scheme" src="../_images/RF_algo1.png" style="width: 1096.0px; height: 811.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/RF_algo.png"><img alt="Random Forest scheme" src="docs/Images/RF_algo.png" /></a>
 <p class="caption"><span class="caption-text">An old slide…</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 <p>Here are a few posts on the RF algorithm:</p>
@@ -432,7 +432,7 @@ Random Forest weaknesses are that when used for regression they cannot predict b
 <p><strong>Gain chart</strong>: Gain or lift is a measure of the effectiveness of a classification model calculated as the ratio between the results obtained with and without the model. Gain and lift charts are visual aids for evaluating performance of classification models. However, in contrast to the confusion matrix that evaluates models on the whole population gain or lift chart evaluates model performance in a portion of the population. (Here the wizard curve is the perfect model! Different than in ROC)</p>
 <p>In Y-axis we have the % of positive response, in X-axis we have the % of customers contacted. The principle in the blue curve (the model) is to start by the customers with best scores/rank, then as the curves evolves to the right we add worse ones.</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Gain_chart1.png"><img alt="A gain chart" src="../_images/Gain_chart1.png" style="width: 652.0px; height: 887.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Gain_chart.png"><img alt="A gain chart" src="docs/Images/Gain_chart.png" /></a>
 </div>
 <p>So we see that if we pick the 10% best customers, we jump very high, much more than when we add from 30% to 40% for example.</p>
 <p><strong>Lift chart</strong>: The lift chart shows how much more likely we are to receive positive responses than if we contact a random sample of customers. For example, by contacting only 10% of customers based on the predictive model we will reach 3 times as many respondents, as if we use no model.</p>
@@ -442,7 +442,7 @@ Random Forest weaknesses are that when used for regression they cannot predict b
 </div>
 <p>A variant of the lift is to put in Y-axis the probability derived for the customers (for example the probability to take a loan) vs the number of customers (of course, customers are ranked by the proba, as in normal lift):</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Lift_variant1.png"><img alt="A lift variant" src="../_images/Lift_variant1.png" style="width: 614.0px; height: 234.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Lift_variant.png"><img alt="A lift variant" src="docs/Images/Lift_variant.png" /></a>
 </div>
 <p>Simple on lift: <a class="reference external" href="https://www.kdnuggets.com/2016/03/lift-analysis-data-scientist-secret-weapon.html">https://www.kdnuggets.com/2016/03/lift-analysis-data-scientist-secret-weapon.html</a></p>
 <p><strong>The Z-score</strong>: Simply put, a z-score is the number of standard deviations from the mean a data point is. But more technically it’s a measure of how many standard deviations below or above the population mean a raw score is. A z-score is also known as a standard score and it can be placed on a normal distribution curve. Z-scores range from -3 standard deviations (which would fall to the far left of the normal distribution curve) up to +3 standard deviations (which would fall to the far right of the normal distribution curve). In order to use a z-score, you need to know the mean μ and also the population standard deviation σ.</p>
@@ -463,7 +463,7 @@ Random Forest weaknesses are that when used for regression they cannot predict b
 <p>See <a class="reference external" href="http://www.statisticshowto.com/probability-and-statistics/z-score/">http://www.statisticshowto.com/probability-and-statistics/z-score/</a> , <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_score">https://en.wikipedia.org/wiki/Standard_score</a> for more</p>
 <p>Z-score normalization is another term for standardization, or scaling… You just remove the mean and divide by the standard deviation:</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Standardization1.png"><img alt="Standardization" src="../_images/Standardization1.png" style="width: 1150.0px; height: 331.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Standardization.png"><img alt="Standardization" src="docs/Images/Standardization.png" /></a>
 </div>
 <p>In scikit-learn:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>

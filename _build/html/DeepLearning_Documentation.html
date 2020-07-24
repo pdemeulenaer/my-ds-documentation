@@ -254,14 +254,14 @@ Mathematically,</p>
 </div>
 <p>Why do we need non-linear activation functions? Why not to take the identity function? Simply because that would leave the model to be a simple linear operation, such as there are no hidden layers. And adding a sigmoid function at the end would make it equal as a simple logistic regression.</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="_images/WhyNonLinearActivationFunctionsNeeded.png"><img alt="WhyNonLinearActivationFunctionsNeeded" src="_images/WhyNonLinearActivationFunctionsNeeded.png" style="width: 1266.0px; height: 593.0px;" /></a>
+<a class="reference internal image-reference" href="Images/WhyNonLinearActivationFunctionsNeeded.png"><img alt="WhyNonLinearActivationFunctionsNeeded" src="Images/WhyNonLinearActivationFunctionsNeeded.png" /></a>
 </div>
 </div>
 <div class="section" id="back-propagation">
 <h3>Back Propagation<a class="headerlink" href="#back-propagation" title="Permalink to this headline">¶</a></h3>
 <p>The predicted value of the network is compared to the expected output, and an error is calculated using a function. This error is then propagated back within the whole network, one layer at a time, and the weights are updated according to the value that they contributed to the error. This clever bit of math is called the Back-Propagation algorithm. The process is repeated for all of the examples in your training data. One round of updating the network for the entire training dataset is called an epoch. A network may be trained for tens, hundreds or many thousands of epochs.</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="_images/BackPropagation.png"><img alt="Back-Propagation" src="_images/BackPropagation.png" style="width: 728.0px; height: 288.0px;" /></a>
+<a class="reference internal image-reference" href="Images/BackPropagation.png"><img alt="Back-Propagation" src="Images/BackPropagation.png" /></a>
 </div>
 </div>
 <div class="section" id="loss-cost-functions">
@@ -292,7 +292,7 @@ A cost function is single-valued, not a vector because it rates how well the neu
 <h3>Pooling<a class="headerlink" href="#pooling" title="Permalink to this headline">¶</a></h3>
 <p>Pooling is a sub-sampling technique. The use of pooling is to reduce the dimension of the input image after getting convolved. There are two types, max pooling, and average pooling.</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="_images/MaxPooling.png"><img alt="MaxPooling" src="_images/MaxPooling.png" style="width: 583.0px; height: 360.0px;" /></a>
+<a class="reference internal image-reference" href="Images/MaxPooling.png"><img alt="MaxPooling" src="Images/MaxPooling.png" /></a>
 </div>
 </div>
 <div class="section" id="batch-normalization">
@@ -303,7 +303,7 @@ A cost function is single-valued, not a vector because it rates how well the neu
 <h3>Dropout<a class="headerlink" href="#dropout" title="Permalink to this headline">¶</a></h3>
 <p>This is another regularization technique that was used before Batch Norm. The way this works is, the weights are randomly juggled around by very small amounts… the model ends up learning variations and again prevents overfitting. Individual nodes are either dropped out of the net with probability 1-p or kept with probability p so that a reduced network is left; incoming and outgoing edges to a dropped-out node are also removed.</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="_images/Dropout.png"><img alt="Dropout" src="_images/Dropout.png" style="width: 733.0px; height: 457.0px;" /></a>
+<a class="reference internal image-reference" href="Images/Dropout.png"><img alt="Dropout" src="Images/Dropout.png" /></a>
 </div>
 <p>Note on dropout:</p>
 <ul class="simple">
@@ -329,7 +329,7 @@ A cost function is single-valued, not a vector because it rates how well the neu
 <h2>Keras<a class="headerlink" href="#keras" title="Permalink to this headline">¶</a></h2>
 <p>Keras is a high-level Deep Learning framework for Python, which is capable of running on top of both Theano and Tensorflow. Keras allows us to use the constructs offered by Tensorflow and Theano in a much more intuitive and easy-to-use way without writing excess boilerplate code for building neural network based models.</p>
 <div class="figure align-default" id="id1">
-<a class="reference internal image-reference" href="_images/Keras_Cheat_Sheet_Python.png"><img alt="map to buried treasure" src="_images/Keras_Cheat_Sheet_Python.png" style="width: 1399.0px; height: 989.0px;" /></a>
+<a class="reference internal image-reference" href="Cheatsheets/Keras_Cheat_Sheet_Python.png"><img alt="map to buried treasure" src="Cheatsheets/Keras_Cheat_Sheet_Python.png" /></a>
 <p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Install: on top of tensorflow: <a class="reference external" href="http://inmachineswetrust.com/posts/deep-learning-setup/">http://inmachineswetrust.com/posts/deep-learning-setup/</a></p>
@@ -399,14 +399,14 @@ A cost function is single-valued, not a vector because it rates how well the neu
 <h3>LSTM: Long Short-Term Memory<a class="headerlink" href="#lstm-long-short-term-memory" title="Permalink to this headline">¶</a></h3>
 <p>Here is the comparison of RNN vs LSTM</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="_images/RNN_vs_LSTM.png"><img alt="RNN_vs_LSTM" src="_images/RNN_vs_LSTM.png" style="width: 485.6px; height: 495.20000000000005px;" /></a>
+<a class="reference internal image-reference" href="Images/RNN_vs_LSTM.png"><img alt="RNN_vs_LSTM" src="Images/RNN_vs_LSTM.png" /></a>
 </div>
 <p>Here are details of the LSTM scheme:</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="_images/LSTM_details.png"><img alt="LSTM_details" src="_images/LSTM_details.png" style="width: 536.0px; height: 528.0px;" /></a>
+<a class="reference internal image-reference" href="Images/LSTM_details.png"><img alt="LSTM_details" src="Images/LSTM_details.png" /></a>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="_images/LSTM_scheme.png"><img alt="LSTM scheme" src="_images/LSTM_scheme.png" style="width: 675.2px; height: 377.6px;" /></a>
+<a class="reference internal image-reference" href="Images/LSTM_scheme.png"><img alt="LSTM scheme" src="Images/LSTM_scheme.png" /></a>
 </div>
 <p>Good links:</p>
 <p><a class="reference external" href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">http://colah.github.io/posts/2015-08-Understanding-LSTMs/</a></p>

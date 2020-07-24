@@ -264,7 +264,7 @@ Here for the blog: <a class="reference external" href="https://blog.insightdatas
 <div class="section" id="intro-to-regular-expressions-regex">
 <h2>Intro to regular expressions (REGEX)<a class="headerlink" href="#intro-to-regular-expressions-regex" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Regex_table1.png"><img alt="REGEXES" src="../_images/Regex_table1.png" style="width: 567.0px; height: 336.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Regex_table.png"><img alt="REGEXES" src="docs/Images/Regex_table.png" /></a>
 </div>
 <p>Examples of regex patterns:</p>
 <p>pattern1 = r”#w+”
@@ -322,7 +322,7 @@ Output: [‘🍕’, ‘🚕’]</p>
 <p>||d1|| = square root(d1[0]2 + d1[1]2 + … + d1[n]2)</p>
 <p>||d2|| = square root(d2[0]2 + d2[1]2 + … + d2[n]2)</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Cosine_similarity1.png"><img alt="Cosine similarity" src="../_images/Cosine_similarity1.png" style="width: 456.0px; height: 354.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Cosine_similarity.png"><img alt="Cosine similarity" src="docs/Images/Cosine_similarity.png" /></a>
 </div>
 <p>Note we can compute the similarity between words, but also between groups of words, i.e. sentences, documents.</p>
 <p>A very straightforward application of the cosine similarity is in chatbots, where a query can be compared to a bunch of documents; the most similar document being selected;</p>
@@ -336,7 +336,7 @@ Output: [‘🍕’, ‘🚕’]</p>
 <p>The problem of word representation in numbers:</p>
 <p>A traditional way of representing words is one-hot vector, which is essentially a vector with only one target element being 1 and the others being 0. The length of the vector is equal to the size of the total unique vocabulary in the corpora. Conventionally, these unique words are encoded in alphabetical order. Namely, you should expect the one-hot vectors for words starting with “a” with target “1” of lower index, while those for words beginning with “z” with target “1” of higher index.</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Word_OHE1.png"><img alt="Word_OHE" src="../_images/Word_OHE1.png" style="width: 337.0px; height: 272.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Word_OHE.png"><img alt="Word_OHE" src="docs/Images/Word_OHE.png" /></a>
 </div>
 <p>Word2Vec is an efficient solution to these problems, which leverages the context of the target words. Essentially, we want to use the surrounding words to represent the target words with a Neural Network whose hidden layer encodes the word representation.</p>
 <p>Word2Vec is a technique to find continuous embeddings for words. It learns from reading massive amounts of text and memorizing which words tend to appear in similar contexts. After being trained on enough data, it generates a 300-dimension vector for each word in a vocabulary, with words of similar meaning being closer to each other.</p>
@@ -353,16 +353,16 @@ Then the procedure is this one: given a specific word in a sentence, look at wor
 <p>Example: input word: “Soviet”. The output probability will be much higher for “Union” or “Russia” than for “Watermelon”.</p>
 <p>So we will train the network by feeding the words pairs found in the corpus:</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Skip_Gram_11.png"><img alt="Skip_Gram_1" src="../_images/Skip_Gram_11.png" style="width: 468.29999999999995px; height: 295.4px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Skip_Gram_1.png"><img alt="Skip_Gram_1" src="docs/Images/Skip_Gram_1.png" /></a>
 </div>
 <p>with such a network:</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Skip_Gram_21.png"><img alt="Skip_Gram_2" src="../_images/Skip_Gram_21.png" style="width: 640.0px; height: 399.20000000000005px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Skip_Gram_2.png"><img alt="Skip_Gram_2" src="docs/Images/Skip_Gram_2.png" /></a>
 </div>
 <p>Say the vocabulary (each word in the corpus) has size 10000. So that means the input word “ants” will be fed like a one-hot-encoded of size 10000 full of zeros and just one “1”.
 The weights of the 300 neurons hidden layers, when trained, are (almost) the embeddings! The hidden layer is going to be represented by a weight matrix with 10,000 rows (one for every word in our vocabulary) and 300 columns (one for every hidden neuron, left on the next picture). If you look at the rows of this weight matrix (right, in the next picture), these are actually what will be our word vectors!</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Skip_Gram_31.png"><img alt="Skip_Gram_3" src="../_images/Skip_Gram_31.png" style="width: 312.8px; height: 268.40000000000003px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Skip_Gram_3.png"><img alt="Skip_Gram_3" src="docs/Images/Skip_Gram_3.png" /></a>
 </div>
 <p>Problem: We need few additional modifications to the basic skip-gram model which are important for actually making it feasible to train. Running gradient descent on a neural network that large is going to be slow. And to make matters worse, you need a huge amount of training data in order to tune that many weights and avoid over-fitting. millions of weights times billions of training samples means that training this model is going to be a beast.</p>
 <blockquote>

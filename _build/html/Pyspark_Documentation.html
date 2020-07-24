@@ -339,7 +339,7 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 </div>
 <p>Here is the DataCamp Cheatsheet for RDDs:</p>
 <div class="figure align-default" id="id2">
-<a class="reference internal image-reference" href="_images/PySpark_Cheat_Sheet_Python.png"><img alt="map to buried treasure" src="_images/PySpark_Cheat_Sheet_Python.png" style="width: 1403.0px; height: 993.0px;" /></a>
+<a class="reference internal image-reference" href="Cheatsheets/PySpark_Cheat_Sheet_Python.png"><img alt="map to buried treasure" src="Cheatsheets/PySpark_Cheat_Sheet_Python.png" /></a>
 <p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
@@ -443,11 +443,11 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 </ul>
 <p>Ideally we would like to have partitions like this:</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="_images/Distribution_system_good.png"><img alt="Memory management in yarn and spark" src="_images/Distribution_system_good.png" style="width: 731.4px; height: 289.2px;" /></a>
+<a class="reference internal image-reference" href="Images/Distribution_system_good.png"><img alt="Memory management in yarn and spark" src="Images/Distribution_system_good.png" /></a>
 </div>
 <p>But sometimes things like this can happen:</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="_images/Distribution_system_bad.png"><img alt="Memory management in yarn and spark" src="_images/Distribution_system_bad.png" style="width: 740.4px; height: 292.8px;" /></a>
+<a class="reference internal image-reference" href="Images/Distribution_system_bad.png"><img alt="Memory management in yarn and spark" src="Images/Distribution_system_bad.png" /></a>
 </div>
 <p>Let’s say we have 2 tables skewed:</p>
 <div class="figure align-default">
@@ -464,7 +464,7 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 </div>
 <p>Solution using a SALT key (applied for a groupby operation, but would be similar for a join):</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="_images/Data_skew_solution_using_salt.png"><img alt="Data_skew_solution_using_salt" src="_images/Data_skew_solution_using_salt.png" style="width: 792.6px; height: 414.0px;" /></a>
+<a class="reference internal image-reference" href="Images/Data_skew_solution_using_salt.png"><img alt="Data_skew_solution_using_salt" src="Images/Data_skew_solution_using_salt.png" /></a>
 </div>
 </div>
 <div class="section" id="spark-executor-cores-and-memory-management-resources-allocation-in-spark">
@@ -487,7 +487,7 @@ spark-submit –name CashflowModel –executor-memory 60G –master yarn –driv
 </ul>
 <p>The following (not to scale with defaults) shows the hierarchy of memory properties in Spark and YARN:</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="_images/Memory_spark_yarn.png"><img alt="Memory management in yarn and spark" src="_images/Memory_spark_yarn.png" style="width: 631.0px; height: 178.0px;" /></a>
+<a class="reference internal image-reference" href="Images/Memory_spark_yarn.png"><img alt="Memory management in yarn and spark" src="Images/Memory_spark_yarn.png" /></a>
 </div>
 <p>And if that weren’t enough to think about, a few final concerns when sizing Spark executors:</p>
 <ul class="simple">

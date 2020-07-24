@@ -173,7 +173,7 @@
 <h2>Basic Jupyter infos<a class="headerlink" href="#basic-jupyter-infos" title="Permalink to this headline">¶</a></h2>
 <p>Here are useful shortcuts for the Jupyter Notebooks:</p>
 <div class="figure align-default" id="id2">
-<a class="reference internal image-reference" href="../_images/Jupyter_Notebook_Keyboard_Shorcuts1.png"><img alt="map to buried treasure" src="../_images/Jupyter_Notebook_Keyboard_Shorcuts1.png" style="width: 836.0px; height: 799.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Cheatsheets/Jupyter_Notebook_Keyboard_Shorcuts.png"><img alt="map to buried treasure" src="docs/Cheatsheets/Jupyter_Notebook_Keyboard_Shorcuts.png" /></a>
 <p class="caption"><span class="caption-text">This Cheatsheet is taken from cheatography.com/weidadeyue/</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>When you launch a Jupyter notebook, you can adjust its width size using the following command at the beginning:</p>
@@ -934,7 +934,7 @@ Here other example:</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Groupby01.png"><img alt="map to buried treasure" src="../_images/Groupby01.png" style="width: 98.69999999999999px; height: 167.29999999999998px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Groupby0.png"><img alt="map to buried treasure" src="docs/Images/Groupby0.png" /></a>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Equivalently (same result but with named &quot;count&quot; column), we can use:</span>
 <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;ID&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ID&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -951,7 +951,7 @@ Here other example:</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Groupby11.png"><img alt="map to buried treasure" src="../_images/Groupby11.png" style="width: 608.3px; height: 225.39999999999998px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Groupby1.png"><img alt="map to buried treasure" src="docs/Images/Groupby1.png" /></a>
 </div>
 <p>In the case we want to extract N rows randomly per group. So let’s say we have a dataframe and group by a key “b”:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]})</span>
@@ -1149,7 +1149,7 @@ A first SQL query:</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/PandasMelt11.png"><img alt="Pandas Melt" src="../_images/PandasMelt11.png" style="width: 357.0px; height: 100.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/PandasMelt1.png"><img alt="Pandas Melt" src="docs/Images/PandasMelt1.png" /></a>
 </div>
 <p>Now we want to reorganize the df so that we have one column “Year” and one column “Name”, which contains all name. We then expect to have a third column containing the values:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_melt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;Name&#39;</span><span class="p">)</span>  <span class="c1">#value_name=&#39;bidule&#39; if we want to change the name of the value column.</span>
@@ -1157,13 +1157,13 @@ A first SQL query:</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/PandasMelt21.png"><img alt="Pandas Melt" src="../_images/PandasMelt21.png" style="width: 193.0px; height: 420.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/PandasMelt2.png"><img alt="Pandas Melt" src="docs/Images/PandasMelt2.png" /></a>
 </div>
 </div>
 <div class="section" id="pandas-cheatsheet">
 <h3>Pandas Cheatsheet<a class="headerlink" href="#pandas-cheatsheet" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="id4">
-<a class="reference internal image-reference" href="../_images/Python_Pandas_Cheat_Sheet_21.png"><img alt="map to buried treasure" src="../_images/Python_Pandas_Cheat_Sheet_21.png" style="width: 1398.0px; height: 991.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Cheatsheets/Python_Pandas_Cheat_Sheet_2.png"><img alt="map to buried treasure" src="docs/Cheatsheets/Python_Pandas_Cheat_Sheet_2.png" /></a>
 <p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>Also have a look at the cookbook: <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/cookbook.html">http://pandas.pydata.org/pandas-docs/stable/cookbook.html</a></p>
@@ -1396,7 +1396,7 @@ X_train, y_train, X_test, y_test = load_svmlight_files( (“/path/to/train_datas
 </div>
 <p>And the output is:</p>
 <div class="figure align-default" id="id6">
-<a class="reference internal image-reference" href="../_images/PDF_CDF1.png"><img alt="map to buried treasure" src="../_images/PDF_CDF1.png" style="width: 541.0px; height: 551.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/PDF_CDF.png"><img alt="map to buried treasure" src="docs/Images/PDF_CDF.png" /></a>
 <p class="caption"><span class="caption-text">This plot is taken from DataCamp.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 </div>

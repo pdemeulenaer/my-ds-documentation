@@ -177,7 +177,7 @@
 </div>
 <p>Scikit-learn (<a class="reference external" href="http://scikit-learn.org/stable/">http://scikit-learn.org/stable/</a>) is the Machine Learning well-known library in python. Here is a very short summary from DataCamp:</p>
 <div class="figure align-default" id="id1">
-<a class="reference internal image-reference" href="../_images/Sklearn_Cheat_Sheet1.png"><img alt="map to buried treasure" src="../_images/Sklearn_Cheat_Sheet1.png" style="width: 1403.0px; height: 992.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Cheatsheets/Sklearn_Cheat_Sheet.png"><img alt="map to buried treasure" src="docs/Cheatsheets/Sklearn_Cheat_Sheet.png" /></a>
 <p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
@@ -242,7 +242,7 @@
 </pre></div>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Encoding_pandas1.png"><img alt="map to buried treasure" src="../_images/Encoding_pandas1.png" style="width: 175.79999999999998px; height: 265.8px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Encoding_pandas.png"><img alt="map to buried treasure" src="docs/Images/Encoding_pandas.png" /></a>
 </div>
 <p>A maybe more general way to label encode several features in one shot (and save the encoders!) would be:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">list_encoders</span><span class="o">=</span><span class="p">[]</span>
@@ -311,7 +311,7 @@ In essence, Label Encoding is ok when working with tree methods</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Graphviz_tree1.png"><img alt="map to buried treasure" src="../_images/Graphviz_tree1.png" style="width: 804.6px; height: 555.6px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Graphviz_tree.png"><img alt="map to buried treasure" src="docs/Images/Graphviz_tree.png" /></a>
 </div>
 </div>
 <div class="section" id="random-forest">
@@ -349,7 +349,7 @@ In essence, Label Encoding is ok when working with tree methods</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Iris_Dataset1.png"><img alt="Iris dataset" src="../_images/Iris_Dataset1.png" style="width: 429.0px; height: 153.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Iris_Dataset.png"><img alt="Iris dataset" src="docs/Images/Iris_Dataset.png" /></a>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># A VERY SMALL EDA</span>
 
@@ -360,13 +360,13 @@ In essence, Label Encoding is ok when working with tree methods</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Iris_Seaborn1.png"><img alt="Iris with seaborn" src="../_images/Iris_Seaborn1.png" style="width: 668.0px; height: 679.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Iris_Seaborn.png"><img alt="Iris with seaborn" src="docs/Images/Iris_Seaborn.png" /></a>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">data_pd</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Iris_boxplot1.png"><img alt="Iris with seaborn's boxplot" src="../_images/Iris_boxplot1.png" style="width: 464.0px; height: 327.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Iris_boxplot.png"><img alt="Iris with seaborn's boxplot" src="docs/Images/Iris_boxplot.png" /></a>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#FEATURES SELECTION</span>
 <span class="n">feature_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">]</span>
@@ -426,7 +426,7 @@ In essence, Label Encoding is ok when working with tree methods</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Accuracy_and_ConfMat1.png"><img alt="Accuracy and Confusion matrix" src="../_images/Accuracy_and_ConfMat1.png" style="width: 257.0px; height: 160.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Accuracy_and_ConfMat.png"><img alt="Accuracy and Confusion matrix" src="docs/Images/Accuracy_and_ConfMat.png" /></a>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># SENSITIVITY COMPUTATION (taken from https://stackoverflow.com/questions/31324218/scikit-learn-how-to-obtain-true-positive-true-negative-false-positive-and-fal)</span>
 <span class="n">FP</span> <span class="o">=</span> <span class="n">C_normalized_pd</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">C_normalized_pd</span><span class="p">)</span>
@@ -458,7 +458,7 @@ In essence, Label Encoding is ok when working with tree methods</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Sensitivity1.png"><img alt="Sensitivity" src="../_images/Sensitivity1.png" style="width: 157.0px; height: 110.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Sensitivity.png"><img alt="Sensitivity" src="docs/Images/Sensitivity.png" /></a>
 </div>
 </div>
 <div class="section" id="neural-networks">
@@ -467,7 +467,7 @@ In essence, Label Encoding is ok when working with tree methods</p>
 <h3>Introduction to Keras package<a class="headerlink" href="#introduction-to-keras-package" title="Permalink to this headline">¶</a></h3>
 <p>Keras (<a class="reference external" href="https://keras.io/">https://keras.io/</a>) is a python library that works ontop of the Neural Network Theano and TensorFlow libraries. Here is a very short summary from DataCamp:</p>
 <div class="figure align-default" id="id2">
-<a class="reference internal image-reference" href="../_images/Keras_Cheat_Sheet_Python1.png"><img alt="map to buried treasure" src="../_images/Keras_Cheat_Sheet_Python1.png" style="width: 1399.0px; height: 989.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Cheatsheets/Keras_Cheat_Sheet_Python.png"><img alt="map to buried treasure" src="docs/Cheatsheets/Keras_Cheat_Sheet_Python.png" /></a>
 <p class="caption"><span class="caption-text">This Cheatsheet is taken from DataCamp.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
@@ -599,7 +599,7 @@ warm_start=False)</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/LIME_on_IRIS_classification_figure1.png"><img alt="map to buried treasure" src="../_images/LIME_on_IRIS_classification_figure1.png" style="width: 771.0px; height: 113.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/LIME_on_IRIS_classification_figure.png"><img alt="map to buried treasure" src="docs/Images/LIME_on_IRIS_classification_figure.png" /></a>
 </div>
 </div>
 </div>
@@ -648,7 +648,7 @@ warm_start=False)</p>
 </pre></div>
 </div>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../_images/Contributions1.png"><img alt="Contributions to the prediction probability by tree-interpreter" src="../_images/Contributions1.png" style="width: 491.0px; height: 514.0px;" /></a>
+<a class="reference internal image-reference" href="docs/Images/Contributions.png"><img alt="Contributions to the prediction probability by tree-interpreter" src="docs/Images/Contributions.png" /></a>
 </div>
 </div>
 <div class="section" id="very-important-update-in-the-field-of-interpretation">
