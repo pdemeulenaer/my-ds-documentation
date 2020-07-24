@@ -26,45 +26,47 @@ du -h --max-depth=1
 
 
 Find RAM type in windows:
--------------------------------------------------
+-----------------------------------------------------
 
 wmic MemoryChip get BankLabel, Capacity, MemoryType, TypeDetail, Speed
 
 Top
--------------------------------------------------
+-----------------------------------------------------
 
 top -u user: gets the info for the particular user
 
 See https://www.tecmint.com/12-top-command-examples-in-linux/ for useful commands
 
 
-=======================================
+=====================================================
  Useful GIT commands
-=======================================
+=====================================================
 
-Pull requests
-------------------------------
+Pull requests: how-to
+-----------------------------------------------------
 
 How to use git?
-Once in team meeting Ovidijus talked about other way of using git. He has now set safety rules almost on all stash repositories which don’t allow us to push directly to master, rewrite master history and made changes without Pull Request.
-Here are the different steps:
+Usually safety rules do not allow us to push directly to master, rewrite master history and made changes without Pull Request.
+Here are the different steps for a development branch:
 
 1. git checkout master <this selects master branch>
 2. git pull <this get newest data from master branch>
-3. git checkout –b “name” <this create new branch>
+3. git checkout –b "branch-name" <this create new branch>
 4. change code
-5. git add <this needed to add changed files> (or git add --all in case we want to include all changes)
+5. git add file.py <this needed to add changed files> (or git add --all in case we want to include all changes)
 6. git commit <after this command usually we shortly write that we changed>
-7. git push origin "name" <this push our branch "name" to remote (stash) and this allows to us create PR>
-8. create PR in stash <PR = Pull Request>
-9. merge PR in stash (ideally another team member actually does the merge)
+7. git push -u origin "branch-name" <this push our branch "branch-name" to remote and this allows to us create PR>
+8. create PR in bitbucket/github <PR = Pull Request>
+9. merge PR in bitbucket/github (ideally another team member actually does the merge)
+
+When doing the merge, don't forget to erase the branch (remotely, just by selecting check box in PR merge, and locally by doing git branch -d branch-name)
 
 Repeat these steps
  
 Way to learn more about git and how it works: https://learngitbranching.js.org/
 
 Avoiding git pull
-------------------------------
+-----------------------------------------------------
 
 Concerning git pull: better to avoid it as it suppresses the history of recent commits: https://coderwall.com/p/jgn6-q/git-pull-is-evil
 
@@ -78,7 +80,7 @@ About git rebase: https://blog.algolia.com/master-git-rebase/, https://medium.co
 
 
 Git aliases
-------------------------------
+-----------------------------------------------------
 
 bash
 git ~/.gitconfig
@@ -112,7 +114,7 @@ git g -10
 The HEAD shows where "we" are, the origin/master is the remote master branch, origin/HEAD probably where is the HEAD at the origin branch, and master the local master branch on which we now sit.
 
 Other useful commands
-------------------------------
+-----------------------------------------------------
 
 git reset --hard 9e21211 : this brings you back (or bring the HEAD back) to the commit 9e21211 and changes all files in the directory to the ones of 9e21211 commit.
 
@@ -123,7 +125,7 @@ Without --hard, it would only bring you to the commit but leave the files in the
    :alt: map to buried treasure
     
 Git push configuration: matching vs simple
---------------------------------------------------------
+-----------------------------------------------------
 
 Default before git 2.0 was matching, from 2.0 will be simple. 
 
@@ -142,7 +144,7 @@ Configuration 2: Push only the current branch
 See http://www.fleekitsolutions.com/blogs/git/difference-between-push-default-matching-simple    
         
 Cheatsheets
-------------------------------    
+----------------------------------------------------- 
 
 .. figure:: Cheatsheets/Git_CheatSheet.PNG
    :scale: 100 %
@@ -159,7 +161,7 @@ Cheatsheets
 
 
 Screen commands
----------------------------------------------
+-----------------------------------------------------
 
 https://www.howtoforge.com/linux_screen
 
@@ -167,9 +169,9 @@ https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/
 
 
 
-==========================================
+=====================================================
  Useful VIM commands
-==========================================
+=====================================================
 
 https://coderwall.com/p/adv71w/basic-vim-commands-for-getting-started 
 
