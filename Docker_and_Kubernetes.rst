@@ -19,7 +19,9 @@ Additional interesting resources:
 
 - https://medium.com/better-programming/how-to-get-docker-to-play-nicely-with-your-python-data-science-packages-81d16f1080d2 
 
-- 
+- https://medium.com/@itembe2a/docker-nvidia-conda-h204gpu-make-an-ml-docker-image-47451c5ced51 
+
+- https://towardsdatascience.com/docker-for-data-science-9c0ce73e8263
 
 Kubernetes
 --------------------------------------------------------------------------
