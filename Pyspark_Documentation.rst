@@ -3,7 +3,7 @@
 ===============
 
 Basic Pyspark documentation
-============================
+======================================================
 
 .. topic:: Introduction
 
@@ -1773,7 +1773,7 @@ Directly using scikit-learn and pyspark's broadcast function:
   
 
 Text analysis in Pyspark
-========================
+=============================================================
 
 Dealing with text: Tokenizer, Hashing, IDF
 --------------------------------------------------
@@ -1845,7 +1845,7 @@ Here a more elaborated example:
   
   
 Scala Spark 
-=====================================
+=============================================================
 
 From https://jaceklaskowski.github.io/spark-workshop/exercises/spark-sql-exercise-How-to-add-days-as-values-of-a-column-to-date.html
 
@@ -1878,3 +1878,13 @@ Write a structured query (using spark-shell or Databricks Community Edition) tha
   |             6|2016-03-21|2016-03-27|
   +--------------+----------+----------+  
  
+
+Petastorm library
+=============================================================
+
+Conversion of Spark data to Petastorm dataset
+-------------------------------------------------------------
+
+Very good description here for databricks: https://docs.databricks.com/applications/machine-learning/load-data/petastorm.html
+
+For hops, see: https://github.com/logicalclocks/hops-examples/blob/master/notebooks/featurestore/petastorm/PetastormMNIST_CreateDataset.ipynb (but very basic example, using numpy data, not directly from Spark)
