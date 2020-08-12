@@ -1887,6 +1887,11 @@ Conversion of Spark data to Petastorm dataset
 
 Very good description here for databricks: https://docs.databricks.com/applications/machine-learning/load-data/petastorm.html
 
+And here, rather similar, from Petastorm github: https://github.com/uber/petastorm/blob/master/examples/spark_dataset_converter/tensorflow_converter_example.py
+
 For hops, see: https://github.com/logicalclocks/hops-examples/blob/master/notebooks/featurestore/petastorm/PetastormMNIST_CreateDataset.ipynb (but very basic example, using numpy data, not directly from Spark)
 
+Basically, Petastorm converts the Spark DataFrame to a TensorFlow Dataset using "spark_dataset_converter"
+
+See also the API doc at https://petastorm.readthedocs.io/en/latest/api.html#module-petastorm.spark.spark_dataset_converter
 
