@@ -10,8 +10,8 @@ pool:
   vmImage: 'ubuntu-latest'
 strategy:
   matrix:
-    Python36:
-      python.version: '3.6'
+    Python37:
+      python.version: '3.7'
       architecture: 'x64'
 
 steps:
@@ -36,12 +36,12 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'make html' 
-    workingDirectory: '$(Build.SourcesDirectory)/doc/' 
+    workingDirectory: '$(Build.SourcesDirectory)/docs/' 
   displayName: 'Compile documentation'
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/doc/build/html'
+    SourceFolder: '$(Build.SourcesDirectory)/docs/_build/html'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     Contents: '**'
   displayName: 'Copy documentation files to artifact directory'
