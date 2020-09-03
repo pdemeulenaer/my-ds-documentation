@@ -29,10 +29,6 @@ steps:
     pip install --upgrade sphinx
   displayName: 'Install sphinx'
 
-- script: |
-    python setup.py install
-  displayName: 'Setup python package.'
-
 - task: CmdLine@2
   inputs:
     script: 'make html' 
