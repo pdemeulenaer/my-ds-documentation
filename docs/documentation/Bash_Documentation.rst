@@ -65,6 +65,40 @@ Repeat these steps
  
 Way to learn more about git and how it works: https://learngitbranching.js.org/
 
+What to do when your local dev branch is behind remote master?
+--------------------------------------------------------------------------
+
+i.e. Local Master branch is behind the remote Master branch
+
+Before preceding, you have to commit or stash all the changes you made on the branch that is behind commits.
+
+First we need to have local master synced with remote master:
+
+.. sourcecode:: python
+
+  # Checkout your local Master branch
+  git checkout master
+
+  #Pull from remote Master branch
+  git pull origin master
+
+Now your local Master is in sync with the remote master ranch but other local and remote dev branches are not in sync with your local Master branch. To fix that:
+
+.. sourcecode:: python
+  
+  # Checkout the branch that is behind your local Master branch
+  git checkout dev-branch
+
+  # Merge with the local Master branch
+  git merge master  // Now your branch is in sync with local Master branch
+
+If this branch is on the remote repository, you have to push your changes
+
+    git push origin dev-branch
+  
+
+
+
 Avoiding git pull
 --------------------------------------------------------------------------
 
