@@ -68,6 +68,8 @@ Way to learn more about git and how it works: https://learngitbranching.js.org/
 What to do when your local dev branch is behind remote master?
 --------------------------------------------------------------------------
 
+Link: https://stackoverflow.com/questions/34118404/what-i-can-do-to-resolve-1-commit-behind-master
+
 i.e. Local Master branch is behind the remote Master branch
 
 Before preceding, you have to commit or stash all the changes you made on the branch that is behind commits.
@@ -94,8 +96,6 @@ Now your local Master is in sync with the remote master ranch but other local an
 
   # If this branch is on the remote repository, you have to push your changes
   git push origin dev-branch
-  
-
 
 
 Avoiding git pull
