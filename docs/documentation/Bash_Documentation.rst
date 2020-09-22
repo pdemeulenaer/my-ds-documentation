@@ -92,9 +92,8 @@ Now your local Master is in sync with the remote master ranch but other local an
   # Merge with the local Master branch
   git merge master  // Now your branch is in sync with local Master branch
 
-If this branch is on the remote repository, you have to push your changes
-
-    git push origin dev-branch
+  # If this branch is on the remote repository, you have to push your changes
+  git push origin dev-branch
   
 
 
