@@ -146,6 +146,8 @@ git g -10
 
 The HEAD shows where "we" are, the origin/master is the remote master branch, origin/HEAD probably where is the HEAD at the origin branch, and master the local master branch on which we now sit.
 
+Here are some interesting other aliases: https://dev.to/dephraiim/git-commands-you-probably-didn-t-know-3bcm?utm_source=digest_mailer&utm_medium=email&utm_campaign=digest_email
+
 Other useful commands
 --------------------------------------------------------------------------
 
