@@ -202,6 +202,27 @@ https://www.howtoforge.com/linux_screen
 
 https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/
 
+TMUX commands
+---------------------------------------------------------------------------
+
+.. sourcecode:: python
+
+  # Create new session: 
+  tmux new -s mysession
+  
+  # list active sessions
+  tmux ls
+  
+  # attach to existing session
+  tmux a -t mysession
+  # or
+  tmux attach-session -t mysession
+  
+  # leaving (but not deleting) session
+  Ctrl + b d
+
+https://tmuxcheatsheet.com/
+
 
 
 ==========================================================================
