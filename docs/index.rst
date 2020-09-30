@@ -26,7 +26,7 @@ My Documentation
    documentation/Bash_Documentation  
    documentation/Business_models_Documentation   
    documentation/Sphinx_stuff  
-   documentation/Docker_and_Kubernetes    
+   documentation/Devops    
    
 
 Indices and tables
