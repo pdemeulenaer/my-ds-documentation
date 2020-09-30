@@ -259,7 +259,7 @@ Vim has two modes.
 
 Most of them below are in command mode
 
-- :340 - go to line 340  (we can also directly open the file at line 340: vi +340 foo.c)
+- : 340 - go to line 340  (we can also directly open the file at line 340: vi +340 foo.c)
 
 - x - to delete the unwanted character
 
