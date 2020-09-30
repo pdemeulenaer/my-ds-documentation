@@ -27,6 +27,7 @@ My Documentation
    documentation/Business_models_Documentation   
    documentation/Sphinx_stuff  
    documentation/Devops    
+   documentation/Azure  
    
 
 Indices and tables
