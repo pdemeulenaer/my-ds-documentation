@@ -187,7 +187,14 @@ Configuration 2: Push only the current branch
 
 * git config --global push.default simple
 
-See http://www.fleekitsolutions.com/blogs/git/difference-between-push-default-matching-simple    
+See http://www.fleekitsolutions.com/blogs/git/difference-between-push-default-matching-simple  
+
+What is a detached head?
+--------------------------------------------------------------------------
+
+https://www.git-tower.com/learn/git/faq/detached-head-when-checkout-commit/
+
+https://www.cloudbees.com/blog/git-detached-head
         
 Cheatsheets
 -------------------------------------------------------------------------- 
