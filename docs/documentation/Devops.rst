@@ -1,5 +1,5 @@
 ==========================================================================
- DevOps - MLOps
+ DevOps
 ==========================================================================
 
 Airflow
@@ -12,7 +12,7 @@ First dag: https://medium.com/better-programming/how-to-write-your-first-pipelin
 
 
 Docker
---------------------------------------------------------------------------
+==========================================================================
 
 Good links:
 
@@ -39,7 +39,7 @@ High-level principle of Docker images:
    :alt: Docker images principle
 
 Kubernetes
---------------------------------------------------------------------------
+==========================================================================
 
 Good links:
 
@@ -55,16 +55,17 @@ Again, a very interesting series to address the basics concepts:
 
 - https://mlinproduction.com/k8s-services/ : part 5 of the series
 
+CICD developement
+==========================================================================
 
-DevOps
---------------------------------------------------------------------------
-
-CICD developement: what is it exactly?
+what is it exactly?
 
 - https://kumul.us/understanding-cicd-continuous-integration-deployment-delivery/
 
+==========================================================================
 MLOps - Machine learning life cycle
---------------------------------------------------------------------------
+==========================================================================
 
 MLFlow
+==========================================================================
 
