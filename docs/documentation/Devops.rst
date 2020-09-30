@@ -7,7 +7,8 @@ Airflow
 
 Links: 
 
-https://medium.com/better-programming/how-to-write-your-first-pipeline-in-airflow-a51141c3f4dd
+Server installation with database: https://www.statworx.com/de/blog/a-framework-to-automate-your-work-how-to-set-up-airflow/
+First dag: https://medium.com/better-programming/how-to-write-your-first-pipeline-in-airflow-a51141c3f4dd
 
 
 Docker
