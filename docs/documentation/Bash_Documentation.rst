@@ -252,6 +252,8 @@ Vim has two modes.
 
 Most of them below are in command mode
 
+- :340 - go to line 340  (we can also directly open the file at line 340: vi +340 foo.c)
+
 - x - to delete the unwanted character
 
 - u - to undo the last the command and U to undo the whole line
