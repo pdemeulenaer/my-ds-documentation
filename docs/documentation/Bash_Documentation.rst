@@ -37,6 +37,17 @@ top -u user: gets the info for the particular user
 
 See https://www.tecmint.com/12-top-command-examples-in-linux/ for useful commands
 
+Finding files and folder in linux
+-------------------------------------------------------------------------
+
+Files: whereis
+
+Folder: to find a folder called "media":
+
+find /usr -name "media" 2>/dev/null
+
+https://www.cyberciti.biz/faq/howto-find-a-directory-linux-command/
+
 
 ==========================================================================
  Useful GIT commands
