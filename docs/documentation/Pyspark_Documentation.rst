@@ -44,6 +44,37 @@ Killing YARN applications:
 
 yarn application -kill application_NNN
 
+Simple HDFS commands
+-------------------------------------------------------------
+
+.. sourcecode:: python
+
+  # explore one file
+  hdfs dfs -cat /user/hadoop/file4
+
+  # Remove directory: 
+  hdfs dfs -rm -R /path/to/HDFS/file
+  
+  # copyFromLocal
+  hdfs dfs -copyFromLocal <localsrc> URI
+
+  # copyToLocal
+  hdfs dfs -copyToLocal [-ignorecrc] [-crc] URI <localdst>
+  # example: copy hdfs file part-00000 to current local directory
+  hdfs dfs -copyToLocal /user/bc4350/model/metadata/part-00000 .
+  
+  # copy from hdfs to hdfs
+  hdfs dfs -cp /user/hadoop/file1 /user/hadoop/file2 
+  
+  # how big is my hdfs folder?
+  hdfs dfs -du -h -s /user/bc4350
+
+And much more here: 
+
+- https://hadoop.apache.org/docs/r1.2.1/file_system_shell.pdf 
+
+- https://www.dezyre.com/hadoop-tutorial/hadoop-hdfs-commands
+
 Importing Pyspark modules
 --------------------------------
 
@@ -1330,6 +1361,14 @@ Great and deep intro: https://florianwilhelm.info/2019/04/more_efficient_udfs_wi
   |[1.4343, 2.3434, ...|val1|[1.43, 2.34, 3.45]|
   |[4.5656, 5.1215, ...|val2|[4.57, 5.12, 6.57]|
   +--------------------+----+------------------+  
+  
+Links on Pandas_UDF:
+
+- https://spark.apache.org/docs/latest/sql-pyspark-pandas-with-arrow.html#pandas-udfs-aka-vectorized-udfs 
+
+- https://medium.com/analytics-ai-swedbank/predicting-customer-finances-using-deep-learning-168b47e54d54 
+
+- Spark 3: New Pandas_UDF: https://databricks.com/blog/2020/05/20/new-pandas-udfs-and-python-type-hints-in-the-upcoming-release-of-apache-spark-3-0.html
 
 Machine Learning using the MLlib package
 ========================================
