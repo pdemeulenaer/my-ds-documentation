@@ -44,6 +44,37 @@ Killing YARN applications:
 
 yarn application -kill application_NNN
 
+Simple HDFS commands
+-------------------------------------------------------------
+
+.. sourcecode:: python
+
+  # explore one file
+  hdfs dfs -cat /user/hadoop/file4
+
+  # Remove directory: 
+  hdfs dfs -rm -R /path/to/HDFS/file
+  
+  # copyFromLocal
+  hdfs dfs -copyFromLocal <localsrc> URI
+
+  # copyToLocal
+  hdfs dfs -copyToLocal [-ignorecrc] [-crc] URI <localdst>
+  # example: copy hdfs file part-00000 to current local directory
+  hdfs dfs -copyToLocal /user/bc4350/model/metadata/part-00000 .
+  
+  # copy from hdfs to hdfs
+  hdfs dfs -cp /user/hadoop/file1 /user/hadoop/file2 
+  
+  # how big is my hdfs folder?
+  hdfs dfs -du -h -s /user/bc4350
+
+And much more here: 
+
+- https://hadoop.apache.org/docs/r1.2.1/file_system_shell.pdf 
+
+- https://www.dezyre.com/hadoop-tutorial/hadoop-hdfs-commands
+
 Importing Pyspark modules
 --------------------------------
 
