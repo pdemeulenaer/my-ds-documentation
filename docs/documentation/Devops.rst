@@ -69,3 +69,14 @@ MLOps - Machine learning life cycle
 MLFlow
 ==========================================================================
 
+MLFlow server
+--------------------------------------------------------------------------
+
+Good links:
+
+- https://towardsdatascience.com/setup-mlflow-in-production-d72aecde7fef
+
+- https://pedro-munoz.tech/how-to-setup-mlflow-in-production/
+
+- https://towardsdatascience.com/deploy-mlflow-with-docker-compose-8059f16b6039
+
