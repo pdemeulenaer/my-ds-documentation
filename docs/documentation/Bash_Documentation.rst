@@ -108,6 +108,24 @@ Now your local Master is in sync with the remote master ranch but other local an
   # If this branch is on the remote repository, you have to push your changes
   git push origin dev-branch
 
+A branch exists in remote and not in local, how to get on it?
+--------------------------------------------------------------------------
+
+In new git (above 1.7) we can directly checkout on it, and git will understand:
+
+.. sourcecode:: python
+
+  $ git branch
+  * master
+  $ git --version
+  git version 1.8.3.1
+  $ git checkout feature/dummy-models
+  Branch feature/dummy-models set up to track remote branch feature/dummy-models from origin.
+  Switched to a new branch 'feature/dummy-models'
+  $ git branch
+  * feature/dummy-models
+    master
+
 
 Avoiding git pull
 --------------------------------------------------------------------------
