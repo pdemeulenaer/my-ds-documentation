@@ -48,6 +48,16 @@ find /usr -name "media" 2>/dev/null
 
 https://www.cyberciti.biz/faq/howto-find-a-directory-linux-command/
 
+Symbolic link between folders, files
+-------------------------------------------------------------------------
+
+See https://www.freecodecamp.org/news/symlink-tutorial-in-linux-how-to-create-and-remove-a-symbolic-link/ 
+
+.. sourcecode:: python
+
+  #produces a new folder called 'latest' that will be in sync with the 'latest_azure' one
+  ln -s latest_azure latest  
+
 
 ==========================================================================
  Useful GIT commands
