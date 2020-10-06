@@ -313,7 +313,9 @@ Most of them below are in command mode
 
 - yw - copy current word
 
-- p - paste what has been copied
+- p - paste what has been copied (not working for me)
+
+Pasting from system clipboard (vim has its own clipboard): In command mode, write :set paste, then in Insert mode right-mouse button. 
 
 See much more in the link above.
 
