@@ -162,9 +162,9 @@ then append the aliases, so that the file looks like this:
 .. sourcecode:: python
 
     [user]
-            name = Philippe de Meulenaer
+            name = My Name
             
-            email = philippe.de-meulenaer@swedbank.lt
+            email = myname@email.com
 
     [alias]
             g = !git --no-pager log --oneline --abbrev-commit --all --graph --decorate --color
@@ -174,6 +174,8 @@ then append the aliases, so that the file looks like this:
             co = checkout
             
             br = branch
+            
+            st = status
         
 then we can use the aliases like this:
 
