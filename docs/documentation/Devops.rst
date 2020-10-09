@@ -62,6 +62,15 @@ what is it exactly?
 
 - https://kumul.us/understanding-cicd-continuous-integration-deployment-delivery/
 
+Tests
+---------------------
+
+- regression testing
+
+- performance testing
+
+- coverage testing: tps://www.guru99.com/test-coverage-in-software-testing.html 
+
 ==========================================================================
 MLOps - Machine learning life cycle
 ==========================================================================
