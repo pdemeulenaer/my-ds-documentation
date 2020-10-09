@@ -74,9 +74,12 @@ MLFlow server
 
 Good links:
 
+- Main concepts of MLFlow: https://www.mlflow.org/docs/latest/concepts.html
+
 - https://towardsdatascience.com/setup-mlflow-in-production-d72aecde7fef
 
-- https://pedro-munoz.tech/how-to-setup-mlflow-in-production/
+- https://pedro-munoz.tech/how-to-setup-mlflow-in-production/ ; https://medium.com/datatau/how-to-setup-mlflow-in-production-a6f70511ebdc
 
 - https://towardsdatascience.com/deploy-mlflow-with-docker-compose-8059f16b6039
+
 
