@@ -63,6 +63,15 @@ See https://www.freecodecamp.org/news/symlink-tutorial-in-linux-how-to-create-an
  Useful GIT commands
 ==========================================================================
 
+Bitbucket: how to create ssh-keys and connect to bitbucket server
+--------------------------------------------------------------------------
+
+1. Create key: https://confluence.atlassian.com/bitbucketserver0610/creating-ssh-keys-989761219.html?utm_campaign=in-app-help&utm_medium=in-app-help&utm_source=stash
+
+2. Copy public key to bitbucket: https://confluence.atlassian.com/bitbucketserver0610/ssh-user-keys-for-personal-use-989761224.html
+
+3. git clone your repo. In case we get error bitbucket git "SSL certificate problem: self signed certificate in certificate chain", we need to disable the SSL verification step, either one-time shot: GIT_SSL_NO_VERIFY=true git clone https://username@git.example.com/scm/repository.git (see https://confluence.atlassian.com/bitbucketserverkb/resolving-ssl-self-signed-certificate-errors-806029899.html) or globally: git config --global http.sslVerify false (see https://mattferderer.com/fix-git-self-signed-certificate-in-certificate-chain-on-windows)
+
 Pull requests: how-to
 --------------------------------------------------------------------------
 
