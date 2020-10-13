@@ -63,13 +63,18 @@ what is it exactly?
 - https://kumul.us/understanding-cicd-continuous-integration-deployment-delivery/
 
 Tests
----------------------
+--------------------------------------------------------------------------
 
 - regression testing
 
 - performance testing
 
 - coverage testing: tps://www.guru99.com/test-coverage-in-software-testing.html 
+
+Git Flow
+--------------------------------------------------------------------------
+
+Intro here: https://medium.com/@patrickporto/4-branching-workflows-for-git-30d0aaee7bf
 
 ==========================================================================
 MLOps - Machine learning life cycle
