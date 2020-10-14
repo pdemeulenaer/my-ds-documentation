@@ -57,6 +57,10 @@ See https://www.freecodecamp.org/news/symlink-tutorial-in-linux-how-to-create-an
 
   #produces a new folder called 'latest' that will be in sync with the 'latest_azure' one
   ln -s latest_azure latest  
+  
+  # checks where does a symlink points to: here I have a "python" softlink pointing to "python3.6" executable
+  ls -l /opt/anaconda/current/bin/python
+  lrwxrwxrwx 1 root root 9 Mar 26  2019 /opt/anaconda/current/bin/python -> python3.6
 
 
 ==========================================================================
