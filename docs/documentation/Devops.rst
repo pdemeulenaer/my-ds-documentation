@@ -96,4 +96,10 @@ Good links:
 
 - https://towardsdatascience.com/deploy-mlflow-with-docker-compose-8059f16b6039
 
+Model registry example: https://docs.microsoft.com/en-us/azure/databricks/applications/mlflow/model-registry-example 
+
+* How to register a model using the model registry UI: https://docs.microsoft.com/en-us/azure/databricks/applications/mlflow/model-registry-example#register-and-manage-the-model-using-the-mlflow-ui
+
+* How to register a model in the model registry in the MLFlow API: https://docs.microsoft.com/en-us/azure/databricks/applications/mlflow/model-registry-example#register-and-manage-the-model-using-the--mlflow-api 
+
 
