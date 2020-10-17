@@ -38,6 +38,8 @@ High-level principle of Docker images:
    :scale: 100 %
    :alt: Docker images principle
 
+Spark on Docker: https://www.datamechanics.co/blog-post/spark-and-docker-your-spark-development-cycle-just-got-ten-times-faster
+
 Kubernetes
 ==========================================================================
 
@@ -54,6 +56,15 @@ Again, a very interesting series to address the basics concepts:
 - https://mlinproduction.com/k8s-deployments/ : part 4 of the series, on deployments
 
 - https://mlinproduction.com/k8s-services/ : part 5 of the series
+
+Spark on Kubernetes
+--------------------------------------------------------------------------
+
+Good links:
+
+- https://levelup.gitconnected.com/spark-on-kubernetes-3d822969f85b
+
+
 
 CICD developement
 ==========================================================================
