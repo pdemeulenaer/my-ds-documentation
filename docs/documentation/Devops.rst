@@ -37,6 +37,8 @@ High-level principle of Docker images:
 .. figure:: Images/Docker_principle.png
    :scale: 100 %
    :alt: Docker images principle
+   
+Activate a conda environment in Docker: https://pythonspeed.com/articles/activate-conda-dockerfile/   
 
 Spark on Docker: https://www.datamechanics.co/blog-post/spark-and-docker-your-spark-development-cycle-just-got-ten-times-faster
 
