@@ -126,7 +126,7 @@ Good links:
 
 - https://towardsdatascience.com/deploy-mlflow-with-docker-compose-8059f16b6039
 
-MLFLow Tracking
+MLFLow Tracking: https://www.mlflow.org/docs/latest/tracking.html
 --------------------------------------------------------------------------
 
 Log scikit-learn models in MLFlow: https://mlflow.org/docs/latest/python_api/mlflow.sklearn.html#mlflow.sklearn.log_model
@@ -135,7 +135,13 @@ Log pyspark models in MLFlow: https://mlflow.org/docs/latest/python_api/mlflow.s
 
 Log tensorflow models in MLFlow: https://www.mlflow.org/docs/latest/python_api/mlflow.tensorflow.html#mlflow.tensorflow.log_model
 
-MLFlow Model registry
+MLFLow Projects: https://www.mlflow.org/docs/latest/projects.html
+--------------------------------------------------------------------------
+
+MLFlow Models: https://www.mlflow.org/docs/latest/models.html
+--------------------------------------------------------------------------
+
+MLFlow Model registry: https://www.mlflow.org/docs/latest/model-registry.html
 --------------------------------------------------------------------------
 
 Model registry example: https://docs.microsoft.com/en-us/azure/databricks/applications/mlflow/model-registry-example 
@@ -146,12 +152,6 @@ Model registry example: https://docs.microsoft.com/en-us/azure/databricks/applic
 
 MLFlow server
 --------------------------------------------------------------------------
-
-
-
-
-
-
 
 
 
