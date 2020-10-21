@@ -126,6 +126,8 @@ Good links:
 
 - https://towardsdatascience.com/deploy-mlflow-with-docker-compose-8059f16b6039
 
+- https://blog.noodle.ai/introduction-to-mlflow-for-mlops-part-1-anaconda-environment/
+
 MLFLow Tracking: https://www.mlflow.org/docs/latest/tracking.html
 --------------------------------------------------------------------------
 
