@@ -96,8 +96,25 @@ MLOps - Machine learning life cycle
 MLFlow
 ==========================================================================
 
-MLFlow server
---------------------------------------------------------------------------
+Advantages:
+
+MLFlow is a Data Science platform built with machine learning model development, versioning and deployment in mind.
+
+Developed by Databricks, open-sourced, and donated to Linux foundation. As such, heavily documented. Became de-facto standard in last 2 years
+
+For development, ability to log parameters (see tracking API)
+
+For deployment, ability to version-control model, and tag model: none-staging-production-archived (see model registry API)
+
+the open source version exists as a server-client application, accessible through:
+
+- a user-friendly (data scientist-friendly) UI
+
+- through python APIs
+
+- through the MLFlow CLI
+
+See the components of MLFlow here: https://www.mlflow.org/docs/latest/concepts.html#mlflow-components 
 
 Good links:
 
@@ -109,10 +126,32 @@ Good links:
 
 - https://towardsdatascience.com/deploy-mlflow-with-docker-compose-8059f16b6039
 
+MLFLow Tracking
+--------------------------------------------------------------------------
+
+Log scikit-learn models in MLFlow: https://mlflow.org/docs/latest/python_api/mlflow.sklearn.html#mlflow.sklearn.log_model
+
+Log pyspark models in MLFlow: https://mlflow.org/docs/latest/python_api/mlflow.spark.html#mlflow.spark.log_model
+
+Log tensorflow models in MLFlow: https://www.mlflow.org/docs/latest/python_api/mlflow.tensorflow.html#mlflow.tensorflow.log_model
+
+MLFlow Model registry
+--------------------------------------------------------------------------
+
 Model registry example: https://docs.microsoft.com/en-us/azure/databricks/applications/mlflow/model-registry-example 
 
 * How to register a model using the model registry UI: https://docs.microsoft.com/en-us/azure/databricks/applications/mlflow/model-registry-example#register-and-manage-the-model-using-the-mlflow-ui
 
 * How to register a model in the model registry in the MLFlow API: https://docs.microsoft.com/en-us/azure/databricks/applications/mlflow/model-registry-example#register-and-manage-the-model-using-the--mlflow-api 
+
+MLFlow server
+--------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 
