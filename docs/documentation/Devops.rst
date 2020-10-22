@@ -93,6 +93,10 @@ Intro here: https://medium.com/@patrickporto/4-branching-workflows-for-git-30d0a
 MLOps - Machine learning life cycle
 ==========================================================================
 
+ML platforms: https://medium.com/better-programming/5-great-mlops-tools-to-launch-your-next-machine-learning-model-3e403d0c97d3
+
+
+
 MLFlow
 ==========================================================================
 
