@@ -10,6 +10,8 @@ Basic Sphinx commands
    This section is just a place to store different sphinx commands that may be useful while building the documentation. 
    
 LOOK AT FOR LINKING: http://www.sphinx-doc.org/en/stable/markup/inline.html
+
+SPhinx documentation using Azure DevOps: https://medium.com/@LydiaNemec/documenting-your-data-science-project-a-guide-to-publish-your-sphinx-code-documentation-d1afeb110696
 	
 Subject Subtitle
 ----------------
