@@ -143,3 +143,10 @@ We sometimes need to join data on KNID and on some date...but not exactly the sa
    WHERE SEQ=1
    
 See https://social.msdn.microsoft.com/Forums/sqlserver/en-US/869b6f3f-a757-4a03-8704-96e4df734e29/find-closest-date-to-another-date?forum=transactsql   
+
+Posgresql
+========================================================
+
+How to install and use on Ubuntu: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04
+
+How to create user, db, create tables: https://www.digitalocean.com/community/tutorials/how-to-create-remove-manage-tables-in-postgresql-on-a-cloud-server
