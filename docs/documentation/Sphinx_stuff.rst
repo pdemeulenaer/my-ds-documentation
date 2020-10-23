@@ -11,7 +11,9 @@ Basic Sphinx commands
    
 LOOK AT FOR LINKING: http://www.sphinx-doc.org/en/stable/markup/inline.html
 
-SPhinx documentation using Azure DevOps: https://medium.com/@LydiaNemec/documenting-your-data-science-project-a-guide-to-publish-your-sphinx-code-documentation-d1afeb110696
+Sphinx documentation using Azure DevOps: https://medium.com/@LydiaNemec/documenting-your-data-science-project-a-guide-to-publish-your-sphinx-code-documentation-d1afeb110696
+
+Document python project using Sphinx: https://medium.com/@richdayandnight/a-simple-tutorial-on-how-to-document-your-python-project-using-sphinx-and-rinohtype-177c22a15b5b
 	
 Subject Subtitle
 ----------------
