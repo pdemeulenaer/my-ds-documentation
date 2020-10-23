@@ -116,7 +116,7 @@ the open source version exists as a server-client application, accessible throug
 
 - through python APIs
 
-- through the MLFlow CLI
+- through the MLFlow CLI: https://www.mlflow.org/docs/latest/cli.html
 
 See the components of MLFlow here: https://www.mlflow.org/docs/latest/concepts.html#mlflow-components 
 
