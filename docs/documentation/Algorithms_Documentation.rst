@@ -6,6 +6,8 @@ Glossary of Machine Learning: https://semanti.ca/blog/?glossary-of-machine-learn
 
 Cheatsheets on Machine Learning: https://github.com/afshinea/stanford-cs-229-machine-learning/tree/master/en
 
+Big O notation: https://dev.to/educative/big-o-notation-cheat-sheet-quick-answers-to-big-o-questions-oh1?utm_source=digest_mailer&utm_medium=email&utm_campaign=digest_email
+
 Supervised Machine Learning
 ============================
 
