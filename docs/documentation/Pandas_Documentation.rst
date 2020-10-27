@@ -252,6 +252,11 @@ If done with Visual Studio Code, the settings should be adapted. Type 'Ctrl + ,'
   }
 
 
+Python environments
+===============================================
+
+Very good intro: https://towardsdatascience.com/devops-for-data-science-making-your-python-project-reproducible-f55646e110fa
+
 Installing through proxy using pip
 -----------------------------------------------
 
@@ -264,7 +269,9 @@ Anaconda environments
 
 check the environments:
 
-conda info --envs
+.. sourcecode:: python
+
+  conda info --envs
 
 There should be a base, and others, if they were created.
 
@@ -274,7 +281,10 @@ source activate env_name  (source in Unix, without on Windows)
 
 To create a new environment with some packages: 
 
-conda create -n env_name --yes --quiet python=3.5 numpy scipy scikit-learn statsmodels
+.. sourcecode:: python
+
+  conda create -n env_name --yes --quiet python=3.5 numpy scipy scikit-learn statsmodels
+
 
 Numpy basic documentation
 ===========================
