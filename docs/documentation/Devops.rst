@@ -89,6 +89,8 @@ Git Flow
 
 Intro here: https://medium.com/@patrickporto/4-branching-workflows-for-git-30d0aaee7bf
 
+Git flow extended demo: https://datasift.github.io/gitflow/IntroducingGitFlow.html
+
 ==========================================================================
 MLOps - Machine learning life cycle
 ==========================================================================
