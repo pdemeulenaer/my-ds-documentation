@@ -91,6 +91,8 @@ Intro here: https://medium.com/@patrickporto/4-branching-workflows-for-git-30d0a
 
 Git flow extended demo: https://datasift.github.io/gitflow/IntroducingGitFlow.html
 
+The one of Azure DevOps: https://docs.microsoft.com/en-us/azure/devops/repos/tfvc/effective-tfvc-branching-strategies-for-devops?view=azure-devops
+
 ==========================================================================
 MLOps - Machine learning life cycle
 ==========================================================================
