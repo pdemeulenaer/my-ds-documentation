@@ -232,6 +232,11 @@ Configuration 2: Push only the current branch
 
 See http://www.fleekitsolutions.com/blogs/git/difference-between-push-default-matching-simple  
 
+Versioning in git: git tag
+--------------------------------------------------------------------------
+
+Atlassian tutorial: https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-tag
+
 What is a detached head?
 --------------------------------------------------------------------------
 
