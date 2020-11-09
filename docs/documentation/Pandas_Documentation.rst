@@ -285,9 +285,106 @@ To create a new environment with some packages:
 
   conda create -n env_name --yes --quiet python=3.5 numpy scipy scikit-learn statsmodels
 
+Unit tests in Python: pytest
+-----------------------------------------------------------
+
+Good link: https://realpython.com/pytest-python-testing/ 
+
+About fixtures (from the link above):
+
+Imagine you’re writing a function, format_data_for_display(), to process the data returned by an API endpoint. The data represents a list of people, each with a given name, family name, and job title. The function should output a list of strings that include each person’s full name (their given_name followed by their family_name), a colon, and their title. To test this, you might write the following code:
+
+.. sourcecode:: python
+
+  def format_data_for_display(people):
+      ...  # Implement this!
+  
+  def test_format_data_for_display():
+      people = [
+          {
+              "given_name": "Alfonsa",
+              "family_name": "Ruiz",
+              "title": "Senior Software Engineer",
+          },
+          {
+              "given_name": "Sayid",
+              "family_name": "Khan",
+              "title": "Project Manager",
+          },
+      ]
+  
+      assert format_data_for_display(people) == [
+          "Alfonsa Ruiz: Senior Software Engineer",
+          "Sayid Khan: Project Manager",
+      ]
+
+Now suppose you need to write another function to transform the data into comma-separated values for use in Excel. The test would look awfully similar:
+
+.. sourcecode:: python
+
+  def format_data_for_excel(people):
+      ... # Implement this!
+  
+  def test_format_data_for_excel():
+      people = [
+          {
+              "given_name": "Alfonsa",
+              "family_name": "Ruiz",
+              "title": "Senior Software Engineer",
+          },
+          {
+              "given_name": "Sayid",
+              "family_name": "Khan",
+              "title": "Project Manager",
+          },
+      ]
+  
+      assert format_data_for_excel(people) == """given,family,title
+  Alfonsa,Ruiz,Senior Software Engineer
+  Sayid,Khan,Project Manager
+  """
+
+If you find yourself writing several tests that all make use of the same underlying test data, then a fixture may be in your future. You can pull the repeated data into a single function decorated with @pytest.fixture to indicate that the function is a pytest fixture:
+
+.. sourcecode:: python
+
+  import pytest
+  
+  @pytest.fixture
+  def example_people_data():
+      return [
+          {
+              "given_name": "Alfonsa",
+              "family_name": "Ruiz",
+              "title": "Senior Software Engineer",
+          },
+          {
+              "given_name": "Sayid",
+              "family_name": "Khan",
+              "title": "Project Manager",
+          },
+      ]
+    
+You can use the fixture by adding it as an argument to your tests. Its value will be the return value of the fixture function:
+
+.. sourcecode:: python
+
+  def test_format_data_for_display(example_people_data):
+      assert format_data_for_display(example_people_data) == [
+          "Alfonsa Ruiz: Senior Software Engineer",
+          "Sayid Khan: Project Manager",
+      ]
+  
+  def test_format_data_for_excel(example_people_data):
+      assert format_data_for_excel(example_people_data) == """given,family,title
+  Alfonsa,Ruiz,Senior Software Engineer
+  Sayid,Khan,Project Manager
+  """
+
+Each test is now notably shorter but still has a clear path back to the data it depends on. Be sure to name your fixture something specific. That way, you can quickly determine if you want to use it when writing new tests in the future!    
 
 Numpy basic documentation
-===========================
+===========================================================
 
 .. figure:: Cheatsheets/Numpy_Python_Cheat_Sheet.png
    :scale: 100 %
