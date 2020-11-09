@@ -344,7 +344,7 @@ Now suppose you need to write another function to transform the data into comma-
   Sayid,Khan,Project Manager
   """
 
-If you find yourself writing several tests that all make use of the same underlying test data, then a fixture may be in your future. You can pull the repeated data into a single function decorated with @pytest.fixture to indicate that the function is a pytest fixture:
+If you find yourself writing several tests that all make use of the same underlying test data (or python object), then a fixture may be in your future. You can pull the repeated data into a single function decorated with @pytest.fixture to indicate that the function is a pytest fixture:
 
 .. sourcecode:: python
 
