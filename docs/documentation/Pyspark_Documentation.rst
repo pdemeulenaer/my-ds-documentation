@@ -18,8 +18,13 @@ General Spark resources:
 
 - https://data-flair.training/blogs/dag-in-apache-spark/ (internal of Spark)
 
+Certifications
+------------------------------------------------------
+
+Databricks: https://medium.com/@sriramn84_34423/crack-databricks-certified-associate-developer-for-apache-spark-3-0-cf4cb89df61d
+
 Spark-submit tasks
--------------------------------
+------------------------------------------------------
 
 How to navigate between versions using spark-submit:
 
@@ -40,12 +45,12 @@ spark-submit --name CashflowModel --executor-memory 60G --master yarn --driver-m
 See here for configuration parameters: https://spark.apache.org/docs/2.2.0/configuration.html 
 
 Killing YARN applications:
----------------------------------------
+------------------------------------------------------
 
 yarn application -kill application_NNN
 
 Simple HDFS commands
--------------------------------------------------------------
+------------------------------------------------------
 
 .. sourcecode:: python
 
