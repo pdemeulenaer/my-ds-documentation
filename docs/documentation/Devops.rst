@@ -33,6 +33,8 @@ Additional interesting resources:
 
 - https://towardsdatascience.com/docker-for-data-science-9c0ce73e8263
 
+- Intro to docker & kubernetes video: https://www.youtube.com/watch?v=bhBSlnQcq2k&ab_channel=Amigoscode
+
 High-level principle of Docker images:
 
 .. figure:: Images/Docker_principle.png
@@ -60,6 +62,8 @@ Again, a very interesting series to address the basics concepts:
 
 - https://mlinproduction.com/k8s-services/ : part 5 of the series
 
+Intro to docker & kubernetes video: https://www.youtube.com/watch?v=bhBSlnQcq2k&ab_channel=Amigoscode
+
 Spark on Kubernetes
 --------------------------------------------------------------------------
 
@@ -75,6 +79,22 @@ CICD developement
 what is it exactly?
 
 - https://kumul.us/understanding-cicd-continuous-integration-deployment-delivery/
+
+Interesting series of Videos on CI/CD of a ML model (NLP detection of positive/negative comments) using GitLab, Jenkins and Flask (and Docker):
+
+- video 1: installation of Docker, GitLab, Jenkins: https://www.youtube.com/watch?v=SUyHDYb1aBM&ab_channel=ThinkwithRiz
+- video 2: model building using Flask: https://www.youtube.com/watch?v=XT2TFQexYrg&ab_channel=ThinkwithRiz
+- video 3: deploy NLP Machine Learning Model Flask App to Docker: https://www.youtube.com/watch?v=rb_DkKAZzyA&t=5s&ab_channel=ThinkwithRiz
+- video 4: Flask Application End To End CI-CD Pipeline using Jenkins & GitLab: https://www.youtube.com/watch?v=sg1S7A532gM&ab_channel=ThinkwithRiz
+
+GitLab
+--------------------------------------------------------------------------
+
+Jenkins
+--------------------------------------------------------------------------
+
+Azure DevOps
+--------------------------------------------------------------------------
 
 Tests
 --------------------------------------------------------------------------
