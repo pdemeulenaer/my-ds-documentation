@@ -81,7 +81,7 @@ And much more here:
 - https://www.dezyre.com/hadoop-tutorial/hadoop-hdfs-commands
 
 Importing Pyspark modules
---------------------------------
+------------------------------------------------------  
 
 There are many different ones. among the most commonly used:
 
@@ -90,7 +90,7 @@ There are many different ones. among the most commonly used:
    from pyspark.sql.functions import *
 	
 Creation of Pyspark objects
---------------------------------
+------------------------------------------------------  
 
 First we need to create a Spark context (version 1.6):
 
@@ -177,7 +177,7 @@ Here a comparison of 2 ways of opening a table:
   table2 = spark.table('3839_project_pbaff.trx_201805_mcc_pcat_gir_tra')   
   
 RDDs
-----------------
+------------------------------------------------------  
 
 RDDs are the main data structure type in Pyspark until version 2.X. When possible, let's work with the Dataframe approach rather than RDDs (they will become more and more deprecated, and are planed to disappear in 3.X) 
 
@@ -197,7 +197,7 @@ Here is the DataCamp Cheatsheet for RDDs:
 
 
 Dataframes
-----------------
+------------------------------------------------------  
 
 Starting from Pyspark 1.5, Dataframes are built ontop of RDDs and allow to deal easier with data, in a more Pandas-like way. Since version 2.0, they become the main data type.
 
@@ -246,7 +246,7 @@ Creating a df from scatch: sometimes you have to specify the datatype:
   +-----+  
   
 Partitions in pyspark
---------------------------------------
+------------------------------------------------------  
 
 How many partitions should we have? Rule of thumb is to have 128Mb per partition.
 
@@ -312,7 +312,7 @@ Example of output:
   
   
 Concerning partition skewness problem
-------------------------------------------------------------------------  
+------------------------------------------------------  
 
 Great link on avoiding data skewness: https://medium.com/simpl-under-the-hood/spark-protip-joining-on-skewed-dataframes-7bfa610be704
 
@@ -361,7 +361,7 @@ Solution using a SALT key (applied for a groupby operation, but would be similar
    
 
 Spark executor/cores and memory management: Resources allocation in Spark
----------------------------------------------------------------------------------------------
+------------------------------------------------------
 
 https://spoddutur.github.io/spark-notes/distribution_of_executors_cores_and_memory_for_spark_application.html  
 
@@ -430,7 +430,7 @@ A better option would be to use --num-executors 17 --executor-cores 5 --executor
 - --executor-memory was derived as (63/3 executors per node) = 21. The memory overhead should take 7% (or in more recent cases 10%) of the allocated memory: 21 * 0.07 = 1.47 Gb. So the total memory allocated should be no large than 21 – 1.47 ~ 19.
    
 Basic commands
-----------------
+------------------------------------------------------
 
 .. sourcecode:: python
   
@@ -515,7 +515,53 @@ Dropping duplicate rows:
   
   df.DropColumns(['A','B']) # drops all rows which have all same elements in A and B
   
+User-Defined Schemas
+------------------------------------------------------
 
+Spark infers schemas from the data, as detailed in the example above. Challenges with inferred schemas include:
+
+- Schema inference means Spark scans all of your data, creating an extra job, which can affect performance
+
+- Consider providing alternative data types (for example, change a Long to a Integer)
+
+- Consider throwing out certain fields in the data, to read only the data of interest
+
+To define schemas, build a StructType composed of StructFields.
+
+A primitive type contains the data itself.  The most common primitive types include:
+
+| Numeric | General | Time |
+|-----|-----|
+| `FloatType` | `StringType` | `TimestampType` | 
+| `IntegerType` | `BooleanType` | `DateType` | 
+| `DoubleType` | `NullType` | |
+| `LongType` | | |
+| `ShortType` |  | |
+
+Non-primitive types are sometimes called reference variables or composite types.  Technically, non-primitive types contain references to memory locations and not the data itself.  Non-primitive types are the composite of a number of primitive types such as an Array of the primitive type `Integer`.
+
+The two most common composite types are `ArrayType` and `MapType`. These types allow for a given field to contain an arbitrary number of elements in either an Array/List or Map/Dictionary form.
+
+Taken from databricks online lectures.
+
+.. sourcecode:: python
+
+  from pyspark.sql.types import StructType, StructField, IntegerType, StringType
+
+  zipsSchema2 = StructType([
+    StructField("city", StringType(), True), 
+    StructField("pop", IntegerType(), True) 
+  ])
+  
+  # or for composite type example:
+  from pyspark.sql.types import StructType, StructField, IntegerType, StringType, ArrayType, FloatType
+  
+  zipsSchema3 = StructType([
+    StructField("city", StringType(), True), 
+    StructField("loc", 
+      ArrayType(FloatType(), True), True),
+    StructField("pop", IntegerType(), True)
+  ])  
   
 Random sampling
 ------------------------------------
