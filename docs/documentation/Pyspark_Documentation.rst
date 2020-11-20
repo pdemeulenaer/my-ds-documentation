@@ -556,12 +556,18 @@ Taken from databricks online lectures.
   # or for composite type example:
   from pyspark.sql.types import StructType, StructField, IntegerType, StringType, ArrayType, FloatType
   
-  zipsSchema3 = StructType([
+  schema = StructType([
     StructField("city", StringType(), True), 
     StructField("loc", 
       ArrayType(FloatType(), True), True),
     StructField("pop", IntegerType(), True)
   ])  
+  
+  # and the actual reading is like this:
+  df = (spark.read
+    .schema(schema)
+    .json("/mnt/training/UbiqLog4UCI/14_F/log*")
+  )  
   
 Random sampling
 ------------------------------------
