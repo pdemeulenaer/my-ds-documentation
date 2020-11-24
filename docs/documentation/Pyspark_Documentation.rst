@@ -515,6 +515,37 @@ Dropping duplicate rows:
   
   df.DropColumns(['A','B']) # drops all rows which have all same elements in A and B
   
+Reading/writing data  
+------------------------------------------------------
+
+Examples of reading:
+
+Here reading a csv file in DataBricks: 
+
+.. sourcecode:: python
+
+  crimeDF = (spark.read
+    .option("delimiter", "\t")
+    .option("header", True)
+    .option("timestampFormat", "mm/dd/yyyy hh:mm:ss a")
+    .option("inferSchema", True)
+    .csv("/mnt/training/Chicago-Crimes-2018.csv")
+  )
+  
+  # here to remove any space in column headers, and lowercase them
+  cols = crimeDF.columns
+  titleCols = [''.join(j for j in i.title() if not j.isspace()) for i in cols]
+  camelCols = [column[0].lower()+column[1:] for column in titleCols]
+
+  crimeRenamedColsDF = crimeDF.toDF(*camelCols)
+  
+  # writing to parquet
+  targetPath = f"{workingDir}/crime.parquet"
+  crimeRenamedColsDF.write.mode("overwrite").parquet(targetPath)
+  
+  # or for partition control
+  crimeRenamedColsDF.repartition(1).write.mode("overwrite").parquet(targetPath)
+  
 User-Defined Schemas
 ------------------------------------------------------
 
@@ -568,6 +599,8 @@ Taken from databricks online lectures.
     .schema(schema)
     .json("/mnt/training/UbiqLog4UCI/14_F/log*")
   )  
+  
+NOTE: add the Spark 3.0 schema examples, much simple schema definitions.  
   
 Random sampling
 ------------------------------------
