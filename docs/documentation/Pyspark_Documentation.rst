@@ -1460,13 +1460,165 @@ Links on Pandas_UDF:
 
 - Spark 3: New Pandas_UDF: https://databricks.com/blog/2020/05/20/new-pandas-udfs-and-python-type-hints-in-the-upcoming-release-of-apache-spark-3-0.html
 
+
+ETL in Spark 
+========================================
+
+Taken from Databricks Academy lectures.
+
+Normalizing data
+----------------------------------------
+
+.. sourcecode:: python
+
+  # let's create some dummy data
+  
+  integerDF = spark.range(1000, 10000)
+  integerDF.show(3)
+  
+  +----+
+  |  id|
+  +----+
+  |1000|
+  |1001|
+  |1002|
+  +----+
+    
+  # here we normalize the data manually:
+  from pyspark.sql.functions import col, max, min
+  
+  colMin = integerDF.select(min("id")).first()[0]
+  colMax = integerDF.select(max("id")).first()[0]
+  
+  normalizedIntegerDF = (integerDF
+    .withColumn("normalizedValue", (col("id") - colMin) / (colMax - colMin) )
+  )
+  normalizedIntegerDF.show(3)  
+    
+  +----+--------------------+
+  |  id|     normalizedValue|
+  +----+--------------------+
+  |1000|                 0.0|
+  |1001|1.111234581620180...|
+  |1002|2.222469163240360...|
+  +----+--------------------+
+  
+Imputing Null or Missing Data
+----------------------------------------
+
+Null values refer to unknown or missing data as well as irrelevant responses. Strategies for dealing with this scenario include:
+
+- Dropping these records: Works when you do not need to use the information for downstream workloads
+
+- Adding a placeholder (e.g. -1): Allows you to see missing data later on without violating a schema
+
+- Basic imputing: Allows you to have a "best guess" of what the data could have been, often by using the mean of non-missing data
+
+- Advanced imputing: Determines the "best guess" of what data should be using more advanced strategies such as clustering machine learning algorithms or oversampling techniques
+
+.. sourcecode:: python
+
+  # let's create some data
+  corruptDF = spark.createDataFrame([
+    (11, 66, 5),
+    (12, 68, None),
+    (1, None, 6),
+    (2, 72, 7)], 
+    ["hour", "temperature", "wind"]
+  )
+  
+  corruptDF.show()
+  
+  +----+-----------+----+
+  |hour|temperature|wind|
+  +----+-----------+----+
+  |  11|         66|   5|
+  |  12|         68|null|
+  |   1|       null|   6|
+  |   2|         72|   7|
+  +----+-----------+----+
+  
+  corruptDroppedDF = corruptDF.dropna("any")
+  corruptDroppedDF = corruptDF.na.drop("any") # also works
+  
+  corruptDroppedDF.show()  
+  
+  +----+-----------+----+
+  |hour|temperature|wind|
+  +----+-----------+----+
+  |  11|         66|   5|
+  |   2|         72|   7|
+  +----+-----------+----+
+  
+  # Impute values with the mean.
+  corruptImputedDF = corruptDF.na.fill({"temperature": 68, "wind": 6})
+  corruptImputedDF.show()  
+  
+  +----+-----------+----+
+  |hour|temperature|wind|
+  +----+-----------+----+
+  |  11|         66|   5|
+  |  12|         68|   6|
+  |   1|         68|   6|
+  |   2|         72|   7|
+  +----+-----------+----+  
+  
+Deduplicating Data
+----------------------------------------
+
+Duplicate data comes in many forms. The simple case involves records that are complete duplicates of another record. The more complex cases involve duplicates that are not complete matches, such as matches on one or two columns or "fuzzy" matches that account for formatting differences or other non-exact matches.
+
+.. sourcecode:: python
+
+  # some data with duplicates
+  duplicateDF = spark.createDataFrame([
+    (15342, "Conor", "red"),
+    (15342, "conor", "red"),
+    (12512, "Dorothy", "blue"),
+    (5234, "Doug", "aqua")], 
+    ["id", "name", "favorite_color"]
+  )
+  duplicateDF.show()
+  
+  +-----+-------+--------------+
+  |   id|   name|favorite_color|
+  +-----+-------+--------------+
+  |15342|  Conor|           red|
+  |15342|  conor|           red|
+  |12512|Dorothy|          blue|
+  | 5234|   Doug|          aqua|
+  +-----+-------+--------------+
+  
+  # Drop duplicates on id and favorite_color:
+  duplicateDedupedDF = duplicateDF.dropDuplicates(["id", "favorite_color"])
+  duplicateDedupedDF.show()    
+    
+  +-----+-------+--------------+
+  |   id|   name|favorite_color|
+  +-----+-------+--------------+
+  | 5234|   Doug|          aqua|
+  |12512|Dorothy|          blue|
+  |15342|  Conor|           red|
+  +-----+-------+--------------+  
+
+Other Helpful Data Manipulation Functions:
+
+- explode()	Returns a new row for each element in the given array or map
+
+- pivot()	Pivots a column of the current DataFrame and perform the specified aggregation
+
+- cube()	Create a multi-dimensional cube for the current DataFrame using the specified columns, so we can run aggregation on them
+
+- rollup()	Create a multi-dimensional rollup for the current DataFrame using the specified columns, so we can run aggregation on them
+
+
 Machine Learning using the MLlib package
 ========================================
 
 There are 2 main packages for Machine Learning in Pyspark. MLlib, which is based on RDDs, and ML, which is based on Dataframes. The distinction is very important! After version 2.0, RDDs are deprecated (removed in Spark 3.0) in profit of Pyspark dataframes, which are much more Pandas-friendly. 
 
 The Random Forest
------------------
+----------------------------------------
 
 The MLlib's version of Random Forest is described in details here: https://spark.apache.org/docs/1.6.1/mllib-ensembles.html .
 Here is a very simple working code:
