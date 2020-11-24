@@ -539,12 +539,21 @@ Here reading a csv file in DataBricks:
 
   crimeRenamedColsDF = crimeDF.toDF(*camelCols)
   
+  # Note: we can read txt files with csv option:
+  df    = (spark.read
+           .option("delimiter",":")   
+           .option("header", "true")   
+           .option("inferSchema", "true")            
+           .csv("/mnt/training/dataframes/people-with-dups.txt"))
+  
   # writing to parquet
   targetPath = f"{workingDir}/crime.parquet"
   crimeRenamedColsDF.write.mode("overwrite").parquet(targetPath)
   
   # or for partition control
   crimeRenamedColsDF.repartition(1).write.mode("overwrite").parquet(targetPath)
+  
+  
   
 User-Defined Schemas
 ------------------------------------------------------
