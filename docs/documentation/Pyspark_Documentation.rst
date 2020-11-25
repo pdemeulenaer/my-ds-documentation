@@ -1428,6 +1428,36 @@ Note: if you want to create a UDF that can be used also with the SQL api (in Dat
 
   from pyspark.sql.types import FloatType
   plusOneUDF = spark.udf.register("plusOneUDF", lambda x: x + 1, FloatType())
+  
+  # example:
+  from pyspark.sql.types import IntegerType
+  manualAddPythonUDF = spark.udf.register("manualAddSQLUDF", manual_add, IntegerType())
+  
+  integerDF = (spark.createDataFrame([
+    (1, 2),
+    (3, 4),
+    (5, 6)
+  ], ["col1", "col2"]))
+  
+  integerDF.show()  
+  
+  +----+----+
+  |col1|col2|
+  +----+----+
+  |   1|   2|
+  |   3|   4|
+  |   5|   6|
+  +----+----+  
+  
+  integerAddDF = integerDF.select("*", manualAddPythonUDF("col1", "col2").alias("sum"))
+  integerAddDF.show()  
+  
+  |col1|col2|sum|
+  +----+----+---+
+  |   1|   2|  3|
+  |   3|   4|  7|
+  |   5|   6| 11|
+  +----+----+---+
  
 Pandas UDF
 -----------------------
