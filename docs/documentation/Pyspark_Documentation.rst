@@ -1421,6 +1421,13 @@ Here is an example of a UDF with MULTIPLE COLUMNS AS OUTPUT:
   +-----+------+-----------+------+
   |Alive|4     |6          |[2, 6]|
   +-----+------+-----------+------+  
+  
+Note: if you want to create a UDF that can be used also with the SQL api (in Databricks), use spark.udf.register: 
+
+.. sourcecode:: python
+
+  from pyspark.sql.types import FloatType
+  plusOneUDF = spark.udf.register("plusOneUDF", lambda x: x + 1, FloatType())
  
 Pandas UDF
 -----------------------
