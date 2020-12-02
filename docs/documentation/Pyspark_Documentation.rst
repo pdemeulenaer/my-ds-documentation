@@ -515,6 +515,7 @@ Dropping duplicate rows:
   
   df.DropColumns(['A','B']) # drops all rows which have all same elements in A and B
   
+  
 Reading/writing data  
 ------------------------------------------------------
 
@@ -609,7 +610,47 @@ Taken from databricks online lectures.
     .json("/mnt/training/UbiqLog4UCI/14_F/log*")
   )  
   
-NOTE: add the Spark 3.0 schema examples, much simple schema definitions.  
+Other example, taken from Databricks lectures too:
+
+.. sourcecode:: python
+
+  # 1. Read a csv file from the following path, inferring the schema:
+  productsCsvPath = "/mnt/training/ecommerce/products/products.csv"
+  productsDF = (spark.read
+               .option("header","true")
+               .option("inferSchema","true")
+               .csv(productsCsvPath))  
+  productsDF.printSchema()
+  
+  root
+   |-- item_id: string (nullable = true)
+   |-- name: string (nullable = true)
+   |-- price: double (nullable = true)  
+   
+   # 2. again read, but now use a defined schema, using StructType:
+  from pyspark.sql.types import StructType, StructField, StringType, DoubleType
+  
+  userDefinedSchema = StructType([
+    StructField("item_id", StringType(), True),
+    StructField("name", StringType(), True),
+    StructField("price", DoubleType(), True)
+  ])
+  
+  productsDF2 = (spark.read
+                .option("header","true")
+                .schema(userDefinedSchema)
+                .csv(productsCsvPath))
+  
+  # 3. again read, using a DDL string for the schema:
+  DDLSchema = "item_id string, name string, price double"
+  # or DDLSchema = "`item_id` STRING,`name` STRING,`price` DOUBLE"
+  
+  productsDF3 = (spark.read
+                .option("header","true")
+                .schema(DDLSchema)
+                .csv(productsCsvPath))
+
+Note that the third way is allowed from Spark 3.0. 
   
 Random sampling
 ------------------------------------
