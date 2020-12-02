@@ -452,7 +452,10 @@ Basic commands
   df = df.withColumn("column", df["column"].cast("float"))
   
   #Sorting:
-  df.sort("KNID","sum(BLPS)",ascending=False).show(100)
+  df = spark.createDataFrame([(1, 4), (2, 8), (2, 6)], ["A", "B"]) # some data
+  df.sort(col("B").desc()).show() # sorting along B column in desc order
+  df.sort(col("A").desc(), col("B").asc()).show() # sorting along A column in asc order, and then along B column in desc order 
+  df.sort(col("B").desc_nulls_last()).show() # sorting along B column in desc order, keeping potential NULL at the end (by default they would stay on top)  
   
   #Moving to a Pandas dataframe:
   df_pd = df.toPandas()
