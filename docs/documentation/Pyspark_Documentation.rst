@@ -491,6 +491,10 @@ Basic commands
   #Add a column made of a uniform random number
   df = df.withColumn('random_number', rand() )
   
+  # using selectExpr to define a column (alternative to withColumn)
+  df = spark.createDataFrame([(1, 4), (2, 8), (2, 6)], ["A", "B"]) 
+  df.selectExpr("A", "B", "A+B > 7 as high").show(5)
+  
 Type definition for several variables at once ("recasting"):
 
 .. sourcecode:: python
@@ -509,12 +513,11 @@ Dropping duplicate rows:
 
 .. sourcecode:: python
 
-  df = sqlContext.createDataFrame([(1, 4, 3), (2, 8, 1), (2, 8, 1), (2, 8, 3), (3, 2, 1)], ["A", "B", "C"])  
+  df = spark.createDataFrame([(1, 4, 3), (2, 8, 1), (2, 8, 1), (2, 8, 3), (3, 2, 1)], ["A", "B", "C"])  
   
-  df.dropDuplicates() # drops all rows which have all same columns
+  df.dropDuplicates() # drops all identical rows
   
-  df.DropColumns(['A','B']) # drops all rows which have all same elements in A and B
-  
+  df.dropDuplicates(['A','B']) # drops all identical rows for columns A and B  
   
 Reading/writing data  
 ------------------------------------------------------
@@ -815,7 +818,7 @@ The main window functions:
 .. sourcecode:: python
 
   #Let's say we have the same dataframe as in the aggregation section:
-  df = sqlContext.createDataFrame([(1, 4), (2, 5), (2, 8), (3, 6), (3, 2)], ["A", "B"])
+  df = spark.createDataFrame([(1, 4), (2, 5), (2, 8), (3, 6), (3, 2)], ["A", "B"])
 
   #We can build a window function that computes a diff line by line – ordered or not – given a specific key
   
@@ -853,7 +856,7 @@ Another thing: when we want to count the number of rows PER GROUP:
     ('a', 7),
     ('b', 1),
   ]
-  df = sqlCtx.createDataFrame(data, ["x", "y"])  
+  df = spark.createDataFrame(data, ["x", "y"])  
   df.show()
   
   +---+---+
@@ -879,7 +882,7 @@ Another thing: when we want to count the number of rows PER GROUP:
   
   #We can get exactly the same using pure SQL:
   df.registerTempTable('table')
-  sqlCtx.sql(
+  spark.sql(
     'SELECT x, y, COUNT(x) OVER (PARTITION BY x) AS n FROM table ORDER BY x, y'
   ).show()
   
