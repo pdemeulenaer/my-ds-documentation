@@ -702,15 +702,15 @@ The main aggregation functions:
 .. sourcecode:: python
 
   #Grouping and aggregating:
-  df.groupBy("KNID","IDKT","counter_account").agg({"BLPS": "sum", "KNID": "count"})
-  #Other example with aggregation on distinct knid:
-  df.groupBy('txft').agg(countDistinct('knid')).orderBy('count(knid)',ascending=0).show(100,False)
+  df.groupBy("id","name","account_number").agg({"amount": "sum", "id": "count"})
+  #Other example with aggregation on distinct id:
+  df.groupBy('txft').agg(countDistinct('id')).orderBy('count(id)',ascending=0).show(100,False)
   
   #Here for one column only:
-  part_party.groupBy('bankid').count().orderBy('count',ascending=0).show(100,False)
+  df.groupBy('id').count().orderBy('count',ascending=0).show(100,False)
   
   #Example: we have a given dataframe like
-  df = sqlContext.createDataFrame([(1, 4), (2, 5), (2, 8), (3, 6), (3, 2)], ["A", "B"])
+  df = spark.createDataFrame([(1, 4), (2, 5), (2, 8), (3, 6), (3, 2)], ["A", "B"])
   df.show()
   
   +---+---+
@@ -735,8 +735,7 @@ The main aggregation functions:
   |  2|   6.5|     5|     8|
   +---+------+------+------+
   
-  #We can also build aggregates using aliases:
-  
+  #We can also build aggregates using aliases:  
   df.groupBy("A").agg(
     F.first("B").alias("my first"),
     F.last("B").alias("my last"),
