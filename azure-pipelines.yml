@@ -78,4 +78,4 @@ stages:
         azureSubscription: 'webapp-sphinx-connection'
         appType: 'webApp'
         WebAppName: 'pdemeulenaer-doc'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
+        packageForLinux: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
