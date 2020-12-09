@@ -429,6 +429,11 @@ A better option would be to use --num-executors 17 --executor-cores 5 --executor
 
 - --executor-memory was derived as (63/3 executors per node) = 21. The memory overhead should take 7% (or in more recent cases 10%) of the allocated memory: 21 * 0.07 = 1.47 Gb. So the total memory allocated should be no large than 21 – 1.47 ~ 19.
    
+Spark UI
+------------------------------------------------------
+
+See an exercise from Databricks: https://www.databricks.training/spark-ui-simulator/exploring-the-spark-ui/v002/
+   
 Basic commands
 ------------------------------------------------------
 
