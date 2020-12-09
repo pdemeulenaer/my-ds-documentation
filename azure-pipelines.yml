@@ -64,18 +64,18 @@ stages:
       displayName: 'Publish documentation as artifact'
 
 
-- stage: Deploy
-  displayName: 'Deploy doc'
-  jobs:
-  - job: Deploy
-    displayName: 'Deploy'
-    pool:
-      vmImage: 'vs2017-win2016'
-    steps:
-    - task: AzureRmWebAppDeployment@4
-      inputs:
-        ConnectionType: 'AzureRM'
-        azureSubscription: 'webapp-sphinx-connection'
-        appType: 'webApp'
-        WebAppName: 'pdemeulenaer-doc'
-        packageForLinux: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
+# - stage: Deploy
+#   displayName: 'Deploy doc'
+#   jobs:
+#   - job: Deploy
+#     displayName: 'Deploy'
+#     pool:
+#       vmImage: 'vs2017-win2016'
+#     steps:
+#     - task: AzureRmWebAppDeployment@4
+#       inputs:
+#         ConnectionType: 'AzureRM'
+#         azureSubscription: 'webapp-sphinx-connection'
+#         appType: 'webApp'
+#         WebAppName: 'pdemeulenaer-doc'
+#         packageForLinux: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
