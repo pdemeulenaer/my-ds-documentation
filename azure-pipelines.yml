@@ -15,6 +15,7 @@ trigger:
 #       architecture: 'x64'
 
 stages:
+
 - stage: Build
   displayName: 'Build doc'
   jobs:
@@ -63,7 +64,6 @@ stages:
       displayName: 'Publish documentation as artifact'
 
 
-stages:
 - stage: Deploy
   displayName: 'Deploy doc'
   jobs:
@@ -71,9 +71,7 @@ stages:
     displayName: 'Deploy'
     pool:
       vmImage: 'vs2017-win2016'
-
     steps:
-
     - task: AzureRmWebAppDeployment@4
       inputs:
         ConnectionType: 'AzureRM'
