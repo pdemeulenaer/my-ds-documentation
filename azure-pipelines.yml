@@ -63,6 +63,14 @@ stages:
         publishLocation: 'Container'
       displayName: 'Publish documentation as artifact'
 
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'webapp-sphinx-connection'
+        appType: 'webApp'
+        WebAppName: 'pdemeulenaer-doc'
+        packageForLinux: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
+
 
 # - stage: Deploy
 #   displayName: 'Deploy doc'
