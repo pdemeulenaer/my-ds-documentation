@@ -70,9 +70,9 @@ stages:
         appType: 'webApp'
         WebAppName: 'pdemeulenaer-doc'
         packageForLinux: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
-
-    - task: PublishBuildArtifacts@1        
-
+        enableCustomDeployment: true
+        DeploymentType: 'webDeploy'        
+     
 
 # - stage: Deploy
 #   displayName: 'Deploy doc'
