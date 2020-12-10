@@ -97,6 +97,8 @@ stages:
         appType: 'webApp'
         WebAppName: 'pdemeulenaer-doc'
         packageForLinux: '$(Build.ArtifactStagingDirectory)'
+        enableCustomDeployment: true
+        DeploymentType: 'webDeploy'            
 
     # - task: AzureRmWebAppDeployment@4
     #   inputs:
