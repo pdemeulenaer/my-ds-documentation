@@ -74,26 +74,36 @@ stages:
     #     DeploymentType: 'webDeploy'        
      
 
-    - task: AzureWebApp@1
+    # - task: AzureWebApp@1
+    #   inputs:
+    #     azureSubscription: 'webapp-sphinx-connection'
+    #     appType: 'webApp'
+    #     appName: 'pdemeulenaer-doc'
+    #     package: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
+    #     deploymentMethod: 'auto'
+
+- stage: Deploy
+  displayName: 'Deploy doc'
+  jobs:
+  - job: Deploy
+    displayName: 'Deploy'
+    pool:
+      vmImage: 'vs2017-win2016'
+    steps:
+    - task: AzureRmWebAppDeployment@4
       inputs:
+        ConnectionType: 'AzureRM'
         azureSubscription: 'webapp-sphinx-connection'
         appType: 'webApp'
-        appName: 'pdemeulenaer-doc'
-        package: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
-        deploymentMethod: 'auto'
+        WebAppName: 'pdemeulenaer-doc'
+        packageForLinux: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation'
 
-# - stage: Deploy
-#   displayName: 'Deploy doc'
-#   jobs:
-#   - job: Deploy
-#     displayName: 'Deploy'
-#     pool:
-#       vmImage: 'vs2017-win2016'
-#     steps:
-#     - task: AzureRmWebAppDeployment@4
-#       inputs:
-#         ConnectionType: 'AzureRM'
-#         azureSubscription: 'webapp-sphinx-connection'
-#         appType: 'webApp'
-#         WebAppName: 'pdemeulenaer-doc'
-#         packageForLinux: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
+    # - task: AzureRmWebAppDeployment@4
+    #   inputs:
+    #     ConnectionType: 'AzureRM'
+    #     appType: 'webApp'
+    #     WebAppName: 'pdemeulenaer-doc'
+    #     deployToSlotOrASE: true
+    #     ResourceGroupName: 'sphinx-doc-rg'
+    #     SlotName: 'production'
+    #     packageForLinux: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
