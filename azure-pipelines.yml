@@ -97,23 +97,23 @@ stages:
           artifactName: drop
           downloadPath: '$(Build.ArtifactStagingDirectory)' 
 
-      - task: AzureWebApp@1
-        inputs:
-          azureSubscription: 'webapp-sphinx-connection'
-          appType: 'webApp'
-          appName: 'pdemeulenaer-doc'
-          #package: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
-          deploymentMethod: 'auto'
+      # - task: AzureWebApp@1
+      #   inputs:
+      #     azureSubscription: 'webapp-sphinx-connection'
+      #     appType: 'webApp'
+      #     appName: 'pdemeulenaer-doc'
+      #     #package: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
+      #     deploymentMethod: 'auto'
 
-#     - task: AzureRmWebAppDeployment@4
-#       inputs:
-#         ConnectionType: 'AzureRM'
-#         azureSubscription: 'webapp-sphinx-connection'
-#         appType: 'webApp'
-#         WebAppName: 'pdemeulenaer-doc'
-#         packageForLinux: '$(Build.ArtifactStagingDirectory)'
-#         enableCustomDeployment: true
-#         DeploymentType: 'webDeploy'            
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'webapp-sphinx-connection'
+        appType: 'webApp'
+        WebAppName: 'pdemeulenaer-doc'
+        packageForLinux: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
+        enableCustomDeployment: true
+        DeploymentType: 'webDeploy'            
 
     # - task: AzureRmWebAppDeployment@4
     #   inputs:
