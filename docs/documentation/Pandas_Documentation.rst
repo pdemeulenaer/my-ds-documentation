@@ -1,9 +1,9 @@
-===============
+===============================================
  Python, Jupyter and Pandas
-===============
+===============================================
 
 Basic Jupyter infos
-===============
+===============================================
 
 Here are useful shortcuts for the Jupyter Notebooks:
 
@@ -42,8 +42,83 @@ How to keep jupyter notebook (or pyspar3Jupyter) active through ssh:
 Go to server with ssh (using putty)
 type: nohup pyspar3Jupyter > save.txt &  (by this the save.txt contains the address of the notebook)
 type: jobs -l get pid number, this will be useful when you want to kill your pyspark session.
-ps -aux | grep bc4350 (this gets the pid if the ssh has already been shut down
+ps -aux | grep b_number (this gets the pid if the ssh has already been shut down
 kill 5442 (if pid=5442)
+
+Python environments: conda & pip
+===============================================
+
+Very good intro: https://towardsdatascience.com/devops-for-data-science-making-your-python-project-reproducible-f55646e110fa
+
+Installing through proxy using pip
+-----------------------------------------------
+
+.. sourcecode:: python
+
+  pip install --proxy=https://p998phd:p998phd@proxyvip-se.sbcore.net:8080 --trusted-host pypi.python.org -U PACKAGE_NAME
+   
+Anaconda environments
+-----------------------------------------------
+
+check the environments:
+
+.. sourcecode:: python
+
+  conda env list
+  
+  # or
+  conda info --envs
+
+There should be a base, and others, if they were created.
+
+Then, to activate a different environment:
+
+.. sourcecode:: python
+
+  source activate env_name  #(source in Unix, without on Windows)
+  
+  #or 
+  conda activate env_name
+  
+How to create environments: 
+
+To create a new environment with some packages: 
+
+1. From the command line (see also the `conda documentation <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-with-commands>`_): 
+.. sourcecode:: python
+
+  conda create -n env_name --yes --quiet python=3.5 numpy scipy scikit-learn statsmodels
+  
+2. From an environment.yml file (see also the `conda documentation <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file>`):
+
+.. sourcecode:: python
+
+  conda env create -f environment.yml
+  
+To prepare such a environment.yml file, see the dedicated conda `documentation page <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#create-env-file-manually>`. Basically:
+
+.. sourcecode:: python
+
+  name: stats # the name of the env
+  dependencies:
+    - numpy
+    - pandas
+  
+Or more complex:
+
+.. sourcecode:: python
+
+  name: stats2
+  channels:
+    - javascript
+  dependencies:
+    - python=3.6   # or 2.7
+    - bokeh=0.9.2
+    - numpy=1.9.*
+    - nodejs=0.10.*
+    - flask
+    - pip:
+      - Flask-Testing
 
 
 Python basic info
@@ -251,39 +326,6 @@ If done with Visual Studio Code, the settings should be adapted. Type 'Ctrl + ,'
     "python.dataScience.jupyterServerURI": "http://sb-hdpdev-e3.fspa.myntet.se:4191/?token=test"
   }
 
-
-Python environments
-===============================================
-
-Very good intro: https://towardsdatascience.com/devops-for-data-science-making-your-python-project-reproducible-f55646e110fa
-
-Installing through proxy using pip
------------------------------------------------
-
-.. sourcecode:: python
-
-  pip install --proxy=https://p998phd:p998phd@proxyvip-se.sbcore.net:8080 --trusted-host pypi.python.org -U PACKAGE_NAME
-   
-Anaconda environments
------------------------------------------------
-
-check the environments:
-
-.. sourcecode:: python
-
-  conda info --envs
-
-There should be a base, and others, if they were created.
-
-Then, to activate a different environment:
-
-source activate env_name  (source in Unix, without on Windows)
-
-To create a new environment with some packages: 
-
-.. sourcecode:: python
-
-  conda create -n env_name --yes --quiet python=3.5 numpy scipy scikit-learn statsmodels
 
 Unit tests in Python: pytest
 -----------------------------------------------------------
