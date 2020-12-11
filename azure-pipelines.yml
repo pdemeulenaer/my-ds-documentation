@@ -111,7 +111,7 @@ stages:
           azureSubscription: 'webapp-sphinx-connection'
           appType: 'webApp'
           WebAppName: 'pdemeulenaer-doc'
-          packageForLinux: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
+          packageForLinux: '$(Build.ArtifactStagingDirectory)/drop'
           enableCustomDeployment: true
           DeploymentType: 'webDeploy'            
 
