@@ -2,7 +2,7 @@
 
 # My data science documentation (my-ds-documentation)
 
-This repository containing tips and tricks I have gone through so far. References point to the relevant 
+This repository containing tips and tricks I have gone through so far.
 
 [Here](http://pdemeulenaer-doc.azurewebsites.net/index.html) is the structure of the documentation website (index page)
 
