@@ -59,7 +59,7 @@ stages:
     - task: PublishBuildArtifacts@1
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
+        artifactName: 'drop'
         publishLocation: 'Container'
       displayName: 'Publish documentation as artifact'
 
@@ -82,14 +82,29 @@ stages:
     #     package: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
     #     deploymentMethod: 'auto'
 
-# - stage: Deploy
-#   displayName: 'Deploy doc'
-#   jobs:
-#   - job: Deploy
-#     displayName: 'Deploy'
-#     pool:
-#       vmImage: 'vs2017-win2016'
-#     steps:
+- stage: Deploy
+  displayName: 'Deploy doc'
+  jobs:
+  - job: Deploy
+    displayName: 'Deploy'
+    pool:
+      vmImage: 'vs2017-win2016'
+    steps:
+
+      # download the artifact drop from the previous job
+      - task: DownloadBuildArtifacts@0
+        inputs:
+          artifactName: drop
+          downloadPath: '$(Build.ArtifactStagingDirectory)' 
+
+      - task: AzureWebApp@1
+        inputs:
+          azureSubscription: 'webapp-sphinx-connection'
+          appType: 'webApp'
+          appName: 'pdemeulenaer-doc'
+          #package: '$(Build.ArtifactStagingDirectory)/_pdemeulenaer.my-ds-documentation/drop'
+          deploymentMethod: 'auto'
+
 #     - task: AzureRmWebAppDeployment@4
 #       inputs:
 #         ConnectionType: 'AzureRM'
