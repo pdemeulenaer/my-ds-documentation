@@ -288,7 +288,11 @@ To create a new environment with some packages:
 Unit tests in Python: pytest
 -----------------------------------------------------------
 
-Good link: https://realpython.com/pytest-python-testing/ 
+Good links: 
+
+- https://realpython.com/pytest-python-testing/ 
+
+- https://menziess.github.io/howto/test/python-code/
 
 About fixtures (from the link above):
 
@@ -381,7 +385,61 @@ You can use the fixture by adding it as an argument to your tests. Its value wil
   Sayid,Khan,Project Manager
   """
 
-Each test is now notably shorter but still has a clear path back to the data it depends on. Be sure to name your fixture something specific. That way, you can quickly determine if you want to use it when writing new tests in the future!    
+Each test is now notably shorter but still has a clear path back to the data it depends on. Be sure to name your fixture something specific. That way, you can quickly determine if you want to use it when writing new tests in the future! 
+
+Another simple fixture example (from https://menziess.github.io/howto/test/python-code/):
+
+.. sourcecode:: python
+
+  # Let's have some function
+    def say_hello_to(name='World'):
+        return f'Hello {name}!'
+  
+  
+  # We define here the fixture in the test file:
+  """Some data for our tests."""
+  from pytest import fixture
+  @fixture
+  def names():
+      return 'Bob', '', None, 123, [], ()
+      
+  # Now the test can run like this, to test many different formats at once (defined in the fixture function):
+  def test_say_hello_to(names):
+      assert say_hello_to('Stefan') == 'Hello Stefan!'
+  
+      bob, empty, none, integer, li, tup = names
+  
+      assert say_hello_to(bob) == 'Hello Bob!'
+      assert say_hello_to(empty) == 'Hello !'
+      assert say_hello_to(none) == 'Hello None!'
+      assert say_hello_to(integer) == 'Hello 123!'
+      assert say_hello_to(li) == 'Hello []!'
+      assert say_hello_to(tup) == 'Hello ()!'
+
+Doctest: we can also do tests using function docstrings:
+
+.. sourcecode:: python
+
+  # Here some function with a test in the docstring:
+  def say_hello_to(name='World'):
+      """Say hello.
+  
+      >>> say_hello_to('Stefan')
+      'Hello Bob!'
+      """
+      return f'Hello {name}!'
+
+Now the test will run like this:
+
+➜ pytest --doctest-modules
+...
+009     >>> say_hello_to('Stefan')
+Expected:
+    'Hello Bob!'
+Got:
+    'Hello Stefan!'
+    
+So here, the test is defined in the docstring itself!    
 
 Numpy basic documentation
 ===========================================================
