@@ -23,6 +23,8 @@ Additional interesting resources:
 
 - https://towardsdatascience.com/docker-for-data-science-9c0ce73e8263
 
+- Docker for python: how does it compare to other python environment managment tools: https://www.pluralsight.com/tech-blog/managing-python-environments/
+
 High-level principle of Docker images:
 
 .. figure:: Images/Docker_principle.png
