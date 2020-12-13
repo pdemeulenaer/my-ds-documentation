@@ -120,6 +120,7 @@ Or more complex:
     - pip:
       - Flask-Testing
 
+Comparison of different python environment managment tools: venv, virtualenv, pyenv, pipenv, conda (and docker): https://www.pluralsight.com/tech-blog/managing-python-environments/
 
 Python basic info
 ===========================
