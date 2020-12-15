@@ -484,6 +484,15 @@ Got:
     
 So here, the test is defined in the docstring itself!    
 
+How to package an application in python
+===========================================================
+
+Good links:
+
+- General tutorial: https://packaging.python.org/tutorials/packaging-projects/
+
+- Here is an example of project that can be used to build a package: https://github.com/pypa/sampleproject
+
 Numpy basic documentation
 ===========================================================
 
