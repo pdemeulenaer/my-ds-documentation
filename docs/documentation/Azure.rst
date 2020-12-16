@@ -8,7 +8,7 @@ Azure Cloud
 Azure Key Vault
 --------------------------------------------------------------------------
 
-`This tutorial <https://docs.microsoft.com/en-us/azure/databricks/scenarios/store-secrets-azure-key-vault>` explains how to save the keys of a blob storage in Azure Key Vault (and use that connection in Azure Databricks)
+`This tutorial <https://docs.microsoft.com/en-us/azure/databricks/scenarios/store-secrets-azure-key-vault>`_ explains how to save the keys of a blob storage in Azure Key Vault (and use that connection in Azure Databricks)
 
 Azure Databricks
 ==========================================================================
@@ -21,7 +21,7 @@ https://www.youtube.com/watch?v=HL36Q-eU5wU&t=198s
 
 https://www.youtube.com/watch?v=fv3p3r3ByfY&t=1016s
 
-`This tutorial <https://docs.microsoft.com/en-us/azure/databricks/scenarios/store-secrets-azure-key-vault>` explains how to connect an Azure Blob storage to Azure Databricks within Databricks notebooks (having the keys of the blob storage in Azure Key Vault).
+`This tutorial <https://docs.microsoft.com/en-us/azure/databricks/scenarios/store-secrets-azure-key-vault>`_ explains how to connect an Azure Blob storage to Azure Databricks within Databricks notebooks (having the keys of the blob storage in Azure Key Vault).
 
 Delta Lake
 --------------------------------------------------------------------------
