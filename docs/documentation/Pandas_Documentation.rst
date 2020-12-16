@@ -5,14 +5,6 @@
 Basic Jupyter infos
 ===============================================
 
-Here are useful shortcuts for the Jupyter Notebooks:
-
-.. figure:: Cheatsheets/Jupyter_Notebook_Keyboard_Shorcuts.png
-   :scale: 100 %
-   :alt: map to buried treasure
-
-   This Cheatsheet is taken from cheatography.com/weidadeyue/ 
-
 When you launch a Jupyter notebook, you can adjust its width size using the following command at the beginning:
    
 .. sourcecode:: python
@@ -89,13 +81,13 @@ To create a new environment with some packages:
 
   conda create -n env_name --yes --quiet python=3.5 numpy scipy scikit-learn statsmodels
   
-2. From an environment.yml file (see also the `conda documentation <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file>`):
+2. From an environment.yml file (see also the `conda documentation <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file>`_):
 
 .. sourcecode:: python
 
   conda env create -f environment.yml
   
-To prepare such a environment.yml file, see the dedicated conda `documentation page <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#create-env-file-manually>`. Basically:
+To prepare such a environment.yml file, see the dedicated conda `documentation page <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#create-env-file-manually>`_. Basically:
 
 .. sourcecode:: python
 
