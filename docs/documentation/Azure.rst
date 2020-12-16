@@ -1,11 +1,16 @@
 ==========================================================================
- Azure Cloud, DataBricks
+ Azure Cloud, Databricks
 ==========================================================================
  
 Azure Cloud
 ==========================================================================
 
-Azure DataBricks
+Azure Key Vault
+--------------------------------------------------------------------------
+
+`This tutorial <https://docs.microsoft.com/en-us/azure/databricks/scenarios/store-secrets-azure-key-vault>` explains how to save the keys of a blob storage in Azure Key Vault (and use that connection in Azure Databricks)
+
+Azure Databricks
 ==========================================================================
 
 Sasha Dittmann's lectures "Databricks MLOps - Deploy Machine Learning Model On Azure". Extremely useful to link Azure Databricks and Azure DevOps: 
@@ -15,6 +20,8 @@ https://www.youtube.com/watch?v=NLXis7FlnMM
 https://www.youtube.com/watch?v=HL36Q-eU5wU&t=198s
 
 https://www.youtube.com/watch?v=fv3p3r3ByfY&t=1016s
+
+`This tutorial <https://docs.microsoft.com/en-us/azure/databricks/scenarios/store-secrets-azure-key-vault>` explains how to connect an Azure Blob storage to Azure Databricks within Databricks notebooks (having the keys of the blob storage in Azure Key Vault).
 
 Delta Lake
 --------------------------------------------------------------------------
@@ -106,5 +113,4 @@ Next, Register the table in the metastore:
   CREATE TABLE health_tracker_processed                        
   USING PARQUET                
   LOCATION "/dbacademy/$username/DLRS/healthtracker/processed"  
-  
   
