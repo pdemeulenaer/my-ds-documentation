@@ -18,6 +18,11 @@ General Spark resources:
 
 - https://data-flair.training/blogs/dag-in-apache-spark/ (internal of Spark)
 
+Installation of Spark (3.0.1) on Ubuntu machine
+------------------------------------------------------
+
+See https://phoenixnap.com/kb/install-spark-on-ubuntu Includes the launch of master&slave workers. 
+
 Certifications
 ------------------------------------------------------
 
