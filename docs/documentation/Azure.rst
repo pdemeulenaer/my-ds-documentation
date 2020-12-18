@@ -28,6 +28,39 @@ Databricks-connect
 
 To install it: https://menziess.github.io/howto/install/databricks-connect/ 
 
+Databricks CLI
+--------------------------------------------------------------------------
+
+Installation and configuration:
+
+.. sourcecode:: python
+
+  # installation
+  pip install databricks-cli 
+  
+  # configuration
+  databricks configure --token
+  
+  > Databricks Host (should begin with https://): https://yourpath.azuredatabricks.net
+  > Token: (put your token, get it from "Generate tokens" in User Settings)
+  
+  # list clusters:
+  databricks clusters list
+  > 1211-084728-chalk447  small_73ML   TERMINATED
+  > 1217-223436-cab783    job-6-run-1  TERMINATED
+  > 1217-222539-aunt76    job-5-run-1  TERMINATED  
+  
+  # delete a cluster permanently:
+  databricks clusters permanent-delete --cluster-id 1217-223436-cab783
+  
+  # check again:
+  databricks clusters list
+  > 1211-084728-chalk447  small_73ML   TERMINATED
+  > 1217-222539-aunt76    job-5-run-1  TERMINATED   
+  
+  
+More info: https://docs.databricks.com/dev-tools/cli/index.html
+
 Delta Lake
 --------------------------------------------------------------------------
 
