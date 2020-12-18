@@ -23,6 +23,11 @@ https://www.youtube.com/watch?v=fv3p3r3ByfY&t=1016s
 
 `This tutorial <https://docs.microsoft.com/en-us/azure/databricks/scenarios/store-secrets-azure-key-vault>`_ explains how to connect an Azure Blob storage to Azure Databricks within Databricks notebooks (having the keys of the blob storage in Azure Key Vault).
 
+Databricks-connect
+--------------------------------------------------------------------------
+
+To install it: https://menziess.github.io/howto/install/databricks-connect/ 
+
 Delta Lake
 --------------------------------------------------------------------------
 
