@@ -58,6 +58,22 @@ Installation and configuration:
   > 1211-084728-chalk447  small_73ML   TERMINATED
   > 1217-222539-aunt76    job-5-run-1  TERMINATED   
   
+The databricks cli is subdivided into sub-cli's:
+
+    Workspace CLI: https://docs.databricks.com/dev-tools/cli/workspace-cli.html
+    Clusters CLI: https://docs.databricks.com/dev-tools/cli/clusters-cli.html 
+    Instance Pools CLI
+    DBFS CLI: https://docs.databricks.com/dev-tools/cli/dbfs-cli.html
+    Groups CLI
+    Jobs CLI: https://docs.databricks.com/dev-tools/cli/jobs-cli.html
+    Libraries CLI: https://docs.databricks.com/dev-tools/cli/libraries-cli.html
+    Secrets CLI
+    Stack CLI
+
+
+
+
+  
   
 More info: https://docs.databricks.com/dev-tools/cli/index.html
 
