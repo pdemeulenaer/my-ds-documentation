@@ -114,8 +114,69 @@ Or more complex:
 
 Comparison of different python environment managment tools: venv, virtualenv, pyenv, pipenv, conda (and docker): https://www.pluralsight.com/tech-blog/managing-python-environments/
 
+Visual Studio Code set-up
+=======================================
+
+Taken from https://menziess.github.io/howto/enhance/your-python-vscode-workflow/
+
+In settings.json (ctrl-shift-P):
+
+.. sourcecode:: python
+
+  {
+    "python.pythonPath": ".venv/bin/python"
+  }
+  
+For testing and linting, we can use install in the local (project) environment
+
+pipenv install -d mypy autopep8 \
+  flake8 pytest bandit pydocstyle
+  
+The settings of vscode can be overridden by workspace settings per project. In settings.json:
+
+.. sourcecode:: python
+
+  {
+    "python.autoComplete.addBrackets": true,
+    "python.formatting.provider": "autopep8",
+    "python.jediEnabled": false,
+    "python.linting.mypyEnabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.pydocstyleEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+      "tests"
+    ]
+  }
+
+Some of these frameworks produce temporary folders, which can clutter your file explorer, and slow down file indexing. You can disable indexing for these files by passing a glob pattern to the files.watcherExclude field:
+
+{
+  "files.watcherExclude": {
+    "**/build/**": true,
+    "**/dist/**": true,
+    "**/.ipynb_checkpoints/**": true,
+    "**/*.egg-info/**": true,
+    "**/.pytest_cache/**": true,
+    "**/__pycache__/**": true,
+    "**/.mypy_cache/**": true,
+    "**/.venv/**": true
+  },
+  "files.exclude": {
+    "**/.pytest_cache/**": true,
+    "**/.mypy_cache/**": true,
+    "**/__pycache__/**": true,
+    "**/*.egg-info/**": true
+  }
+}
+
+
+
 Python basic info
-===========================
+=======================================
 
 Formats for printing
 ---------------------------------------
