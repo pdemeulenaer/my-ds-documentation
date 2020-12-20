@@ -154,25 +154,26 @@ The settings of vscode can be overridden by workspace settings per project. In s
 
 Some of these frameworks produce temporary folders, which can clutter your file explorer, and slow down file indexing. You can disable indexing for these files by passing a glob pattern to the files.watcherExclude field:
 
-{
-  "files.watcherExclude": {
-    "**/build/**": true,
-    "**/dist/**": true,
-    "**/.ipynb_checkpoints/**": true,
-    "**/*.egg-info/**": true,
-    "**/.pytest_cache/**": true,
-    "**/__pycache__/**": true,
-    "**/.mypy_cache/**": true,
-    "**/.venv/**": true
-  },
-  "files.exclude": {
-    "**/.pytest_cache/**": true,
-    "**/.mypy_cache/**": true,
-    "**/__pycache__/**": true,
-    "**/*.egg-info/**": true
-  }
-}
+.. sourcecode:: python
 
+  {
+    "files.watcherExclude": {
+      "**/build/**": true,
+      "**/dist/**": true,
+      "**/.ipynb_checkpoints/**": true,
+      "**/*.egg-info/**": true,
+      "**/.pytest_cache/**": true,
+      "**/__pycache__/**": true,
+      "**/.mypy_cache/**": true,
+      "**/.venv/**": true
+    },
+    "files.exclude": {
+      "**/.pytest_cache/**": true,
+      "**/.mypy_cache/**": true,
+      "**/__pycache__/**": true,
+      "**/*.egg-info/**": true
+    }
+  }
 
 
 Python basic info
