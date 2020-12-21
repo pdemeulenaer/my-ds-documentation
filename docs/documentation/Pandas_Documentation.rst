@@ -49,7 +49,7 @@ Installing through proxy using pip
 
   pip install --proxy=https://p998phd:p998phd@proxyvip-se.sbcore.net:8080 --trusted-host pypi.python.org -U PACKAGE_NAME
    
-Anaconda environments
+Conda environments
 -----------------------------------------------
 
 check the environments:
@@ -112,16 +112,40 @@ Or more complex:
     - pip:
       - Flask-Testing
 
-pyenv & pipenv python environments
+Pyenv & pipenv python environments
 ---------------------------------------
 
 Comparison of different python environment managment tools: venv, virtualenv, pyenv, pipenv, conda (and docker): https://www.pluralsight.com/tech-blog/managing-python-environments/
 
-Pyenv: Pyenv is a tool for managing multiple python installations
+**Pyenv**: Opposed to Pipenv, Pyenv is a tool for managing *multiple* python installations. 
+
 Installation of pyenv and using pyenv to install different python versions: https://www.liquidweb.com/kb/how-to-install-pyenv-on-ubuntu-18-04/ 
 See also https://menziess.github.io/howto/manage/python-versions/ for installation/uninstallation. 
 
-Pipenv: Opposed to Pipenv, Pyenv is a tool for managing multiple python installations. Pipenv is capable of using pyenv in the background to create and activate virtual environments that require different python versions.
+- Install from git: git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+
+- config the environment:
+
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n eval "$(pyenv init -)"\nfi' >> ~/.bashrc
+bash
+
+- Look at available python versions: pyenv install --list
+
+- install a specific version: pyenv install 3.8.3
+
+- check the installed python versions: pyenv versions
+
+Ex:
+* system (set by /root/.pyenv/version)
+  3.8.3
+
+- Now easy to switch between different installed versions: 
+
+pyenv global 3.8.3
+
+**Pipenv**: Pipenv is capable of using pyenv in the background to create and activate virtual environments that require different python versions.
 Installation of pipenv: https://menziess.github.io/howto/manage/virtual-environments/#3-creating-a-virtual-environment 
 
 Note that some people recommend to install pipenv for user only (see here, step 1 only: https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-programming-environment-on-an-ubuntu-20-04-server):
@@ -129,6 +153,7 @@ Note that some people recommend to install pipenv for user only (see here, step 
 pip3 install --user pipenv
 
 and be sure add ~/.local/bin to the head of your PATH environment variable: export PATH=$PATH:/home/[your_user]/.local/bin/
+
 
 Visual Studio Code set-up
 =======================================
