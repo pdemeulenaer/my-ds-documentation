@@ -30,6 +30,14 @@ To install it: https://menziess.github.io/howto/install/databricks-connect/ (sho
 
 See also https://docs.microsoft.com/en-us/azure/databricks/dev-tools/databricks-connect for a in-depth documentation
 
+Before installing databricks-connect, we need to uninstall pyspark, since they might conflict:
+
+pip uninstall pyspark
+
+Then install databricks-connect with the right version, the one that matches the databricks cluster version:
+
+pip install -U databricks-connect==7.3.*
+
 Databricks CLI
 --------------------------------------------------------------------------
 
