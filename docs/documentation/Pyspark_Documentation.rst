@@ -668,7 +668,7 @@ Other example, taken from Databricks lectures too:
 
 Note that the third way is allowed from Spark 3.0. 
   
-Random sampling
+Random sampling, stratified sampling
 ------------------------------------
 
 The trick is to sort using a random number and the take the N first rows. 
@@ -698,7 +698,46 @@ To do this in Spark, we could use a temp table, like this. Let's say we have a d
   customer_list_sample.count()
 
 By this we extracted the list of 100K customers. Then we can extract the associated data (time series) selecting for only these customers (using a join).
-  
+
+What about stratified sampling in Spark? sampleBy does stratified sampling without replacement: http://spark.apache.org/docs/3.0.0/api/python/pyspark.sql.html?highlight=window#pyspark.sql.DataFrameStatFunctions.sampleBy 
+
+.. sourcecode:: python
+
+# first let's produce a long vector with 3 distinct values (0,1,2)
+dataset = spark.range(0, 100).select((col("id") % 3).alias("key"))
+
++---+
+|key|
++---+
+|  0|
+|  1|
+|  2|
+|  0|
+|  1|
++---+
+
+# then let's sample that without replacement, and without stratifying, using only the values "0" and "1":
+sampled = dataset.sampleBy("key", fractions={0: 1., 1: 1.}, seed=0)
+
+# when we count the number of values, we have obviously ~1/3 of each value:
+sampled.groupBy("key").count().orderBy("key").show()
+
++---+-----+
+|key|count|
++---+-----+
+|  0|   34|
+|  1|   33|
++---+-----+
+
+# now we use the stratifying option, 50% on the value "1":
+sampled = dataset.sampleBy("key", fractions={1: 0.5}, seed=0)
+sampled.groupBy("key").count().orderBy("key").show()
+
++---+-----+
+|key|count|
++---+-----+
+|  1|   14|
++---+-----+
 
 Aggregating in Pyspark
 ------------------------------------
