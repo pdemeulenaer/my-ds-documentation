@@ -154,6 +154,28 @@ pip3 install --user pipenv
 
 and be sure add ~/.local/bin to the head of your PATH environment variable: export PATH=$PATH:/home/[your_user]/.local/bin/
 
+When pipenv installed and configured, we can create a new pipenv project in a project directory with (https://www.pluralsight.com/tech-blog/managing-python-environments/)
+
+$ pipenv --python $PYTHON_VERSION
+
+which will initialize the project using the specified Python version (if pyenv is installed, it can even install Python versions on-demand). To start with, this creates:
+
+- a Pipfile config file at the project home specifying Python version, sources, and any installed packages
+
+- a fresh virtual environment housed in the pipenv working directory
+
+We no longer have to manage installs with pip and virtual environments separately - pipenv takes care of both! To install a package, simply running
+
+$ pipenv install $PACKAGE_NAME
+
+will both install the package into the virtual environment, and write the package as a dependency into the Pipfile. This Pipfile is then all we need to rebuild the project elsewhere, rather than the requirements.txt used by other managers - simply running pipenv install on a directory with a Pipfile will recreate the environment. To activate the environment,
+
+$ pipenv shell
+
+Pipenv exhaustively builds out the dependency graph, flagging any issues and generating a validated Pipfile.lock for fully specifying every dependency in the project. We can trigger this manually for the requirements in our Pipfile with
+
+$ pipenv lock
+
 
 Visual Studio Code set-up
 =======================================
