@@ -148,11 +148,15 @@ pyenv global 3.8.3
 **Pipenv**: Pipenv is capable of using pyenv in the background to create and activate virtual environments that require different python versions.
 Installation of pipenv: https://menziess.github.io/howto/manage/virtual-environments/#3-creating-a-virtual-environment 
 
-Note that some people recommend to install pipenv for user only (see here, step 1 only: https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-programming-environment-on-an-ubuntu-20-04-server):
+Note that some people recommend to install pipenv for user only (see here, step 1 only: https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-programming-environment-on-an-ubuntu-20-04-server). A user installation prevents breaking any system-wide packages. If pipenv isn’t available in your shell after installation, you’ll need to add the user base’s binary directory to your PATH.
 
 pip3 install --user pipenv
 
 and be sure add ~/.local/bin to the head of your PATH environment variable: export PATH=$PATH:/home/[your_user]/.local/bin/
+
+To upgrade pipenv at any time:
+
+pip3 install --user --upgrade pipenv
 
 When pipenv installed and configured, we can create a new pipenv project in a project directory with (https://www.pluralsight.com/tech-blog/managing-python-environments/)
 
