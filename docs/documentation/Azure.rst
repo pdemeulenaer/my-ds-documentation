@@ -32,13 +32,27 @@ See also https://docs.microsoft.com/en-us/azure/databricks/dev-tools/databricks-
 
 Before installing databricks-connect, we need to uninstall pyspark, since they might conflict:
 
-pip uninstall pyspark
+$ pip uninstall pyspark
 
 Then install databricks-connect with the right version, the one that matches the databricks cluster version:
 
-pip install -U databricks-connect==7.3.* 
+$ pip install -U databricks-connect==7.3.* 
 
 Then we can configure the connection: https://docs.databricks.com/dev-tools/databricks-connect.html#step-2-configure-connection-properties 
+
+Example here: https://menziess.github.io/howto/install/databricks-connect/
+
+$ databricks-connect configure
+The current configuration is:
+* Databricks Host: https://westeurope.azuredatabricks.net/
+* Databricks Token: dapi5c376de3a2a54a2b03016c8c3b123456 (build it yourself from settings)
+* Cluster ID: 0214-195926-aptin821
+* Org ID: 3892784943666666  (get it from /?o= argument in URL of cluster)
+* Port: 8787
+
+Run databricks-connect test to test your installation. You’ll hopefully see something along the lines of:
+
+$ databricks-connect test
 
 
 Databricks CLI
