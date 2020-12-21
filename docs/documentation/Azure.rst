@@ -54,6 +54,16 @@ Run databricks-connect test to test your installation. You’ll hopefully see so
 
 $ databricks-connect test
 
+Tricks to set-up and optimize databricks-connect: https://dev.to/aloneguid/tips-and-tricks-for-using-python-with-databricks-connect-593k
+
+**Fixing Out-of-Memory Issues**. Often when using Databricks Connect you might encounter an error like Java Heap Space etc. This simply means your local spark node (driver) is running out of memory, which by default is 2Gb. If you need more memory, it's easy to increase it. First, find out where PySpark's home directory is:
+
+$ databricks-connect get-spark-home
+/home/philippe/Documents/Github/Time-series-prediction/.venv/lib/python3.7/site-packages/pyspark
+
+This should have a subfolder conf (create it if it doesn't exist). And a file spark-defaults.conf (again, create if doesn't exist). Full file path would be /home/philippe/Documents/Github/Time-series-prediction/.venv/lib/python3.7/site-packages/pyspark/conf/spark-defaults.conf. Add a line:
+
+spark.driver.memory 8g (or 4g)
 
 Databricks CLI
 --------------------------------------------------------------------------
