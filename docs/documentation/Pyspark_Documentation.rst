@@ -958,6 +958,10 @@ Window functions in limited number preceding or following rows:
   
   # PARTITION BY country ORDER BY date RANGE BETWEEN 3 PRECEDING AND 3 FOLLOWING
   window = Window.orderBy("date").partitionBy("country").rangeBetween(-3, 3)  
+  
+  # partition by category, order by id, ROWS between the current row and the next one
+  window = Window.partitionBy("category").orderBy("id").rowsBetween(Window.currentRow, 1)
+  df.withColumn("sum", func.sum("id").over(window)).sort("id", "category").show()
 
 Generate a column with dates between 2 dates
 -----------------------------------------------------------
