@@ -119,6 +119,8 @@ Visual Studio Code set-up
 
 Taken from https://menziess.github.io/howto/enhance/your-python-vscode-workflow/
 
+The default values of the settings.json file can be seen in https://code.visualstudio.com/docs/getstarted/settings
+
 In settings.json (ctrl-shift-P):
 
 .. sourcecode:: python
