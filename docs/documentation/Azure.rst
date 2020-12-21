@@ -26,7 +26,9 @@ https://www.youtube.com/watch?v=fv3p3r3ByfY&t=1016s
 Databricks-connect
 --------------------------------------------------------------------------
 
-To install it: https://menziess.github.io/howto/install/databricks-connect/ 
+To install it: https://menziess.github.io/howto/install/databricks-connect/ (short intro)
+
+See also https://docs.microsoft.com/en-us/azure/databricks/dev-tools/databricks-connect for a in-depth documentation
 
 Databricks CLI
 --------------------------------------------------------------------------
