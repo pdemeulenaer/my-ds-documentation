@@ -112,7 +112,23 @@ Or more complex:
     - pip:
       - Flask-Testing
 
+pyenv & pipenv python environments
+---------------------------------------
+
 Comparison of different python environment managment tools: venv, virtualenv, pyenv, pipenv, conda (and docker): https://www.pluralsight.com/tech-blog/managing-python-environments/
+
+Pyenv: Pyenv is a tool for managing multiple python installations
+Installation of pyenv and using pyenv to install different python versions: https://www.liquidweb.com/kb/how-to-install-pyenv-on-ubuntu-18-04/ 
+See also https://menziess.github.io/howto/manage/python-versions/ for installation/uninstallation. 
+
+Pipenv: Opposed to Pipenv, Pyenv is a tool for managing multiple python installations. Pipenv is capable of using pyenv in the background to create and activate virtual environments that require different python versions.
+Installation of pipenv: https://menziess.github.io/howto/manage/virtual-environments/#3-creating-a-virtual-environment 
+
+Note that some people recommend to install pipenv for user only (see here, step 1 only: https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-programming-environment-on-an-ubuntu-20-04-server):
+
+pip3 install --user pipenv
+
+and be sure add ~/.local/bin to the head of your PATH environment variable: export PATH=$PATH:/home/[your_user]/.local/bin/
 
 Visual Studio Code set-up
 =======================================
