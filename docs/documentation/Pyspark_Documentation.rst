@@ -703,41 +703,41 @@ What about stratified sampling in Spark? sampleBy does stratified sampling witho
 
 .. sourcecode:: python
 
-# first let's produce a long vector with 3 distinct values (0,1,2)
-dataset = spark.range(0, 100).select((col("id") % 3).alias("key"))
-
-+---+
-|key|
-+---+
-|  0|
-|  1|
-|  2|
-|  0|
-|  1|
-+---+
-
-# then let's sample that without replacement, and without stratifying, using only the values "0" and "1":
-sampled = dataset.sampleBy("key", fractions={0: 1., 1: 1.}, seed=0)
-
-# when we count the number of values, we have obviously ~1/3 of each value:
-sampled.groupBy("key").count().orderBy("key").show()
-
-+---+-----+
-|key|count|
-+---+-----+
-|  0|   34|
-|  1|   33|
-+---+-----+
-
-# now we use the stratifying option, 50% on the value "1":
-sampled = dataset.sampleBy("key", fractions={1: 0.5}, seed=0)
-sampled.groupBy("key").count().orderBy("key").show()
-
-+---+-----+
-|key|count|
-+---+-----+
-|  1|   14|
-+---+-----+
+  # first let's produce a long vector with 3 distinct values (0,1,2)
+  dataset = spark.range(0, 100).select((col("id") % 3).alias("key"))
+  
+  +---+
+  |key|
+  +---+
+  |  0|
+  |  1|
+  |  2|
+  |  0|
+  |  1|
+  +---+
+  
+  # then let's sample that without replacement, and without stratifying, using only the values "0" and "1":
+  sampled = dataset.sampleBy("key", fractions={0: 1., 1: 1.}, seed=0)
+  
+  # when we count the number of values, we have obviously ~1/3 of each value:
+  sampled.groupBy("key").count().orderBy("key").show()
+  
+  +---+-----+
+  |key|count|
+  +---+-----+
+  |  0|   34|
+  |  1|   33|
+  +---+-----+
+  
+  # now we use the stratifying option, 50% on the value "1":
+  sampled = dataset.sampleBy("key", fractions={1: 0.5}, seed=0)
+  sampled.groupBy("key").count().orderBy("key").show()
+  
+  +---+-----+
+  |key|count|
+  +---+-----+
+  |  1|   14|
+  +---+-----+
 
 Aggregating in Pyspark
 ------------------------------------
@@ -860,6 +860,8 @@ Join on multiple conditions:
 Window functions
 ---------------------------
 
+Main doc: http://spark.apache.org/docs/3.0.0/api/python/pyspark.sql.html?highlight=window#pyspark.sql.Window
+
 The main window functions:
 
 .. sourcecode:: python
@@ -947,6 +949,15 @@ Another thing: when we want to count the number of rows PER GROUP:
   
 See also a comparison of cumulative sum made on groups in pandas and in pyspark (see the pandas section).  
 
+Window functions in limited number preceding or following rows:
+
+.. sourcecode:: python
+
+  # ORDER BY date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+  window = Window.orderBy("date").rowsBetween(Window.unboundedPreceding, Window.currentRow)
+  
+  # PARTITION BY country ORDER BY date RANGE BETWEEN 3 PRECEDING AND 3 FOLLOWING
+  window = Window.orderBy("date").partitionBy("country").rangeBetween(-3, 3)  
 
 Generate a column with dates between 2 dates
 -----------------------------------------------------------
