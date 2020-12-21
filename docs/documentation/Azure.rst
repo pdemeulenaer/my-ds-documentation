@@ -36,7 +36,10 @@ pip uninstall pyspark
 
 Then install databricks-connect with the right version, the one that matches the databricks cluster version:
 
-pip install -U databricks-connect==7.3.*
+pip install -U databricks-connect==7.3.* 
+
+Then we can configure the connection: https://docs.databricks.com/dev-tools/databricks-connect.html#step-2-configure-connection-properties 
+
 
 Databricks CLI
 --------------------------------------------------------------------------
