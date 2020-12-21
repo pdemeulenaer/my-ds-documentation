@@ -180,6 +180,27 @@ Pipenv exhaustively builds out the dependency graph, flagging any issues and gen
 
 $ pipenv lock
 
+To deactivate your virtual environment, run:
+
+$ deactivate
+
+Remove the virtual environment:
+
+$ pipenv --rm
+
+Note switching (https://menziess.github.io/howto/manage/virtual-environments/#5-switching-to-pipenv): If you are already using another virtual environment tool, switching is quite easy. If you run pipenv install, it automatically detects the requirements.txt file:
+
+requirements.txt found, instead of Pipfile! Converting…
+
+Or you can explicitly pass the requirement.txt file as an argument, which may be useful if you have put development dependencies in a separate file:
+
+pipenv install -r dev-requirements.txt --dev
+
+And if you want to switch back to using requirement.txt files, you can run:
+
+pipenv lock -r > requirements.txt
+pipenv lock -r -d > dev-requirements.txt
+
 
 Visual Studio Code set-up
 =======================================
