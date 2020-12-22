@@ -145,6 +145,10 @@ Ex:
 
 pyenv global 3.8.3
 
+Note: as several posts noted (for example `here <https://stackoverflow.com/questions/38701203/error-missing-the-openssl-lib-while-trying-to-install-python>`_ and `here <https://stackoverflow.com/questions/12806122/missing-python-bz2-module>`_), the python installation sometimes lacks a few things. Remedy with this:
+
+sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+
 **Pipenv**: Pipenv is capable of using pyenv in the background to create and activate virtual environments that require different python versions.
 Installation of pipenv: https://menziess.github.io/howto/manage/virtual-environments/#3-creating-a-virtual-environment 
 
