@@ -157,6 +157,8 @@ Good links:
 
 - https://blog.noodle.ai/introduction-to-mlflow-for-mlops-part-1-anaconda-environment/
 
+- How to track MLFlow using the Databricks MLFlow server (accessed from local environment): https://docs.databricks.com/applications/mlflow/access-hosted-tracking-server.html
+
 MLFLow Tracking: https://www.mlflow.org/docs/latest/tracking.html
 --------------------------------------------------------------------------
 
