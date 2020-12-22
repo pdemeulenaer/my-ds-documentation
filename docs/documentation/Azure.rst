@@ -65,6 +65,48 @@ This should have a subfolder conf (create it if it doesn't exist). And a file sp
 
 spark.driver.memory 8g (or 4g)
 
+List of limitations of databricks-connect: https://datathirst.net/blog/2019/3/7/databricks-connect-limitations
+
+How to connect data (azure storage for example) and also explore dbutils?
+
+.. sourcecode:: python
+
+  from pyspark.sql import SparkSession
+  
+  spark = SparkSession.builder.getOrCreate()
+  
+  setting = spark.conf.get("spark.master")
+  if "local" in setting:
+      from pyspark.dbutils import DBUtils
+      dbutils = DBUtils(spark)  # HERE spark!  (in some places I saw spark.sparkContext, but wrong/outdated)
+  else:
+      print("Do nothing - dbutils should be available already")
+  
+  print(setting)
+  # local[*] #when running from local laptop
+  # spark... #when running from databricks notebook
+  
+  print(dbutils.fs.ls("dbfs:/"))
+  
+  # suppose the mnt/ is ALREADY mounted in your databricks cluster (do it in databricks, not from local)
+  cwd = "/dbfs/mnt/demo/"
+
+  # read from mnt point (could be Azure storage mounted there!)
+  df = spark.read.csv("/mnt/demo/sampledata.csv")
+  df.show()  
+  
+  +---+----------+---------+      
+  |_c0|       _c1|      _c2|
+  +---+----------+---------+
+  | id| firstname| lastname|
+  |  1|        JC|   Denton|
+  +---+----------+---------+  
+  
+  # write to mount point
+  (df.write
+     .mode("overwrite")
+     .parquet("/mnt/demo/sampledata_copy.parquet"))
+
 Databricks CLI
 --------------------------------------------------------------------------
 
