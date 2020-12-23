@@ -205,6 +205,8 @@ And if you want to switch back to using requirement.txt files, you can run:
 pipenv lock -r > requirements.txt
 pipenv lock -r -d > dev-requirements.txt
 
+More infos: https://pipenv-fork.readthedocs.io/en/latest/basics.html
+
 
 Visual Studio Code set-up
 =======================================
