@@ -48,6 +48,8 @@ Again, a very interesting series to address the basics concepts:
 
 - https://mlinproduction.com/k8s-services/ : part 5 of the series
 
+Local version of Kubernetes using microk8s: https://kubernetes.io/blog/2019/11/26/running-kubernetes-locally-on-linux-with-microk8s/
+
 
 DEVOPS
 --------------------------------------------------------------------------
