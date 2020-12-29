@@ -18,6 +18,8 @@ General Spark resources:
 
 - https://data-flair.training/blogs/dag-in-apache-spark/ (internal of Spark)
 
+- very good intro to pyspark, with dataframes api: https://sparkbyexamples.com/pyspark-tutorial/
+
 Installation of Spark (3.0.1) on Ubuntu machine
 ------------------------------------------------------
 
@@ -1023,6 +1025,124 @@ You can use the explode function to "pivot" this array into rows:
   | 2018-02-01 |
   | 2018-03-01 |
   +------------+  
+  
+Other example of explode (https://sparkbyexamples.com/pyspark/pyspark-explode-array-and-map-columns-to-rows/):
+
+.. sourcecode:: python
+
+  # You have such a dataframe, with a column name, an array knownLanguages, and a map properties:
+  
+  arrayData = [
+          ('James',['Java','Scala'],{'hair':'black','eye':'brown'}),
+          ('Michael',['Spark','Java',None],{'hair':'brown','eye':None}),
+          ('Robert',['CSharp',''],{'hair':'red','eye':''}),
+          ('Washington',None,None),
+          ('Jefferson',['1','2'],{})
+  ]
+  
+  df = spark.createDataFrame(data=arrayData, schema = ['name','knownLanguages','properties'])
+  df.printSchema()
+  df.show()
+  
+  root
+   |-- name: string (nullable = true)
+   |-- knownLanguages: array (nullable = true)
+   |    |-- element: string (containsNull = true)
+   |-- properties: map (nullable = true)
+   |    |-- key: string
+   |    |-- value: string (valueContainsNull = true)
+  
+  +----------+--------------+--------------------+
+  |      name|knownLanguages|          properties|
+  +----------+--------------+--------------------+
+  |     James| [Java, Scala]|[eye -> brown, ha...|
+  |   Michael|[Spark, Java,]|[eye ->, hair -> ...|
+  |    Robert|    [CSharp, ]|[eye -> , hair ->...|
+  |Washington|          null|                null|
+  | Jefferson|        [1, 2]|                  []|
+  +----------+--------------+--------------------+
+  
+  # select the name column and explode the column knownLanguages:
+  
+  from pyspark.sql.functions import explode
+  df2 = df.select(df.name,explode(df.knownLanguages))
+  df2.show()
+  
+  +---------+------+
+  |     name|   col|
+  +---------+------+
+  |    James|  Java|
+  |    James| Scala|
+  |  Michael| Spark|
+  |  Michael|  Java|
+  |  Michael|  null|
+  |   Robert|CSharp|
+  |   Robert|      |
+  |Jefferson|     1|
+  |Jefferson|     2|
+  +---------+------+
+  
+And exploding a key-value object, like the column properties of that df, gives:
+
+.. sourcecode:: python
+
+  df3 = df.select(df.name,explode(df.properties))
+  df3.printSchema()
+  df3.show()
+  
+  root
+   |-- name: string (nullable = true)
+   |-- key: string (nullable = false)
+   |-- value: string (nullable = true)
+  
+  +-------+----+-----+
+  |   name| key|value|
+  +-------+----+-----+
+  |  James| eye|brown|
+  |  James|hair|black|
+  |Michael| eye| null|
+  |Michael|hair|brown|
+  | Robert| eye|     |
+  | Robert|hair|  red|
+  +-------+----+-----+
+
+Hence it extracts the key-value columns.
+
+We can also explode and keep the position of the different items, using posexplode:
+
+.. sourcecode:: python
+
+  from pyspark.sql.functions import posexplode
+  """ with array """
+  df.select(df.name,posexplode(df.knownLanguages)).show()
+  
+  +---------+---+------+
+  |     name|pos|   col|
+  +---------+---+------+
+  |    James|  0|  Java|
+  |    James|  1| Scala|
+  |  Michael|  0| Spark|
+  |  Michael|  1|  Java|
+  |  Michael|  2|  null|
+  |   Robert|  0|CSharp|
+  |   Robert|  1|      |
+  |Jefferson|  0|     1|
+  |Jefferson|  1|     2|
+  +---------+---+------+
+  
+  """ with map """
+  df.select(df.name,posexplode(df.properties)).show()
+  
+  +-------+---+----+-----+
+  |   name|pos| key|value|
+  +-------+---+----+-----+
+  |  James|  0| eye|brown|
+  |  James|  1|hair|black|
+  |Michael|  0| eye| null|
+  |Michael|  1|hair|brown|
+  | Robert|  0| eye|     |
+  | Robert|  1|hair|  red|
+  +-------+---+----+-----+
 
 Fill forward or backward in spark
 -----------------------------------------------------
