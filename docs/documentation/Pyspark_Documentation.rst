@@ -826,6 +826,77 @@ Group by data and count (distinct) number of elements for one column:
 
   # distinct count
   df.groupBy('columnToGroupOn').agg(countDistinct('columnToCount').alias('count')).orderBy('count',ascending=0).show()  
+  
+  
+The cube aggregation (https://www.data-stats.com/pyspark-aggregations-cube-rollup/)
+
+cube function takes a list of column names and returns possible combinations of grouping columns. We can apply aggregations functions( sum,count,min,max,etc) on the combinations to generate useful information.
+
+Here we apply cube, count, and sort function together on the columns which generate grand total cases including Null values.
+
+.. sourcecode:: python
+
+  # count
+  df.cube(df["Item_Name"],df["Quantity"]).count().sort("Item_Name","Quantity").show()
+  
+  +---------+--------+-----+
+  |Item_Name|Quantity|count|
+  +---------+--------+-----+
+  |     null|    null|    6|
+  |     null|       2|    1|
+  |     null|       5|    2|
+  |     null|      10|    1|
+  |     null|      20|    2|
+  |Chocolate|    null|    3|
+  |Chocolate|       2|    1|
+  |Chocolate|       5|    1|
+  |Chocolate|      10|    1|
+  |  Kurkure|    null|    2|
+  |  Kurkure|       5|    1|
+  |  Kurkure|      20|    1|
+  |   Sheets|    null|    1|
+  |   Sheets|      20|    1|
+  +---------+--------+-----+ 
+  
+Let’s find out how we got this output. cube generates all possible mixtures and takes one column at one time.
+
+Row 1: Total Rows in DataFrame keeping both column value as NULL.
+
+Row 2: Count where Quantity is 2.
+
+Row 9: Count where Item_Name is Chocolate and Quantity is 10 ( Chocolate cases have only those associated Quantity values which are actually present in given dataframe, as it didn’t include 20 as Quantity)
+
+Row 14: Count where Item_Name is Sheets and Quantity is 20. ( We have only one entry of Sheets)  
+
+Similarly we can use for a sum too:
+
+.. sourcecode:: python
+
+  # sum
+  df.cube(df["Item_Name"],df["Quantity"]).sum().sort("Item_Name","Quantity").show()
+  
+  +---------+--------+-------------+
+  |Item_Name|Quantity|sum(Quantity)|
+  +---------+--------+-------------+
+  |     null|    null|           62|
+  |     null|       2|            2|
+  |     null|       5|           10|
+  |     null|      10|           10|
+  |     null|      20|           40|
+  |Chocolate|    null|           17|
+  |Chocolate|       2|            2|
+  |Chocolate|       5|            5|
+  |Chocolate|      10|           10|
+  |  Kurkure|    null|           25|
+  |  Kurkure|       5|            5|
+  |  Kurkure|      20|           20|
+  |   Sheets|    null|           20|
+  |   Sheets|      20|           20|
+  +---------+--------+-------------+
+
+Note: Order of arguments passed in cube doesn’t matter whether you type, df.cube(df[“Item_Name”],df[“Quantity”]).count().show() or df.cube(df[“Quantity”],df[“Item_Name”]).count().show()
+
+
 
 Joins
 ---------------------------
@@ -1025,6 +1096,9 @@ You can use the explode function to "pivot" this array into rows:
   | 2018-02-01 |
   | 2018-03-01 |
   +------------+  
+  
+explode operation 
+----------------------------------
   
 Other example of explode (https://sparkbyexamples.com/pyspark/pyspark-explode-array-and-map-columns-to-rows/):
 
@@ -1444,6 +1518,83 @@ Casting to timestamp from string with format 2015-01-01 23:59:59:
   year, month, dayofmonth, hour, minute, second
   unix_timestamp, from_unixtime, to_date, quarter, day, dayofyear, weekofyear, from_utc_timestamp, to_utc_timestamp  
 
+Maps/dictionaries in pyspark
+----------------------------
+
+See https://mungingdata.com/pyspark/dict-map-to-multiple-columns/
+  
+.. sourcecode:: python  
+  
+  data = [("jose", {"a": "aaa", "b": "bbb"}), ("li", {"b": "some_letter", "z": "zed"})]
+  df = spark.createDataFrame(data, ["first_name", "some_data"])
+  df.show()  
+  df.printSchema()
+  
+  +----------+----------------------------+
+  |first_name|some_data                   |
+  +----------+----------------------------+
+  |jose      |[a -> aaa, b -> bbb]        |
+  |li        |[b -> some_letter, z -> zed]|
+  +----------+----------------------------+  
+  
+  root
+   |-- first_name: string (nullable = true)
+   |-- some_data: map (nullable = true)
+   |    |-- key: string
+   |    |-- value: string (valueContainsNull = true)  
+   
+  # Add a some_data_a column that grabs the value associated with the key a in the some_data column. The getItem method helps when fetching values from PySpark maps.
+
+  df.withColumn("some_data_a", F.col("some_data").getItem("a")).show()   
+  
+  +----------+----------------------------+-----------+
+  |first_name|some_data                   |some_data_a|
+  +----------+----------------------------+-----------+
+  |jose      |[a -> aaa, b -> bbb]        |aaa        |
+  |li        |[b -> some_letter, z -> zed]|null       |
+  +----------+----------------------------+-----------+  
+  
+  # also works the same:
+  df.withColumn("some_data_a", F.col("some_data")["a"]).show()
+  
+How to create a map programatically? See in the docs: https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.functions.create_map
+
+.. sourcecode:: python 
+
+  # create a map containing key 1 for John, and key 2 for Marie, call it empDetails:
+  from pyspark.sql.functions import create_map, lit
+  df = df.select("first_name", create_map(lit("1"), lit("John"),lit("2"),lit("Marie")).alias("empDetails")) #.limit(1)
+  df.show(truncate=False)
+  
+  +----------+-----------------------+
+  |first_name|empDetails             |
+  +----------+-----------------------+
+  |jose      |[1 -> John, 2 -> Marie]|
+  |li        |[1 -> John, 2 -> Marie]|
+  +----------+-----------------------+  
+  
+Same, but creating a map based on 2 columns, one which will be used for the key, the other as the value:
+
+.. sourcecode:: python 
+
+  df= spark.createDataFrame([
+                  ['TV',200],
+                  ['Headphones',400],
+                  ['TV',300],
+                  ['Kitchen',500],
+                  ['Office',300]],('itemName','sales_quantity'))
+  
+  df.select(create_map('itemName','sales_quantity').alias('theMap')).show(truncate=False)
+  
+  +-------------------+
+  |theMap             |
+  +-------------------+
+  |[TV -> 200]        |
+  |[Headphones -> 400]|
+  |[TV -> 300]        |
+  |[Kitchen -> 500]   |
+  |[Office -> 300]    |
+  +-------------------+
   
 NaN/Null/None handling
 ----------------------------
