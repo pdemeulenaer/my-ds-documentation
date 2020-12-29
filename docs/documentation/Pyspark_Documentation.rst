@@ -748,7 +748,9 @@ The main aggregation functions:
 
 .. sourcecode:: python
 
-  approxCountDistinct, avg, count, countDistinct, first, last, max, mean, min, sum, sumDistinct
+  approxCountDistinct (now approx_count_distinct), avg, count, countDistinct, first, last, max, mean, min, sum, sumDistinct
+
+**The groupBy aggregation**
 
 .. sourcecode:: python
 
@@ -828,7 +830,7 @@ Group by data and count (distinct) number of elements for one column:
   df.groupBy('columnToGroupOn').agg(countDistinct('columnToCount').alias('count')).orderBy('count',ascending=0).show()  
   
   
-The cube aggregation (https://www.data-stats.com/pyspark-aggregations-cube-rollup/)
+**The cube aggregation** (https://www.data-stats.com/pyspark-aggregations-cube-rollup/)
 
 cube function takes a list of column names and returns possible combinations of grouping columns. We can apply aggregations functions( sum,count,min,max,etc) on the combinations to generate useful information.
 
@@ -896,7 +898,40 @@ Similarly we can use for a sum too:
 
 Note: Order of arguments passed in cube doesn’t matter whether you type, df.cube(df[“Item_Name”],df[“Quantity”]).count().show() or df.cube(df[“Quantity”],df[“Item_Name”]).count().show()
 
+**The rollup aggregation** (https://www.data-stats.com/pyspark-aggregations-cube-rollup/):
 
+rollup returns the subset of rows returned by the cube. It takes a list of column names as input and finds the possible combinations. We can apply the aggregate function to extract the needed information. The extracted rows are less in number but actually worth using.
+
+.. sourcecode:: python
+
+  df.rollup(df["Item_Name"],df["Quantity"]).count().sort("Item_Name","Quantity").show()
+
+  +---------+--------+-----+
+  |Item_Name|Quantity|count|
+  +---------+--------+-----+
+  |     null|    null|    6|
+  |Chocolate|    null|    3|
+  |Chocolate|       2|    1|
+  |Chocolate|       5|    1|
+  |Chocolate|      10|    1|
+  |  Kurkure|    null|    2|
+  |  Kurkure|       5|    1|
+  |  Kurkure|      20|    1|
+  |   Sheets|    null|    1|
+  |   Sheets|      20|    1|
+  +---------+--------+-----+
+
+As the first column passed is “Item_Name”, rollup doesn’t return the count of those where only “Item_Name” is NULL. Those rows are not present in the table, compared to the cube + count case above.
+
+Note: the order of arguments in rollup matters! Results obtained form df.rollup(df[“Item_Name”],df[“Quantity”]).count().show() and df.rollup(df[“Quantity”],df[“Item_Name”]).count().show() are different!!
+
+***Difference between Group By, Cube and Rollup*
+
+GROUP BY clause groups the results according to the specified column provided as input and after we can apply aggregate functions on it to obtain the precise output.
+
+cube function calculates the grand total of all permutations of columns including NULL cases. cube is an additional switch to the GROUP BY clause.
+
+rollup is an extension to the GROUP BY clause. It calculates the sub-total of all permutations columns excluding the rows having NULL values only in the first column. It is used to extract summarized information. rollup creates grouping and then applies an aggregate function on them.
 
 Joins
 ---------------------------
