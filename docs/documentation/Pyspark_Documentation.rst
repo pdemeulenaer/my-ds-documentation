@@ -1716,21 +1716,21 @@ Opening tables from Data Warehouse
 .. sourcecode:: python
 
   import sys
-  TOOLS_PATH = '/home/BC3589/Git/tools'
+  TOOLS_PATH = ''
   if TOOLS_PATH not in sys.path:
     sys.path.append(TOOLS_PATH)
 	
   from connection.SQLConnector import SQLConnector
 
   # testing connection to Exploration Warehouse
-  etpew_connector = SQLConnector('ETPEW')
-  sql = "select top 1 * from [ETZ3EW].[dbo].[ZW_KUNDE_MST_HV];"
+  etpew_connector = SQLConnector('DB')
+  sql = "select top 1 * from table;"
   df = etpew_connector.query_to_pandas(sql)
-  print('Loaded from [ETZ3EW].[dbo].[ZW_KUNDE_MST_HV]')
+  print('Loaded from table')
   print(df.iloc[0])
         
-  # testing connection to MCS
-  mcs_connector = SQLConnector('MCS')
+  # testing connection to other 
+  mcs_connector = SQLConnector('DB2')
   sql = "SELECT top 1 * FROM sys.databases"
   df = mcs_connector.query_to_pandas(sql)
   print('Loaded from sys.databases')
