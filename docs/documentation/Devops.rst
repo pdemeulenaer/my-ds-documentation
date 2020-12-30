@@ -62,6 +62,10 @@ Again, a very interesting series to address the basics concepts:
 
 - https://mlinproduction.com/k8s-services/ : part 5 of the series
 
+- How to start, official site: https://kubernetes.io/docs/home/
+
+- 50 days to Kubernetes, Azure (AKS): https://azure.microsoft.com/mediahandler/files/resourcefiles/kubernetes-learning-path/Kubernetes%20Learning%20Path%20version%201.0.pdf
+
 Intro to docker & kubernetes video: https://www.youtube.com/watch?v=bhBSlnQcq2k&ab_channel=Amigoscode
 
 Spark on Kubernetes
