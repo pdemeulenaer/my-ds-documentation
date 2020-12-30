@@ -902,9 +902,11 @@ Note: Order of arguments passed in cube doesn’t matter whether you type, df.cu
 
 rollup returns the subset of rows returned by the cube. It takes a list of column names as input and finds the possible combinations. We can apply the aggregate function to extract the needed information. The extracted rows are less in number but actually worth using.
 
+In short, Rollup computes the aggregate at the hierarchy level of the columns. IN following example, it assumes that hierarchy starts at Item_Name and drill downs to Quantity.
+
 .. sourcecode:: python
 
-  df.rollup(df["Item_Name"],df["Quantity"]).count().sort("Item_Name","Quantity").show()
+  df.rollup("Item_Name","Quantity").count().sort("Item_Name","Quantity").show()
 
   +---------+--------+-----+
   |Item_Name|Quantity|count|
@@ -923,9 +925,11 @@ rollup returns the subset of rows returned by the cube. It takes a list of colum
 
 As the first column passed is “Item_Name”, rollup doesn’t return the count of those where only “Item_Name” is NULL. Those rows are not present in the table, compared to the cube + count case above.
 
-Note: the order of arguments in rollup matters! Results obtained form df.rollup(df[“Item_Name”],df[“Quantity”]).count().show() and df.rollup(df[“Quantity”],df[“Item_Name”]).count().show() are different!!
+Note: the order of arguments in rollup matters! Results obtained form df.rollup("Item_Name","Quantity").count().show() and df.rollup("Quantity","Item_Name").count().show() are different!!
 
-***Difference between Group By, Cube and Rollup*
+Rollup offers a shorthand of group by and just gives us the aggregation based on the columns defined in the query. We can also write the above query using GROUP BY but it will be clumsy.
+
+**Difference between Group By, Cube and Rollup**
 
 GROUP BY clause groups the results according to the specified column provided as input and after we can apply aggregate functions on it to obtain the precise output.
 
@@ -1557,6 +1561,29 @@ Maps/dictionaries in pyspark
 ----------------------------
 
 See https://mungingdata.com/pyspark/dict-map-to-multiple-columns/
+
+SQL way of creating a map in pyspark:
+
+.. sourcecode:: python  
+
+  df = spark.sql("SELECT map(1, 'a', 2, 'b') as map1, map(3, 'c') as map2")
+  df.show()
+  
+  +----------------+--------+
+  |            map1|    map2|
+  +----------------+--------+
+  |[1 -> a, 2 -> b]|[3 -> c]|
+  +----------------+--------+  
+  
+  # Concatenate these 2 columns into 1 map is like this:  
+  df.select(map_concat("map1", "map2").alias("map3")).show(truncate=False)
+  
+  +------------------------+
+  |map3                    |
+  +------------------------+
+  |[1 -> a, 2 -> b, 3 -> c]|
+  +------------------------+
+  
   
 .. sourcecode:: python  
   
