@@ -153,15 +153,15 @@ Good links:
 
 - Main concepts of MLFlow: https://www.mlflow.org/docs/latest/concepts.html
 
-- https://towardsdatascience.com/setup-mlflow-in-production-d72aecde7fef
-
-- https://pedro-munoz.tech/how-to-setup-mlflow-in-production/ ; https://medium.com/datatau/how-to-setup-mlflow-in-production-a6f70511ebdc
-
-- https://towardsdatascience.com/deploy-mlflow-with-docker-compose-8059f16b6039
-
 - https://blog.noodle.ai/introduction-to-mlflow-for-mlops-part-1-anaconda-environment/
 
 - How to track MLFlow using the Databricks MLFlow server (accessed from local environment): https://docs.databricks.com/applications/mlflow/access-hosted-tracking-server.html
+
+- tutorial: https://www.adaltas.com/en/2020/03/23/mlflow-open-source-ml-platform-tutorial
+
+- Setup MLflow in Production: https://towardsdatascience.com/setup-mlflow-in-production-d72aecde7fef, https://pedro-munoz.tech/how-to-setup-mlflow-in-production/, https://medium.com/datatau/how-to-setup-mlflow-in-production-a6f70511ebdc
+
+- Deploy MLflow with Docker-compose: https://towardsdatascience.com/deploy-mlflow-with-docker-compose-8059f16b6039
 
 MLFLow Tracking: https://www.mlflow.org/docs/latest/tracking.html
 --------------------------------------------------------------------------
