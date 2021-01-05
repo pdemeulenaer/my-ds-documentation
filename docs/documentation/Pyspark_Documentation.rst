@@ -1941,6 +1941,82 @@ Great and deep intro: https://florianwilhelm.info/2019/04/more_efficient_udfs_wi
   |[4.5656, 5.1215, ...|val2|[4.57, 5.12, 6.57]|
   +--------------------+----+------------------+  
   
+You have this df. Build a python normalize function that takes as input a pandas pdf and assigns a column v = (v-v.mean()) / v.std()
+
+apply the function on the different id groups of df. Do this twice:
+
+- first by using applyInPandas() with schema,
+
+- second by using apply. But here you will need to declare the schema in the python function, which needs to be declared as pandas_udf.
+
+.. sourcecode:: python
+
+  import pandas as pd  
+  from pyspark.sql.functions import pandas_udf, ceil
+  
+  df = spark.createDataFrame(
+      [(1, 1.0), (1, 2.0), (2, 3.0), (2, 5.0), (2, 10.0)],
+      ("id", "v"))  
+  
+  # (old way, pyspark<3)
+  
+  @pandas_udf("id long, v double", PandasUDFType.GROUPED_MAP)  
+  def normalize(pdf):
+      v = pdf.v
+      return pdf.assign(v=(v - v.mean()) / v.std())
+  
+  df.groupby("id").apply(normalize).show()  
+  
+  # OR new way, pyspark>=3: (here the function can stay a simple python function!)
+  def normalize(pdf):
+      v = pdf.v
+      return pdf.assign(v=(v - v.mean()) / v.std())
+  
+  df.groupby("id").applyInPandas(normalize, schema="id long, v double").show()  
+  
+Again same df. This time use the grouping key (id) within the python function: return pd.DataFrame([key + (pdf.v.mean(),)])
+
+.. sourcecode:: python
+
+  df = spark.createDataFrame(
+      [(1, 1.0), (1, 2.0), (2, 3.0), (2, 5.0), (2, 10.0)],
+      ("id", "v"))  
+  
+  def mean_func(key, pdf):
+      # key is a tuple of one numpy.int64, which is the value
+      # of 'id' for the current group
+      return pd.DataFrame([key + (pdf.v.mean(),)])
+    
+  df.groupby('id').applyInPandas(mean_func, schema="id long, v double").show()  
+  
+  +---+---+
+  | id|  v|
+  +---+---+
+  |  1|1.5|
+  |  2|6.0|
+  +---+---+  
+  
+Again, same df, use now the TWO grouping keys: df.id and ceil(df.v / 2), and return return pd.DataFrame([key + (pdf.v.sum(),)]) in the python function
+
+.. sourcecode:: python
+
+  def sum_func(key, pdf):
+      # key is a tuple of two numpy.int64s, which is the values
+      # of 'id' and 'ceil(df.v / 2)' for the current group
+      return pd.DataFrame([key + (pdf.v.sum(),)])
+    
+  df.groupby(df.id, ceil(df.v / 2)).applyInPandas(
+      sum_func, schema="id long, `ceil(v / 2)` long, v double").show()  
+      
+  +---+-----------+----+
+  | id|ceil(v / 2)|   v|
+  +---+-----------+----+
+  |  1|          1| 3.0|
+  |  2|          2| 3.0|
+  |  2|          3| 5.0|
+  |  2|          5|10.0|
+  +---+-----------+----+    
+  
 Links on Pandas_UDF:
 
 - https://spark.apache.org/docs/latest/sql-pyspark-pandas-with-arrow.html#pandas-udfs-aka-vectorized-udfs 
@@ -1948,6 +2024,8 @@ Links on Pandas_UDF:
 - https://medium.com/analytics-ai-swedbank/predicting-customer-finances-using-deep-learning-168b47e54d54 
 
 - Spark 3: New Pandas_UDF: https://databricks.com/blog/2020/05/20/new-pandas-udfs-and-python-type-hints-in-the-upcoming-release-of-apache-spark-3-0.html
+
+
 
 
 ETL in Spark 
