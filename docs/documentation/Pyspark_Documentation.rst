@@ -2100,6 +2100,58 @@ Other Helpful Data Manipulation Functions:
 
 - rollup()	Create a multi-dimensional rollup for the current DataFrame using the specified columns, so we can run aggregation on them
 
+Pivot in pyspark
+----------------------------------------
+
+Taken from: https://sparkbyexamples.com/pyspark/pyspark-pivot-and-unpivot-dataframe/
+
+You have this df. Groupby product and pivot by country:
+
+.. sourcecode:: python
+
+  data = [("Banana",1000,"USA"), ("Carrots",1500,"USA"), ("Beans",1600,"USA"), \
+        ("Orange",2000,"USA"),("Orange",2000,"USA"),("Banana",400,"China"), \
+        ("Carrots",1200,"China"),("Beans",1500,"China"),("Orange",4000,"China"), \
+        ("Banana",2000,"Canada"),("Carrots",2000,"Canada"),("Beans",2000,"Mexico")]
+  
+  columns= ["Product","Amount","Country"]
+  df = spark.createDataFrame(data = data, schema = columns)
+  df.show(truncate=False)
+  
+  +-------+------+-------+
+  |Product|Amount|Country|
+  +-------+------+-------+
+  |Banana |1000  |USA    |
+  |Carrots|1500  |USA    |
+  |Beans  |1600  |USA    |
+  |Orange |2000  |USA    |
+  |Orange |2000  |USA    |
+  |Banana |400   |China  |
+  |Carrots|1200  |China  |
+  |Beans  |1500  |China  |
+  |Orange |4000  |China  |
+  |Banana |2000  |Canada |
+  |Carrots|2000  |Canada |
+  |Beans  |2000  |Mexico |
+  +-------+------+-------+  
+  
+  pivotDF = df.groupBy("Product").pivot("Country").sum("Amount")
+  pivotDF.show(truncate=False)
+  
+  +-------+------+-----+------+----+
+  |Product|Canada|China|Mexico|USA |
+  +-------+------+-----+------+----+
+  |Orange |null  |4000 |null  |4000|
+  |Beans  |null  |1500 |2000  |1600|
+  |Banana |2000  |400  |null  |1000|
+  |Carrots|2000  |1200 |null  |1500|
+  +-------+------+-----+------+----+  
+  
+  # or better (same output but faster):
+  countries = ["USA","China","Canada","Mexico"]
+  pivotDF = df.groupBy("Product").pivot("Country", countries).sum("Amount")
+  pivotDF.show(truncate=False)
+
 
 Machine Learning using the MLlib package
 ========================================
