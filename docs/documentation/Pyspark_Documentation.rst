@@ -1556,6 +1556,44 @@ Casting to timestamp from string with format 2015-01-01 23:59:59:
   datediff, date_add, date_sub, add_months, last_day, next_day, months_between
   year, month, dayofmonth, hour, minute, second
   unix_timestamp, from_unixtime, to_date, quarter, day, dayofyear, weekofyear, from_utc_timestamp, to_utc_timestamp  
+  
+Make a date from raw data:
+
+.. sourcecode:: python  
+
+  # from this df, build the associated date
+  spark.createDataFrame([(2020, 6, 26), (1000, 2, 29), (-44, 1, 1)], ['Y', 'M', 'D']).createTempView('YMD')
+  
+  df = sql('select make_date(Y, M, D) as date from YMD')
+  df.show()
+  
+  +-----------+
+  |       date|
+  +-----------+
+  | 2020-06-26|
+  |       null|
+  |-0044-01-01|
+  +-----------+
+  
+Make a timestamp from raw data:  
+  
+.. sourcecode:: python  
+
+  # from this df, build the associated timestamp 
+  df = spark.createDataFrame([(2020, 6, 28, 10, 31, 30.123456),
+                              (1582, 10, 10, 0, 1, 2.0001), (2019, 2, 29, 9, 29, 1.0)],
+                             ['YEAR', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'SECOND'])
+  
+  ts = df.selectExpr("make_timestamp(YEAR, MONTH, DAY, HOUR, MINUTE, SECOND) as MAKE_TIMESTAMP")
+  ts.show(truncate=False)  
+  
+  +--------------------------+
+  |MAKE_TIMESTAMP            |
+  +--------------------------+
+  |2020-06-28 10:31:30.123456|
+  |1582-10-10 00:01:02.0001  |
+  |null                      |
+  +--------------------------+
 
 Maps/dictionaries in pyspark
 ----------------------------
