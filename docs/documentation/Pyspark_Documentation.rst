@@ -1557,7 +1557,9 @@ Casting to timestamp from string with format 2015-01-01 23:59:59:
   year, month, dayofmonth, hour, minute, second
   unix_timestamp, from_unixtime, to_date, quarter, day, dayofyear, weekofyear, from_utc_timestamp, to_utc_timestamp  
   
-Make a date from raw data:
+Make a date, timestamp in pyspark 3: https://databricks.com/blog/2020/07/22/a-comprehensive-look-at-dates-and-timestamps-in-apache-spark-3-0.html
+
+Make a date from raw data: 
 
 .. sourcecode:: python  
 
