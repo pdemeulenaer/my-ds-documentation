@@ -1256,6 +1256,33 @@ We can also explode and keep the position of the different items, using posexplo
   | Robert|  0| eye|     |
   | Robert|  1|hair|  red|
   +-------+---+----+-----+
+  
+  
+Another, simple example, showing how posexplode is easy & useful, on an array:
+
+.. sourcecode:: python
+
+  # Use posexplode on array intlist. You will get the position of element, and the element. Quite useful!
+  from pyspark.sql import Row
+  df = spark.createDataFrame([Row(a=1, intlist=[1,2,3], mapfield={"a": "b"})])
+  
+  df.select(posexplode(df.intlist)).show()
+  
+  +---+---+
+  |pos|col|
+  +---+---+
+  |  0|  1|
+  |  1|  2|
+  |  2|  3|
+  +---+---+
+  
+  df.select(posexplode(eDF.mapfield)).show()
+  
+  +---+---+-----+
+  |pos|key|value|
+  +---+---+-----+
+  |  0|  a|    b|
+  +---+---+-----+  
 
 Fill forward or backward in spark
 -----------------------------------------------------
