@@ -190,5 +190,12 @@ Model registry example: https://docs.microsoft.com/en-us/azure/databricks/applic
 MLFlow server
 --------------------------------------------------------------------------
 
+SonarQube: static code analysis
+--------------------------------------------------------------------------
+
+How to use SonarQube with Azure DevOps: https://docs.sonarqube.org/latest/analysis/azuredevops-integration/
+
+
+
 
 
