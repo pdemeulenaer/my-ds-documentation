@@ -195,6 +195,8 @@ SonarQube: static code analysis
 
 How to use SonarQube with Azure DevOps: https://docs.sonarqube.org/latest/analysis/azuredevops-integration/
 
+How to use the cloud version of SonarQube, SonarCloud, with Azure DevOps: https://azuredevopslabs.com/labs/vstsextend/sonarcloud/
+
 
 
 
