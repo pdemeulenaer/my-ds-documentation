@@ -100,6 +100,8 @@ Jenkins
 Azure DevOps
 --------------------------------------------------------------------------
 
+Azure DevOps with azure container registry (for Docker container images): https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/containers/acr-template?view=azure-devops
+
 Tests
 --------------------------------------------------------------------------
 
@@ -195,7 +197,13 @@ SonarQube: static code analysis
 
 How to use SonarQube with Azure DevOps: https://docs.sonarqube.org/latest/analysis/azuredevops-integration/
 
-How to use the cloud version of SonarQube, SonarCloud, with Azure DevOps: https://azuredevopslabs.com/labs/vstsextend/sonarcloud/
+How to use the cloud version of SonarQube, SonarCloud, with Azure DevOps: 
+
+- https://azuredevopslabs.com/labs/vstsextend/sonarcloud/
+
+- https://www.codewrecks.com/blog/index.php/2019/01/05/sonar-analysis-of-python-with-azure-devops-pipeline/ : with concrete YAML file example
+
+
 
 
 
