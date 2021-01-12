@@ -14,6 +14,16 @@ LOOK AT FOR LINKING: http://www.sphinx-doc.org/en/stable/markup/inline.html
 Sphinx documentation using Azure DevOps: https://medium.com/@LydiaNemec/documenting-your-data-science-project-a-guide-to-publish-your-sphinx-code-documentation-d1afeb110696
 
 Document python project using Sphinx: https://medium.com/@richdayandnight/a-simple-tutorial-on-how-to-document-your-python-project-using-sphinx-and-rinohtype-177c22a15b5b
+
+Creating a project documentation from docstrings: (the important command is the sphinx-apidoc command)
+
+- https://romanvm.pythonanywhere.com/post/autodocumenting-your-python-code-sphinx-part-ii-6/ with example https://github.com/romanvm/sphinx_tutorial
+
+- https://eikonomega.medium.com/getting-started-with-sphinx-autodoc-part-1-2cebbbca5365
+
+- https://gist.github.com/GLMeece/222624fc495caf6f3c010a8e26577d31
+
+- https://dev.to/dev0928/how-to-generate-professional-documentation-with-sphinx-4n78
 	
 Subject Subtitle
 ----------------
