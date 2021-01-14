@@ -192,10 +192,16 @@ Model registry example: https://docs.microsoft.com/en-us/azure/databricks/applic
 MLFlow server
 --------------------------------------------------------------------------
 
-SonarQube: static code analysis
+SonarQube (or SonarCloud, SonarLint): static code analysis
 --------------------------------------------------------------------------
 
 How to use SonarQube with Azure DevOps: https://docs.sonarqube.org/latest/analysis/azuredevops-integration/
+
+- SonarQube: on prem version
+
+- SonarCloud: cloud available version
+
+- SonarLint: version available in IDEs, like VSCode. 
 
 How to use the cloud version of SonarQube, SonarCloud, with Azure DevOps: 
 
@@ -203,7 +209,13 @@ How to use the cloud version of SonarQube, SonarCloud, with Azure DevOps:
 
 - https://www.codewrecks.com/blog/index.php/2019/01/05/sonar-analysis-of-python-with-azure-devops-pipeline/ : with concrete YAML file example
 
-What does SonarQube/SonarCloud "better" than classical linting tools like flake8 or pylint? https://blog.sonarsource.com/sonarcloud-finds-bugs-in-high-quality-python-projects
+What does SonarQube/SonarCloud "better" than classical linting tools like flake8 or pylint? 
+
+- https://blog.sonarsource.com/sonarcloud-finds-bugs-in-high-quality-python-projects
+
+- https://community.sonarsource.com/t/is-that-possible-to-use-pylint-with-sonarqube/24874 (also introduces how to mix pylint & Sonar)
+
+Here is the list of 174 rules used in SonarQube/SonarCloud/SonarLint: https://rules.sonarsource.com/python/type/Bug/RSPEC-930
 
 
 
