@@ -215,7 +215,7 @@ What does SonarQube/SonarCloud "better" than classical linting tools like flake8
 
 - https://community.sonarsource.com/t/is-that-possible-to-use-pylint-with-sonarqube/24874 (also introduces how to mix pylint & Sonar)
 
-Here is the list of 174 rules used in SonarQube/SonarCloud/SonarLint: https://rules.sonarsource.com/python/type/Bug/RSPEC-930
+Rule explorer: here is the list of 174 rules used in SonarQube/SonarCloud/SonarLint: https://rules.sonarsource.com/python (for Python, but exists also for different languages)
 
 
 
