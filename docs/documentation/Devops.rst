@@ -203,6 +203,8 @@ How to use the cloud version of SonarQube, SonarCloud, with Azure DevOps:
 
 - https://www.codewrecks.com/blog/index.php/2019/01/05/sonar-analysis-of-python-with-azure-devops-pipeline/ : with concrete YAML file example
 
+What does SonarQube/SonarCloud "better" than classical linting tools like flake8 or pylint? https://blog.sonarsource.com/sonarcloud-finds-bugs-in-high-quality-python-projects
+
 
 
 
