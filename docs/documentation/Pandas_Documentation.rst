@@ -211,6 +211,32 @@ More infos:
 
 - https://pipenv-fork.readthedocs.io/en/latest/basics.html
 
+Python linting, static code analysis
+=======================================
+
+Pylint
+---------------------------------------
+
+How to create a configuration file .pylintrc in your project: pylint --generate-rcfile > .pylintrc
+
+Also how to format the report (could we put the format in the .pylintrc?), here is an example:
+
+.. sourcecode:: python
+
+  #Let's have a function:  
+  $ cat sample.py 
+  def function1(rrrr_mm_dd):
+      print "We do not use any argument"
+  
+  $ pylint sample.py -r n --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" | tee pylint.txt
+  No config file found, using default configuration
+  ************* Module sample
+  sample.py:1: [C0111(missing-docstring), ] Missing module docstring
+  sample.py:1: [C0111(missing-docstring), function1] Missing function docstring
+
+Flake8
+---------------------------------------
+
 
 Visual Studio Code set-up
 =======================================
