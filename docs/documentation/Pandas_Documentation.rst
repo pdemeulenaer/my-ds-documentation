@@ -219,7 +219,7 @@ Pylint
 
 How to create a configuration file .pylintrc in your project: pylint --generate-rcfile > .pylintrc
 
-Also how to format the report (could we put the format in the .pylintrc?), here is an example:
+Also how to format the report (could we put the format in the .pylintrc?), here is an example (https://community.sonarsource.com/t/pylint-results-not-reported-uploaded-by-scanner/4208):
 
 .. sourcecode:: python
 
