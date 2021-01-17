@@ -26,6 +26,8 @@ https://www.youtube.com/watch?v=fv3p3r3ByfY&t=1016s
 Databricks-connect
 --------------------------------------------------------------------------
 
+Intro blog from databricks: https://databricks.com/blog/2019/06/14/databricks-connect-bringing-the-capabilities-of-hosted-apache-spark-to-applications-and-microservices.html
+
 To install it: https://menziess.github.io/howto/install/databricks-connect/ (short intro)
 
 See also https://docs.microsoft.com/en-us/azure/databricks/dev-tools/databricks-connect for a in-depth documentation
