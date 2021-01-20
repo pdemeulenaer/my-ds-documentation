@@ -75,7 +75,10 @@ Good links:
 
 - https://levelup.gitconnected.com/spark-on-kubernetes-3d822969f85b
 
+Openshift
+==========================================================================
 
+Learning: https://learn.openshift.com/
 
 CICD developement
 ==========================================================================
