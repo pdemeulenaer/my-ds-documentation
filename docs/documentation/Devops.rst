@@ -88,6 +88,13 @@ How to create a dummy app?
 
 3. Before going to next, go to advance settings
 
+Note: there is some playground for Openshift: https://www.openshift.com/learn/courses/playground/ 
+
+Also, there is a (non-free, 50$/month) cloud version of Openshift: https://manage.openshift.com/sign_in 
+
+Openshift can be integrated with Azure DevOps (by plugins within Azure DevOps)
+
+
 
 CICD developement
 ==========================================================================
