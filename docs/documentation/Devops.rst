@@ -80,6 +80,15 @@ Openshift
 
 Learning: https://learn.openshift.com/
 
+How to create a dummy app? 
+
+1. Create a python repo in bitbucket(or github). It should have a requirements.txt and an app.py file (dummy example)
+
+2. Then in the catalog, search for python, select version, give an app name and select the repo
+
+3. Before going to next, go to advance settings
+
+
 CICD developement
 ==========================================================================
 
