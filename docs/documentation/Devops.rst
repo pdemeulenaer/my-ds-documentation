@@ -88,7 +88,11 @@ How to create a dummy app?
 
 3. Before going to next, go to advance settings
 
-Note: there is some playground for Openshift: https://www.openshift.com/learn/courses/playground/ 
+Note: there is some playground for Openshift (60 min trials): 
+
+- version 3.11: https://www.katacoda.com/openshift/courses/playgrounds/openshift311
+
+- version 4.2 : https://www.openshift.com/learn/courses/playground/ 
 
 Also, there is a (non-free, 50$/month) cloud version of Openshift: https://manage.openshift.com/sign_in 
 
