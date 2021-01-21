@@ -78,15 +78,96 @@ Good links:
 Openshift
 ==========================================================================
 
-Learning: https://learn.openshift.com/
-
 How to create a dummy app? 
 
 1. Create a python repo in bitbucket(or github). It should have a requirements.txt and an app.py file (dummy example)
 
 2. Then in the catalog, search for python, select version, give an app name and select the repo
 
-3. Before going to next, go to advance settings
+3. Before going to next, go to advance settings, and fill the configurations
+
+4. Image building. Once the build config is ready, application can be built. To do this navigate to: Your OpenShift project → Builds: Builds → Your application Name → Start Build
+
+5. Deployment. There are basically 3 ways of deploying your app:
+
+- (continuous) deployment: Once an image is built, it is usually automatically pushed into deployment with one running pod.
+
+If one doesn't want to have a continuously running and/or indefinitely restarting application, one can decrease the pods in the deployment to zero:
+Openshift → Overview → Application
+
+- job (single run): To run an application once, one should create a job. One should do that using CLI:
+
+.. sourcecode:: python
+
+  oc run single-job --image=docker-registry.default.svc:5000/projectname-spi-syst/application:1.0 --restart=OnFailure --limits="memory=2Gi"
+
+A pod will then be immediately created and run to completion. The pod will restart indefinitely if it fails, meaning that some supervision should take place if the user is not experienced.
+
+--image part can be retrieved with commands oc get imagestream or oc get imagestreamtag or Builds:Images → Docker Repo. It is best to specify the imagestream with the tag (1.0 in this case, ) for specific image because there have been observations of older image versions used when using the tag "latest".
+
+--limits is used in order to extend the amount of memory (and other resources) in the pod 
+
+The pod restarts on failure regardless of which --restart parameter is set (–restart=Never is not proven to work as expected, however).
+
+Latest jobs that ran to completion or currently running jobs can be viewed running oc get pods.
+
+- scheduled job
+
+Scheduling a run is essentiallty the same as creating a job, except that additional schedule parameter in a CRON format should be added, for example:
+--schedule="0 0 */1 * *", this cron format should result in a run at 00:00 every day
+
+When the single run command is modified, command for scheduling a job looks something like this:
+
+.. sourcecode:: python
+
+  oc run job-scheduler --image=docker-registry.default.svc:5000/projectname-spi-syst/application:1.0 --schedule="0 3 1,11,21 * *" --restart=OnFailure --limits="memory=2Gi"
+
+This will create a pod with the app that should run once at 03:00 every 1st, 11th and 21st day of the month.
+
+Scheduled jobs can be viewed with oc get cronjobs.
+
+Settings for this cronjob can be edited running oc edit cronjob/job-scheduler
+
+Persistent storage
+------------------
+
+Users can create storage volumes where data persists after closing the pods. Volume can be claimed in Storage → Create Storage.
+
+A volume can be mounted to a deployment by modifying deployment config. This can be done from CLI interface running similar command oc set volume dc/application --add --claim-name app-storage --mount-path /opt/app-root/src/mount:
+
+dc/.. indicates chosen deployment which can be found in Overview → Application
+
+--claim-name indicates which volume is mounted (your created volume name)
+
+--mount-path indicates path to your mounted volume within the deployment pods
+
+Other relevant resources can have volumes mounted as well, for example to mount volume to a cronjob change dc/.. to cronjob/.. and etc.
+
+Deletion
+----------------------
+
+To find and delete resources that are no longer used is done by similar commands: 
+
+.. sourcecode:: python
+
+  oc delete pod/application-pod
+
+Resource type is indicated before slash
+
+Resource name is indicated after the slash
+
+To delete all resources that belong to an application, this program can be used: 
+
+.. sourcecode:: python
+
+  oc delete all --selector app=application
+
+Additional Openshift doc
+-----------------------
+
+Learning: 
+
+- https://learn.openshift.com/
 
 Note: there is some playground for Openshift (60 min trials): 
 
