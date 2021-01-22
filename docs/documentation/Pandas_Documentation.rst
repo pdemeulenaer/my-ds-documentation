@@ -21,7 +21,7 @@ Loading package from a given (maybe different) directory:
 .. sourcecode:: python
 
    import sys
-   sys.path.append('/home/BB2907/GIT/affordabillity/pyspark') 
+   sys.path.append('/home/user/folder/python-package') 
    
 Useful internal address: https://sb-hdp-e4.fspa.myntet.se:8400/    
 
@@ -130,6 +130,8 @@ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n eval "$(pyenv init -)"\nfi' >> ~/.bashrc
 bash
+
+note: in Windows you can change a environment variable by set PATH=%PATH%;C:\Users\some\path\
 
 - Look at available python versions: pyenv install --list
 
