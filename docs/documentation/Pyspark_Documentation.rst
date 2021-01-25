@@ -2084,6 +2084,25 @@ Again, same df, use now the TWO grouping keys: df.id and ceil(df.v / 2), and ret
   |  2|          5|10.0|
   +---+-----------+----+    
   
+Since Spark 3, we can also map a python function on a dataframe using mapInPandas (pandas_udf inside)
+
+.. sourcecode:: python
+
+  df = spark.createDataFrame([(1, 21), (2, 30)], ("id", "age"))
+  
+  def filter_func(iterator):
+      for pdf in iterator:
+          yield pdf[pdf.id == 1]
+                  
+  df.mapInPandas(filter_func, df.schema).show()
+  
+  Expected:
+  +---+---+
+  | id|age|
+  +---+---+
+  |  1| 21|
+  +---+---+  
+  
 Links on Pandas_UDF:
 
 - https://spark.apache.org/docs/latest/sql-pyspark-pandas-with-arrow.html#pandas-udfs-aka-vectorized-udfs 
