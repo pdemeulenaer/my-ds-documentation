@@ -1945,3 +1945,66 @@ Other package: swifter:
 - https://github.com/jmcarpenter2/swifter
 
 - https://medium.com/@jmcarpenter2/swiftapply-automatically-efficient-pandas-apply-operations-50e1058909f9 
+
+
+Python API's: Flask
+=============================================
+
+Flask fast tutorial: https://flask.palletsprojects.com/en/1.1.x/quickstart/
+
+One nice example of data in and result output: https://pythonbasics.org/flask-template-data/ 
+
+.. sourcecode:: python
+
+  from flask import Flask, render_template, request
+  app = Flask(__name__, template_folder='templates')
+
+  @app.route('/')
+  def student():
+      return render_template('student.html')
+ 
+  @app.route('/result', methods=['POST', 'GET'])
+  def result():
+      if request.method == 'POST':
+          result = request.form
+          return render_template("result.html", result=result)
+  
+  if __name__ == 'main':
+      app.run(debug=True)
+
+Then put these templates into a folder "templates" in the project repo:
+
+student.html: 
+
+.. sourcecode:: html
+
+  <form action = "http://localhost:5000/result" method = "POST">
+      <p>Name <input type = "text" name = "Name" /></p>
+      <p>Physics <input type = "text" name = "Physics" /></p>
+      <p>Chemistry <input type = "text" name = "chemistry" /></p>
+      <p>Maths <input type ="text" name = "Mathematics" /></p>
+      <p><input type = "submit" value = "submit" /></p>
+   </form>
+   
+result.html   
+
+.. sourcecode:: html
+
+  <!doctype html>
+    <table border = 1>
+      {% for key, value in result.items() %}
+  
+      <tr>
+         <th> {{ key }} </th>
+         <td> {{ value }} </td>
+      </tr>
+  
+      {% endfor %}
+   </table>
+
+Then to launch the stuff, run this:
+
+.. sourcecode:: python
+
+  python -m flask run
+  
