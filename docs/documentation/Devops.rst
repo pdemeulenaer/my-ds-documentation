@@ -206,7 +206,11 @@ Azure DevOps
 
 Azure DevOps with azure container registry (for Docker container images): https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/containers/acr-template?view=azure-devops
 
-Example of deployment of a flask app using Azure DevOps: https://elevate-org.com/2019/10/15/build-devops-ci-cd-pipeline-for-python-flask-with-azure-devops/
+Examples of deployment of a flask app using Azure DevOps: 
+
+- https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/python-webapp?view=azure-devops
+
+- https://elevate-org.com/2019/10/15/build-devops-ci-cd-pipeline-for-python-flask-with-azure-devops/
 
 Tests
 --------------------------------------------------------------------------
