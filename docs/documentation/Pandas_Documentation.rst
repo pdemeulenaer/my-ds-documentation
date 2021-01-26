@@ -2008,3 +2008,4 @@ Then to launch the stuff, run this:
 
   python -m flask run
   
+Example of deployment of a flask app using Azure DevOps: https://elevate-org.com/2019/10/15/build-devops-ci-cd-pipeline-for-python-flask-with-azure-devops/
