@@ -179,6 +179,12 @@ Also, there is a (non-free, 50$/month) cloud version of Openshift: https://manag
 
 Openshift can be integrated with Azure DevOps (by plugins within Azure DevOps)
 
+Localhost version of openshift: https://developers.redhat.com/openshift/local-openshift
+
+Open source example of flask using OS3: https://github.com/idealo/flask-openshift-example 
+
+Same, using Minishift: https://medium.com/@nikhilkumar435/deploy-python-flask-application-using-openshift-minishift-af098eb74e26
+
 
 
 CICD developement
