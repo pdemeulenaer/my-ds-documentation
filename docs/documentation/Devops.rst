@@ -218,6 +218,8 @@ Examples of deployment of a flask app using Azure DevOps:
 
 - https://elevate-org.com/2019/10/15/build-devops-ci-cd-pipeline-for-python-flask-with-azure-devops/
 
+Example of full cicd (ok, using dotnet, not python, but useful to see full steps): https://dotnetplaybook.com/build-test-and-deploy-a-rest-api-with-azure-devops/
+
 Tests
 --------------------------------------------------------------------------
 
