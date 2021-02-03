@@ -220,6 +220,8 @@ Examples of deployment of a flask app using Azure DevOps:
 
 Example of full cicd (ok, using dotnet, not python, but useful to see full steps): https://dotnetplaybook.com/build-test-and-deploy-a-rest-api-with-azure-devops/
 
+Doc on docker image building using Azure DevOps (and a Dockerfile): https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/test/publish-test-results?view=azure-devops&tabs=junit%2Cyaml#docker
+
 Tests
 --------------------------------------------------------------------------
 
