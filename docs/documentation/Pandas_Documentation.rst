@@ -58,6 +58,9 @@ How to check list of python packages installed through pip: https://pip.pypa.io/
   
   # windows
   py -m pip list #(although i think "python -m pip list" works too)
+  
+  # or simply
+  pip list
 
    
 Conda environments
