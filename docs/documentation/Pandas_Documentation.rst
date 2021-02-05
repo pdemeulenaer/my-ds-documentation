@@ -48,6 +48,17 @@ Installing through proxy using pip
 .. sourcecode:: python
 
   pip install --proxy=https://p998phd:p998phd@proxyvip-se.sbcore.net:8080 --trusted-host pypi.python.org -U PACKAGE_NAME
+  
+How to check list of python packages installed through pip: https://pip.pypa.io/en/stable/reference/pip_list/
+
+.. sourcecode:: python
+
+  # linux
+  python -m pip list
+  
+  # windows
+  py -m pip list #(although i think "python -m pip list" works too)
+
    
 Conda environments
 -----------------------------------------------
