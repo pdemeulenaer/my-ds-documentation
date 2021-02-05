@@ -149,6 +149,21 @@ In new git (above 1.7) we can directly checkout on it, and git will understand:
   * feature/dummy-models
     master
 
+My branch "feature" is based on branch "developement" and I wish to bring SPECIFIC new files from "development" into "feature". How?
+--------------------------------------------------------------------------
+
+Here it is a useful trick in a scenario when there are several people working on different feature branches, all pushing to development branch at some point. If you want to bring in specific files from the development branch, you can:
+
+.. sourcecode:: python
+
+  $ git branch
+  * feature
+    development
+  $ git fetch
+  $ git checkout origin/development -- file.py
+  
+Now you will have the file of origin/development into your local "feature" branch. Then you can use it (modify if needed), and commit it.  
+
 
 Avoiding git pull
 --------------------------------------------------------------------------
