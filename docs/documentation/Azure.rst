@@ -25,6 +25,8 @@ Here is the full chain with Databricks' MLflow and azure ML: https://databricks.
 
 `This tutorial <https://docs.microsoft.com/en-us/azure/databricks/scenarios/store-secrets-azure-key-vault>`_ explains how to connect an Azure Blob storage to Azure Databricks within Databricks notebooks (having the keys of the blob storage in Azure Key Vault).
 
+Databricks workflow with databricks-connect: https://menziess.github.io/howto/enhance/your-databricks-workflow/
+
 Databricks-connect
 --------------------------------------------------------------------------
 
