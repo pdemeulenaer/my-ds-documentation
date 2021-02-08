@@ -311,6 +311,8 @@ Model registry example: https://docs.microsoft.com/en-us/azure/databricks/applic
 
 * How to register a model in the model registry in the MLFlow API: https://docs.microsoft.com/en-us/azure/databricks/applications/mlflow/model-registry-example#register-and-manage-the-model-using-the--mlflow-api 
 
+Here is the full chain with Databricks' MLflow and azure ML: https://databricks.com/blog/2020/10/13/using-mlops-with-mlflow-and-azure.html Very good tutorial. 
+
 MLFlow server
 --------------------------------------------------------------------------
 
