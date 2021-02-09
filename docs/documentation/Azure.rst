@@ -38,6 +38,8 @@ To install it: https://menziess.github.io/howto/install/databricks-connect/ (sho
 
 See also https://docs.microsoft.com/en-us/azure/databricks/dev-tools/databricks-connect for a in-depth documentation
 
+Good example of use of databricks-connect with pyspark UDF: https://medium.com/swlh/productionizing-a-spark-job-with-databricks-notebook-dd950a242c7d
+
 Before installing databricks-connect, we need to uninstall pyspark, since they might conflict:
 
 $ pip uninstall pyspark
@@ -147,21 +149,25 @@ Installation and configuration:
   
 The databricks cli is subdivided into sub-cli's:
 
-    Workspace CLI: https://docs.databricks.com/dev-tools/cli/workspace-cli.html
-    Clusters CLI: https://docs.databricks.com/dev-tools/cli/clusters-cli.html 
-    Instance Pools CLI
-    DBFS CLI: https://docs.databricks.com/dev-tools/cli/dbfs-cli.html
-    Groups CLI
-    Jobs CLI: https://docs.databricks.com/dev-tools/cli/jobs-cli.html
-    Libraries CLI: https://docs.databricks.com/dev-tools/cli/libraries-cli.html
-    Secrets CLI
-    Stack CLI
+* Workspace CLI: https://docs.databricks.com/dev-tools/cli/workspace-cli.html
+
+* Clusters CLI: https://docs.databricks.com/dev-tools/cli/clusters-cli.html 
+
+* Instance Pools CLI
+
+* DBFS CLI: https://docs.databricks.com/dev-tools/cli/dbfs-cli.html
+
+* Groups CLI
+
+* Jobs CLI: https://docs.databricks.com/dev-tools/cli/jobs-cli.html
+
+* Libraries CLI: https://docs.databricks.com/dev-tools/cli/libraries-cli.html
+
+* Secrets CLI
+
+* Stack CLI
 
 
-
-
-  
-  
 More info: https://docs.databricks.com/dev-tools/cli/index.html
 
 Delta Lake
