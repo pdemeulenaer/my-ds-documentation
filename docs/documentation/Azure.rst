@@ -40,6 +40,8 @@ See also https://docs.microsoft.com/en-us/azure/databricks/dev-tools/databricks-
 
 Good example of use of databricks-connect with pyspark UDF: https://medium.com/swlh/productionizing-a-spark-job-with-databricks-notebook-dd950a242c7d
 
+How is databricks-connect maintained: https://pypi.org/project/databricks-connect/#history
+
 Before installing databricks-connect, we need to uninstall pyspark, since they might conflict:
 
 $ pip uninstall pyspark
