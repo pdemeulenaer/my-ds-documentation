@@ -234,18 +234,28 @@ requirements.txt found, instead of Pipfile! Converting…
 
 Or you can explicitly pass the requirement.txt file as an argument, which may be useful if you have put development dependencies in a separate file:
 
-pipenv install -r dev-requirements.txt --dev
+$ pipenv install -r dev-requirements.txt --dev
 
 And if you want to switch back to using requirement.txt files, you can run:
 
-pipenv lock -r > requirements.txt
-pipenv lock -r -d > dev-requirements.txt
+$ pipenv lock -r > requirements.txt
+$ pipenv lock -r -d > dev-requirements.txt
+
+Note (seehttps://github.com/pypa/pipenv/issues/3150): in Azure DevOps I have been using such a line:
+
+$ pipenv install -d --system --deploy --ignore-pipfile
+
+pipenv install --ignore-pipfile is nearly equivalent to pipenv sync, but pipenv sync will never attempt to re-lock your dependencies as it is considered an atomic operation. pipenv install by default does attempt to re-lock unless using the --deploy flag.
+
 
 More infos: 
 
 - https://pypi.org/project/pipenv/
 
 - https://pipenv-fork.readthedocs.io/en/latest/basics.html
+
+
+
 
 Python linting, static code analysis
 =======================================
