@@ -37,12 +37,12 @@ type: jobs -l get pid number, this will be useful when you want to kill your pys
 ps -aux | grep b_number (this gets the pid if the ssh has already been shut down
 kill 5442 (if pid=5442)
 
-Python environments: conda & pip
+Python environments: pip & conda
 ===============================================
 
 Very good intro: https://towardsdatascience.com/devops-for-data-science-making-your-python-project-reproducible-f55646e110fa
 
-Installing through proxy using pip
+pip: Installing through proxy
 -----------------------------------------------
 
 .. sourcecode:: python
@@ -62,6 +62,26 @@ How to check list of python packages installed through pip: https://pip.pypa.io/
   # or simply
   pip list
 
+pip: How does `pip install -e .` work? 
+-----------------------------------------------
+
+This is taken from: https://www.reddit.com/r/learnpython/comments/ayx7za/how_does_pip_install_e_work_is_there_a_specific/
+
+pip install is a command that takes a package and install it inside the **site-packages** folder of your Python installation (be it your main/system wide Python installation, or one inside a virtual environment).
+
+Normally, when you do this by simply writing a package name, like with pip install requests, pip looks for the package in the Python Package Index, or PyPI, which is a website. However, pip can also look for packages which are in other places (including inside your computer right now), and properly copy them to your site-packages folder. This is useful in a few specific cases:
+
+If you download the source code directly, i.e. from a github repository or another similar platform, you can use pip install <path-to-downloaded-code> to install this package without having to resort to PyPI. Now granted this is not very useful, since most people who create good packages and share them in github will also add them to PyPI anyways, but the option is there.
+
+Install a specific version of a package which is not directly available through PyPI, but may be reachable through github and others. Think about a unstable/dev build of a project: the devs don't want to make it available through PyPI to keep unaware users from downloading broken code, but you can pip install <link-to-broken-package> to install it as a Python package anyways, at your own risk.
+
+Install your own code as a package in your own machine. This basically copies your code over to the site-packages folder and treats it like any other package you've downloaded. Useful for testing and developing, since this makes your package behave like it would in any other system once you release it to the world. This is where pip install . comes into play: the dot is an actual argument, replacing the directory you're currently in. Most of the time you'll pip install your own packages using a terminal already inside of the project's folder, which is why you see the dot as sort of a default argument. Also keep in mind that you will some specific files in order for your package to be "installable", like a setup.py and possibly some __init.py__.
+
+Last thing to note is that pip install will install the current package as it is right now. If you pip install a package you're developing and add some new files to it afterwards, these changes will not be reflected on the actual package installed beforehand. To avoid having to pip install the package again and again after each change, you can pass the *-e* flag to make an editable install; in this case, changes to your files inside the project folder will automatically reflect in changes on your installed package in the site-packages folder.
+
+.. sourcecode:: python
+
+  pip install -e .
    
 Conda environments
 -----------------------------------------------
