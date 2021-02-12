@@ -241,6 +241,8 @@ And if you want to switch back to using requirement.txt files, you can run:
 $ pipenv lock -r > requirements.txt
 $ pipenv lock -r -d > dev-requirements.txt
 
+See for this: https://pipenv.kennethreitz.org/en/latest/advanced/#generating-a-requirements-txt
+
 Note (seehttps://github.com/pypa/pipenv/issues/3150): in Azure DevOps I have been using such a line:
 
 $ pipenv install -d --system --deploy --ignore-pipfile
