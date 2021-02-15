@@ -342,6 +342,29 @@ What does SonarQube/SonarCloud "better" than classical linting tools like flake8
 Rule explorer: here is the list of 174 rules used in SonarQube/SonarCloud/SonarLint: https://rules.sonarsource.com/python (for Python, but exists also for different languages)
 
 
+==========================================================================
+DataOps
+==========================================================================
+
+Hopsworks Feature Store
+==========================================================================
+
+Intro: 
+
+* Jim Dowling Medium blog: https://towardsdatascience.com/mlops-with-a-feature-store-816cfa5966e9 
+
+* Data & AI conference presentation: https://www.youtube.com/watch?v=uDyQqDCVjfA&ab_channel=Databricks
+
+* White paper: https://uploads-ssl.webflow.com/5e6f7cd3ee7f51d539a4da0b/5ef397dce942172c90259858_feature%20management%20platform%20v02.pdf
+
+Documentation:
+
+* How to's: https://docs.hopsworks.ai/latest/
+
+* Official doc: https://hopsworks.readthedocs.io/en/stable/index.html
+
+* Examples: https://github.com/logicalclocks/hops-examples
+
 
 
 
