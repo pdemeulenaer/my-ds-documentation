@@ -246,6 +246,9 @@ The one of Azure DevOps: https://docs.microsoft.com/en-us/azure/devops/repos/tfv
 MLOps - Machine learning life cycle
 ==========================================================================
 
+Great intro to the core principles of MLOps by Google: https://cloud.google.com/solutions/machine-learning/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning
+Therein is discussed the 3 levels of development & deployments, very useful.
+
 ML platforms: https://medium.com/better-programming/5-great-mlops-tools-to-launch-your-next-machine-learning-model-3e403d0c97d3
 
 
