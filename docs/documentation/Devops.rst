@@ -286,10 +286,6 @@ Good links:
 
 - tutorial: https://www.adaltas.com/en/2020/03/23/mlflow-open-source-ml-platform-tutorial
 
-- Setup MLflow in Production: https://towardsdatascience.com/setup-mlflow-in-production-d72aecde7fef, https://pedro-munoz.tech/how-to-setup-mlflow-in-production/, https://medium.com/datatau/how-to-setup-mlflow-in-production-a6f70511ebdc
-
-- Deploy MLflow with Docker-compose: https://towardsdatascience.com/deploy-mlflow-with-docker-compose-8059f16b6039
-
 MLFLow Tracking: https://www.mlflow.org/docs/latest/tracking.html
 --------------------------------------------------------------------------
 
@@ -319,6 +315,13 @@ Here is the full chain with Databricks' MLflow and azure ML: https://databricks.
 MLFlow server
 --------------------------------------------------------------------------
 
+- Setup MLflow in Production: https://towardsdatascience.com/setup-mlflow-in-production-d72aecde7fef, https://pedro-munoz.tech/how-to-setup-mlflow-in-production/, https://medium.com/datatau/how-to-setup-mlflow-in-production-a6f70511ebdc
+
+- Deploy MLflow with Docker-compose: https://towardsdatascience.com/deploy-mlflow-with-docker-compose-8059f16b6039
+
+- Deploy MLflow on kubernetes (minikube): https://towardsdatascience.com/mlflow-part-2-deploying-a-tracking-server-to-minikube-a2d6671e6455
+
+
 SonarQube (or SonarCloud, SonarLint): static code analysis
 --------------------------------------------------------------------------
 
@@ -344,14 +347,46 @@ What does SonarQube/SonarCloud "better" than classical linting tools like flake8
 
 Rule explorer: here is the list of 174 rules used in SonarQube/SonarCloud/SonarLint: https://rules.sonarsource.com/python (for Python, but exists also for different languages)
 
+Kubeflow
+==========================================================================
+
+Intro: https://www.kubeflow.org/docs/about/kubeflow/
+
+Use cases: https://www.kubeflow.org/docs/about/use-cases/
+
+On Azure: https://www.kubeflow.org/docs/azure/ and https://www.kubeflow.org/docs/azure/azureendtoend/ 
+
+On Openshift: https://www.kubeflow.org/docs/openshift/
+
+On premises: https://www.kubeflow.org/docs/other-guides/kubeflow-on-multinode-cluster/ 
 
 ==========================================================================
 DataOps
 ==========================================================================
 
-Hopsworks Feature Store
+Feature Store
 ==========================================================================
 
+Why do we need a feature store? (https://www.datarevenue.com/en-blog/feature-store-feast-vs-hopsworks)
+
+If you train models without a feature store, your setup might look something like this: 
+
+.. figure:: Images/no_feature_store.png
+   :scale: 100 %
+   :alt: Taken from https://www.datarevenue.com/en-blog/feature-store-feast-vs-hopsworks
+
+Every model has to access the data and do some transformation to turn it into features, which the model then uses for training.
+
+There’s a lot of duplication in this process – many of the models use many of the same features.
+
+This duplication is one problem a feature store can solve. Every feature can be stored, versioned, and organized in your feature store. 
+
+.. figure:: Images/with_feature_store.png
+   :scale: 100 %
+   :alt: Taken from https://www.datarevenue.com/en-blog/feature-store-feast-vs-hopsworks
+
+Hopsworks 
+--------------------------------------------------------------------------
 Intro: 
 
 * Jim Dowling Medium blog: https://towardsdatascience.com/mlops-with-a-feature-store-816cfa5966e9 
@@ -367,6 +402,21 @@ Documentation:
 * Official doc: https://hopsworks.readthedocs.io/en/stable/index.html
 
 * Examples: https://github.com/logicalclocks/hops-examples
+
+FEAST
+---------------------------------------------------------------------------
+
+FEAST is an open source feature store. 
+
+FEAST is heavily linked with Kubeflow:
+
+* FEAST introduction: https://cloud.google.com/blog/products/ai-machine-learning/introducing-feast-an-open-source-feature-store-for-machine-learning
+
+Comparison FEAST vs Hopsworks: https://www.datarevenue.com/en-blog/feature-store-feast-vs-hopsworks
+
+Getting started with FEAST: https://www.kubeflow.org/docs/components/feature-store/getting-started/
+
+
 
 
 
