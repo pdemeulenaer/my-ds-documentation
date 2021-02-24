@@ -68,6 +68,27 @@ Again, a very interesting series to address the basics concepts:
 
 Intro to docker & kubernetes video: https://www.youtube.com/watch?v=bhBSlnQcq2k&ab_channel=Amigoscode
 
+Minikube
+--------------------------------------------------------------------------
+
+How to install Minikube: https://minikube.sigs.k8s.io/docs/start/
+
+$ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+
+$ sudo dpkg -i minikube_latest_amd64.deb
+
+* If using VirtualBox, first install it: https://linuxize.com/post/how-to-install-virtualbox-on-ubuntu-20-04/
+
+Start a cluster using the virtualbox driver: https://minikube.sigs.k8s.io/docs/drivers/virtualbox/
+
+$ minikube start --driver=virtualbox
+
+To make virtualbox the default driver:
+
+$ minikube config set driver virtualbox
+
+
+
 Spark on Kubernetes
 --------------------------------------------------------------------------
 
