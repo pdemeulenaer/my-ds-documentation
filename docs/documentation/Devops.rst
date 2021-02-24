@@ -79,15 +79,62 @@ $ sudo dpkg -i minikube_latest_amd64.deb
 
 * If using VirtualBox, first install it: https://linuxize.com/post/how-to-install-virtualbox-on-ubuntu-20-04/
 
-Start a cluster using the virtualbox driver: https://minikube.sigs.k8s.io/docs/drivers/virtualbox/
+.. sourcecode:: python
 
-$ minikube start --driver=virtualbox
+  # Start a cluster using the virtualbox driver: https://minikube.sigs.k8s.io/docs/drivers/virtualbox/
+  minikube start --driver=virtualbox
+  
+  # To make virtualbox the default driver:
+  minikube config set driver virtualbox
+  
+  # Access the Kubernetes Dashboard running within the minikube cluster:
+  minikube dashboard
+  
+  # Once started, you can interact with your cluster using kubectl, just like any other Kubernetes cluster. For instance, starting a server:
+  kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4
+  
+  # Exposing a service as a NodePort
+  kubectl expose deployment hello-minikube --type=NodePort --port=8080
+  
+  # minikube makes it easy to open this exposed endpoint in your browser:
+  minikube service hello-minikube
+  
+  # Upgrade your cluster:
+  minikube start --kubernetes-version=latest
+  
+  # Stop your local cluster:
+  minikube stop
+  
+  # Delete your local cluster:
+  minikube delete
+  
+  # How to deploy an application to minikube using kubectl:
+  kubectl create deployment hello-minikube1 --image=k8s.gcr.io/echoserver:1.4
+  kubectl expose deployment hello-minikube1 --type=LoadBalancer --port=8080
 
-To make virtualbox the default driver:
+Minikube Addons
 
-$ minikube config set driver virtualbox
+.. sourcecode:: python
+
+  # minikube has a built-in list of applications and services that may be easily deployed, such as Istio or Ingress. To list the available addons for your version of minikube:
+  minikube addons list
+  
+  # To enable an add-on, see:
+  minikube addons enable <name>
+  
+  # To enable an addon at start-up, where –addons option can be specified multiple times:
+  minikube start --addons <name1> --addons <name2>
+  
+  # For addons that expose a browser endpoint, you can quickly open them with:
+  minikube addons open <name>
+  
+  # To disable an addon:
+  minikube addons disable <name>
 
 
+More Minikube links:
+
+* Handbook: https://minikube.sigs.k8s.io/docs/handbook/
 
 Spark on Kubernetes
 --------------------------------------------------------------------------
