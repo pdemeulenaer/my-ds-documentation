@@ -317,6 +317,28 @@ MLOps - Machine learning life cycle
 Great intro to the core principles of MLOps by Google: https://cloud.google.com/solutions/machine-learning/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning
 Therein is discussed the 3 levels of development & deployments, very useful.
 
+Associated video: https://cloud.withgoogle.com/next/sf/sessions?session=AI212#cloud-ai, https://www.youtube.com/watch?v=6gdrwFMaEZ0&feature=emb_logo&ab_channel=GoogleCloudTech
+
+Here are the 3 levels of MLops defined by Google:
+
+* Level 0: the level that most companies try to achieve:
+
+.. figure:: Images/MLops_level0.png
+   :scale: 100 %
+   :alt: MLOps level 0
+
+* Level 1: 
+
+.. figure:: Images/MLops_level1.png
+   :scale: 100 %
+   :alt: MLOps level 1
+
+* Level 2: 
+
+.. figure:: Images/MLops_level2.png
+   :scale: 100 %
+   :alt: MLOps level 2
+
 ML platforms: https://medium.com/better-programming/5-great-mlops-tools-to-launch-your-next-machine-learning-model-3e403d0c97d3
 
 
