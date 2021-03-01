@@ -710,7 +710,43 @@ Expected:
 Got:
     'Hello Stefan!'
     
-So here, the test is defined in the docstring itself!    
+So here, the test is defined in the docstring itself!  
+
+Coverage (of unit test): pytest-cov
+-----------------------------------------------------------
+
+Coverage gives the fraction of the code which is covered by unit tests, in percent. You need to define a .coveragerc file that will basically tell what not to include in the coverage calculation. 
+
+For example:
+
+.. sourcecode:: python
+
+  [run]
+  omit =
+      # omit anything in a .local directory anywhere
+      */.local/*
+      # omit everything in /usr
+      /usr/*
+      # omit this single file
+      utils/tirefire.py
+      
+Also a single function or class can be omitteed by adding the comment next to its start:
+
+.. sourcecode:: python
+
+  class MyObject(object):
+      def __init__(self):
+          blah1()
+          blah2()
+  
+      def __repr__(self): # pragma: no cover
+          return "<MyObject>"
+	  
+So here the "# pragma: no cover" avoids the __repr__ to be used in coverage calculation. If we want to omit the full class in coverage calculation, 
+
+.. sourcecode:: python
+
+  class MyObject(object): # pragma: no cover
 
 How to package an application in python
 ===========================================================
