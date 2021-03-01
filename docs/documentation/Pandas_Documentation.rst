@@ -715,9 +715,9 @@ So here, the test is defined in the docstring itself!
 Coverage (of unit test): pytest-cov
 -----------------------------------------------------------
 
-Coverage gives the fraction of the code which is covered by unit tests, in percent. You need to define a .coveragerc file that will basically tell what not to include in the coverage calculation. 
+Coverage gives the fraction of the code which is covered by unit tests, in percent. You need to define a .coveragerc file that will basically tell what not to include in the coverage calculation. Pytest-cov is built on top of coverage.py package (https://coverage.readthedocs.io/en/latest/index.html). 
 
-For example:
+For example (see https://coverage.readthedocs.io/en/latest/source.html#source)
 
 .. sourcecode:: python
 
@@ -730,7 +730,7 @@ For example:
       # omit this single file
       utils/tirefire.py
       
-Also a single function or class can be omitteed by adding the comment next to its start:
+Also a single function or class can be omitted by adding the comment next to its start (see https://coverage.readthedocs.io/en/coverage-4.3.3/excluding.html, https://coverage.readthedocs.io/en/latest/config.html)
 
 .. sourcecode:: python
 
