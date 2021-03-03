@@ -139,6 +139,16 @@ More Minikube links:
 
 * Handbook: https://minikube.sigs.k8s.io/docs/handbook/
 
+How to create a deployment on minikube/kubernetes?
+
+.. sourcecode:: python
+
+  # To see which deployments are already there:
+  kubectl get deployments
+  
+  # To deploy a deployment yaml file:
+  kubectl create -f deployment.yaml
+
 Spark on Kubernetes
 --------------------------------------------------------------------------
 
