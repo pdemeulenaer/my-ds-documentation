@@ -84,6 +84,9 @@ $ sudo dpkg -i minikube_latest_amd64.deb
   # Start a cluster using the virtualbox driver: https://minikube.sigs.k8s.io/docs/drivers/virtualbox/
   minikube start --driver=virtualbox
   
+  # You can also set these parameters
+  minikube start --cpus=4 --memory=8g
+  
   # To make virtualbox the default driver:
   minikube config set driver virtualbox
   
