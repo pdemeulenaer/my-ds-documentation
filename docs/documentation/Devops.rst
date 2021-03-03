@@ -66,6 +66,8 @@ Again, a very interesting series to address the basics concepts:
 
 - 50 days to Kubernetes, Azure (AKS): https://azure.microsoft.com/mediahandler/files/resourcefiles/kubernetes-learning-path/Kubernetes%20Learning%20Path%20version%201.0.pdf
 
+- How to install a kubernetes cluster on Azure (AKS): https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-deploy-cluster This show how to deploy such a cluster and how to access from local environment. 
+
 Intro to docker & kubernetes video: https://www.youtube.com/watch?v=bhBSlnQcq2k&ab_channel=Amigoscode
 
 Minikube
@@ -111,7 +113,7 @@ $ sudo dpkg -i minikube_latest_amd64.deb
   # Delete your local cluster:
   minikube delete
   
-  # How to deploy an application to minikube using kubectl:
+  # How to deploy an application to minikube using kubectl, using an image, and expose it:
   kubectl create deployment hello-minikube1 --image=k8s.gcr.io/echoserver:1.4
   kubectl expose deployment hello-minikube1 --type=LoadBalancer --port=8080
 
@@ -148,6 +150,15 @@ How to create a deployment on minikube/kubernetes?
   
   # To deploy a deployment yaml file:
   kubectl create -f deployment.yaml
+  
+  # Note that it is also possible to use (https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#creating-a-deployment):
+  kubectl apply -f https://k8s.io/examples/controllers/nginx-deployment.yaml
+
+Seems that *apply* is more declarative, while *create* is imperative (see https://stackoverflow.com/questions/47241626/what-is-the-difference-between-kubectl-apply-and-kubectl-replace), and so *apply* will figure out by itself the best way to deploy (kubectl patch, replace, delete, create, even edit are all imperative)
+
+Kubernetes command cheatsheets:
+
+* https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 Spark on Kubernetes
 --------------------------------------------------------------------------
