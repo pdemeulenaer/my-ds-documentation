@@ -45,6 +45,8 @@ Activate a conda environment in Docker: https://pythonspeed.com/articles/activat
 
 Spark on Docker: https://www.datamechanics.co/blog-post/spark-and-docker-your-spark-development-cycle-just-got-ten-times-faster
 
+Note: bug with Dockerhub, to authenticate (when too many failed login attempts): https://github.com/docker/hub-feedback/issues/1250. In CLI: rm ~/.docker/config.json, and then: docker login
+
 Kubernetes
 ==========================================================================
 
@@ -470,9 +472,11 @@ Use cases: https://www.kubeflow.org/docs/about/use-cases/
 
 On Azure: https://www.kubeflow.org/docs/azure/ and https://www.kubeflow.org/docs/azure/azureendtoend/ 
 
-On Openshift: https://www.kubeflow.org/docs/openshift/
+On Openshift: https://www.kubeflow.org/docs/openshift/ 
 
 On premises: https://www.kubeflow.org/docs/other-guides/kubeflow-on-multinode-cluster/ 
+
+On Minikube: https://www.kubeflow.org/docs/started/workstation/minikube-linux/
 
 ==========================================================================
 DataOps
