@@ -259,8 +259,10 @@ https://www.git-tower.com/learn/git/faq/detached-head-when-checkout-commit/
 
 https://www.cloudbees.com/blog/git-detached-head
         
-Cheatsheets
+Book & Cheatsheets
 -------------------------------------------------------------------------- 
+
+Git book: https://git-scm.com/book/en/v2
 
 .. figure:: Cheatsheets/Git_CheatSheet.PNG
    :scale: 100 %
