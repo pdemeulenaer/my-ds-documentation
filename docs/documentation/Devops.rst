@@ -27,7 +27,7 @@ The 3 following resources form a series very simple to follow and reproduce, and
 
 Additional interesting resources:
 
-- https://medium.com/better-programming/how-to-get-docker-to-play-nicely-with-your-python-data-science-packages-81d16f1080d2 
+- https://medium.com/better-programming/how-to-get-docker-to-play-nicely-with-your-python-data-science-packages-81d16f1080d2
 
 - https://medium.com/@itembe2a/docker-nvidia-conda-h204gpu-make-an-ml-docker-image-47451c5ced51 
 
