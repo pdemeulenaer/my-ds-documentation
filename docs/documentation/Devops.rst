@@ -536,8 +536,11 @@ Getting started with FEAST: https://www.kubeflow.org/docs/components/feature-sto
 
 
 
+==========================================================================
+Monitoring of ML models
+==========================================================================
 
-
+Great hands-on blog: https://www-jeremyjordan-me.cdn.ampproject.org/c/s/www.jeremyjordan.me/ml-monitoring/amp/
 
 
 
