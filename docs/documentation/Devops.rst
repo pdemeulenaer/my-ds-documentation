@@ -259,6 +259,8 @@ To delete all resources that belong to an application, this program can be used:
 Additional Openshift doc
 -----------------------
 
+General documentation: https://docs.openshift.com/container-platform/4.7/welcome/index.html?ref=learn-cluster-access
+
 Learning: 
 
 - https://learn.openshift.com/
@@ -271,7 +273,7 @@ Note: there is some playground for Openshift (60 min trials):
 
 Also, there is a (non-free, 50$/month) cloud version of Openshift: https://manage.openshift.com/sign_in 
 
-Openshift can be integrated with Azure DevOps (by plugins within Azure DevOps)
+Openshift can be integrated with Azure DevOps (by plugins within Azure DevOps). LOOK INTO THIS!!!
 
 Localhost version of openshift: https://developers.redhat.com/openshift/local-openshift
 
