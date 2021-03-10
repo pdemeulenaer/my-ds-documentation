@@ -279,6 +279,8 @@ Open source example of flask using OS3: https://github.com/idealo/flask-openshif
 
 Same, using Minishift: https://medium.com/@nikhilkumar435/deploy-python-flask-application-using-openshift-minishift-af098eb74e26
 
+For Openshift 4.X, to run locally, better to use codeready-containers: https://developers.redhat.com/products/codeready-containers/overview?ref=learn-cluster-access 
+
 
 
 CICD developement
