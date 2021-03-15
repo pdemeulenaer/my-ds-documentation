@@ -66,6 +66,8 @@ Again, a very interesting series to address the basics concepts:
 
 - How to start, official site: https://kubernetes.io/docs/home/
 
+- Simple intro: https://dev.to/vascoalramos/learning-kubernetes-concepts-part-1-pb0?utm_source=digest_mailer&utm_medium=email&utm_campaign=digest_email
+
 - 50 days to Kubernetes, Azure (AKS): https://azure.microsoft.com/mediahandler/files/resourcefiles/kubernetes-learning-path/Kubernetes%20Learning%20Path%20version%201.0.pdf
 
 - How to install a kubernetes cluster on Azure (AKS): https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-deploy-cluster This show how to deploy such a cluster and how to access from local environment. 
