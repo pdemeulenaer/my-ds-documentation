@@ -285,6 +285,8 @@ Same, using Minishift: https://medium.com/@nikhilkumar435/deploy-python-flask-ap
 
 For Openshift 4.X, to run locally, better to use codeready-containers: https://developers.redhat.com/products/codeready-containers/overview?ref=learn-cluster-access 
 
+Getting started (Medium): https://sindhumurugavel.medium.com/getting-started-with-kubernetes-9fb8995d0726
+
 
 
 CICD developement
@@ -442,6 +444,14 @@ MLFlow server
 - Deploy MLflow with Docker-compose: https://towardsdatascience.com/deploy-mlflow-with-docker-compose-8059f16b6039
 
 - Deploy MLflow on kubernetes (minikube): https://towardsdatascience.com/mlflow-part-2-deploying-a-tracking-server-to-minikube-a2d6671e6455
+
+Deploy MLflow on Openshift: 
+
+- Getting started (Medium): https://sindhumurugavel.medium.com/getting-started-with-kubernetes-9fb8995d0726
+
+- part 1: https://sindhumurugavel.medium.com/running-your-app-on-kubernetes-part-1-build-an-image-of-mlflow-app-on-openshift-3404f3885f84
+
+- part 2: https://sindhumurugavel.medium.com/running-your-app-on-kubernetes-part-2-deploying-an-image-of-mlflow-on-openshift-c4ab4301d9d2
 
 
 SonarQube (or SonarCloud, SonarLint): static code analysis
