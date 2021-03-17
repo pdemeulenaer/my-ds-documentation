@@ -287,6 +287,8 @@ For Openshift 4.X, to run locally, better to use codeready-containers: https://d
 
 Getting started (Medium): https://sindhumurugavel.medium.com/getting-started-with-kubernetes-9fb8995d0726
 
+Get started with CLI: https://docs.openshift.com/enterprise/3.0/cli_reference/get_started_cli.html#basic-setup-and-login
+
 
 
 CICD developement
