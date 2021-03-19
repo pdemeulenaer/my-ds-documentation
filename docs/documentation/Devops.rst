@@ -157,6 +157,15 @@ How to create a deployment on minikube/kubernetes?
   
   # Note that it is also possible to use (https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#creating-a-deployment):
   kubectl apply -f https://k8s.io/examples/controllers/nginx-deployment.yaml
+  
+  # See the different deployments
+  kubectl get deployment
+  
+  # Describe the deployments (show the yaml files behind them)
+  kubectl describe deployments
+  
+  # Delete a deployment
+  kubectl delete deploy mlflow-deployment
 
 Seems that *apply* is more declarative, while *create* is imperative (see https://stackoverflow.com/questions/47241626/what-is-the-difference-between-kubectl-apply-and-kubectl-replace), and so *apply* will figure out by itself the best way to deploy (kubectl patch, replace, delete, create, even edit are all imperative)
 
