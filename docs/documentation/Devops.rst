@@ -455,6 +455,8 @@ Deploy MLflow on Openshift:
 
 - part 2: https://sindhumurugavel.medium.com/running-your-app-on-kubernetes-part-2-deploying-an-image-of-mlflow-on-openshift-c4ab4301d9d2
 
+How to setup MLflow on an Azure VM: https://medium.com/swlh/how-to-setup-mlflow-on-azure-5ba67c178e7d
+
 
 SonarQube (or SonarCloud, SonarLint): static code analysis
 --------------------------------------------------------------------------
