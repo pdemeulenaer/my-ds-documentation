@@ -166,6 +166,12 @@ How to create a deployment on minikube/kubernetes?
   
   # Delete a deployment
   kubectl delete deploy mlflow-deployment
+  
+  # How to scale a deployment to 4 pods
+  kubectl scale deployment mlflow-deployment --replicas 4
+  
+  # How to scale a statefulset (or other controller) to 4 pods
+  kubectl scale statefulset mlflow-postgres --replicas 4
 
 Seems that *apply* is more declarative, while *create* is imperative (see https://stackoverflow.com/questions/47241626/what-is-the-difference-between-kubectl-apply-and-kubectl-replace), and so *apply* will figure out by itself the best way to deploy (kubectl patch, replace, delete, create, even edit are all imperative)
 
