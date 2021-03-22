@@ -167,13 +167,34 @@ How to create a deployment on minikube/kubernetes?
   # Delete a deployment
   kubectl delete deploy mlflow-deployment
   
-  # How to scale a deployment to 4 pods
+  # How to scale a deployment to 4 pods (https://cloud.google.com/kubernetes-engine/docs/how-to/scaling-apps#scaling_an_application)
   kubectl scale deployment mlflow-deployment --replicas 4
   
   # How to scale a statefulset (or other controller) to 4 pods
   kubectl scale statefulset mlflow-postgres --replicas 4
+  
+  # How to autoscale the application (https://cloud.google.com/kubernetes-engine/docs/how-to/scaling-apps#autoscaling-deployments)
+  kubectl autoscale deployment my-app --max 6 --min 4 --cpu-percent 50
 
 Seems that *apply* is more declarative, while *create* is imperative (see https://stackoverflow.com/questions/47241626/what-is-the-difference-between-kubectl-apply-and-kubectl-replace), and so *apply* will figure out by itself the best way to deploy (kubectl patch, replace, delete, create, even edit are all imperative)
+
+Create a Stateless (classical app) app deployment: https://cloud.google.com/kubernetes-engine/docs/how-to/stateless-apps#anatomy
+
+- Inspect it: https://cloud.google.com/kubernetes-engine/docs/how-to/stateless-apps#inspect
+
+- Update the deployment: https://cloud.google.com/kubernetes-engine/docs/how-to/stateless-apps#update
+
+- roll back an update to a previous version: https://cloud.google.com/kubernetes-engine/docs/how-to/stateless-apps#rollback
+
+Create a Statefulset (like a database) app: https://cloud.google.com/kubernetes-engine/docs/how-to/stateful-apps#creating_a_statefulset
+
+Configure Ingress 
+
+- for external load-balancing: https://cloud.google.com/kubernetes-engine/docs/how-to/load-balance-ingress
+
+- for internal load-balancing: https://cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balance-ingress
+
+How to merge several yaml manifest files into one: https://stackoverflow.com/questions/59287850/how-to-have-multiple-object-types-in-a-single-openshift-yaml-template
 
 Kubernetes command cheatsheets:
 
