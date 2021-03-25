@@ -747,6 +747,14 @@ So here the "# pragma: no cover" avoids the __repr__ to be used in coverage calc
 .. sourcecode:: python
 
   class MyObject(object): # pragma: no cover
+  
+Some good links on coverage:
+
+- https://rorymurdock.github.io/2019/11/23/Code-Coverage.html, https://gist.github.com/rorymurdock/f8c1ace6e35684261823530e19510478
+
+- https://pypi.org/project/pytest-cov/, https://coverage.readthedocs.io/en/latest/index.html
+
+
 
 How to package an application in python
 ===========================================================
