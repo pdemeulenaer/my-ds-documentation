@@ -565,6 +565,22 @@ Good links:
 
 - https://menziess.github.io/howto/test/python-code/
 
+How to discover the unit tests (pytest): https://docs.pytest.org/en/stable/goodpractices.html#test-discovery
+
+Tests outside application code: Putting tests into an extra directory outside your actual application code might be useful if you have many functional tests or for other reasons want to keep tests separate from actual application code (often a good idea):
+
+.. sourcecode:: python
+
+  setup.py
+  mypkg/
+      __init__.py
+      app.py
+      view.py
+  tests/
+      test_app.py
+      test_view.py
+      ...
+
 About fixtures (from the link above):
 
 Imagine you’re writing a function, format_data_for_display(), to process the data returned by an API endpoint. The data represents a list of people, each with a given name, family name, and job title. The function should output a list of strings that include each person’s full name (their given_name followed by their family_name), a colon, and their title. To test this, you might write the following code:
