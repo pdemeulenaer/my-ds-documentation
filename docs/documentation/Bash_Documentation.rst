@@ -281,6 +281,8 @@ The most well-known git flow is GitFlow, by Vincent Driessen (2010):
 - Same, step by step: http://datasift.github.io/gitflow/IntroducingGitFlow.html
 
 - How to deal with conflicts in GitFlow: https://medium.com/android-news/gitflow-with-github-c675aa4f606a
+
+- Atlassian GitFlow extension: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
         
 Book & Cheatsheets
 -------------------------------------------------------------------------- 
