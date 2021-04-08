@@ -99,6 +99,16 @@ Repeat these steps
  
 Way to learn more about git and how it works: https://learngitbranching.js.org/
 
+How to create a local (empty) branch and upstream it to remote?
+--------------------------------------------------------------------------
+
+Link: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+
+.. sourcecode:: python
+
+  git branch develop
+  git push -u origin develop
+
 What to do when your local dev branch is behind remote master?
 --------------------------------------------------------------------------
 
@@ -258,6 +268,19 @@ What is a detached head?
 https://www.git-tower.com/learn/git/faq/detached-head-when-checkout-commit/
 
 https://www.cloudbees.com/blog/git-detached-head
+
+Adoption of a git flow
+--------------------------------------------------------------------------
+
+The most well-known git flow is GitFlow, by Vincent Driessen (2010): 
+
+- Original post: https://nvie.com/posts/a-successful-git-branching-model/
+
+- Summary picture of GitFlow: https://nvie.com/files/Git-branching-model.pdf
+
+- Same, step by step: http://datasift.github.io/gitflow/IntroducingGitFlow.html
+
+- How to deal with conflicts in GitFlow: https://medium.com/android-news/gitflow-with-github-c675aa4f606a
         
 Book & Cheatsheets
 -------------------------------------------------------------------------- 
