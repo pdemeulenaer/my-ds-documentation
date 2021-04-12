@@ -283,6 +283,19 @@ The most well-known git flow is GitFlow, by Vincent Driessen (2010):
 - How to deal with conflicts in GitFlow: https://medium.com/android-news/gitflow-with-github-c675aa4f606a
 
 - Atlassian GitFlow extension: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+
+After updating my windows password, cannot connect push, authentication error... (stash-bitbucket)
+--------------------------------------------------------------------------
+
+You need to update your credentials in Windows:
+
+- Open the search menu in Windows and search for Credential Manager.
+
+- Go to Window Credentials.
+
+- Delete git:https://@stash.something.net.
+
+- Try again (Loging when it prompts for your credentials).
         
 Book & Cheatsheets
 -------------------------------------------------------------------------- 
