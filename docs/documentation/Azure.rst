@@ -263,3 +263,8 @@ Next, Register the table in the metastore:
   USING PARQUET                
   LOCATION "/dbacademy/$username/DLRS/healthtracker/processed"  
   
+
+Azure ML
+--------------------------------------------------------------------------
+
+Deployment of python ML databricks notebooks on Azure ML (through MLflow): https://medium.com/pgs-software/mlflow-tracking-ml-model-changes-deployment-in-azure-7bc6ba74f47e

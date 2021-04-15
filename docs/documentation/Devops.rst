@@ -27,7 +27,7 @@ The 3 following resources form a series very simple to follow and reproduce, and
 
 Additional interesting resources:
 
-- https://medium.com/better-programming/how-to-get-docker-to-play-nicely-with-your-python-data-science-packages-81d16f1080d2 
+- https://medium.com/better-programming/how-to-get-docker-to-play-nicely-with-your-python-data-science-packages-81d16f1080d2
 
 - https://medium.com/@itembe2a/docker-nvidia-conda-h204gpu-make-an-ml-docker-image-47451c5ced51 
 
@@ -44,6 +44,25 @@ High-level principle of Docker images:
 Activate a conda environment in Docker: https://pythonspeed.com/articles/activate-conda-dockerfile/   
 
 Spark on Docker: https://www.datamechanics.co/blog-post/spark-and-docker-your-spark-development-cycle-just-got-ten-times-faster
+
+Note: bug with Dockerhub, to authenticate (when too many failed login attempts): https://github.com/docker/hub-feedback/issues/1250. In CLI: rm ~/.docker/config.json, and then: docker login
+
+Docker-compose
+==========================================================================
+
+Links:
+
+- intro: https://www.youtube.com/watch?v=DX1T-PKHKhg&ab_channel=Simplilearn
+
+- install: https://docs.docker.com/compose/install/
+
+- official doc: get started example: https://docs.docker.com/compose/gettingstarted/ 
+
+- docker compose file reference: https://docs.docker.com/compose/compose-file/compose-file-v3/ (useful to match the docker compose file format with the docker engine release number)
+
+
+
+
 
 Kubernetes
 ==========================================================================
@@ -64,7 +83,11 @@ Again, a very interesting series to address the basics concepts:
 
 - How to start, official site: https://kubernetes.io/docs/home/
 
+- Simple intro: https://dev.to/vascoalramos/learning-kubernetes-concepts-part-1-pb0?utm_source=digest_mailer&utm_medium=email&utm_campaign=digest_email
+
 - 50 days to Kubernetes, Azure (AKS): https://azure.microsoft.com/mediahandler/files/resourcefiles/kubernetes-learning-path/Kubernetes%20Learning%20Path%20version%201.0.pdf
+
+- How to install a kubernetes cluster on Azure (AKS): https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-deploy-cluster This show how to deploy such a cluster and how to access from local environment. 
 
 Intro to docker & kubernetes video: https://www.youtube.com/watch?v=bhBSlnQcq2k&ab_channel=Amigoscode
 
@@ -83,6 +106,9 @@ $ sudo dpkg -i minikube_latest_amd64.deb
 
   # Start a cluster using the virtualbox driver: https://minikube.sigs.k8s.io/docs/drivers/virtualbox/
   minikube start --driver=virtualbox
+  
+  # You can also set these parameters
+  minikube start --cpus=4 --memory=8g
   
   # To make virtualbox the default driver:
   minikube config set driver virtualbox
@@ -108,7 +134,7 @@ $ sudo dpkg -i minikube_latest_amd64.deb
   # Delete your local cluster:
   minikube delete
   
-  # How to deploy an application to minikube using kubectl:
+  # How to deploy an application to minikube using kubectl, using an image, and expose it:
   kubectl create deployment hello-minikube1 --image=k8s.gcr.io/echoserver:1.4
   kubectl expose deployment hello-minikube1 --type=LoadBalancer --port=8080
 
@@ -135,6 +161,61 @@ Minikube Addons
 More Minikube links:
 
 * Handbook: https://minikube.sigs.k8s.io/docs/handbook/
+
+How to create a deployment on minikube/kubernetes?
+
+.. sourcecode:: python
+
+  # To see which deployments are already there:
+  kubectl get deployments
+  
+  # To deploy a deployment yaml file:
+  kubectl create -f deployment.yaml
+  
+  # Note that it is also possible to use (https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#creating-a-deployment):
+  kubectl apply -f https://k8s.io/examples/controllers/nginx-deployment.yaml
+  
+  # See the different deployments
+  kubectl get deployment
+  
+  # Describe the deployments (show the yaml files behind them)
+  kubectl describe deployments
+  
+  # Delete a deployment
+  kubectl delete deploy mlflow-deployment
+  
+  # How to scale a deployment to 4 pods (https://cloud.google.com/kubernetes-engine/docs/how-to/scaling-apps#scaling_an_application)
+  kubectl scale deployment mlflow-deployment --replicas 4
+  
+  # How to scale a statefulset (or other controller) to 4 pods
+  kubectl scale statefulset mlflow-postgres --replicas 4
+  
+  # How to autoscale the application (https://cloud.google.com/kubernetes-engine/docs/how-to/scaling-apps#autoscaling-deployments)
+  kubectl autoscale deployment my-app --max 6 --min 4 --cpu-percent 50
+
+Seems that *apply* is more declarative, while *create* is imperative (see https://stackoverflow.com/questions/47241626/what-is-the-difference-between-kubectl-apply-and-kubectl-replace), and so *apply* will figure out by itself the best way to deploy (kubectl patch, replace, delete, create, even edit are all imperative)
+
+Create a Stateless (classical app) app deployment: https://cloud.google.com/kubernetes-engine/docs/how-to/stateless-apps#anatomy
+
+- Inspect it: https://cloud.google.com/kubernetes-engine/docs/how-to/stateless-apps#inspect
+
+- Update the deployment: https://cloud.google.com/kubernetes-engine/docs/how-to/stateless-apps#update
+
+- roll back an update to a previous version: https://cloud.google.com/kubernetes-engine/docs/how-to/stateless-apps#rollback
+
+Create a Statefulset (like a database) app: https://cloud.google.com/kubernetes-engine/docs/how-to/stateful-apps#creating_a_statefulset
+
+Configure Ingress 
+
+- for external load-balancing: https://cloud.google.com/kubernetes-engine/docs/how-to/load-balance-ingress
+
+- for internal load-balancing: https://cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balance-ingress
+
+How to merge several yaml manifest files into one: https://stackoverflow.com/questions/59287850/how-to-have-multiple-object-types-in-a-single-openshift-yaml-template
+
+Kubernetes command cheatsheets:
+
+* https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 Spark on Kubernetes
 --------------------------------------------------------------------------
@@ -233,6 +314,8 @@ To delete all resources that belong to an application, this program can be used:
 Additional Openshift doc
 -----------------------
 
+General documentation: https://docs.openshift.com/container-platform/4.7/welcome/index.html?ref=learn-cluster-access
+
 Learning: 
 
 - https://learn.openshift.com/
@@ -245,13 +328,19 @@ Note: there is some playground for Openshift (60 min trials):
 
 Also, there is a (non-free, 50$/month) cloud version of Openshift: https://manage.openshift.com/sign_in 
 
-Openshift can be integrated with Azure DevOps (by plugins within Azure DevOps)
+Openshift can be integrated with Azure DevOps (by plugins within Azure DevOps). LOOK INTO THIS!!!
 
 Localhost version of openshift: https://developers.redhat.com/openshift/local-openshift
 
 Open source example of flask using OS3: https://github.com/idealo/flask-openshift-example 
 
 Same, using Minishift: https://medium.com/@nikhilkumar435/deploy-python-flask-application-using-openshift-minishift-af098eb74e26
+
+For Openshift 4.X, to run locally, better to use codeready-containers: https://developers.redhat.com/products/codeready-containers/overview?ref=learn-cluster-access 
+
+Getting started (Medium): https://sindhumurugavel.medium.com/getting-started-with-kubernetes-9fb8995d0726
+
+Get started with CLI: https://docs.openshift.com/enterprise/3.0/cli_reference/get_started_cli.html#basic-setup-and-login
 
 
 
@@ -411,6 +500,16 @@ MLFlow server
 
 - Deploy MLflow on kubernetes (minikube): https://towardsdatascience.com/mlflow-part-2-deploying-a-tracking-server-to-minikube-a2d6671e6455
 
+Deploy MLflow on Openshift: 
+
+- Getting started (Medium): https://sindhumurugavel.medium.com/getting-started-with-kubernetes-9fb8995d0726
+
+- part 1: https://sindhumurugavel.medium.com/running-your-app-on-kubernetes-part-1-build-an-image-of-mlflow-app-on-openshift-3404f3885f84
+
+- part 2: https://sindhumurugavel.medium.com/running-your-app-on-kubernetes-part-2-deploying-an-image-of-mlflow-on-openshift-c4ab4301d9d2
+
+How to setup MLflow on an Azure VM: https://medium.com/swlh/how-to-setup-mlflow-on-azure-5ba67c178e7d
+
 
 SonarQube (or SonarCloud, SonarLint): static code analysis
 --------------------------------------------------------------------------
@@ -446,9 +545,17 @@ Use cases: https://www.kubeflow.org/docs/about/use-cases/
 
 On Azure: https://www.kubeflow.org/docs/azure/ and https://www.kubeflow.org/docs/azure/azureendtoend/ 
 
-On Openshift: https://www.kubeflow.org/docs/openshift/
+On Openshift: https://www.kubeflow.org/docs/openshift/ 
 
 On premises: https://www.kubeflow.org/docs/other-guides/kubeflow-on-multinode-cluster/ 
+
+On Minikube: 
+
+- https://www.kubeflow.org/docs/started/workstation/minikube-linux/ (high resources needed)
+
+- https://gist.github.com/John-Lin/c8083b4db75e97cf12943c545301acd8 (lower resources needed)
+
+- https://v0-2.kubeflow.org/docs/started/getting-started-minikube/
 
 ==========================================================================
 DataOps
@@ -508,8 +615,11 @@ Getting started with FEAST: https://www.kubeflow.org/docs/components/feature-sto
 
 
 
+==========================================================================
+Monitoring of ML models
+==========================================================================
 
-
+Great hands-on blog: https://www-jeremyjordan-me.cdn.ampproject.org/c/s/www.jeremyjordan.me/ml-monitoring/amp/
 
 
 
