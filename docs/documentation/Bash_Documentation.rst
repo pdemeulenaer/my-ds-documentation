@@ -262,17 +262,21 @@ https://www.cloudbees.com/blog/git-detached-head
 Cheatsheets
 -------------------------------------------------------------------------- 
 
+.. figure:: Cheatsheets/git_cheatsheet4.jpeg.PNG
+   :scale: 100 %
+   :alt: git_cheatsheet4
+
 .. figure:: Cheatsheets/Git_CheatSheet.PNG
    :scale: 100 %
-   :alt: map to buried treasure
+   :alt: git_cheatsheet
    
 .. figure:: Cheatsheets/Git_CheatSheet2.PNG
    :scale: 100 %
-   :alt: map to buried treasure
+   :alt: git_cheatsheet2
 
 .. figure:: Cheatsheets/Git_CheatSheet3.PNG
    :scale: 100 %
-   :alt: map to buried treasure
+   :alt: git_cheatsheet3
 
 
 
