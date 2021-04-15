@@ -500,6 +500,8 @@ MLFlow server
 
 - Deploy MLflow on kubernetes (minikube): https://towardsdatascience.com/mlflow-part-2-deploying-a-tracking-server-to-minikube-a2d6671e6455
 
+- Deploy MLflow on kubernetes using Kompose (minikube): https://github.com/Imaginea/mlflow-on-k8s
+
 Deploy MLflow on Openshift: 
 
 - Getting started (Medium): https://sindhumurugavel.medium.com/getting-started-with-kubernetes-9fb8995d0726

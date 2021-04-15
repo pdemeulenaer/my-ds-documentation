@@ -302,11 +302,10 @@ Book & Cheatsheets
 
 Git book: https://git-scm.com/book/en/v2
 
-.. figure:: Cheatsheets/git_cheatsheet4.jpeg.PNG
+.. figure:: Cheatsheets/git_cheatsheet4.jpeg
    :scale: 100 %
    :alt: git_cheatsheet4
-
-
+   
 .. figure:: Cheatsheets/Git_CheatSheet.PNG
    :scale: 100 %
    :alt: git_cheatsheet
