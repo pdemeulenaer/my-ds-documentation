@@ -549,7 +549,13 @@ On Openshift: https://www.kubeflow.org/docs/openshift/
 
 On premises: https://www.kubeflow.org/docs/other-guides/kubeflow-on-multinode-cluster/ 
 
-On Minikube: https://www.kubeflow.org/docs/started/workstation/minikube-linux/
+On Minikube: 
+
+- https://www.kubeflow.org/docs/started/workstation/minikube-linux/ (high resources needed)
+
+- https://gist.github.com/John-Lin/c8083b4db75e97cf12943c545301acd8 (lower resources needed)
+
+- https://v0-2.kubeflow.org/docs/started/getting-started-minikube/
 
 ==========================================================================
 DataOps
