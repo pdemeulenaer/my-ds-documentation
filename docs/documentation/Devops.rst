@@ -47,6 +47,23 @@ Spark on Docker: https://www.datamechanics.co/blog-post/spark-and-docker-your-sp
 
 Note: bug with Dockerhub, to authenticate (when too many failed login attempts): https://github.com/docker/hub-feedback/issues/1250. In CLI: rm ~/.docker/config.json, and then: docker login
 
+Docker-compose
+==========================================================================
+
+Links:
+
+- intro: https://www.youtube.com/watch?v=DX1T-PKHKhg&ab_channel=Simplilearn
+
+- install: https://docs.docker.com/compose/install/
+
+- official doc: get started example: https://docs.docker.com/compose/gettingstarted/ 
+
+- docker compose file reference: https://docs.docker.com/compose/compose-file/compose-file-v3/ (useful to match the docker compose file format with the docker engine release number)
+
+
+
+
+
 Kubernetes
 ==========================================================================
 
