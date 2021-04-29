@@ -538,6 +538,8 @@ What does SonarQube/SonarCloud "better" than classical linting tools like flake8
 
 Rule explorer: here is the list of 174 rules used in SonarQube/SonarCloud/SonarLint: https://rules.sonarsource.com/python (for Python, but exists also for different languages)
 
+Good links on SQ: https://tomgregory.com/sonarqube-branch-analysis/ and related pages
+
 Kubeflow
 ==========================================================================
 
