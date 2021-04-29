@@ -2,6 +2,17 @@
  Python, Jupyter and Pandas
 ===============================================
 
+Exercises on Python (Pandas, Numpy,...)
+===============================================
+
+- https://www.w3resource.com/python-exercises/
+
+- https://pynative.com/python-exercises-with-solutions/
+
+- https://edabit.com/challenge/xbZR26rHMNo32yz35
+
+and many more ...
+
 Basic Jupyter infos
 ===============================================
 
