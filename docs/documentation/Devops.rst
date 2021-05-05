@@ -502,6 +502,8 @@ MLFlow server
 
 - Deploy MLflow on kubernetes using Kompose (minikube): https://github.com/Imaginea/mlflow-on-k8s
 
+- MLflow on kubernetes using bodywork: https://www.bodyworkml.com/posts/deploy-mlflow-with-bodywork
+
 Deploy MLflow on Openshift: 
 
 - Getting started (Medium): https://sindhumurugavel.medium.com/getting-started-with-kubernetes-9fb8995d0726
