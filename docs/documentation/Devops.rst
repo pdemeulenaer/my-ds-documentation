@@ -379,6 +379,8 @@ Example of full cicd (ok, using dotnet, not python, but useful to see full steps
 
 Doc on docker image building using Azure DevOps (and a Dockerfile): https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/test/publish-test-results?view=azure-devops&tabs=junit%2Cyaml#docker
 
+A recurrent tricky problem: when you define a variable from a job, how to make it available in another job? https://gaunacode.com/passing-variables-between-jobs-for-azure-devops-pipelines (pay attention that jobs run on different agents by default, so the variables are not passed by default)
+
 Tests
 --------------------------------------------------------------------------
 
