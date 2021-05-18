@@ -488,6 +488,8 @@ MLFlow Model registry: https://www.mlflow.org/docs/latest/model-registry.html
 
 Model registry example: https://docs.microsoft.com/en-us/azure/databricks/applications/mlflow/model-registry-example 
 
+Model registry accessible from multiple environments: https://docs.microsoft.com/en-us/azure/databricks/applications/machine-learning/manage-model-lifecycle/multiple-workspaces?fbclid=IwAR20hHDxB5JWl5otgceJ8yOv260POXwu-oBBgJaBuVNfiNAmNUOxSisU6Ew
+
 * How to register a model using the model registry UI: https://docs.microsoft.com/en-us/azure/databricks/applications/mlflow/model-registry-example#register-and-manage-the-model-using-the-mlflow-ui
 
 * How to register a model in the model registry in the MLFlow API: https://docs.microsoft.com/en-us/azure/databricks/applications/mlflow/model-registry-example#register-and-manage-the-model-using-the--mlflow-api 
