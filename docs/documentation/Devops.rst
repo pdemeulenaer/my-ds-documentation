@@ -47,6 +47,36 @@ Spark on Docker: https://www.datamechanics.co/blog-post/spark-and-docker-your-sp
 
 Note: bug with Dockerhub, to authenticate (when too many failed login attempts): https://github.com/docker/hub-feedback/issues/1250. In CLI: rm ~/.docker/config.json, and then: docker login
 
+Some basic Docker CLI commands include:
+
+* docker build builds an image from a Dockerfile
+
+* docker images displays all Docker images on the machine
+
+* docker run starts a container and runs commands in it
+
+* docker run options:
+
+-p specify ports in host and Docker container
+
+-it opens an interactive console
+
+-d starts the container in daemon mode (runs in the background)
+
+-e sets environment variables
+
+* docker ps displays all running containers
+
+* docker rmi removes one or more images
+
+* docker rm removes one or more containers
+
+* docker kill kills one or more running containers
+
+* docker tag tags an image with an alias which can be referenced later
+
+* docker login logs in to your Docker registry
+
 Docker-compose
 ==========================================================================
 
