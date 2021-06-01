@@ -1,5 +1,5 @@
 ==========================================================================
- DevOps
+DevOps
 ==========================================================================
 
 Airflow
@@ -8,8 +8,14 @@ Airflow
 Links: 
 
 Server installation with database: https://www.statworx.com/de/blog/a-framework-to-automate-your-work-how-to-set-up-airflow/
+
 First dag: https://medium.com/better-programming/how-to-write-your-first-pipeline-in-airflow-a51141c3f4dd
+
 How to unit-test Airflow: https://godatadriven.com/blog/testing-and-debugging-apache-airflow/ 
+
+Good CRON scheduler translator: https://crontab.guru/#0_08_27_*_*
+
+Note: a common source of confusion in Airflow regarding dates in the fact that the run timestamped with a given date only starts when the period that it covers ends
 
 
 Docker
