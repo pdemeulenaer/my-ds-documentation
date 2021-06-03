@@ -2064,8 +2064,11 @@ Other package: swifter:
 - https://medium.com/@jmcarpenter2/swiftapply-automatically-efficient-pandas-apply-operations-50e1058909f9 
 
 
-Python API's: Flask
+Python API's: 
 =============================================
+
+Flask
+---------------------------------------------
 
 Flask fast tutorial: https://flask.palletsprojects.com/en/1.1.x/quickstart/
 
@@ -2130,3 +2133,9 @@ Examples of deployment of a flask app using Azure DevOps:
 - https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/python-webapp?view=azure-devops
 
 - https://elevate-org.com/2019/10/15/build-devops-ci-cd-pipeline-for-python-flask-with-azure-devops/
+
+
+Streamlit
+----------------------------------------------
+
+https://www.geeksforgeeks.org/deploy-a-machine-learning-model-using-streamlit-library/
