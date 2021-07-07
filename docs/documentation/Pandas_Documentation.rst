@@ -2139,3 +2139,5 @@ Streamlit
 ----------------------------------------------
 
 https://www.geeksforgeeks.org/deploy-a-machine-learning-model-using-streamlit-library/
+
+Streamlit cheatsheet: https://share.streamlit.io/daniellewisdl/streamlit-cheat-sheet/app.py
