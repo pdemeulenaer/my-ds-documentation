@@ -17,6 +17,18 @@ Good CRON scheduler translator: https://crontab.guru/#0_08_27_*_*
 
 Note: a common source of confusion in Airflow regarding dates in the fact that the run timestamped with a given date only starts when the period that it covers ends
 
+Airflow CLI
+--------------------------------------------------------------------------
+
+Detection of a specific dag DAG_NAME contained in a file '/folder/dags/any_subfolder/dag_filename':
+
+.. sourcecode:: python
+
+  airflow list_dags -sd /folder/dags/ -r | grep dag_filename
+  
+  # output such as
+  # /any_subfolder/dag_filename.py                                     | 0.018184 |       1 |        1 | ['DAG_NAME']
+
 
 Docker
 ==========================================================================
