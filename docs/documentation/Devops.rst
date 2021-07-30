@@ -390,7 +390,9 @@ Getting started (Medium): https://sindhumurugavel.medium.com/getting-started-wit
 
 Get started with CLI: https://docs.openshift.com/enterprise/3.0/cli_reference/get_started_cli.html#basic-setup-and-login
 
+Import images from external registry into openshift image registry: https://dzone.com/articles/pulling-images-from-external-container-registry-to
 
+Example, to import minio image from DockerHub into OS model registry: oc import-image docker.io/minio/minio --confirm
 
 CICD developement
 ==========================================================================
