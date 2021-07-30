@@ -24,6 +24,10 @@ Where,
 This one is also very convenient: a "du" that limits the depth 
 du -h --max-depth=1 
 
+Find previous command matching some word in bash
+--------------------------------------------------------------------------
+
+history | grep word-i-am-looking-for
 
 Find RAM type in windows:
 --------------------------------------------------------------------------
