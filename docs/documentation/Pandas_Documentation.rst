@@ -72,6 +72,28 @@ How to check list of python packages installed through pip: https://pip.pypa.io/
   
   # or simply
   pip list
+  
+pip and venv: create a simple virtual environment for model development
+-----------------------------------------------
+
+See https://madewithml.com/courses/mlops/packaging/  
+
+.. sourcecode:: python
+
+  python3 -m venv venv
+  source venv/bin/activate
+  python -m pip install --upgrade pip setuptools wheel
+  pip install -e .
+
+Let's unpack what's happening here:
+
+- Creating a vitual environment named venv
+
+- Activating our virtual environment. Type deactivate to exit out of the virtual environment.
+
+- Upgrading required packages so we download the latest package wheels.
+
+- Install (our packages) from (our) setup.py (-e, --editable installs a project in develop mode)
 
 pip: How does `pip install -e .` work? 
 -----------------------------------------------
