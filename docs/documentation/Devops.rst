@@ -429,7 +429,11 @@ Example of full cicd (ok, using dotnet, not python, but useful to see full steps
 
 Doc on docker image building using Azure DevOps (and a Dockerfile): https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/test/publish-test-results?view=azure-devops&tabs=junit%2Cyaml#docker
 
-jobs, conditions, variables in Azure Pipelines: A recurrent tricky problem: when you define a variable from a job, how to make it available in another job? https://gaunacode.com/passing-variables-between-jobs-for-azure-devops-pipelines (pay attention that jobs run on different agents by default, so the variables are not passed by default). Also, if I need to use a variable of a previous job in a condition in a downstream job: https://docs.microsoft.com/en-us/azure/devops/pipelines/process/conditions?view=azure-devops&tabs=yaml#use-the-output-variable-from-a-job-in-a-condition-in-a-subsequent-job
+jobs, conditions, variables in Azure Pipelines: A recurrent tricky problem: when you define a variable from a job, how to make it available in another job? https://gaunacode.com/passing-variables-between-jobs-for-azure-devops-pipelines (pay attention that jobs run on different agents by default, so the variables are not passed by default). 
+
+Also, if I need to use a variable of a previous job in a condition in a downstream job: https://docs.microsoft.com/en-us/azure/devops/pipelines/process/conditions?view=azure-devops&tabs=yaml#use-the-output-variable-from-a-job-in-a-condition-in-a-subsequent-job
+
+Good post on the different variable types in Azure DevOps: https://adamtheautomator.com/azure-devops-variables/#What_are_Azure_DevOps_Pipeline_Variables
 
 
 Tests
