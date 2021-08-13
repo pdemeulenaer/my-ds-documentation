@@ -435,6 +435,8 @@ jobs, conditions, variables in Azure Pipelines: A recurrent tricky problem: when
 
 Also, if I need to use a variable of a previous job in a condition in a downstream job: https://docs.microsoft.com/en-us/azure/devops/pipelines/process/conditions?view=azure-devops&tabs=yaml#use-the-output-variable-from-a-job-in-a-condition-in-a-subsequent-job
 
+Passing variables between different STAGES: https://docs.microsoft.com/en-us/azure/devops/pipelines/process/expressions?view=azure-devops#stage-to-stage-dependencies
+
 Good post on the different variable types in Azure DevOps: https://adamtheautomator.com/azure-devops-variables/#What_are_Azure_DevOps_Pipeline_Variables
 
 
