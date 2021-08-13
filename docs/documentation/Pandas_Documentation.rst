@@ -73,7 +73,7 @@ How to check list of python packages installed through pip: https://pip.pypa.io/
   # or simply
   pip list
   
-pip and venv: create a simple virtual environment for model development
+pip, venv & setup.py: create a simple virtual environment for model development
 -----------------------------------------------
 
 See https://madewithml.com/courses/mlops/packaging/  
@@ -94,6 +94,8 @@ Let's unpack what's happening here:
 - Upgrading required packages so we download the latest package wheels.
 
 - Install (our packages) from (our) setup.py (-e, --editable installs a project in develop mode)
+
+Example of a setup.py: https://github.com/GokuMohandas/MLOps/blob/main/setup.py
 
 pip: How does `pip install -e .` work? 
 -----------------------------------------------
