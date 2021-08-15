@@ -265,6 +265,11 @@ Kubernetes command cheatsheets:
 
 * https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
+Azure Kubernetes Service
+--------------------------------------------------------------------------
+
+Start/stop already created cluster: https://docs.microsoft.com/en-us/azure/aks/start-stop-cluster?tabs=azure-cli
+
 Spark on Kubernetes
 --------------------------------------------------------------------------
 
