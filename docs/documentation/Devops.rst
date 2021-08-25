@@ -139,6 +139,26 @@ Again, a very interesting series to address the basics concepts:
 
 Intro to docker & kubernetes video: https://www.youtube.com/watch?v=bhBSlnQcq2k&ab_channel=Amigoscode
 
+How to switch between different clusters: https://stackoverflow.com/questions/43643463/how-to-switch-kubectl-clusters-between-gcloud-and-minikube
+
+You first need to get the context, which names the different clusters available:
+
+$ kubectl config get-contexts
+
+Example of output, for a minikube and AKS clusters:
+
+CURRENT   NAME              CLUSTER          AUTHINFO                             NAMESPACE
+          aks-cluster-dev   aks-cluster-dev  clusterUser_aks-rg_aks-cluster-dev   
+*         minikube          minikube         minikube                             default
+
+Then to switch from the minikube to the AKS one:
+
+kubectl config use-context aks-cluster-dev
+
+And to switch back to the minikube cluster:
+
+kubectl config use-context minikube
+
 Minikube
 --------------------------------------------------------------------------
 
@@ -269,6 +289,12 @@ Azure Kubernetes Service
 --------------------------------------------------------------------------
 
 Start/stop already created cluster: https://docs.microsoft.com/en-us/azure/aks/start-stop-cluster?tabs=azure-cli
+
+For a given cluster aks-cluster-dev in a resource group aks-rg, stopping/starting it is easy:
+
+$ az aks stop --name aks-cluster-dev --resource-group aks-rg
+
+$ az aks start --name aks-cluster-dev --resource-group aks-rg
 
 Spark on Kubernetes
 --------------------------------------------------------------------------
