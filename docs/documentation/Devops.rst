@@ -468,6 +468,48 @@ Also, if I need to use a variable of a previous job in a condition in a downstre
 
 Passing variables between different STAGES: https://docs.microsoft.com/en-us/azure/devops/pipelines/process/expressions?view=azure-devops#stage-to-stage-dependencies
 
+This one is more concrete: https://arunksingh16.medium.com/azure-devops-share-variable-across-stages-9bca85abfe8a (simple working example):
+
+.. sourcecode:: python
+
+  stages:
+
+  - stage: STAGE_X
+    jobs:
+    - job: STAGE_X_JOB_A
+      steps:
+      - checkout: none
+      - script: |
+          echo "This is job STAGE_X_JOB_A. Lets set the value"
+          export PARAM_X="TEST"
+          echo "##vso[task.setvariable variable=VarKey;isOutput=true]$PARAM_X"
+        name: ValidateVar
+      - script: |
+          echo "Key Value :"
+          echo $(ValidateVar.VarKey)
+        name: Print_Key_value
+    - job: STAGE_X_JOB_B
+      dependsOn: STAGE_X_JOB_A
+      condition: eq(dependencies.STAGE_X_JOB_A.outputs['ValidateVar.VarKey'], 'TEST')
+      steps:
+      - checkout: none
+      - script: |
+          echo "This is job STAGE_X_JOB_B and will run as per the valid condition"
+        displayName: Print Details
+        
+  - stage: STAGE_Y
+    dependsOn: STAGE_X
+    jobs:
+    - job: STAGE_Y_JOB_B
+      condition: eq(stageDependencies.STAGE_X.STAGE_X_JOB_A.outputs['ValidateVar.VarKey'], 'TEST') 
+      variables:
+        varFromStageA: $[ stageDependencies.STAGE_X.STAGE_X_JOB_A.outputs['ValidateVar.VarKey'] ]
+      steps:
+      - checkout: none
+      - script: |
+          echo "This Job will print value from Stage STAGE_X"
+          echo $(varFromStageA)
+
 Good post on the different variable types in Azure DevOps: https://adamtheautomator.com/azure-devops-variables/#What_are_Azure_DevOps_Pipeline_Variables
 
 
