@@ -206,6 +206,16 @@ $ sudo dpkg -i minikube_latest_amd64.deb
   kubectl create deployment hello-minikube1 --image=k8s.gcr.io/echoserver:1.4
   kubectl expose deployment hello-minikube1 --type=LoadBalancer --port=8080
 
+The last piece of code expose the service related to the deployment to port 8080. 
+
+To open that in the browser, one needs to open a tunnel in Minikube (see https://minikube.sigs.k8s.io/docs/handbook/accessing/)
+
+$ minikube tunnel
+
+At the end of the experimentation, we need to close the tunnel: 
+
+$ minikube tunnel --cleanup
+
 Minikube Addons
 
 .. sourcecode:: python
