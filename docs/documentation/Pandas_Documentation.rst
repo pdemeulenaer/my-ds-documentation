@@ -117,6 +117,11 @@ Last thing to note is that pip install will install the current package as it is
 .. sourcecode:: python
 
   pip install -e .
+  
+Create a package out of your code
+-----------------------------------------------
+
+See this excellent post: https://godatadriven.com/blog/a-practical-guide-to-using-setup-py/ (todo: extract example from it)
    
 Conda environments
 -----------------------------------------------
