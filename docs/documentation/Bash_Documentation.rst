@@ -178,6 +178,16 @@ Here it is a useful trick in a scenario when there are several people working on
   
 Now you will have the file of origin/development into your local "feature" branch. Then you can use it (modify if needed), and commit it.  
 
+How to compare 2 branches from the command line?
+--------------------------------------------------------------------------
+
+Based on https://devconnected.com/how-to-compare-two-git-branches/
+
+Basically:
+
+.. sourcecode:: python
+
+  $ git diff branch1..branch2
 
 Avoiding git pull
 --------------------------------------------------------------------------
