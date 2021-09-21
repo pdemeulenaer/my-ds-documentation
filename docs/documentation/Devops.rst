@@ -15,7 +15,23 @@ How to unit-test Airflow: https://godatadriven.com/blog/testing-and-debugging-ap
 
 Good CRON scheduler translator: https://crontab.guru/#0_08_27_*_*
 
-Note: a common source of confusion in Airflow regarding dates is the fact that the run timestamped with a given date only starts when the period that it covers ends
+** A common source of confusion in Airflow regarding dates ** is the fact that the run timestamped with a given date only starts when the period that it covers ends! See for example the pictures in https://medium.com/nerd-for-tech/airflow-catchup-backfill-demystified-355def1b6f92 . 
+
+If you run a DAG on a schedule_interval of one day, the run stamped 2020-01-01 will be triggered soon after 2020-01-01T23:59. In other words, the job instance is started once the period it covers has ended. The execution_date available in the context will also be 2020-01-01.
+
+The first DAG Run is created based on the minimum start_date for the tasks in your DAG. Subsequent DAG Runs are created by the scheduler process, based on your DAG’s schedule_interval, sequentially. If your start_date is 2020-01-01 and schedule_interval is @daily, the first run will be created on 2020-01-02 i.e., after your start date has passed.
+
+Re-run DAG
+
+start_date: https://airflow.apache.org/docs/apache-airflow/stable/faq.html#what-s-the-deal-with-start-date
+
+execution_date:
+
+macros for execution_date: https://airflow.apache.org/docs/apache-airflow/stable/macros-ref.html . For example:
+
+{{ ds }} : the execution date as YYYY-MM-DD
+
+{{ next_ds }} : the next execution date as YYYY-MM-DD if {{ ds }} is 2018-01-01 and schedule_interval is @weekly, {{ next_ds }} will be 2018-01-08
 
 Airflow CLI
 --------------------------------------------------------------------------
