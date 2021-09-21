@@ -15,7 +15,7 @@ How to unit-test Airflow: https://godatadriven.com/blog/testing-and-debugging-ap
 
 Good CRON scheduler translator: https://crontab.guru/#0_08_27_*_*
 
-Note: a common source of confusion in Airflow regarding dates in the fact that the run timestamped with a given date only starts when the period that it covers ends
+Note: a common source of confusion in Airflow regarding dates is the fact that the run timestamped with a given date only starts when the period that it covers ends
 
 Airflow CLI
 --------------------------------------------------------------------------
