@@ -13,9 +13,9 @@ First dag: https://medium.com/better-programming/how-to-write-your-first-pipelin
 
 How to unit-test Airflow: https://godatadriven.com/blog/testing-and-debugging-apache-airflow/ 
 
-Good CRON scheduler translator: https://crontab.guru/#0_08_27_*_*
+CRON scheduler translator: https://crontab.guru/#0_08_27_*_*
 
-** A common source of confusion in Airflow regarding dates ** is the fact that the run timestamped with a given date only starts when the period that it covers ends! See for example the pictures in https://medium.com/nerd-for-tech/airflow-catchup-backfill-demystified-355def1b6f92 . 
+**A common source of confusion in Airflow regarding dates** is the fact that the run timestamped with a given date only starts when the period that it covers ends! See for example the pictures in https://medium.com/nerd-for-tech/airflow-catchup-backfill-demystified-355def1b6f92 . 
 
 If you run a DAG on a schedule_interval of one day, the run stamped 2020-01-01 will be triggered soon after 2020-01-01T23:59. In other words, the job instance is started once the period it covers has ended. The execution_date available in the context will also be 2020-01-01.
 
