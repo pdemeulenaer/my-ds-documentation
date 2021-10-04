@@ -250,6 +250,9 @@ Minikube Addons
   
   # To disable an addon:
   minikube addons disable <name>
+  
+  # To clear out minikube's home folder containing configs and other files:
+  minikube delete --all --purge
 
 
 More Minikube links:
