@@ -218,9 +218,12 @@ $ sudo dpkg -i minikube_latest_amd64.deb
   # Delete your local cluster:
   minikube delete
   
-  # How to deploy an application to minikube using kubectl, using an image, and expose it:
-  kubectl create deployment hello-minikube1 --image=k8s.gcr.io/echoserver:1.4
+  # Exposing a service as a LoadBalancer
   kubectl expose deployment hello-minikube1 --type=LoadBalancer --port=8080
+  
+  # Then the service can be accessed using:
+  minikube service --url hello-minikube1
+  # example of output: http://192.168.99.100:12345/ This is the address where the service will be available
 
 The last piece of code expose the service related to the deployment to port 8080. 
 
