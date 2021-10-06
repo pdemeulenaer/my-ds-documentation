@@ -28,4 +28,8 @@ Machine learning:
 
 * [Algorithms](http://pdemeulenaer-doc.azurewebsites.net/documentation/Algorithms_Documentation.html)
 
+Cloud services:
+
+* [Azure](http://pdemeulenaer-doc.azurewebsites.net/documentation/Azure.html)
+
 
