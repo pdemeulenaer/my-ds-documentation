@@ -135,6 +135,8 @@ Installation and configuration:
   > Databricks Host (should begin with https://): https://yourpath.azuredatabricks.net
   > Token: (put your token, get it from "Generate tokens" in User Settings)
   
+  After you complete the prompts, your access credentials are stored in the file ~/.databrickscfg on Unix, Linux, or macOS, or %USERPROFILE%\.databrickscfg on Windows
+  
   # list clusters:
   databricks clusters list
   > 1211-084728-chalk447  small_73ML   TERMINATED
