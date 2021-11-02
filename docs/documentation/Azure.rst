@@ -122,6 +122,8 @@ How to connect data (azure storage for example) and also explore dbutils?
 Databricks CLI
 --------------------------------------------------------------------------
 
+Main doc: https://docs.databricks.com/dev-tools/cli/index.html
+
 Installation and configuration:
 
 .. sourcecode:: python
