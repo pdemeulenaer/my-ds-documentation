@@ -126,6 +126,27 @@ See this excellent post: https://godatadriven.com/blog/a-practical-guide-to-usin
 Conda environments
 -----------------------------------------------
 
+Once installed, in linux, the .bashrc file will contain the block:
+
+.. sourcecode:: python
+
+  # >>> conda initialize >>>
+  # !! Contents within this block are managed by 'conda init' !!
+  __conda_setup="$('/home/philippe/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/home/philippe/anaconda3/etc/profile.d/conda.sh" ]; then
+          . "/home/philippe/anaconda3/etc/profile.d/conda.sh"
+      else
+          export PATH="/home/philippe/anaconda3/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
+
+That block allows the initialization of the conda env, after reloading .bashrc file. This there is NO NEED to add a line such as export PATH="/home/philippe/anaconda3/bin:/home/philippe/anaconda3/condabin:$PATH" or similar. 
+
 check the environments:
 
 .. sourcecode:: python
