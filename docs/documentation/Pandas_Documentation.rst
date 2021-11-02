@@ -145,7 +145,7 @@ Once installed, in linux, the .bashrc file will contain the block:
   unset __conda_setup
   # <<< conda initialize <<<
 
-That block allows the initialization of the conda env, after reloading .bashrc file. This there is NO NEED to add a line such as export PATH="/home/philippe/anaconda3/bin:/home/philippe/anaconda3/condabin:$PATH" or similar. 
+That block allows the initialization of the conda env, after reloading .bashrc file. This there is NO NEED to add a line such as export PATH="/home/philippe/anaconda3/bin:/home/philippe/anaconda3/condabin:$PATH" or similar. See https://github.com/conda/conda/issues/7980
 
 check the environments:
 
