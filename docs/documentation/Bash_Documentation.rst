@@ -71,6 +71,33 @@ See https://www.freecodecamp.org/news/symlink-tutorial-in-linux-how-to-create-an
  Useful GIT commands
 ==========================================================================
 
+Github: how to create a repo locally and then push it to remote?
+--------------------------------------------------------------------------
+
+# Create a new repository on the command line (see e.g. https://madewithml.com/courses/mlops/git/)
+ 
+touch README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/my_repo.git (example)
+git push -u origin master
+
+For the specific case of Github repos, where master branch is called main, you have first to rename your master to main:
+
+git branch -M main  # rename branch to main (if needed)
+
+Then only you can push:
+
+git remote add origin https://github.com/my_repo.git (example)
+git push -u origin main  # pushing the contents of our main branch to the remote repository
+                         # origin is short for the name of the remote repository
+ 
+# Push an existing repository from the command line
+ 
+git remote add origin https://github.com/my_repo.git (example)
+git push -u origin master
+
 Bitbucket: how to create ssh-keys and connect to bitbucket server
 --------------------------------------------------------------------------
 
