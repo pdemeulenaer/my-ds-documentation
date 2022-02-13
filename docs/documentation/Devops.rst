@@ -795,5 +795,21 @@ Monitoring of ML models
 
 Great hands-on blog: https://www-jeremyjordan-me.cdn.ampproject.org/c/s/www.jeremyjordan.me/ml-monitoring/amp/
 
+madewithml: https://madewithml.com/courses/mlops/monitoring/
+
+What exactly can we monitor: 
+
+- The system health (underlying platform health)
+
+- the model performance. 
+
+Problem of delayed outcome: it is sometimes difficult to have the real model performance (absence of feedback on model output) on fresh data. We can use a subset of the dataset being served, with an annotation pipeline, to be able to produce some performance metric. 
+
+"If we wait to catch the model decay based on the performance, it may have already caused significant damage to downstream business pipelines that are dependent on it. We need to employ more fine-grained monitoring to identify the sources of model drift prior to actual performance degradation."
+
+Different types of drift:
+
+
+
 
 
