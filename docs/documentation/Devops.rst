@@ -809,7 +809,11 @@ Problem of delayed outcome: it is sometimes difficult to have the real model per
 
 Different types of drift:
 
+.. figure:: Images/drift_MLOps.png
+   :scale: 100 %
+   :alt: Different types of drifts
 
+   This table is copied from https://madewithml.com/courses/mlops/monitoring/
 
 
 
