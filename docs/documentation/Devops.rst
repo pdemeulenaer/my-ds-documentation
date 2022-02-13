@@ -748,7 +748,7 @@ If you train models without a feature store, your setup might look something lik
 
 Every model has to access the data and do some transformation to turn it into features, which the model then uses for training.
 
-There’s a lot of duplication in this process – many of the models use many of the same features.
+There's a lot of duplication in this process - many of the models use many of the same features.
 
 This duplication is one problem a feature store can solve. Every feature can be stored, versioned, and organized in your feature store. 
 
@@ -756,8 +756,64 @@ This duplication is one problem a feature store can solve. Every feature can be 
    :scale: 100 %
    :alt: Taken from https://www.datarevenue.com/en-blog/feature-store-feast-vs-hopsworks
 
+[Reasons of a FS](https://madewithml.com/courses/mlops/feature-store/):
+
+1. **Isolation**: feature development in isolation (for each unique ML application) can lead to duplication of efforts (setting up ingestion pipelines, feature engineering, etc.).
+
+Solution: create a central feature repository where the entire team contributes maintained features that anyone can use for any application.
+
+2. **Skew**: we may have different pipelines for generating features for training and serving which can introduce skew through the subtle differences.
+
+Solution: create features using a **unified pipeline** and store them in a central location that the training and serving pipelines pull from.
+
+3. **Values**: once we set up our data pipelines, we need to ensure that our input feature values are up-to-date so we aren't working with stale data, while maintaining point-in-time correctness so we don't introduce data leaks.
+
+Solution: retrieve input features for the respective outcomes by pulling what's available when a prediction would be made.
+
+When actually constructing our feature store, there are several core components we need to have to address these challenges:
+
+* **data ingestion**: ability to ingest data from various sources (databases, data warehouse, etc.) and keep them updated.
+
+* **feature definitions**: ability to define entities and corresponding features
+
+* **historical features**: ability to retrieve historical features to use for training.
+
+* **online features**: ability to retrieve features from a low latency origin for inference.
+
+FS **Batch processing**: in batch processing, inference requests on specific entity instances can use features that have been materialized from the offline store
+
+.. figure:: Images/FS_batch.png
+   :scale: 100 %
+   :alt: Taken from https://madewithml.com/courses/mlops/feature-store/
+
+1. Application data is stored in a database and/or a data warehouse, etc. And it goes through the DataOps pipeline to validate the data and engineer the features.
+
+2. These features are written to the offline store which can then be used to retrieve historical training data to train a model with.
+
+3. Once we have our training data, we can start the MLOps pipeline to optimize, train and validate a model.
+
+4. We can incrementally materialize features to the online store so that we can retrieve an entity's feature values with low latency. In a production setting, something like Redis or DynamoDB would be used.
+
+5. These online features are passed on to the deployed model to generate predictions that would be used downstream.   
+
+FS **Stream processing**: we require near real-time feature values to deliver up-to-date predictions at low latency. While we'll still utilize an offline store for retrieving historical data, our application's real-time event data will go directly through our data streams to an online store for serving.
+
+.. figure:: Images/FS_stream.png
+   :scale: 100 %
+   :alt: Taken from https://madewithml.com/courses/mlops/feature-store/
+
+1. Real-time event data enters our running data streams (Kafka / Kinesis, etc.) where they can be processed to generate features.
+
+2. These features are written to the online store which can then be used to retrieve online features for serving at low latency. In a production setting, something like Redis or DynamoDB would be used.
+
+3. Streaming features are also written from the data stream to the batch data source (data warehouse, db, etc.) to be processed for generating training data later on.
+
+4. Historical data will be validated and used to generate features for training a model. This cadence for how often this happens depends on whether there are data annotation lags, compute constraints, etc.
+
+
 Hopsworks 
 --------------------------------------------------------------------------
+
 Intro: 
 
 * Jim Dowling Medium blog: https://towardsdatascience.com/mlops-with-a-feature-store-816cfa5966e9 
@@ -773,6 +829,10 @@ Documentation:
 * Official doc: https://hopsworks.readthedocs.io/en/stable/index.html
 
 * Examples: https://github.com/logicalclocks/hops-examples
+
+* Nice intro from Made with ML: https://madewithml.com/courses/mlops/feature-store/
+
+
 
 FEAST
 ---------------------------------------------------------------------------
