@@ -1078,23 +1078,6 @@ Reading JSON blobs (from command line)
 .. figure:: Images/Json_output.png
    :scale: 100 %
    :alt: Json output
-   
-  
-Getting the gender from Danish CPR number  
------------------------------------------------------
-
-.. sourcecode:: python
-
-  dff = pd.DataFrame({'a': [1,2,3], 'knid': ['1305810001','1305810002','1305810004']})
-  dff.loc[dff['knid'].str[9:10].astype(int) % 2 == 1,'gender'] = 'male'
-  dff.loc[dff['knid'].str[9:10].astype(int) % 2 == 0,'gender'] = 'female'
-  dff
-  
-    a knid       gender
-  0 1 1305810001 male 
-  1 2 1305810002 female 
-  2 3 1305810004 female 
-  
   
 Retrieval of data from SQL data warehouse
 -----------------------------------------------------
@@ -1107,13 +1090,13 @@ This exports the data in a simple array:
 
   # Some super SQL query
   sql = """SELECT top 100
-  _ts_from as RUN_TS
+  table as RUN_TS
   ,b.[AC_KEY]
   ,[PROBABILITY_TRUE]
-  FROM [MCS_BATCH].[test].[B_DCS_DK_ROL] b
-  JOIN mcs_batch.ctrl.run_info r ON r.RUN_ID=b.RUN_ID
+  FROM [DB].[test].[B_DCS_DK_ROL] b
+  JOIN db.ctrl.run_info r ON r.RUN_ID=b.RUN_ID
   """
-  conn = odbc.connect(r'Driver={SQL Server};Server=CF4S01\INST001;Database=MCS_BATCH;Trusted_Connection=yes;')
+  conn = odbc.connect(r'Driver={SQL Server};Server=SERVER;Database=DB;Trusted_Connection=yes;')
   crsr = conn.cursor()
   crsr.execute(sql)
   params=crsr.fetchall()
@@ -1147,11 +1130,11 @@ But if we want to have the data immediately loaded into a dataframe, then we can
   #some SQL command: 	
   SQLcommand = """
   select *
-  from ETZ33839AA.dbo.HNWI_main_data_step5
-  order by inv_id, the_months
+  from db.dbo.table
+  order by field1, field2
   """
 
-  df = Extract_data_from_SQLserver('etpew\INST004','ETZ33839AA',SQLcommand)
+  df = Extract_data_from_SQLserver('server','db',SQLcommand)
   
   
 Exporting data to SQL warehouse
@@ -1163,7 +1146,7 @@ Let's say we have some dataframe, here FinalListModel1:
 
   import pypyodbc as odbc
 
-  conn = odbc.connect(r'Driver={SQL Server};Server=CF4S01\INST001;Database=IMD_ML;Trusted_Connection=yes;')
+  conn = odbc.connect(r'Driver={SQL Server};Server=SERVER;Database=DB;Trusted_Connection=yes;')
 
   rows1 = list(FinalListModel1['caseid']) 
   rows2 = list(FinalListModel1['recordkey'])
@@ -1173,15 +1156,15 @@ Let's say we have some dataframe, here FinalListModel1:
   cursor = conn.cursor() 
 
   stm="""
-  DROP TABLE [MCS_ModelDev_BigDataAnalytics].[dbo].[DEBT_COL_OUTPUT]
-  CREATE TABLE [MCS_ModelDev_BigDataAnalytics].[dbo].[DEBT_COL_OUTPUT] (
+  DROP TABLE [DB].[dbo].[table]
+  CREATE TABLE [DB].[dbo].[table] (
       [caseid] nvarchar(255),
       [recordkey] nvarchar(255),
       [score1] float
   )
   """
   res = cursor.execute(stm)
-  cursor.executemany('INSERT INTO [MCS_ModelDev_BigDataAnalytics].[dbo].[DEBT_COL_OUTPUT] VALUES (?, ?, ?)', rows)
+  cursor.executemany('INSERT INTO [DB].[dbo].[table] VALUES (?, ?, ?)', rows)
   conn.commit()
   
   cursor.close()
@@ -1383,6 +1366,22 @@ In pandas a simple apply function can do it (although might be slow):
   
   The problem is that the syntax is not as flexible (does not allow long list of columns...)
   
+A better way of doing this (also suited to multiple columns at once). Very useful, as I often need to do such operations to convert events into time series:
+
+.. sourcecode:: python
+
+  # https://stackoverflow.com/questions/40357671/apply-list-function-on-multiple-columns-pandas
+  # One df with 2 columns. We want to create a column with lists of B based on column A groups
+  df = pd.DataFrame({'A': [1,1,2,2,2,2,3],'B':['a','b','c','d','e','f','g']})
+  
+  df = df.groupby('A').agg({'B': lambda x: list(x)})
+  print (df)
+                B
+  A              
+  1        [a, b]
+  2  [c, d, e, f]
+  3           [g]
+  
   
   
 Exploding a dataframe of lists of items (with ID column) into exploded ID-item column
@@ -1424,7 +1423,7 @@ Now, let’s execute the explode function.
  1	0
  1	9
  1	9  
- 1  7
+ 1      7
 
   
 Group by operations in Pandas
