@@ -814,6 +814,8 @@ Different types of drift:
    :alt: Different types of drifts
 
    This table is copied from https://madewithml.com/courses/mlops/monitoring/
+   
+**Data drift**: also known as feature drift or covariate shift, occurs when the distribution of the production data is different from the training data. 
 
 
 
