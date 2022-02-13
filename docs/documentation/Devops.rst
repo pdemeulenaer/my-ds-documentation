@@ -813,7 +813,7 @@ Different types of drift:
    :scale: 100 %
    :alt: Different types of drifts
 
-   This table is copied from https://madewithml.com/courses/mlops/monitoring/
+   Copied from https://madewithml.com/courses/mlops/monitoring/
    
 **Data drift**: also known as feature drift or covariate shift, occurs when the distribution of the production data is different from the training data. 
 
@@ -821,6 +821,33 @@ Different types of drift:
    :scale: 100 %
    :alt: data drift example
 
-   This table is copied from https://madewithml.com/courses/mlops/monitoring/
+   Copied from https://madewithml.com/courses/mlops/monitoring/
+
+**Target drift**: shift in the outcomes/labels. This can be a shift in the distributions but also the removal or addition of new classes with categorical tasks. Though retraining can mitigate the performance decay caused target drift, it can often be avoided with proper inter-pipeline communication about new classes, schema changes, etc.
+
+**Concept drift**: Besides the input and output/label data drifting, we can have the actual relationship between them drift as well. This concept drift renders our model ineffective because the patterns it learned to map between the original inputs and outputs are no longer relevant. Such drift can be gradual, abrupt, or even periodic.
+
+Scikit-multiflow provides a toolkit for concept drift detection techniques directly on streaming data. The package offers windowed, moving average functionality (including dynamic preprocessing) and even methods around concepts like gradual concept drift.
+
+How to measure the drifts?
+
+1. Comparing the expectations (in the sense of Great Expectations) on reference data and production data
+
+2. For univariate case:
+
+- Kolmogorov-Smirnov (KS) test. For example, a Kolmogorov-Smirnov (KS) test, which determines the maximum distance between two distribution's cumulative density functions.
+
+- Chi-squared test: similarly for categorical data (input features, targets, etc.) we can apply the Pearson's chi-squared test to determine if a frequency of events (1D) is consistent with a reference distribution.
+
+3. Multivariate case: measuring drift is fairly straightforward for univariate data but difficult for multivariate data. In https://madewithml.com/courses/mlops/monitoring/, it is recommended to reduce data dimensionality (PCA and alike) and then measure. The different dimensionality reduction techniques applied on multivariate data yield either 1D or multidimensional data and so different statistical tests are used to calculate drift: 
+
+- Maximum Mean Discrepancy (MMD): a kernel-based approach that determines the distance between two distributions by computing the distance between the mean embeddings of the features from both distributions.
+
+- Kolmogorov-Smirnov (KS) Test + Bonferroni Correction: determines the maximum distance between two distribution's cumulative density functions. We can apply this on each dimension of the multidimensional data and then use the Bonferroni correction (conservative) or the False discovery rate (FDR) correction to mitigate issues stemming from multiple comparisons.
+
+
+
+
+
 
 
