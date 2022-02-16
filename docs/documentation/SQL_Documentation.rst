@@ -30,6 +30,34 @@ Here is a graphical visualization of the different JOIN operations:
 
    Taken from https://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins
    
+Keys in SQL
+---------------------------------
+
+Taken from https://stackoverflow.com/questions/24949676/difference-between-partition-key-composite-key-and-clustering-key-in-cassandra
+
+* A primary key uniquely identifies a row.
+
+* A composite key is a key formed from multiple columns.
+
+* A partition key is the primary lookup to find a set of rows, i.e. a partition.
+
+* A clustering key is the part of the primary key that isn't the partition key (and defines the ordering within a partition).
+
+(is this specific to Cassandra, or valid for SQL in general?)
+
+Examples:
+
+PRIMARY KEY (a): The partition key is a.
+
+PRIMARY KEY (a, b): The partition key is a, the clustering key is b.
+
+PRIMARY KEY ((a, b)): The composite partition key is (a, b).
+
+PRIMARY KEY (a, b, c): The partition key is a, the composite clustering key is (b, c).
+
+PRIMARY KEY ((a, b), c): The composite partition key is (a, b), the clustering key is c.
+
+PRIMARY KEY ((a, b), c, d): The composite partition key is (a, b), the composite clustering key is (c, d).
 
 Import data from another server
 ----------------------------------
