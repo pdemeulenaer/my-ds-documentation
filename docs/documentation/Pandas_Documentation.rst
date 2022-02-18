@@ -118,10 +118,18 @@ Last thing to note is that pip install will install the current package as it is
 
   pip install -e .
   
-Create a package out of your code
+Create a package out of your code (wheels)
 -----------------------------------------------
 
 See this excellent post: https://godatadriven.com/blog/a-practical-guide-to-using-setup-py/ (todo: extract example from it)
+
+The wheel package format allows Python developers to package a project's components so they can be easily and reliably installed in another system. Just like the JAR format in the JVM world, a wheel is a compressed, single-file build artifact, typically the output of a CI/CD system. Similar to a JAR, a wheel contains not only your source code but references to all of its dependencies as well. 
+
+Wheels are packages that can be installed using pip from either a public repository like Pypi or a private repository.
+
+What about creating Conda packages? https://docs.conda.io/projects/conda-build/en/latest/user-guide/tutorials/build-pkgs.html 
+
+Here examples for Conda packages with exercises (and comparison with wheels): https://python-packaging-tutorial.readthedocs.io/en/latest/conda.html
    
 Conda environments
 -----------------------------------------------
