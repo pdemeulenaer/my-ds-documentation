@@ -643,6 +643,10 @@ Log tensorflow models in MLFlow: https://www.mlflow.org/docs/latest/python_api/m
 MLFLow Projects: https://www.mlflow.org/docs/latest/projects.html
 --------------------------------------------------------------------------
 
+In MLflow projects, we can containarize the MLflow model (training and/or inference) into Docker containers!
+
+Here an example for a containarized training: https://github.com/mlflow/mlflow/tree/master/examples/docker
+
 MLFlow Models: https://www.mlflow.org/docs/latest/models.html
 --------------------------------------------------------------------------
 
