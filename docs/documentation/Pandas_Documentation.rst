@@ -37,6 +37,28 @@ Loading package from a given (maybe different) directory:
 Useful internal address: https://sb-hdp-e4.fspa.myntet.se:8400/    
 
 Useful Jupyter notebook tricks: https://www.dataquest.io/blog/advanced-jupyter-notebooks-tutorial/
+
+What is the meaning of the "python -m" flag? 
+
+The -m stands for module-name in Python. The module-name should be a valid module name in Python. The -m flag in Python searches the sys.path for the named module and executes its contents as the __main__ module.
+
+It's worth mentioning this **only** works if the package has a file __main__.py Otherwise, this package can not be executed directly:
+
+.. sourcecode:: python
+
+  python -m some_package some_arguments
+  
+  The python interpreter will looking for a __main__.py file in the package path to execute. Equivalent to:
+  
+  python path_to_package/__main__.py somearguments
+  
+  It will execute the content after:
+  
+  if __name__ == "__main__":
+
+- https://appdividend.com/2021/02/18/what-is-the-meaning-of-python-m-flag/
+
+- https://stackoverflow.com/questions/7610001/what-is-the-purpose-of-the-m-switch
    
 Getting Notebooks work on server and access them using ssh
 =================================================================
