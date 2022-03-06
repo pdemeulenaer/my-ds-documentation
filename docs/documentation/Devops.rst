@@ -670,6 +670,12 @@ mlflow models serve --model-uri models:/sklearn-iris/production --port 5001 (exa
    :scale: 80 %
    :alt: mlflow serving json format   
 
+Here is the entire procedure:
+
+.. figure:: Images/end2end_mlflow_serving.png
+   :scale: 80 %
+   :alt: mlflow end2end  
+
 MLFlow Model registry: https://www.mlflow.org/docs/latest/model-registry.html
 --------------------------------------------------------------------------
 
