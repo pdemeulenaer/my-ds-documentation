@@ -656,6 +656,20 @@ How to serve MLflow models on the Databricks platform:
 
 - concrete example using Iris dataset during Data & AI conference: https://www.youtube.com/watch?v=Q8ieZEiDTbE&ab_channel=Databricks
 
+- Serving different flavours in MLflow (using pyfunc and UDFs): https://www.youtube.com/watch?v=A1NERf_8wwA&ab_channel=Databricks
+
+How to launch a MLflow webserver using the MLflow CLI:
+
+mlflow models serve --model-uri models:/sklearn-iris/production --port 5001 (example)
+
+.. figure:: Images/mlflow_score_csv_format.png
+   :scale: 100 %
+   :alt: mlflow serving csv format
+   
+.. figure:: Images/mlflow_score_json_format.png
+   :scale: 100 %
+   :alt: mlflow serving json format   
+
 MLFlow Model registry: https://www.mlflow.org/docs/latest/model-registry.html
 --------------------------------------------------------------------------
 
