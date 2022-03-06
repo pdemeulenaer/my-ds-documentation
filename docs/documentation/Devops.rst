@@ -650,6 +650,12 @@ Here an example for a containarized training: https://github.com/mlflow/mlflow/t
 MLFlow Models: https://www.mlflow.org/docs/latest/models.html
 --------------------------------------------------------------------------
 
+How to serve MLflow models on the Databricks platform:
+
+- MLflow documentation for serving as REST endpoint: https://docs.databricks.com/applications/mlflow/model-serving.html
+
+- concrete example using Iris dataset during Data & AI conference: https://www.youtube.com/watch?v=Q8ieZEiDTbE&ab_channel=Databricks
+
 MLFlow Model registry: https://www.mlflow.org/docs/latest/model-registry.html
 --------------------------------------------------------------------------
 
