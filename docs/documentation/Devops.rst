@@ -660,7 +660,7 @@ For **offline** scoring:
 
 For **online** scoring, also multiple possibilities:   
 
-How to [serve](https://www.mlflow.org/docs/latest/cli.html#mlflow-models-serve) MLflow models on the Databricks platform:
+How to (serve)[https://www.mlflow.org/docs/latest/cli.html#mlflow-models-serve] MLflow models on the Databricks platform:
 
 - MLflow documentation for serving as REST endpoint: https://docs.databricks.com/applications/mlflow/model-serving.html
 
