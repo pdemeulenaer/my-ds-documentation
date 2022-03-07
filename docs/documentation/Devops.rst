@@ -655,7 +655,7 @@ There are 2 ways to score/serve the MLflow models: offline and online.
 For **offline** scoring:
 
 .. figure:: Images/mlflow_offline_scoring.png
-   :scale: 80 %
+   :scale: 50 %
    :alt: mlflow offline scoring 
 
 For **online** scoring, also multiple possibilities:   
