@@ -660,7 +660,7 @@ For **offline** scoring:
 
 For **online** scoring, also multiple possibilities:   
 
-How to serve MLflow models on the Databricks platform:
+How to [serve](https://www.mlflow.org/docs/latest/cli.html#mlflow-models-serve) MLflow models on the Databricks platform:
 
 - MLflow documentation for serving as REST endpoint: https://docs.databricks.com/applications/mlflow/model-serving.html
 
@@ -672,11 +672,13 @@ How to serve MLflow models on the Databricks platform:
 
 - Serving different flavours in MLflow (using pyfunc and UDFs): https://www.youtube.com/watch?v=A1NERf_8wwA&ab_channel=Databricks
 
+MLflow serve deploys the model as a local REST API server.
+
 How to launch a MLflow webserver using the MLflow CLI:
 
 mlflow models serve --model-uri models:/sklearn-iris/production --port 5001 (example)
 
-Two formats, CSV or JSON (pandas-split or pandas-records format):
+Two formats, CSV or JSON (pandas-split or pandas-records format): https://www.mlflow.org/docs/latest/models.html#deploy-mlflow-models
 
 .. figure:: Images/mlflow_score_csv_format.png
    :scale: 80 %
