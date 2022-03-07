@@ -631,7 +631,7 @@ Good links:
 
 - tutorial: https://www.adaltas.com/en/2020/03/23/mlflow-open-source-ml-platform-tutorial
 
-MLFLow Tracking: https://www.mlflow.org/docs/latest/tracking.html
+1. MLFLow Tracking: https://www.mlflow.org/docs/latest/tracking.html
 --------------------------------------------------------------------------
 
 Log scikit-learn models in MLFlow: https://mlflow.org/docs/latest/python_api/mlflow.sklearn.html#mlflow.sklearn.log_model
@@ -640,14 +640,14 @@ Log pyspark models in MLFlow: https://mlflow.org/docs/latest/python_api/mlflow.s
 
 Log tensorflow models in MLFlow: https://www.mlflow.org/docs/latest/python_api/mlflow.tensorflow.html#mlflow.tensorflow.log_model
 
-MLFLow Projects: https://www.mlflow.org/docs/latest/projects.html
+2. MLFLow Projects: https://www.mlflow.org/docs/latest/projects.html
 --------------------------------------------------------------------------
 
 In MLflow projects, we can containarize the MLflow model (training and/or inference) into Docker containers!
 
 Here an example for a containarized training: https://github.com/mlflow/mlflow/tree/master/examples/docker
 
-MLFlow Models: https://www.mlflow.org/docs/latest/models.html
+3. MLFlow Models: https://www.mlflow.org/docs/latest/models.html
 --------------------------------------------------------------------------
 
 There are 2 ways to score/serve the MLflow models: offline and online.
@@ -727,8 +727,8 @@ Here is the entire procedure:
    :scale: 80 %
    :alt: mlflow end2end  
 
-MLFlow Model registry: https://www.mlflow.org/docs/latest/model-registry.html
---------------------------------------------------------------------------
+4. MLFlow Model registry: https://www.mlflow.org/docs/latest/model-registry.html
+--------------------------------------------------------------------------------
 
 Model registry example: https://docs.microsoft.com/en-us/azure/databricks/applications/mlflow/model-registry-example 
 
@@ -740,7 +740,7 @@ Model registry accessible from multiple environments: https://docs.microsoft.com
 
 Here is the full chain with Databricks' MLflow and azure ML: https://databricks.com/blog/2020/10/13/using-mlops-with-mlflow-and-azure.html Very good tutorial. 
 
-MLFlow server
+How to create an open-source MLFlow server on Docker or Kubernetes
 --------------------------------------------------------------------------
 
 - Setup MLflow in Production: https://towardsdatascience.com/setup-mlflow-in-production-d72aecde7fef, https://pedro-munoz.tech/how-to-setup-mlflow-in-production/, https://medium.com/datatau/how-to-setup-mlflow-in-production-a6f70511ebdc
