@@ -672,6 +672,8 @@ How to launch a MLflow webserver using the MLflow CLI:
 
 mlflow models serve --model-uri models:/sklearn-iris/production --port 5001 (example)
 
+Two formats, CSV or JSON (pandas-split or pandas-records format):
+
 .. figure:: Images/mlflow_score_csv_format.png
    :scale: 80 %
    :alt: mlflow serving csv format
