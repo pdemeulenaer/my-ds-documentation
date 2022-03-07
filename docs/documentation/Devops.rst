@@ -664,6 +664,10 @@ How to serve MLflow models on the Databricks platform:
 
 - MLflow documentation for serving as REST endpoint: https://docs.databricks.com/applications/mlflow/model-serving.html
 
+.. figure:: Images/mlflow_serving_on_databricks.png
+   :scale: 80 %
+   :alt: mlflow serving on databricks platform
+
 - concrete example using Iris dataset during Data & AI conference: https://www.youtube.com/watch?v=Q8ieZEiDTbE&ab_channel=Databricks
 
 - Serving different flavours in MLflow (using pyfunc and UDFs): https://www.youtube.com/watch?v=A1NERf_8wwA&ab_channel=Databricks
