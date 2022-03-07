@@ -660,7 +660,40 @@ For **offline** scoring:
 
 For **online** scoring, also multiple possibilities:   
 
-How to [serve](https://www.mlflow.org/docs/latest/cli.html#mlflow-models-serve) MLflow models on the Databricks platform:
+MLflow also has a CLI that supports the following commands:
+
+* How to [serve](https://www.mlflow.org/docs/latest/cli.html#mlflow-models-serve) MLflow models on the Databricks platform:
+
+* [build_docker](https://www.mlflow.org/docs/latest/cli.html#mlflow-models-build-docker) packages a REST API endpoint serving the model as a docker image.
+
+* [predict](https://www.mlflow.org/docs/latest/cli.html#mlflow-models-predict) uses the model to generate a prediction for a local CSV or JSON file. Note that this method only supports DataFrame input.
+
+For more info, see:
+
+.. sourcecode:: python
+
+  mlflow models --help
+  mlflow models serve --help
+  mlflow models predict --help
+  mlflow models build-docker --help
+
+build-docker:   
+
+Builds a Docker image whose default entrypoint serves the specified MLflow model at port 8080 within the container, using the ‘python_function’ flavor.
+
+For example, the following command builds a docker image named ‘my-image-name’ that serves the model from run ‘some-run-uuid’ at run-relative artifact path ‘my-model’:
+
+.. sourcecode:: python
+
+  mlflow models build-docker -m "runs:/some-run-uuid/my-model" -n "my-image-name"
+
+  # We can then serve the model, exposing it at port 5001 on the host via:
+  docker run -p 5001:8080 "my-image-name"
+
+  # NB: by default, the container will start nginx and gunicorn processes. If you don’t need the nginx process to be started (for instance if you deploy your container to Google Cloud Run), you can disable it via the DISABLE_NGINX environment variable:
+  docker run -p 5001:8080 -e DISABLE_NGINX=true "my-image-name"
+
+  # See https://www.mlflow.org/docs/latest/python_api/mlflow.pyfunc.html for more information on the ‘python_function’ flavor.
 
 - MLflow documentation for serving as REST endpoint: https://docs.databricks.com/applications/mlflow/model-serving.html
 
