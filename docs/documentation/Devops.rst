@@ -670,6 +670,12 @@ mlflow models serve --model-uri models:/sklearn-iris/production --port 5001 (exa
    :scale: 80 %
    :alt: mlflow serving json format   
 
+For **offline** scoring:
+
+.. figure:: Images/mlflow_offline_scoring.png
+   :scale: 80 %
+   :alt: mlflow offline scoring 
+
 Here is the entire procedure:
 
 .. figure:: Images/end2end_mlflow_serving.png
