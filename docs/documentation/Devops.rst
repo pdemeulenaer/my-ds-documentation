@@ -650,6 +650,16 @@ Here an example for a containarized training: https://github.com/mlflow/mlflow/t
 MLFlow Models: https://www.mlflow.org/docs/latest/models.html
 --------------------------------------------------------------------------
 
+There are 2 ways to score/serve the MLflow models: offline and online.
+
+For **offline** scoring:
+
+.. figure:: Images/mlflow_offline_scoring.png
+   :scale: 80 %
+   :alt: mlflow offline scoring 
+
+For **online** scoring, also multiple possibilities:   
+
 How to serve MLflow models on the Databricks platform:
 
 - MLflow documentation for serving as REST endpoint: https://docs.databricks.com/applications/mlflow/model-serving.html
@@ -669,12 +679,6 @@ mlflow models serve --model-uri models:/sklearn-iris/production --port 5001 (exa
 .. figure:: Images/mlflow_score_json_format.png
    :scale: 80 %
    :alt: mlflow serving json format   
-
-For **offline** scoring:
-
-.. figure:: Images/mlflow_offline_scoring.png
-   :scale: 80 %
-   :alt: mlflow offline scoring 
 
 Here is the entire procedure:
 
