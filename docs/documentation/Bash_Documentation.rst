@@ -445,6 +445,8 @@ Most of them below are in command mode
 
 - p - paste what has been copied (not working for me)
 
+- shift + g: go to bottom of the file
+
 Pasting from system clipboard (vim has its own clipboard): In command mode, write :set paste, then in Insert mode right-mouse button. 
 
 See much more in the link above.
