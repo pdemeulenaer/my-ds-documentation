@@ -831,7 +831,7 @@ Got:
     
 So here, the test is defined in the docstring itself!  
 
-How to parametrize tests functions in Pytest (https://www.softwaretestinghelp.com/pytest-tutorial/, see Parametrization in Pytest):
+How to parametrize tests functions in Pytest (mix of old post here: https://www.softwaretestinghelp.com/pytest-tutorial/ and documentation here: https://docs.pytest.org/en/6.2.x/parametrize.html#:~:text=%40pytest.mark.parametrize%20allows%20one%20to%20define%20multiple%20sets%20of,enables%20parametrization%20of%20arguments%20for%20a%20test%20function.):
 
 Let's say we have 2 files, `parametrize/mathlib.py` and `parametrize/test_mathlib.py`. In `parametrize/mathlib.py` insert the following code that will return the square of a number.
 
