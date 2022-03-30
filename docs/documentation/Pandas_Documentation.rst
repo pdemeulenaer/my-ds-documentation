@@ -656,7 +656,7 @@ Good links:
 
 - https://menziess.github.io/howto/test/python-code/
 
-- Testing Flask app: https://testdriven.io/blog/flask-pytest/
+- Testing Flask app: https://testdriven.io/blog/flask-pytest/ with example: https://gitlab.com/patkennedy79/flask_user_management_example/-/tree/main/
 
 Tests can be considered at three levels:
 
@@ -830,6 +830,74 @@ Got:
     'Hello Stefan!'
     
 So here, the test is defined in the docstring itself!  
+
+How to parametrize tests functions in Pytest (https://www.softwaretestinghelp.com/pytest-tutorial/, see Parametrization in Pytest):
+
+Let's say we have 2 files, `parametrize/mathlib.py` and `parametrize/test_mathlib.py`. In `parametrize/mathlib.py` insert the following code that will return the square of a number.
+
+.. sourcecode:: python
+
+  def cal_square(num):
+      return num * num
+
+In the parametrize/test_mathlib.py we have the related tests:
+
+.. sourcecode:: python
+
+  import mathlib
+   
+  # Test case 1
+  def test_cal_square_1( ):
+      assert mathlib.cal_square(5) == 25
+   
+  # Test case 2
+  def test_cal_square_2( ):
+      assert mathlib.cal_square(6) == 36
+   
+  # Test case 3
+  def test_cal_square_3( ):
+      assert mathlib.cal_square(7) == 49
+
+and so on, there might be a big number of values we might need to check. How would it be possible to simplify this and have instead ONE unique function that could be parametrized so that multiple values could be entered and test the tested function?
+
+.. sourcecode:: python
+
+  import pytest
+  import mathlib
+
+  @pytest.mark.parametrize("test_input,expected_output", [ (5, 25), (6, 36), (7, 49), (8, 64) ] )
+  def test_cal_square(test_input, expected_output):
+      assert mathlib.cal_square(test_input) == expected_output
+
+
+Some advice on how to document unit tests (from https://testdriven.io/blog/flask-pytest/): Let's say we have some class User within a /project/models.py file. The test related to the instanciation of that class would be such:
+
+.. sourcecode:: python
+
+  from project.models import User
+  
+  def test_new_user():
+      """
+      GIVEN a User model
+      WHEN a new User is created
+      THEN check the email, hashed_password, and role fields are defined correctly
+      """
+      user = User('patkennedy79@gmail.com', 'FlaskIsAwesome')
+      assert user.email == 'patkennedy79@gmail.com'
+      assert user.hashed_password != 'FlaskIsAwesome'
+      assert user.role == 'user'
+
+Tests are one of the most difficult aspects of a project to maintain. Often, the code (including the level of comments) for test suites is nowhere near the level of quality as the code being tested.      
+
+A common practice is to use the GIVEN-WHEN-THEN structure:
+
+* GIVEN - what are the initial conditions for the test?
+
+* WHEN - what is occurring that needs to be tested?
+
+* THEN - what is the expected response?
+
+
 
 Coverage (of unit test): pytest-cov
 -----------------------------------------------------------
