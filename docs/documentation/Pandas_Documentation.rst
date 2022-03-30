@@ -869,6 +869,18 @@ and so on, there might be a big number of values we might need to check. How wou
   def test_cal_square(test_input, expected_output):
       assert mathlib.cal_square(test_input) == expected_output
 
+You can also parametrize multiple parameters at once like this:
+
+
+.. sourcecode:: python
+
+  import pytest
+  
+  @pytest.mark.parametrize("x", [0, 1])
+  @pytest.mark.parametrize("y", [2, 3])
+  def test_foo(x, y):
+      pass
+
 
 Some advice on how to document unit tests (from https://testdriven.io/blog/flask-pytest/): Let's say we have some class User within a /project/models.py file. The test related to the instanciation of that class would be such:
 
