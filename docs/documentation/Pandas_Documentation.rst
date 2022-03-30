@@ -648,7 +648,7 @@ If done with Visual Studio Code, the settings should be adapted. Type 'Ctrl + ,'
 
 
 Unit tests in Python: pytest
------------------------------------------------------------
+=======================================================
 
 Good links: 
 
@@ -656,9 +656,21 @@ Good links:
 
 - https://menziess.github.io/howto/test/python-code/
 
+- Testing Flask app: https://testdriven.io/blog/flask-pytest/
+
+Tests can be considered at three levels:
+
+* Unit: Unit tests test the functionality of an individual unit of code isolated from its dependencies. They are the first line of defense against errors and inconsistencies in your codebase. They test from the inside out, from the programmer's point of view.
+
+* Functional (or integration): Functional/integration tests test multiple components of a software product to make sure the components are working together properly. Typically, these tests focus on functionality that the user will be utilizing. They test from the outside in, from the end user's point of view.
+
+* End-to-end
+
+Both unit and functional testing are fundamental parts of the Test-Driven Development (TDD: https://testdriven.io/test-driven-development/) process. Testing should be combined with a Continuous Integration (CI) process to ensure that your tests are constantly being executed, ideally on each commit to your repository.
+
 How to discover the unit tests (pytest): https://docs.pytest.org/en/stable/goodpractices.html#test-discovery
 
-Tests outside application code: Putting tests into an extra directory outside your actual application code might be useful if you have many functional tests or for other reasons want to keep tests separate from actual application code (often a good idea):
+Tests outside application code: Putting tests into an extra directory outside your actual application code might be useful if you have many functional tests or for other reasons want to keep tests separate from actual application code (often a good idea). Note that no __init__.py is necessary in the tests/ folder, as Pytest can identify the files natively:
 
 .. sourcecode:: python
 
