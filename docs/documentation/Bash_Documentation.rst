@@ -71,6 +71,12 @@ See https://www.freecodecamp.org/news/symlink-tutorial-in-linux-how-to-create-an
  Useful GIT commands
 ==========================================================================
 
+Define name globally
+--------------------------------------------------------------------------
+
+git config --global user.name "user name"
+git config --global user.email someone@myemail.com
+
 Github: how to create a repo locally and then push it to remote?
 --------------------------------------------------------------------------
 
