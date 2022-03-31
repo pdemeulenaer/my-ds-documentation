@@ -98,6 +98,10 @@ How to check list of python packages installed through pip: https://pip.pypa.io/
 pip, venv & setup.py: create a simple virtual environment for model development
 -----------------------------------------------
 
+**virtualenv**: main command to create the venv is (https://docs.python.org/3/library/venv.html):
+
+python3 -m venv /path/to/new/virtual/environment/venv_name
+
 See https://madewithml.com/courses/mlops/packaging/  
 
 .. sourcecode:: python
@@ -204,7 +208,7 @@ To create a new environment with some packages:
 1. From the command line (see also the `conda documentation <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-with-commands>`_): 
 .. sourcecode:: python
 
-  conda create -n env_name --yes --quiet python=3.5 numpy scipy scikit-learn statsmodels
+  conda create -n env_name --yes --quiet python=3.7 numpy scipy scikit-learn statsmodels
   
 2. From an environment.yml file (see also the `conda documentation <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file>`_):
 
@@ -241,10 +245,6 @@ Pyenv & pipenv python environments
 ---------------------------------------
 
 Comparison of different python environment managment tools: venv, virtualenv, pyenv, pipenv, conda (and docker): https://www.pluralsight.com/tech-blog/managing-python-environments/
-
-**virtualenv**: main command to create the venv is (https://docs.python.org/3/library/venv.html):
-
-python3 -m venv /path/to/new/virtual/environment
 
 **Pyenv**: Opposed to Pipenv, Pyenv is a tool for managing *multiple* python installations. 
 
