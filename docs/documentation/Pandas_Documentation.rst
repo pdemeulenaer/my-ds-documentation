@@ -242,6 +242,10 @@ Pyenv & pipenv python environments
 
 Comparison of different python environment managment tools: venv, virtualenv, pyenv, pipenv, conda (and docker): https://www.pluralsight.com/tech-blog/managing-python-environments/
 
+**virtualenv**: main command to create the venv is (https://docs.python.org/3/library/venv.html):
+
+python3 -m venv /path/to/new/virtual/environment
+
 **Pyenv**: Opposed to Pipenv, Pyenv is a tool for managing *multiple* python installations. 
 
 Installation of pyenv and using pyenv to install different python versions: https://www.liquidweb.com/kb/how-to-install-pyenv-on-ubuntu-18-04/ 
