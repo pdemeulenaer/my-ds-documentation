@@ -98,7 +98,7 @@ git push -u origin main  # pushing the contents of our main branch to the remote
 git remote add origin https://github.com/my_repo.git (example)
 git push -u origin master
 
-Bitbucket: how to create ssh-keys and connect to bitbucket server
+Bitbucket/Github: how to create ssh-keys and connect to bitbucket server
 --------------------------------------------------------------------------
 
 1. Create key: https://confluence.atlassian.com/bitbucketserver0610/creating-ssh-keys-989761219.html?utm_campaign=in-app-help&utm_medium=in-app-help&utm_source=stash
@@ -106,6 +106,32 @@ Bitbucket: how to create ssh-keys and connect to bitbucket server
 2. Copy public key to bitbucket: https://confluence.atlassian.com/bitbucketserver0610/ssh-user-keys-for-personal-use-989761224.html
 
 3. git clone your repo. In case we get error bitbucket git "SSL certificate problem: self signed certificate in certificate chain", we need to disable the SSL verification step, either one-time shot: GIT_SSL_NO_VERIFY=true git clone https://username@git.example.com/scm/repository.git (see https://confluence.atlassian.com/bitbucketserverkb/resolving-ssl-self-signed-certificate-errors-806029899.html) or globally: git config --global http.sslVerify false (see https://mattferderer.com/fix-git-self-signed-certificate-in-certificate-chain-on-windows)
+
+Todo commmand:
+
+ssh-keygen -t rsa (or other protocols like dsa, ecdsa, ed25519, or rsa type)
+
+You get this:
+
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/ec2-user/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/ec2-user/.ssh/id_rsa.
+Your public key has been saved in /home/ec2-user/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:MjRRqu/J***************************E ec2-user@ip-172-31-33-9.eu-north-1.compute.internal
+The key's randomart image is:
++---[RSA 2048]----+
+|   .  ...    .   |
+   *****
+|= +o+o .. . o +  |
+|.*o=+o=.     o   |
++----[SHA256]-----+
+
+When then cat /home/ec2-user/.ssh/id_rsa.pub, copy the content and go into Settings in Github and paste that into the section "SSH and GPG keys". Then in your environment, you can then clone any repo using the git@github.com:blabla.git.
+
+
 
 Pull requests: how-to
 --------------------------------------------------------------------------
