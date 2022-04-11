@@ -986,7 +986,7 @@ How to measure the drifts?
 
 - Kolmogorov-Smirnov (KS) Test + Bonferroni Correction: determines the maximum distance between two distribution's cumulative density functions. We can apply this on each dimension of the multidimensional data and then use the Bonferroni correction (conservative) or the False discovery rate (FDR) correction to mitigate issues stemming from multiple comparisons.
 
-
+More about Drifts: https://medium.com/@mahajan_sameer/mlops-series-introduction-to-mlops-data-drift-concept-drifts-and-how-to-handle-them-in-ml-e3821e05f948
 
 
 
