@@ -269,6 +269,10 @@ Next, Register the table in the metastore:
   USING PARQUET                
   LOCATION "/dbacademy/$username/DLRS/healthtracker/processed"  
   
+Azure Data Factory (ADF)
+--------------------------------------------------------------------------
+
+- Airflow or ADF in Azure: https://blog.dataminded.com/batch-orchestration-on-azure-flowchart-42947008b4ca
 
 Azure ML
 --------------------------------------------------------------------------
