@@ -44,6 +44,9 @@ Detection of a specific dag DAG_NAME contained in a file '/folder/dags/any_subfo
   
   # output such as
   # /any_subfolder/dag_filename.py                                     | 0.018184 |       1 |        1 | ['DAG_NAME']
+  
+  
+- Airflow in Azure (or ADF): https://blog.dataminded.com/batch-orchestration-on-azure-flowchart-42947008b4ca
 
 
 Docker
