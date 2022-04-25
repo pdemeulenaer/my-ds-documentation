@@ -822,6 +822,9 @@ DataOps
 Feature Store
 ==========================================================================
 
+Databricks (Azure) FS doc: https://docs.microsoft.com/en-us/azure/databricks/applications/machine-learning/feature-store/#create-a-training-dataset
+Databricks (AWS) FS doc: http://docs.databricks.com.s3-website-us-west-1.amazonaws.com/applications/machine-learning/feature-store/index.html#create-a-training-dataset
+
 Why do we need a feature store? (https://www.datarevenue.com/en-blog/feature-store-feast-vs-hopsworks)
 
 If you train models without a feature store, your setup might look something like this: 
