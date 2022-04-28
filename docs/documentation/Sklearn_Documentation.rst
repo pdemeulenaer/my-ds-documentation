@@ -362,7 +362,7 @@ Here is an example on artificial data, taken from https://stackoverflow.com/ques
 
 .. sourcecode:: python
 
-  from sklearn.grid_search import GridSearchCV
+  from sklearn.model_selection import GridSearchCV
   from sklearn.datasets import make_classification
   from sklearn.ensemble import RandomForestClassifier
   
@@ -376,15 +376,18 @@ Here is an example on artificial data, taken from https://stackoverflow.com/ques
                            random_state=0,
                            shuffle=False)
 
-  rfc = RandomForestClassifier(n_jobs=-1,max_features= 'sqrt' ,n_estimators=50, oob_score = True) 
-
-  param_grid = { 
+  base_estimator = RandomForestClassifier(n_jobs=-1, oob_score = True)
+  
+  param_grid = {
     'n_estimators': [200, 700],
     'max_features': ['auto', 'sqrt', 'log2']
   }
-
-  CV_rfc = GridSearchCV(estimator=rfc, param_grid=param_grid, cv=5)
-  CV_rfc.fit(X, y)
+  
+  CV_rfc = GridSearchCV(estimator=base_estimator, 
+                        param_grid=param_grid,
+                        cv=5)
+  
+  CV_rfc.fit(X_train, y_train)
   print(CV_rfc.best_params_)
   print(CV_rfc.best_score_)
   print(CV_rfc.best_estimator_)
