@@ -10,6 +10,8 @@ Azure Key Vault
 
 `This tutorial <https://docs.microsoft.com/en-us/azure/databricks/scenarios/store-secrets-azure-key-vault>`_ explains how to save the keys of a blob storage in Azure Key Vault (and use that connection in Azure Databricks)
 
+Note that within Azure Databricks, if the workspace was created with Standard plan, during the creation of the secret scope (by adding #secrets/createScope to the workspace URL, so that url is like https://<\location>.azuredatabricks.net/?o=<\orgID>#secrets/createScope), in the Manage Principal option, we need to select the "users", otherwise it will not work. 
+
 Azure Databricks
 ==========================================================================
 
