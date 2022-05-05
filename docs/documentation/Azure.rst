@@ -191,7 +191,12 @@ For MLflow, simply do like here: https://cprosenjit.medium.com/mlflow-azure-data
 
 For Feature Store, one needs to use the metastore of the centralized workspace, and refer to it when working from clusters in other workspaces. See here for the metastore declaration in other workspaces: https://docs.microsoft.com/en-us/azure/databricks/data/metastores/external-hive-metastore . Then follow this to connect the different workspaces together: https://docs.microsoft.com/en-us/azure/databricks/applications/machine-learning/feature-store/multiple-workspaces
 
-Note: the doc on databricks secret scopes (https://docs.microsoft.com/en-us/azure/databricks/dev-tools/cli/secrets-cli) can be useful
+Note: 
+
+* the doc on databricks secret scopes (https://docs.microsoft.com/en-us/azure/databricks/dev-tools/cli/secrets-cli) can be useful
+
+* How to create secret scopes linked to Azure Key Vault: https://docs.microsoft.com/en-us/azure/databricks/scenarios/store-secrets-azure-key-vault
+
 
 Delta Lake
 --------------------------------------------------------------------------
