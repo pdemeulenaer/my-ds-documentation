@@ -180,6 +180,19 @@ The databricks cli is subdivided into sub-cli's:
 
 More info: https://docs.databricks.com/dev-tools/cli/index.html
 
+Centralized Databricks workspace
+--------------------------------------------------------------------------
+
+One can create a Databricks workspace which will contain centralized MLflow and Feature Store instances, that can be used from other workspaces (dev, staging, prod).
+
+To connect such centralized workspace to each of the other ones, this is useful: 
+
+For MLflow, simply do like here: https://cprosenjit.medium.com/mlflow-azure-databricks-7e7e666b7327
+
+For Feature Store, one needs to use the metastore of the centralized workspace, and refer to it when working from clusters in other workspaces. See here for the metastore declaration in other workspaces: https://docs.microsoft.com/en-us/azure/databricks/data/metastores/external-hive-metastore . Then follow this to connect the different workspaces together: https://docs.microsoft.com/en-us/azure/databricks/applications/machine-learning/feature-store/multiple-workspaces
+
+Note: the doc on databricks secret scopes (https://docs.microsoft.com/en-us/azure/databricks/dev-tools/cli/secrets-cli) can be useful
+
 Delta Lake
 --------------------------------------------------------------------------
 
