@@ -191,6 +191,29 @@ For MLflow, simply do like here: https://cprosenjit.medium.com/mlflow-azure-data
 
 For Feature Store, one needs to use the metastore of the centralized workspace, and refer to it when working from clusters in other workspaces. See here for the metastore declaration in other workspaces: https://docs.microsoft.com/en-us/azure/databricks/data/metastores/external-hive-metastore . Then follow this to connect the different workspaces together: https://docs.microsoft.com/en-us/azure/databricks/applications/machine-learning/feature-store/multiple-workspaces
 
+To link a local workspace to the centralized workspace, one has first to create a personal access token into the centralized workspace, something like dapi1232142
+
+Then, using the databricks cli (first configure it to be able to talk to the local workspace, see "Databricks CLI" section just above), in a bash shell you can:
+
+databricks secrets create-scope --scope connection-to-data-workspace --initial-manage-principal users
+
+where the "connection-to-data-workspace" is the name of the scope (that i chose), and the "--initial-manage-principal users" is needed when not in Premium workspace
+
+Then 
+
+databricks secrets put --scope connection-to-data-workspace 
+--key data-workspace-host
+
+This will request to enter the url of the CENTRALIZED workspace. Then
+
+databricks secrets put --scope connection-to-data-workspace --key data-workspace-token
+
+This will request the token of the PAT created in the CENTRALIZED workspace. Then finally
+
+databricks secrets put --scope connection-to-data-workspace --key data-workspace-workspace-id\
+
+This will request the workspace id of the CENTRALIZED workspace (contained in the URL of that workspace usually, if not can be obtained using CLI)
+
 Note: 
 
 * the doc on databricks secret scopes (https://docs.microsoft.com/en-us/azure/databricks/dev-tools/cli/secrets-cli) can be useful
