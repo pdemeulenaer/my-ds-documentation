@@ -189,7 +189,7 @@ To connect such centralized workspace to each of the other ones, this is useful:
 
 For MLflow, simply do like here: https://cprosenjit.medium.com/mlflow-azure-databricks-7e7e666b7327
 
-For Feature Store, one needs to use the metastore of the centralized workspace, and refer to it when working from clusters in other workspaces. See here for the metastore declaration in other workspaces: https://docs.microsoft.com/en-us/azure/databricks/data/metastores/external-hive-metastore . Then follow this to connect the different workspaces together: https://docs.microsoft.com/en-us/azure/databricks/applications/machine-learning/feature-store/multiple-workspaces
+For Feature Store, one needs to use the metastore of the centralized workspace, and refer to it when working from clusters in other workspaces. See here for the metastore declaration in other workspaces: https://docs.microsoft.com/en-us/azure/databricks/data/metastores/external-hive-metastore . Then follow this to connect the different workspaces together: https://docs.microsoft.com/en-us/azure/databricks/applications/machine-learning/feature-store/multiple-workspaces. It is also very important to make sure that the hive client is connected to a centralized Azure Blob Storage: https://docs.databricks.com/data/data-sources/azure/azure-storage.html#access-azure-blob-storage-from-the-hive-client
 
 To link a local workspace to the centralized workspace, one has first to create a personal access token into the centralized workspace, something like dapi1232142
 
