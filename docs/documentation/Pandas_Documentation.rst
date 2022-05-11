@@ -161,6 +161,8 @@ Essentially, from your setup.py file, you can create your wheel using the comman
   
   python setup.py bdist_wheel
   
+Sometimes people use python setup.py sdist bdist_wheel instead. See https://medium.com/ochrona/understanding-python-package-distribution-types-25d53308a9a for what is sdist (source distribution), compared to bdist (built distribution)
+  
 To install a wheel file, use pip install
 
 .. sourcecode:: python
