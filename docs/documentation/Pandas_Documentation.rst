@@ -153,6 +153,26 @@ The wheel package format allows Python developers to package a project's compone
 
 Wheels are packages that can be installed using pip from either a public repository like Pypi or a private repository.
 
+Here is wheel official documentation: https://wheel.readthedocs.io/en/stable/quickstart.html
+
+Essentially, from your setup.py file, you can create your wheel using the command:
+
+.. sourcecode:: python
+  
+  python setup.py bdist_wheel
+  
+To install a wheel file, use pip install
+
+.. sourcecode:: python
+
+  # If it's ready to be used
+  pip install someproject-1.5.0-py2-py3-none.whl
+  
+  # But of course you might want to install the package in editable mode, if you are still working on it (let's say setup.py is in current folder):
+  pip install -e . # that acts on the setup.py file, not any already created wheel (I think)
+  
+Note for **Databricks**: you can install wheels and run them as jobs (if there is an entrypoint to run within the wheel of course): https://databricks.com/blog/2022/02/14/deploy-production-pipelines-even-easier-with-python-wheel-tasks.html . To run a Job with a wheel, first build the Python wheel locally or in a CI/CD pipeline, then upload it to cloud storage. Specify the path of the wheel in the task and choose the method that needs to be executed as the entrypoint. Task parameters are passed to your main method via *args or **kwargs.
+
 What about creating Conda packages? https://docs.conda.io/projects/conda-build/en/latest/user-guide/tutorials/build-pkgs.html 
 
 Here examples for Conda packages with exercises (and comparison with wheels): https://python-packaging-tutorial.readthedocs.io/en/latest/conda.html
