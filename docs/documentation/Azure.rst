@@ -31,6 +31,23 @@ Deploying an MLflow model as a container on ACI and AKS: https://docs.azuredatab
 
 Databricks workflow with databricks-connect: https://menziess.github.io/howto/enhance/your-databricks-workflow/
 
+DBX - Databricks Extended CLI (supersedes Databricks-connect)
+--------------------------------------------------------------------------
+
+Main documentation:
+
+- https://docs.databricks.com/dev-tools/dbx.html
+
+- https://dbx.readthedocs.io/en/latest/properties_propagation.html
+
+Some great examples:
+
+- Create a DBX project: https://docs.microsoft.com/en-us/azure/databricks/dev-tools/dbx#--create-a-dbx-project
+
+- Create a minimal template for CI/CD: https://docs.microsoft.com/en-us/azure/databricks/dev-tools/dbx#--create-a-dbx-templated-project-for-python-with-cicd-support
+
+- Some next steps: https://docs.microsoft.com/en-us/azure/databricks/dev-tools/dbx#next-steps
+
 Databricks-connect
 --------------------------------------------------------------------------
 
