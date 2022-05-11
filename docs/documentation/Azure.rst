@@ -48,6 +48,22 @@ Some great examples:
 
 - Some next steps: https://docs.microsoft.com/en-us/azure/databricks/dev-tools/dbx#next-steps
 
+What are the necessary steps needed in order to deploy and launch a custom code?
+
+For a project which is meant to be deployed on the databricks platform as a package, use:
+
+.. sourcecode:: python
+
+  dbx deploy --jobs=validation --deployment-file=./conf/deployment-validation.json 
+  dbx launch --job=validation --trace
+
+For a code which is just deployed and run (without installing the project as a package on databricks), use:
+
+.. sourcecode:: python
+
+  dbx deploy --jobs=validation --no-rebuild --no-package --deployment-file=./conf/deployment-validation.json
+  dbx launch --job=validation --trace
+
 Databricks-connect
 --------------------------------------------------------------------------
 
