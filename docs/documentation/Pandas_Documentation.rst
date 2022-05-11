@@ -183,6 +183,8 @@ Alternative to setup.py: https://godatadriven.com/blog/a-practical-guide-to-setu
 
 Or, as before, we can do an editable install with pip install -e .
 
+Here is a sample project, as an example: https://github.com/pypa/sampleproject . Although the setup.py is still populated, the pyproject.toml file is already present and the package can be built using pip -m build . --wheel
+
 Question: we might have requirements.txt and as well the install_requires declaration within a setup.py (or better setup.cfg) ... is there a duplication/conflict? Actually no, as explained here:
 
 - https://towardsdatascience.com/requirements-vs-setuptools-python-ae3ee66e28af
@@ -190,6 +192,8 @@ Question: we might have requirements.txt and as well the install_requires declar
 - https://packaging.python.org/en/latest/discussions/install-requires-vs-requirements/
 
 In essence, the install_requires declaration specifies a minimal list of packages needed for the project to run correctly. Instead, the requirements.txt specifies a collection of packages needed to create a full python (virtual) environment.
+
+
 
 Conda packages
 -----------------------------------------------
