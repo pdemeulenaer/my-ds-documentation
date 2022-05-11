@@ -175,6 +175,17 @@ To install a wheel file, use pip install
   
 Note for **Databricks**: you can install wheels and run them as jobs (if there is an entrypoint to run within the wheel of course): https://databricks.com/blog/2022/02/14/deploy-production-pipelines-even-easier-with-python-wheel-tasks.html . To run a Job with a wheel, first build the Python wheel locally or in a CI/CD pipeline, then upload it to cloud storage. Specify the path of the wheel in the task and choose the method that needs to be executed as the entrypoint. Task parameters are passed to your main method via *args or **kwargs.
 
+Alternative to setup.py: https://godatadriven.com/blog/a-practical-guide-to-setuptools-and-pyproject-toml/ This uses setuptools, setup.cfg and pyproject.toml instead of setup.py. Now build your project by running
+
+.. sourcecode:: python
+
+  pip -m build . --wheel
+
+Or, as before, we can do an editable install with pip install -e .
+
+Conda packages
+-----------------------------------------------
+
 What about creating Conda packages? https://docs.conda.io/projects/conda-build/en/latest/user-guide/tutorials/build-pkgs.html 
 
 Here examples for Conda packages with exercises (and comparison with wheels): https://python-packaging-tutorial.readthedocs.io/en/latest/conda.html
