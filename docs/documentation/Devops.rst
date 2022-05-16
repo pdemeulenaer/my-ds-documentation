@@ -1002,7 +1002,7 @@ What to monitor?
 How to monitor data? 
 -----------------------------------------------
 
-Monitoring numerical features:
+**Monitoring numerical features**:
 
 .. figure:: Images/monitoring_numerical_features.png
    :scale: 70 %
@@ -1010,7 +1010,27 @@ Monitoring numerical features:
 
    Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
 
-Monitoring categorical features:
+About the KS+Bonferroni correction (https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks):
+
+.. figure:: Images/KS_bonferroni_correction.png
+   :scale: 70 %
+   :alt: KS_bonferroni_correction.png
+
+   Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
+
+More about Drifts: https://medium.com/@mahajan_sameer/mlops-series-introduction-to-mlops-data-drift-concept-drifts-and-how-to-handle-them-in-ml-e3821e05f948
+
+To monitor the variance, look into the Levene test (https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks):
+
+.. figure:: Images/levene_test_for_variance_monitoring.png
+   :scale: 70 %
+   :alt: levene_test_for_variance_monitoring.png
+
+   Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
+
+See scipy and this demo (https://www.statology.org/levenes-test-python/) to see how to use Levene statistical test to monitor variance.
+
+**Monitoring categorical features**:
 
 .. figure:: Images/monitoring_categorical_features.png
    :scale: 70 %
@@ -1054,23 +1074,6 @@ How to measure the drifts?
 
 - Kolmogorov-Smirnov (KS) Test + Bonferroni Correction: determines the maximum distance between two distribution's cumulative density functions. We can apply this on each dimension of the multidimensional data and then use the Bonferroni correction (conservative) or the False discovery rate (FDR) correction to mitigate issues stemming from multiple comparisons.
 
-About the KS+Bonferroni correction (https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks):
-
-.. figure:: Images/KS_bonferroni_correction.png
-   :scale: 70 %
-   :alt: KS_bonferroni_correction.png
-
-   Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
-
-More about Drifts: https://medium.com/@mahajan_sameer/mlops-series-introduction-to-mlops-data-drift-concept-drifts-and-how-to-handle-them-in-ml-e3821e05f948
-
-To monitor the variance, look into the Levene test (https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks):
-
-.. figure:: Images/levene_test_for_variance_monitoring.png
-   :scale: 70 %
-   :alt: levene_test_for_variance_monitoring.png
-
-   Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
 
 
 
