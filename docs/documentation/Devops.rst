@@ -1014,6 +1014,14 @@ Monitoring categorical features:
 
    Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
 
+where
+
+.. figure:: Images/one_way_xi2_test.png
+   :scale: 70 %
+   :alt: one_way_xi2_test.png
+
+   Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
+
   
 
 How to measure the drifts?
