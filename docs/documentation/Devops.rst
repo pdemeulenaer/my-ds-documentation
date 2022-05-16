@@ -1034,7 +1034,13 @@ About the KS+Bonferroni correction (https://www.youtube.com/watch?v=tGckE83S-4s&
 
 More about Drifts: https://medium.com/@mahajan_sameer/mlops-series-introduction-to-mlops-data-drift-concept-drifts-and-how-to-handle-them-in-ml-e3821e05f948
 
+To monitor the variance, look into the Levene test (https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks):
 
+.. figure:: Images/levene_test_for_variance_monitoring.png
+   :scale: 70 %
+   :alt: levene_test_for_variance_monitoring.png
+
+   Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
 
 
 
