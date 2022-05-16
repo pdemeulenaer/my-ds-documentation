@@ -982,6 +982,13 @@ Scikit-multiflow provides a toolkit for concept drift detection techniques direc
 
 See also: https://www.youtube.com/watch?v=tGckE83S-4s&ab_channel=Databricks
 
+What to do against drifts?
+
+.. figure:: Images/drift_actions.png
+   :scale: 100 %
+   :alt: drift actions
+
+   Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
 
 How to measure the drifts?
 
