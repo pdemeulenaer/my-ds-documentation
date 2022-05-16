@@ -1006,6 +1006,14 @@ Monitoring numerical features:
 
    Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
 
+Monitoring categorical features:
+
+.. figure:: Images/monitoring_categorical_features.png
+   :scale: 70 %
+   :alt: monitoring_categorical_features.png
+
+   Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
+
   
 
 How to measure the drifts?
