@@ -985,10 +985,28 @@ See also: https://www.youtube.com/watch?v=tGckE83S-4s&ab_channel=Databricks
 What to do against drifts?
 
 .. figure:: Images/drift_actions.png
-   :scale: 100 %
+   :scale: 70 %
    :alt: drift actions
 
    Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
+
+What to monitor?
+
+.. figure:: Images/what_to_monitor.png
+   :scale: 70 %
+   :alt: what to monitor
+
+   Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
+
+Monitoring numerical features:
+
+.. figure:: Images/monitoring_numerical_features.png
+   :scale: 70 %
+   :alt: monitoring_numerical_features.png
+
+   Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
+
+  
 
 How to measure the drifts?
 
