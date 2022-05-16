@@ -957,6 +957,7 @@ Problem of delayed outcome: it is sometimes difficult to have the real model per
 "If we wait to catch the model decay based on the performance, it may have already caused significant damage to downstream business pipelines that are dependent on it. We need to employ more fine-grained monitoring to identify the sources of model drift prior to actual performance degradation."
 
 Different types of drift:
+-----------------------------------------------
 
 .. figure:: Images/drift_MLOps.png
    :scale: 100 %
@@ -998,6 +999,9 @@ What to monitor?
 
    Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
 
+How to monitor data? 
+-----------------------------------------------
+
 Monitoring numerical features:
 
 .. figure:: Images/monitoring_numerical_features.png
@@ -1022,7 +1026,17 @@ where
 
    Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
 
-  
+
+How to monitor models?
+-----------------------------------------------
+
+.. figure:: Images/monitoring_models.png
+   :scale: 70 %
+   :alt: monitoring_models.png
+
+   Copied from https://www.youtube.com/watch?v=tGckE83S-4s&t=660s&ab_channel=Databricks
+
+
 
 How to measure the drifts?
 
