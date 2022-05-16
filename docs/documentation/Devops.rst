@@ -950,6 +950,8 @@ What exactly can we monitor:
 
 - the model performance. 
 
+- the data (but that could be monitored even before the model prediction!)
+
 Problem of delayed outcome: it is sometimes difficult to have the real model performance (absence of feedback on model output) on fresh data. We can use a subset of the dataset being served, with an annotation pipeline, to be able to produce some performance metric. 
 
 "If we wait to catch the model decay based on the performance, it may have already caused significant damage to downstream business pipelines that are dependent on it. We need to employ more fine-grained monitoring to identify the sources of model drift prior to actual performance degradation."
@@ -962,7 +964,7 @@ Different types of drift:
 
    Copied from https://madewithml.com/courses/mlops/monitoring/
    
-**Data drift**: also known as feature drift or covariate shift, occurs when the distribution of the production data is different from the training data. 
+**Data drift** (aka feature drift): also known as feature drift or covariate shift, occurs when the distribution of the production data is different from the training data. 
 
 .. figure:: Images/Data_drift.png
    :scale: 100 %
@@ -970,11 +972,16 @@ Different types of drift:
 
    Copied from https://madewithml.com/courses/mlops/monitoring/
 
-**Target drift**: shift in the outcomes/labels. This can be a shift in the distributions but also the removal or addition of new classes with categorical tasks. Though retraining can mitigate the performance decay caused target drift, it can often be avoided with proper inter-pipeline communication about new classes, schema changes, etc.
+**Target drift** (aka label drift): shift in the outcomes/labels. This can be a shift in the distributions but also the removal or addition of new classes with categorical tasks. Though retraining can mitigate the performance decay caused target drift, it can often be avoided with proper inter-pipeline communication about new classes, schema changes, etc.
 
-**Concept drift**: Besides the input and output/label data drifting, we can have the actual relationship between them drift as well. This concept drift renders our model ineffective because the patterns it learned to map between the original inputs and outputs are no longer relevant. Such drift can be gradual, abrupt, or even periodic.
+**Concept drift**: External factors cause the label to evolve. Besides the input and output/label data drifting, we can have the actual relationship between them drift as well. This concept drift renders our model ineffective because the patterns it learned to map between the original inputs and outputs are no longer relevant. Such drift can be gradual, abrupt, or even periodic.
+
+Prediction drift: model prediction distribution deviates. Highly related to target drift, but where target drift is linked to an outside influence, prediction drift is linked to something within the model (unclear here!!)
 
 Scikit-multiflow provides a toolkit for concept drift detection techniques directly on streaming data. The package offers windowed, moving average functionality (including dynamic preprocessing) and even methods around concepts like gradual concept drift.
+
+See also: https://www.youtube.com/watch?v=tGckE83S-4s&ab_channel=Databricks
+
 
 How to measure the drifts?
 
