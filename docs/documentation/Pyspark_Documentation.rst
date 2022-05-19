@@ -2828,7 +2828,10 @@ Here a more elaborated example:
   +-----+--------------------+--------------------+--------------------+--------------------+    
   
   
-  
+Spark Streaming
+=============================================================
+
+Documentation: https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
   
 Scala Spark 
 =============================================================
@@ -2880,4 +2883,5 @@ For hops, see: https://github.com/logicalclocks/hops-examples/blob/master/notebo
 Basically, Petastorm converts the Spark DataFrame to a TensorFlow Dataset using "spark_dataset_converter"
 
 See also the API doc at https://petastorm.readthedocs.io/en/latest/api.html#module-petastorm.spark.spark_dataset_converter
+
 
