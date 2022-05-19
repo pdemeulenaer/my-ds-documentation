@@ -257,6 +257,10 @@ Note:
 Delta Lake
 --------------------------------------------------------------------------
 
+Delta documentation: https://docs.delta.io/latest/delta-batch.html#overwrite, https://delta.io/
+
+Introduction to delta lake: https://books.japila.pl/delta-lake-internals/installation/
+
 How to build a database in DataBricks (based on a lecture from DataBricks):
 
 .. sourcecode:: python
