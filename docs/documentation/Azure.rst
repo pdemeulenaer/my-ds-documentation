@@ -192,6 +192,19 @@ Installation and configuration:
   > 1211-084728-chalk447  small_73ML   TERMINATED
   > 1217-222539-aunt76    job-5-run-1  TERMINATED   
   
+Note for multiple workspaces: 
+
+.. sourcecode:: python
+
+  # Multiple connection profiles are also supported with 
+  databricks configure --profile <profile> [--token]. 
+  
+  # The connection profile can be used as such: 
+  databricks workspace ls --profile <profile>.
+  
+  # To test that your authentication information is working, try a quick test like 
+  databricks workspace ls.
+  
 The databricks cli is subdivided into sub-cli's:
 
 * Workspace CLI: https://docs.databricks.com/dev-tools/cli/workspace-cli.html
