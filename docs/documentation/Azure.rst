@@ -197,13 +197,13 @@ Note for multiple workspaces:
 .. sourcecode:: python
 
   # Multiple connection profiles are also supported with 
-  databricks configure --profile <profile> [--token]. 
+  databricks configure --profile <profile> [--token]
+   
+  # To use the profile associated to a workspace, use
+  databricks <group> <command> --profile <profile-name>
   
-  # The connection profile can be used as such: 
-  databricks workspace ls --profile <profile>.
-  
-  # To test that your authentication information is working, try a quick test like 
-  databricks workspace ls.
+  # For example: 
+  databricks workspace ls --profile <profile>
   
 The databricks cli is subdivided into sub-cli's:
 
