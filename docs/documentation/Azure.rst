@@ -364,6 +364,37 @@ Next, Register the table in the metastore:
   USING PARQUET                
   LOCATION "/dbacademy/$username/DLRS/healthtracker/processed"  
   
+File optimization with Delta Lake: https://docs.databricks.com/delta/optimizations/file-mgmt.html#language-python
+
+1. Compaction (bin-packing) (https://docs.databricks.com/delta/optimizations/file-mgmt.html#compaction-bin-packing):
+
+Delta Lake on Databricks (starting from Runtime 11) can improve the speed of read queries from a table. One way to improve this speed is to coalesce small files into larger ones. You trigger compaction by running the OPTIMIZE command:
+
+.. sourcecode:: python
+
+  from delta.tables import *
+  deltaTable = DeltaTable.forPath(spark, "/data/events") # by table path
+  deltaTable.optimize().executeCompaction()
+  
+  # or
+  
+  from delta.tables import *
+  deltaTable = DeltaTable.forName(spark, "events") # by table name
+  deltaTable.optimize().executeCompaction()
+  
+If you have a large amount of data and only want to optimize a SUBSET of it, you can specify an optional partition predicate using WHERE:
+
+.. sourcecode:: python
+  
+  from delta.tables import *
+  deltaTable = DeltaTable.forName(spark, "events")
+  deltaTable.optimize().where("date='2021-11-18'").executeCompaction() # COMPACTION ONLY FOR THE DATE SELECTED
+  
+2. Z-Ordering (https://docs.databricks.com/delta/optimizations/file-mgmt.html#z-ordering-multi-dimensional-clustering)"
+
+  
+Example notebooks: https://docs.databricks.com/delta/optimizations/optimization-examples.html
+  
 Azure Data Factory (ADF)
 --------------------------------------------------------------------------
 
