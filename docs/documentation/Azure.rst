@@ -276,6 +276,16 @@ Delta documentation: https://docs.delta.io/latest/delta-batch.html#overwrite, ht
 
 Introduction to delta lake: https://books.japila.pl/delta-lake-internals/installation/
 
+Delta Lake brings ACID to object storage:
+
+**Atomicity**: all transactions are either succeeded or failed completely
+
+**Consistency**: guarantees that state of data is observed same by simultaneous operations
+
+**Isolation**: simultaneous operations should not conflict with one another
+
+**Durability**: changes are permanent
+
 How to build a database in DataBricks (based on a lecture from DataBricks):
 
 .. sourcecode:: python
