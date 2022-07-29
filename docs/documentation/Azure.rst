@@ -276,6 +276,8 @@ Delta documentation: https://docs.delta.io/latest/delta-batch.html#overwrite, ht
 
 Introduction to delta lake: https://books.japila.pl/delta-lake-internals/installation/
 
+Delta is the default file format in databricks.
+
 Delta Lake brings ACID to object storage:
 
 **Atomicity**: all transactions are either succeeded or failed completely
@@ -286,7 +288,19 @@ Delta Lake brings ACID to object storage:
 
 **Durability**: changes are permanent
 
-How to build a database in DataBricks (based on a lecture from DataBricks):
+Problems solved by ACID:
+
+1. Hard to append data: appends will not fail due to conflict, even when writing from multiple sources simultaneously
+
+2. Modification of existing data difficult: upserts allow to apply updates and deletes as a simple atomic transaction
+
+3. Jobs failing mid-way: changes are not committed until a job has succeeded. Jobs either fail or succeed completely (atomicity)
+
+4. Real-time operations are hard: delta allows atomic micro-batch transaction processing in near real-time (within structured streaming). We can use both real-time and batch operations in the same set of delta lake tables
+
+5. Costly to keep historical data versions: 
+
+How to build a database in DataBricks (based on a lecture from DataBricks): time travel enabled on delta lake table using properties as atomicity, consistency and isolation of transactions
 
 .. sourcecode:: python
 
