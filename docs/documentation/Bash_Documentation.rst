@@ -104,6 +104,10 @@ git push -u origin main  # pushing the contents of our main branch to the remote
 git remote add origin https://github.com/my_repo.git (example)
 git push -u origin master
 
+Note: git push -u <remote> <branch> is to set an upstream branch, i.e. the branch in the remote. If you create a branch locally, it will not exist by default in remote. That's why you need to create the upstream. To do that, for a branch xyz, you would do:
+
+git push -u origin xyz
+
 Bitbucket/Github: how to create ssh-keys and connect to bitbucket server
 --------------------------------------------------------------------------
 
