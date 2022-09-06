@@ -568,6 +568,21 @@ Git flow extended demo: https://datasift.github.io/gitflow/IntroducingGitFlow.ht
 
 The one of Azure DevOps: https://docs.microsoft.com/en-us/azure/devops/repos/tfvc/effective-tfvc-branching-strategies-for-devops?view=azure-devops
 
+
+==========================================================================
+Infrastructure as a code (IaC)
+==========================================================================
+
+terraform
+==========================================================================
+
+# TODO: add simple refs for Terraform examples here
+
+How to store the state file in a backend (like S3, ADLS): https://www.terraform.io/language/settings/backends/configuration
+
+How to store the state file in Terraform Cloud: https://www.terraform.io/language/settings/terraform-cloud
+
+
 ==========================================================================
 MLOps - Machine learning life cycle
 ==========================================================================
