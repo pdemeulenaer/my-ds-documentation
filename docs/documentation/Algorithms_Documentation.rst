@@ -355,6 +355,12 @@ Deep Learning
 
 Excellent cheatsheet from Standford: https://stanford.edu/~shervine/teaching/cs-229/cheatsheet-deep-learning
 
+On Convolutional NN: https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-convolutional-neural-networks
+
+On Recurrent NN: https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-recurrent-neural-networks
+
+On training good practices: https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-deep-learning-tips-and-tricks
+
 Machine Learning Ranking
 =============================================	
 
