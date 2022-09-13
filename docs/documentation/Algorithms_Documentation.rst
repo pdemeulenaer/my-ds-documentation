@@ -11,6 +11,10 @@ Big O notation: https://dev.to/educative/big-o-notation-cheat-sheet-quick-answer
 Supervised Machine Learning
 ============================
 
+Excellent cheatsheet from Standford: https://stanford.edu/~shervine/teaching/cs-229/cheatsheet-supervised-learning
+
+As well: documentation on metrics and regularization techniques: https://stanford.edu/~shervine/teaching/cs-229/cheatsheet-machine-learning-tips-and-tricks
+
 .. topic:: Introduction
 
     The objective here is to have everything useful for the projects, not to make a complete documentation of the whole package. Here I will try to document both version 1.6 and >2.0. A special enphase will be done on machine learning module ml (mllib is outdated).
@@ -344,11 +348,12 @@ In scikit-learn:
 Unsupervised Machine Learning - Clustering
 ====================================================
  
+Excellent cheatsheet from Standford: https://stanford.edu/~shervine/teaching/cs-229/cheatsheet-unsupervised-learning
 
 Deep Learning
 ============================
 
-
+Excellent cheatsheet from Standford: https://stanford.edu/~shervine/teaching/cs-229/cheatsheet-deep-learning
 
 Machine Learning Ranking
 =============================================	
