@@ -69,7 +69,7 @@ stages:
   - job: Deploy
     displayName: 'Deploy'
     pool:
-      vmImage: 'vs2017-win2016'
+      vmImage: 'windows-latest'
     steps:
 
       # download the artifact drop from the previous job
