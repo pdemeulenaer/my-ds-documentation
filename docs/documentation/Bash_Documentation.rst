@@ -337,6 +337,8 @@ See http://www.fleekitsolutions.com/blogs/git/difference-between-push-default-ma
 Versioning in git: git tag
 --------------------------------------------------------------------------
 
+Tag vs branch: https://en.wikibooks.org/wiki/Git/Advanced#:~:text=The%20difference%20between%20tags%20and,and%20usually%20not%20be%20changed.
+
 Atlassian tutorial: https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-tag
 
 What is a detached head?
