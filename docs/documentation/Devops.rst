@@ -183,6 +183,8 @@ Minikube
 
 How to install Minikube: https://minikube.sigs.k8s.io/docs/start/ and https://minikube.sigs.k8s.io/docs/drivers/docker/ (when using docker as backend runtime)
 
+Here specifically on Ubuntu, with some addons: https://www.linuxtechi.com/how-to-install-minikube-on-ubuntu/
+
 $ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
 
 $ sudo dpkg -i minikube_latest_amd64.deb
