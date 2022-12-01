@@ -181,7 +181,7 @@ kubectl config use-context minikube
 Minikube
 --------------------------------------------------------------------------
 
-How to install Minikube: https://minikube.sigs.k8s.io/docs/start/
+How to install Minikube: https://minikube.sigs.k8s.io/docs/start/ and https://minikube.sigs.k8s.io/docs/drivers/docker/ (when using docker as backend runtime)
 
 $ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
 
