@@ -459,6 +459,14 @@ Most of them below are in command mode
 
 - e - move to the end of that word
 
+- b - (back) move to start of word
+
+- 0 - move to the start of the line
+
+- $ - move to the end of the line
+
+- w - move to start of next word
+
 - :wq - to save and exit
 
 - :q! - to trash all changes
@@ -468,8 +476,6 @@ Most of them below are in command mode
 - 2w - to move the cursor two words forward.
 
 - 3e - to move the cursor to the end of the third word forward.
-
-- 0 (zero) to move to the start of the line.
 
 - d2w - which deletes 2 words .. number can be changed for deleting the number of consecutive words like d3w
 
@@ -484,6 +490,8 @@ Most of them below are in command mode
 - p - paste what has been copied (not working for me)
 
 - shift + g: go to bottom of the file
+
+- /stuff - search occurence of word "stuff"
 
 Pasting from system clipboard (vim has its own clipboard): In command mode, write :set paste, then in Insert mode right-mouse button. 
 
