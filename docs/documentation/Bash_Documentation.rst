@@ -156,7 +156,7 @@ Here are the different steps for a development branch:
 
 1. git checkout master <this selects master branch>
 2. git pull <this get newest data from master branch>
-3. git checkout –b "branch-name" <this create new branch>
+3. git checkout –b "branch-name" <this create new branch> (since Git 2.23 we can use "git switch -c" instead of "git checkout -b", with same effect. Checkout seems to be sometimes confusing for users)
 4. change code
 5. git add file.py <this needed to add changed files> (or git add --all in case we want to include all changes)
 6. git commit <after this command usually we shortly write that we changed>
