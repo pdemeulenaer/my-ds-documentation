@@ -94,6 +94,12 @@ How to check list of python packages installed through pip: https://pip.pypa.io/
   
   # or simply
   pip list
+
+Cleaning the pip cache:
+
+.. sourcecode:: python
+
+  python -m pip cache purge
   
 pip, venv & setup.py: create a simple virtual environment for model development
 -----------------------------------------------
@@ -285,6 +291,12 @@ Or more complex:
     - flask
     - pip:
       - Flask-Testing
+
+How to clean the conda package cache:
+
+..sourcecode:: python
+
+  conda clean --all
 
 Pyenv & pipenv python environments
 ---------------------------------------
